@@ -1,0 +1,14 @@
+build*
+realise*
+*.aux
+*.log
+*.synctex.gz
+*.tdo
+*.toc
+Makefile
+*.[ao]
+*.moc
+*autosave
+*.in
+*.txt
+*.out
