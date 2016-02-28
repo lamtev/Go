@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 #app.depends  = engine
 
 SUBDIRS += \
-    engine
+    engine \
+    app
