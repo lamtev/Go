@@ -12,9 +12,9 @@ TARGET = Engine
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES += engine.cpp
+SOURCES +=
 
-HEADERS += engine.h
+HEADERS +=
 unix {
     target.path = /usr/lib
     INSTALLS += target
