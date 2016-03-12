@@ -9,16 +9,11 @@ public:
     FunctionalTests();
 
 private Q_SLOTS:
-    void tst_cs1();
+
 };
 
 FunctionalTests::FunctionalTests()
 {
-}
-
-void FunctionalTests::tst_cs1()
-{
-    QVERIFY2(true, "Failure");
 }
 
 QTEST_APPLESS_MAIN(FunctionalTests)
