@@ -6,6 +6,8 @@
 
 QT       -= gui
 
+QMAKE_CXXFLAGS += -std=c++11
+
 TARGET = Engine
 TEMPLATE = lib
 CONFIG += staticlib

@@ -8,6 +8,8 @@ QT       += testlib
 
 QT       -= gui
 
+QMAKE_CXXFLAGS += -std=c++11
+
 TARGET = functionalteststest
 CONFIG   += console
 CONFIG   -= app_bundle
