@@ -11,6 +11,8 @@ public:
     ~API();
     ///Установка размеров игровой доски
     void setBoardDimension(int dimension);
+    /// Метод
+    void method();
 
 private:
 
