@@ -12,3 +12,9 @@ Makefile
 *.in
 *.txt
 *.out
+*.sty
+annotated.tex
+class*.tex
+dir*.tex
+*.bat
+*.idx
