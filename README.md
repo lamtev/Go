@@ -14,6 +14,6 @@
 
 ![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/UseCaseGameOrganisaton.png)
 ## Диаграмма последовательностей
-
+В процессе разработки
 ## Диаграмма компонентов
 ![Component](report/UMLdiagrams/Component/Component.png)
