@@ -4,4 +4,5 @@ SUBDIRS += \
     CUI \
     Engine \
     AI \
-    FunctionalTests
+    FunctionalTests \
+    GUI
