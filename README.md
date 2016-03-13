@@ -12,7 +12,7 @@
 ## Диаграммы прецедентов использования
 ![UseCaseGameProcess](report/UMLdiagrams/UseCase/UseCaseGameProcess.png)
 
-![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/UseCaseGameOrganisation.png)
+![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/UseCaseGameOrganisaton.png)
 ## Диаграмма последовательностей
 
 ## Диаграмма компонентов
