@@ -10,7 +10,7 @@
  Кроссплатформеное консольное приложение, позволяющее в соответствии с японскими правилами играть двоим игрокам.
  
 ## Диаграммы прецедентов использования
-![UseCaseGameProcess](report/UMLdiagrams/UseCaseGameProcess.png)
+![UseCaseGameProcess](report/UMLdiagrams/UseCase/UseCaseGameProcess.png)
 ## Диаграмма последовательностей
 
 ## Диаграмма компонентов
