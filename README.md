@@ -16,3 +16,4 @@
 ## Диаграмма последовательностей
 
 ## Диаграмма компонентов
+![Component](report/UMLdiagrams/Component/Component.png)
