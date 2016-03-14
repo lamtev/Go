@@ -1,14 +1,14 @@
-#ifndef API_H
-#define API_H
+#ifndef GOENGINEINTERFACE_H
+#define GOENGINEINTERFACE_H
 
 
-class API
+class GoEngineInterface
 {
 public:
     ///Конструктор
-    API();
+    GoEngineInterface();
     ///Деструктор
-    ~API();
+    ~GoEngineInterface();
     ///Установка размеров игровой доски
     void setBoardDimension(int dimension);
     /// Метод
@@ -18,4 +18,4 @@ private:
 
 };
 
-#endif // API_H
+#endif // GOENGINEINTERFACE_H

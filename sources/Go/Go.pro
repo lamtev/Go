@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    CUI \
-    Engine \
-    AI
+    GoCUI \
+    GoEngine \
+    XiGo

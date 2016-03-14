@@ -1,20 +1,22 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-03-10T21:07:03
+# Project created by QtCreator 2016-03-10T21:04:05
 #
 #-------------------------------------------------
 
-QT       -= core gui
+QT       -= gui
 
 QMAKE_CXXFLAGS += -std=c++11
 
-TARGET = AI
+TARGET = GoEngine
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES += ai.cpp
+SOURCES += GoEngineInterface.cpp
 
-HEADERS += ai.h
+
+HEADERS += GoEngineInterface.h
+
 unix {
     target.path = /usr/lib
     INSTALLS += target

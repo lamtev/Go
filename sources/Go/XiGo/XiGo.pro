@@ -1,22 +1,20 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-03-10T21:04:05
+# Project created by QtCreator 2016-03-10T21:07:03
 #
 #-------------------------------------------------
 
-QT       -= gui
+QT       -= core gui
 
 QMAKE_CXXFLAGS += -std=c++11
 
-TARGET = Engine
+TARGET = XiGo
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES += api.cpp
+SOURCES += XiGoInterface.cpp
 
-
-HEADERS += api.h
-
+HEADERS += XiGoInterface.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
