@@ -2325,7 +2325,7 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 468,
+									"left": 476,
 									"top": 179,
 									"width": 0,
 									"height": 13,
@@ -2358,7 +2358,7 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 468,
+									"left": 476,
 									"top": 164,
 									"width": 0,
 									"height": 13,
@@ -2391,7 +2391,7 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 468,
+									"left": 476,
 									"top": 209,
 									"width": 0,
 									"height": 13,
@@ -2422,8 +2422,8 @@
 							"tail": {
 								"$ref": "AAAAAAFTcMjmioTIDBk="
 							},
-							"lineStyle": 1,
-							"points": "203:343;232:200;704:200;727.3333333333334:352",
+							"lineStyle": 2,
+							"points": "232:344;232:200;720:200;720:352",
 							"stereotypeDisplay": "label",
 							"showVisibility": true,
 							"showProperty": true,
@@ -2864,20 +2864,6 @@
 					},
 					"name": "GUI",
 					"ownedElements": [
-						{
-							"_type": "UMLInterfaceRealization",
-							"_id": "AAAAAAFTcQYx9YvqJR0=",
-							"_parent": {
-								"$ref": "AAAAAAFTcMiMaIRxfm8="
-							},
-							"source": {
-								"$ref": "AAAAAAFTcMiMaIRxfm8="
-							},
-							"target": {
-								"$ref": "AAAAAAFTcQP3r4skyzc="
-							},
-							"visibility": "public"
-						},
 						{
 							"_type": "UMLDependency",
 							"_id": "AAAAAAFTcQZ5qowt8cY=",
