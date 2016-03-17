@@ -15,7 +15,8 @@ CONFIG += staticlib
 SOURCES += GoEngineInterface.cpp
 
 
-HEADERS += GoEngineInterface.h
+HEADERS += GoEngineInterface.h \
+    enums.h
 
 unix {
     target.path = /usr/lib
