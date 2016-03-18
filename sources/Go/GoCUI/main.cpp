@@ -1,7 +1,10 @@
 #include <iostream>
+#include "../GoEngine/GoEngineInterface.h"
 
 int main()
 {
-    std::cout << "Hello world!!!" << std::endl;
+    int x;
+    x = BLACK;
+    std::cout << x << std::endl;
     return 0;
 }
