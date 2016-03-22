@@ -1,6 +1,7 @@
 #Doxygen & LaTeX
 
 html
+latex
 annotated.tex
 class_*.tex
 dir_*.tex
