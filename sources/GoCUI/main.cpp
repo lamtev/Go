@@ -4,7 +4,7 @@
 int main()
 {
     int x;
-    x = BLACK;
+    x = WHITE;
     std::cout << x << std::endl;
     return 0;
 }

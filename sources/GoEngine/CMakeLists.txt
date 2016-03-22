@@ -1,8 +1,8 @@
 #GoEngine
 
-set(SOURCE_FILES
+set(src
         GoEngineInterface.h
         GoEngineInterface.cpp
         enums.h)
 
-add_library(GoEngine STATIC ${SOURCE_FILES})
+add_library(GoEngine STATIC ${src})
