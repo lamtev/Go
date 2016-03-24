@@ -9,19 +9,7 @@
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
 			},
-			"name": "Model",
-			"ownedElements": [
-				{
-					"_type": "UMLClassDiagram",
-					"_id": "AAAAAAFF+qBtyKM79qY=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "Main",
-					"visible": true,
-					"defaultDiagram": true
-				}
-			],
+			"name": "model",
 			"visibility": "public"
 		},
 		{
@@ -46,9 +34,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFTmUjw96VrSR0="
 							},
-							"name": "SequenceDiagram1",
+							"name": "Go",
 							"visible": true,
-							"defaultDiagram": false,
+							"defaultDiagram": true,
 							"ownedViews": [
 								{
 									"_type": "UMLFrameView",
@@ -77,11 +65,11 @@
 											"containerExtending": false,
 											"left": 75.97900390625,
 											"top": 10,
-											"width": 115.9052734375,
+											"width": 18.341796875,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "SequenceDiagram1",
+											"text": "Go",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -122,8 +110,8 @@
 									"containerExtending": false,
 									"left": 5,
 									"top": 5,
-									"width": 695,
-									"height": 595,
+									"width": 1252,
+									"height": 820,
 									"autoResize": false,
 									"nameLabel": {
 										"$ref": "AAAAAAFTmUjw96VuJcI="
