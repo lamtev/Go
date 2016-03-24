@@ -42,6 +42,6 @@
 
 ![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/UseCaseGameOrganisaton.png)
 ## Диаграмма последовательностей
-В процессе разработки
+Для неё необходимо спроектировать полностью движок
 ## Диаграмма компонентов
 ![Component](report/UMLdiagrams/Component/Component.png)
