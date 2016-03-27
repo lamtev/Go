@@ -38,9 +38,9 @@
  Кроссплатформеное консольное приложение, позволяющее в соответствии с японскими правилами играть двоим пользователям.
   
 ## Диаграммы вариантов использования
-![UseCaseGameProcess](report/UMLdiagrams/UseCase/UseCaseGameProcess.png)
+![UseCaseGameProcess](report/UMLdiagrams/UseCase/GameProcess.png)
 
-![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/UseCaseGameOrganisaton.png)
+![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/GameOrganisaton.png)
 ## Диаграмма последовательностей
 Для неё необходимо спроектировать полностью движок
 ## Диаграмма компонентов
