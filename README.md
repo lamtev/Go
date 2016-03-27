@@ -40,7 +40,7 @@
 ## Диаграммы вариантов использования
 ![UseCaseGameProcess](report/UMLdiagrams/UseCase/GameProcess.png)
 
-![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/GameOrganisaton.png)
+![UseCaseGameOrganisation](report/UMLdiagrams/UseCase/GameOrganisation.png)
 ## Диаграмма последовательностей
 Для неё необходимо спроектировать полностью движок
 ## Диаграмма компонентов
