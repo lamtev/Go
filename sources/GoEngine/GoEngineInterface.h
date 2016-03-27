@@ -4,25 +4,49 @@
 #include <string>
 #include "enums.h"
 /**
- * @brief Класс, предоставляющий интерфейс движка приложению
+ * Класс, предоставляющий интерфейс движка приложению.
  */
 class GoEngineInterface
 {
 public:
 
     /**
-     * @brief Начать игру.
+     * Начать игру.
      *
-     * Метод, позволяющий начать игру в соответствии с параметрами, которые задаются его аргументами.
-     * @param config Конфиг
+     * Этот метод начинает игру с параметрами, заданными его аргументами.
+     * @param config конфигурационный файл
+     * @param diagonal диагональ игровой доски
+     * @param rules правила подсчета очков
+     * @param colorDistribution способ распределения цветов
      */
-    void startGame(std::string config=0, int size=0, Rules rules=JAPANESE, bool isNigiri=true);
-    ///Положить камень в выбранный пункт
-    void putStone(PlayerColor color, LiteralCoordinate x, int y);
-    ///Пропустить ход
-    void pass(PlayerColor color);
-    ///Cдаться
-    void resign(PlayerColor color);
+    virtual void startGame(const std::string config, const int diagonal, const Rules rules,
+                           const ColorDistribution colorDistribution)=0;
+
+    /**
+     * Положить камень в выбранный пункт.
+     *
+     * Данный метод позволяет игроку положить его иговой камень в пункт доски.
+     * @param color цвет игрока
+     * @param first первая координата выбранного пункта доски (A - S)
+     * @param second вторая координата выбранного пункта доски (1 - 19)
+     */
+    virtual void putStone(PlayerColor color, LiteralCoordinate first, int second)=0;
+
+    /**
+     * Пропустить ход.
+     *
+     * Данный метод позволяет игроку пропустить ход.
+     * @param color цвет игрока
+     */
+    virtual void pass(PlayerColor color)=0;
+
+    /**
+     * Сдаться.
+     *
+     * Данный метод позволяет игроку сдаться.
+     * @param color цвет игрока
+     */
+    virtual void resign(PlayerColor color)=0;
 
 private:
 
