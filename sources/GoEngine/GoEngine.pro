@@ -12,11 +12,15 @@ TARGET = GoEngine
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES += GoEngineInterface.cpp
+SOURCES += GoEngineInterface.cpp \
+           Stone.cpp \
+           Board.cpp
 
 
 HEADERS += GoEngineInterface.h \
-    enums.h
+           enums.h \
+           Stone.h \
+           Board.h
 
 unix {
     target.path = /usr/lib

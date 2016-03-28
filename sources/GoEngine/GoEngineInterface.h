@@ -3,6 +3,7 @@
 
 #include <string>
 #include "enums.h"
+#include "Board.h"
 
 /**
  * Класс, предоставляющий интерфейс движка приложению.
@@ -58,7 +59,11 @@ public:
     void resign(PlayerColor color);
 
 private:
-
+    /**
+     * Игровая доска.
+     *
+     */
+    Board board;
 };
 
 #endif // GOENGINEINTERFACE_H
