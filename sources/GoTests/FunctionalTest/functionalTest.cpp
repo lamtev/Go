@@ -23,4 +23,4 @@ void FunctionalTest::testCase1()
 
 QTEST_APPLESS_MAIN(FunctionalTest)
 
-#include "functionaltest.moc"
+#include "functionalTest.moc"
