@@ -18,7 +18,7 @@ public:
      * Этот метод начинает игру с параметрами, заданными конфигурационным файлом.
      * @param config конфигурационный файл
      */
-    void startGame(const std::string config);
+    void startGame( const std::string config );
 
     /**
      * Начать игру.
@@ -28,8 +28,8 @@ public:
      * @param rules правила подсчета очков
      * @param colorDistribution способ распределения цветов
      */
-    void startGame(const int diagonal, const Rules rules,
-                           const ColorDistribution colorDistribution);
+    void startGame( const int diagonal, const Rules rules,
+                           const ColorDistribution colorDistribution );
 
     /**
      * Положить камень в выбранный пункт.
@@ -40,7 +40,8 @@ public:
      * @param second вторая координата выбранного пункта доски (1 - 19)
      */
 
-    void putStone(PlayerColor color, LiteralCoordinate first, int second);
+    void putStone( const Color color, const LiteralCoordinate first,
+                   const int second );
 
     /**
      * Пропустить ход.
@@ -48,7 +49,7 @@ public:
      * Данный метод позваляит игроку пропустить ход.
      * @param color цвет игрока
      */
-    void pass(PlayerColor color);
+    void pass( Color color );
 
     /**
      * Сдаться.
@@ -56,7 +57,37 @@ public:
      * Данный метод позволяет игроку сдаться.
      * @param color цвет игрока
      */
-    void resign(PlayerColor color);
+    void resign( Color color );
+
+    /**
+     * Проверка на окончание игры.
+     *
+     * Данный метод возвращает true, если игра закончена, и false - в противном
+     * случае
+     */
+    bool isGameOver() const;
+
+    /**
+     * Победитель.
+     *
+     * Данный метод возвращает цвет победителя
+     */
+    Color whoWon() const;
+
+    /**
+     * Очки чёрных.
+     *
+     * Данный метод возвращает количество очков чёрных.
+     */
+    int getBlackScore() const;
+
+    /**
+     * Очки белых.
+     *
+     * Данный метод возвращает количество очков белых.
+     */
+    int getWhiteScore() const;
+
 
 private:
     /**
