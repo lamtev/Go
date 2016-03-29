@@ -39,7 +39,6 @@ public:
      * @param first первая координата выбранного пункта доски (A - S)
      * @param second вторая координата выбранного пункта доски (1 - 19)
      */
-
     void putStone( const Color color, const LiteralCoordinate first,
                    const int second );
 
@@ -50,6 +49,13 @@ public:
      * @param color цвет игрока
      */
     void pass( Color color );
+
+    /**
+     * Чей ход?
+     *
+     * Данный метод возвращает цвет того игрока, который должен сделать ход.
+     */
+    Color whoseMove() const;
 
     /**
      * Сдаться.
@@ -68,7 +74,7 @@ public:
     bool isGameOver() const;
 
     /**
-     * Победитель.
+     * Кто победил?
      *
      * Данный метод возвращает цвет победителя
      */
