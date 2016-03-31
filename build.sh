@@ -34,11 +34,11 @@ buildDebugVersion() {
 		cmake --build ./ --clean-first --
 
 		cd ../../sources
-		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
-		#../build/debug/GoTests/ModuleTests/name -xml -o ../report/tests/module/name/log || true
-
+		
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck/log
+		
+		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
 
         cd ../build/debug/GoEngine/CMakeFiles/GoEngine.dir
         ls
