@@ -29,7 +29,7 @@ buildDebugVersion() {
 	mkdir debug
 	cd debug
 	cmake --version
-	cmake –G "Unix Makefiles" ../../
+	cmake –G "Unix Makefiles" ../../sources
 	if [ -e "Makefile" ]; then
 		cmake --build ./ --clean-first --
 
