@@ -31,20 +31,18 @@ buildDebugVersion() {
 	cmake --version
 	cmake –G "Unix Makefiles" ../../sources
 	if [ -e "Makefile" ]; then
-		cmake --build ../debug --clean-first --
+		cmake --build ./ --clean-first --
 
 		cd ../../sources
+		
+		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
 		
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck/log
 		
-		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
-
         cd ../build/debug/GoEngine/CMakeFiles/GoEngine.dir
         ls
-		#gcovr --version
-		#gcovr -r . --xml --exclude='' -o ../../../../../report/gcovr/log
-
+		
 		cd ../../../../../sources
 		ls
 		valgrind --version
