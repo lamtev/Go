@@ -31,7 +31,7 @@ buildDebugVersion() {
 	cmake --version
 	cmake –G "Unix Makefiles" ../../sources
 	if [ -e "Makefile" ]; then
-		cmake --build ./ --clean-first --
+		cmake --build ../debug --clean-first --
 
 		cd ../../sources
 		
