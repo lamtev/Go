@@ -1,6 +1,6 @@
 #GoCUI
 
-set(src main.cpp)
+set(srcFiles main.cpp)
 
 add_executable(GoCUI main.cpp)
 
