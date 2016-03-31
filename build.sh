@@ -92,7 +92,7 @@ makeReport() {
 	fi
 }
 
-zip_files() {
+zipFiles() {
     ls
 	if [ -z ${JOB_NAME} ] || [ -z ${BUILD_NUMBER}]; then
 		echo "Vars JOB_NAME/BUILD_NUMBER are unset"
