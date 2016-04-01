@@ -51,8 +51,8 @@ buildDebugVersion() {
         ls
 		
 		gcovr --version
-		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/sources --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k
-		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/sources --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k -g --xml -o ../report/gcovr/log
+		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k
+		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k -g --xml -o ../report/gcovr/log
 		
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/functionalTest/FTest.%p /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
