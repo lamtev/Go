@@ -23,7 +23,7 @@ buildReleaseVersion() {
 buildDebugVersion() {
     cd sources
     cloc --version
-	cloc --by-file --xml --out=../report/cloc/log *
+	cloc --by-file --xml --out=../report/cloc/clocLog.xml *
 	cd ../build
 	mkdir debug
 	cd debug
@@ -43,19 +43,19 @@ buildDebugVersion() {
 		mkdir functional
 		cd ../../sources
 		
-		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
+		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/FTLog.xml || true
 		
 		cppcheck --version
-		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck/log
+		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck/cppcheckLog.xml
 		
         ls
 		
 		gcovr --version
 		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k
-		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k -g --xml -o ../report/gcovr/log
+		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k -g --xml -o ../report/gcovr/gcovrLog.xml
 		
 		valgrind --version
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/functionalTest/FTest.%p /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/functionalTest/valgrindFTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
 		
 
         cd ../report/doxygen
