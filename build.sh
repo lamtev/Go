@@ -41,7 +41,7 @@ buildDebugVersion() {
 		mkdir functionalTest
 		cd ../tests
 		mkdir functional
-		cd ../../../sources
+		cd ../../sources
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
 		
 		cppcheck --version
