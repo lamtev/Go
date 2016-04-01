@@ -33,8 +33,15 @@ buildDebugVersion() {
 	if [ -e "Makefile" ]; then
 		cmake --build ./ --clean-first --
 
-		cd ../../sources
-		
+		cd ../../report
+		mkdir tests
+		mkdir cppcheck
+		mkdir valgrind
+		cd valgrind
+		mkdir functionalTest
+		cd ../tests
+		mkdir functional
+		cd ../../../sources
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
 		
 		cppcheck --version
