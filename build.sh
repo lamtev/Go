@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 export PATH=$PATH:/opt/Qt5.5.0/5.5/gcc_64/bin/
 
 buildReleaseVersion() {
@@ -7,7 +6,7 @@ buildReleaseVersion() {
 	mkdir release
 	cd release
 	cmake --version
-    cmake –G "Unix Makefiles" ../../sources
+    cmake -D CMAKE_BUILD_TYPE=Release –G "Unix Makefiles" ../../sources
 
 	if [ -e "Makefile" ]; then
 		cmake --build ./ --target GoCUI --
@@ -29,29 +28,32 @@ buildDebugVersion() {
 	mkdir debug
 	cd debug
 	cmake --version
-	cmake –G "Unix Makefiles" ../../sources
+	cmake -D CMAKE_BUILD_TYPE=Debug –G "Unix Makefiles" ../../sources
 	if [ -e "Makefile" ]; then
 		cmake --build ./ --clean-first --
 
 		cd ../../report
 		mkdir tests
 		mkdir cppcheck
+		mkdir gcovr
 		mkdir valgrind
 		cd valgrind
 		mkdir functionalTest
 		cd ../tests
 		mkdir functional
 		cd ../../sources
+		
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/log || true
 		
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck/log
 		
-        cd ../build/debug/GoEngine/CMakeFiles/GoEngine.dir
         ls
 		
-		cd ../../../../../sources
-		ls
+		gcovr --version
+		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/sources --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k
+		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/sources --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources -k -g --xml -o ../report/gcovr/log
+		
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/functionalTest/FTest.%p /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
 		
