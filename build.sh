@@ -46,7 +46,7 @@ buildDebugVersion() {
 		mkdir functional
 		cd ../../build/debug
 		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/src/
-		cp -i $(find ./ -name "*.gcda") ../../report/gcovr/src/
+		#cp -i $(find ./ -name "*.gcda") ../../report/gcovr/src/
 		cp -i $(find ./ -name "*.o") ../../report/gcovr/src/
 		cd ../../sources
 		cp -i $(find ./ -name "*.cpp") ../report/gcovr/src/
