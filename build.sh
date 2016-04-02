@@ -36,14 +36,18 @@ buildDebugVersion() {
 		mkdir tests
 		mkdir cppcheck
 		mkdir gcovr
+		cd gcovr
+		mkdir log
+		cd ../
 		mkdir valgrind
 		cd valgrind
 		mkdir functionalTest
 		cd ../tests
 		mkdir functional
 		cd ../../build/debug
-		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/
+		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/log/
 		cd ../../sources
+		cp -i $(find ./ -name "*.cpp") ../report/gcovr/log/
 		
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/FTLog.xml || true
 		
@@ -56,6 +60,7 @@ buildDebugVersion() {
 		
 		gcovr --version
 		#gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources
+		gcovr -r . --xml --exclude='tst*' -o gcovr_result
 		gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/report/gcovr/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources --xml -o ../report/gcovr/gcovrLog.xml
 		
 		valgrind --version
