@@ -48,6 +48,7 @@ buildDebugVersion() {
 		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/
 		cd ../../sources
 		cp -i $(find ./ -name "*.cpp") ../report/gcovr/
+		cp -i $(find ./ -name "*.h") ../report/gcovr/
 		
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/FTLog.xml || true
 		
