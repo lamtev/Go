@@ -37,7 +37,7 @@ buildDebugVersion() {
 		mkdir cppcheck
 		mkdir gcovr
 		cd gcovr
-		mkdir log
+		mkdir src
 		cd ../
 		mkdir valgrind
 		cd valgrind
@@ -45,10 +45,13 @@ buildDebugVersion() {
 		cd ../tests
 		mkdir functional
 		cd ../../build/debug
-		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/
+		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/src/
+		cp -i $(find ./ -name "*.gcda") ../../report/gcovr/src/
+		cp -i $(find ./ -name "*.o") ../../report/gcovr/src/
 		cd ../../sources
-		cp -i $(find ./ -name "*.cpp") ../report/gcovr/
-		cp -i $(find ./ -name "*.h") ../report/gcovr/
+		cp -i $(find ./ -name "*.cpp") ../report/gcovr/src/
+		cp -i $(find ./ -name "*.h") ../report/gcovr/src/
+		
 		
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/FTLog.xml || true
 		
@@ -61,7 +64,8 @@ buildDebugVersion() {
 		
 		gcovr --version
 		#gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources
-		gcovr -r ./ --xml --exclude='GoTests' -o ../report/gcovr/log/gcovrLog.xml
+		gcovr -r ./ --xml --exclude='GoTests' -o ../report/gcovr/gcovrLog.xml
+		rm -r ../report/gcovr/src/
 		
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/functionalTest/valgrindFTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
