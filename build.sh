@@ -40,7 +40,7 @@ buildDebugVersion() {
 		mkdir src
 		cd ../
 		mkdir valgrind
-		cd ../../build/debug
+		cd ../build/debug
 		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/src/
 		#cp -i $(find ./ -name "*.gcda") ../../report/gcovr/src/
 		cp -i $(find ./ -name "*.o") ../../report/gcovr/src/
