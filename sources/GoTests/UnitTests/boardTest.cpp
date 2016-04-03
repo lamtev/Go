@@ -23,13 +23,13 @@ BoardTest::BoardTest()
 
 void BoardTest::initialization()
 {
-    Board b(19);
+    Board<int> b(19);
     QCOMPARE(b.getDiagonal(), 19);
 }
 
 void BoardTest::indexation()
 {
-    Board b(2);
+    Board<int> b(7);
     b(1,1) = 4;
     b(0,1) = 128;
     b(1,0) = 5;

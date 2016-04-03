@@ -2,10 +2,10 @@
 
 void GoEngineInterface::startGame(const int diagonal, const Rules rules, const ColorDistribution colorDistribution)
 {
-    board = new Board(diagonal);
+    board = new Board<int>(diagonal);
 }
 
-Board GoEngineInterface::getBoard() const noexcept
+Board<int> GoEngineInterface::getBoard() const noexcept
 {
     return *board;
 }

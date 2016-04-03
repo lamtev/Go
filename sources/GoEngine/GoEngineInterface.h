@@ -31,7 +31,7 @@ public:
     void startGame( const int diagonal, const Rules rules,
                            const ColorDistribution colorDistribution );
 
-    Board getBoard() const noexcept;
+    Board<int> getBoard() const noexcept;
 
     /**
      * Положить камень в выбранный пункт.
@@ -104,7 +104,7 @@ private:
      * Игровая доска.
      *
      */
-    Board* board;
+    Board<int>* board;
 };
 
 #endif // GOENGINEINTERFACE_H
