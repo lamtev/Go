@@ -40,10 +40,6 @@ buildDebugVersion() {
 		mkdir src
 		cd ../
 		mkdir valgrind
-		cd valgrind
-		mkdir functionalTest
-		cd ../tests
-		mkdir functional
 		cd ../../build/debug
 		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/src/
 		#cp -i $(find ./ -name "*.gcda") ../../report/gcovr/src/
@@ -53,7 +49,8 @@ buildDebugVersion() {
 		cp -i $(find ./ -name "*.h") ../report/gcovr/src/
 		
 		
-		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/functional/FTLog.xml || true
+		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/FTestLog.xml || true
+		../build/debug/GoTests/UnitTests/BoardTest -xml -o  ../report/tests/BoardTLog.xml || true
 		
 		cppcheck --version
 		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck/cppcheckLog.xml
@@ -68,8 +65,8 @@ buildDebugVersion() {
 		rm -r ../report/gcovr/src/
 		
 		valgrind --version
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/functionalTest/valgrindFTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
-		
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/valgrindFTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/valgrindBoardTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/BoardTest || true
 
         cd ../report/doxygen
 		if [ -e "goconfig" ]; then

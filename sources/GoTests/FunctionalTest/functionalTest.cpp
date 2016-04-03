@@ -3,7 +3,7 @@
 
 class FunctionalTest : public QObject
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
     FunctionalTest();

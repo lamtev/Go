@@ -9,9 +9,12 @@ using std::vector;
 class Board
 {
 public:
-    Board( int diagonal = 19 );
+    Board( const int diagonal = 19 );
+    int& operator()( const int i, const int j );
+    const int getDiagonal() const noexcept;
 private:
-    vector<vector<int>> board;
+    const int diagonal;
+    vector<int> board;
 };
 
 
