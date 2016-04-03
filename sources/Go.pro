@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     GoEngine \
     GoCUI \
-    GoTests/functionalTest
+    GoTests/FunctionalTest \
+    GoTests/UnitTest

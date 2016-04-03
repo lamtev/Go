@@ -7,6 +7,6 @@ set(srcFiles
         Stone.cpp
         Stone.h
         Board.cpp
-        Board.h)
+        Board.h BoundsViolationException.h IncorrectDiagonalException.h)
 
 add_library(GoEngine STATIC ${srcFiles})

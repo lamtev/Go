@@ -8,12 +8,12 @@ QT       += testlib
 
 QT       -= gui
 
-TARGET = Functionaltest
+TARGET = UnitTests
 CONFIG   += console
 CONFIG   -= app_bundle
 
 TEMPLATE = app
 
 
-SOURCES += functionaltest.cpp
+SOURCES += boardTest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"

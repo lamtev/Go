@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "Stone.h"
+#include "BoundsViolationException.h"
+#include "IncorrectDiagonalException.h"
 
 using std::vector;
 
@@ -11,9 +13,9 @@ class Board
 public:
     Board( const int diagonal = 19 );
     int& operator()( const int i, const int j );
-    const int getDiagonal() const noexcept;
+    int getDiagonal() const noexcept;
 private:
-    const int diagonal;
+    int diagonal;
     vector<int> board;
 };
 

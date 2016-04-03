@@ -31,6 +31,8 @@ public:
     void startGame( const int diagonal, const Rules rules,
                            const ColorDistribution colorDistribution );
 
+    Board getBoard() const noexcept;
+
     /**
      * Положить камень в выбранный пункт.
      *
@@ -94,13 +96,15 @@ public:
      */
     int getWhiteScore() const;
 
+    ~GoEngineInterface();
+
 
 private:
     /**
      * Игровая доска.
      *
      */
-    Board board;
+    Board* board;
 };
 
 #endif // GOENGINEINTERFACE_H
