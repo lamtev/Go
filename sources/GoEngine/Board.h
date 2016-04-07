@@ -13,7 +13,7 @@ using std::vector;
 //TODO high performance operator=
 
 /**
- *
+ * Доска.
  */
 class Board
 {
