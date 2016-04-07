@@ -53,7 +53,7 @@ buildDebugVersion() {
 		../build/debug/GoTests/UnitTests/BoardTest -xml -o  ../report/tests/BoardTLog.xml || true
 		
 		cppcheck --version
-		cppcheck --enable=all -v  --xml  * 2> ../report/cppcheck/cppcheckLog.xml
+		cppcheck --enable=all -v --xml-version=2  * 2> ../report/cppcheck/cppcheckLog.xml
 		
         ls
 		
