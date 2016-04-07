@@ -30,7 +30,12 @@ public:
      */
     void startGame( const int diagonal, const Rules rules,
                            const ColorDistribution colorDistribution );
-
+    /**
+     * Получить доску.
+     *
+     * Данный метод возвращает доску.
+     * @return Board
+     */
     Board getBoard() const noexcept;
 
     /**
@@ -95,14 +100,16 @@ public:
      * Данный метод возвращает количество очков белых.
      */
     int getWhiteScore() const;
-
+    /**
+     * Деструктор.
+     * Разрушает объект.
+     */
     ~GoEngineInterface();
 
 
 private:
     /**
-     * Игровая доска.
-     *
+     * Указатель на объект игровой доски.
      */
     Board* board;
 };

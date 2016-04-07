@@ -3,12 +3,21 @@
 
 #include <exception>
 
+/**
+ * Класс-исключение выход за границы доски.
+ * Данное исключение возбуждается при выходе за границы доски
+ */
 class BoundsViolationException : public std::exception
 {
 public:
+    /**
+     * Чё?
+     * Данный метод возвращает строку с записью о том, что
+     * произошёл выход за пределы доски
+     */
     const char* what() const noexcept
     {
-        return "Array bounds violation";
+        return "Board bounds violation";
     }
 
 };
