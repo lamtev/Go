@@ -65,8 +65,8 @@ buildDebugVersion() {
 		rm -r ../report/gcovr/src/
 		
 		valgrind --version
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/valgrindFTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/valgrindBoardTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/BoardTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/GoDevelop/workspace/report/valgrind/valgrindFTest.%p.xml /opt/tomcat/.jenkins/jobs/GoDevelop/workspace/build/debug/GoTests/FunctionalTest/FTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/GoDevelop/workspace/report/valgrind/valgrindBoardTest.%p.xml /opt/tomcat/.jenkins/jobs/GoDevelop/workspace/build/debug/GoTests/UnitTests/BoardTest || true
 
         cd ../report/doxygen
 		if [ -e "goconfig" ]; then
