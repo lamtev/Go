@@ -18,7 +18,7 @@ public:
      * Этот метод начинает игру с параметрами, заданными конфигурационным файлом.
      * @param config конфигурационный файл
      */
-    void startGame( const std::string config );
+    void startGame( const std::string& config );
 
     /**
      * Начать игру.
