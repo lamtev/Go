@@ -1,6 +1,6 @@
 #include "GoEngineInterface.h"
 
-void GoEngineInterface::startGame(const int diagonal, const Rules rules, const ColorDistribution colorDistribution)
+void GoEngineInterface::startGame(const int diagonal, const int rules, const int colorDistribution)
 {
     board = new Board(diagonal);
 }

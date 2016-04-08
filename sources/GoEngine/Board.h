@@ -2,14 +2,15 @@
 #define GO_BOARD_H
 
 #include <vector>
-#include <cmath>
+
+#include "Stone.h"
 
 #include "BoundsViolationException.h"
 #include "IncorrectDiagonalException.h"
 
 using std::vector;
 
-//TODO noecept swap
+//TODO noexcept swap
 //TODO high performance operator=
 
 /**
@@ -23,33 +24,28 @@ public:
      * Конструктор для инициализации объекта по значению диагонали
      * @param diagonal диагональ
      */
-    Board( int diagonal );
-    /**
-     * Конструктор.
-     * Конструктор для инициализации объекта по массиву, содержащему расстановку камней
-     * @param board массив для инициализации
-     */
-    Board( const vector<int>& board );
+    Board( int diagonal = 19 );
+
     /**
      * Оператор скобки.
      * Используется как оператор индексирования.
      * @param i координата по строкам
      * @param j координата по столбцам
      */
-    int& operator()( const int i, const int j );
+    Stone& operator()( const int i, const int j );
     /**
      * Получить диагональ.
      * Метод возвращает значение диагонали
      */
     int getDiagonal() const noexcept;
+
     /**
      * Оператор присваивания.
      * Перегруженный оператор присваивания.
-     * @param board присваиваемый вектор
+     * @param board присваиваемая доска
      * @return Board&
      */
-    Board& operator=( const vector<int>& board ) noexcept;
-
+    Board& operator=( const Board& board ) noexcept;
 private:
     /**
      * Поле диагональ
@@ -58,7 +54,7 @@ private:
     /*
      * Поле доска
      */
-    vector<int> board;
+    vector<Stone> board;
 };
 
 

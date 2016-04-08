@@ -9,18 +9,7 @@ Board::Board( int diagonal ) : diagonal(diagonal)
     board.resize(diagonal * diagonal);
 }
 
-Board::Board(const vector<int>& board)
-{
-    if( board.size() != 7*7 && board.size() != 13*13 && board.size() != 19*19 )
-    {
-        throw IncorrectDiagonalException(static_cast<int>(sqrt(board.size())));
-    }
-    this->board.resize( board.size() );
-    this->board = board;
-    this->diagonal = static_cast<int>(sqrt(board.size()));
-}
-
-int& Board::operator()( const int i, const int j )
+Stone& Board::operator()( const int i, const int j )
 {
     if( i < 0 || i >= diagonal || j < 0 || j >= diagonal )
     {
@@ -34,8 +23,11 @@ int Board::getDiagonal() const noexcept
     return diagonal;
 }
 
-Board& Board::operator=( const vector<int>& board ) noexcept
+Board& Board::operator=(const Board& board) noexcept
 {
-    this->board = board;
+    this->diagonal = board.diagonal;
+    this->board = board.board;
     return *this;
 }
+
+

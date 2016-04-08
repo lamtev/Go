@@ -2,7 +2,7 @@
 #define GOENGINEINTERFACE_H
 
 #include <string>
-#include "enums.h"
+
 #include "Board.h"
 
 /**
@@ -28,8 +28,8 @@ public:
      * @param rules правила подсчета очков
      * @param colorDistribution способ распределения цветов
      */
-    void startGame( const int diagonal, const Rules rules,
-                           const ColorDistribution colorDistribution );
+    void startGame( const int diagonal, const int rules,
+                           const int colorDistribution );
     /**
      * Получить доску.
      *
@@ -45,8 +45,9 @@ public:
      * @param color цвет игрока
      * @param first первая координата выбранного пункта доски (A - S)
      * @param second вторая координата выбранного пункта доски (1 - 19)
+     * @return доска
      */
-    void putStone( const Color color, const LiteralCoordinate first,
+    void putStone( const int color, const int first,
                    const int second );
 
     /**
@@ -55,14 +56,15 @@ public:
      * Данный метод позваляит игроку пропустить ход.
      * @param color цвет игрока
      */
-    void pass( Color color );
+    void pass( int color );
 
     /**
      * Чей ход?
      *
      * Данный метод возвращает цвет того игрока, который должен сделать ход.
+     * @return цвет игрока, чей сейчас ход
      */
-    Color whoseMove() const;
+    int whoseMove() const;
 
     /**
      * Сдаться.
@@ -70,36 +72,38 @@ public:
      * Данный метод позволяет игроку сдаться.
      * @param color цвет игрока
      */
-    void resign( Color color );
+    void resign( int color );
 
     /**
      * Проверка на окончание игры.
      *
      * Данный метод возвращает true, если игра закончена, и false - в противном
      * случае
+     * @return булевое значение
      */
     bool isGameOver() const;
 
     /**
      * Кто победил?
-     *
-     * Данный метод возвращает цвет победителя
+     * Данный метод возвращает цвет победителя.
+     * @return цвет победителя
      */
-    Color whoWon() const;
+    int whoWon() const;
 
     /**
      * Очки чёрных.
-     *
      * Данный метод возвращает количество очков чёрных.
+     * @return очки чёрных
      */
     int getBlackScore() const;
 
     /**
      * Очки белых.
-     *
      * Данный метод возвращает количество очков белых.
+     * @return очки белых
      */
     int getWhiteScore() const;
+
     /**
      * Деструктор.
      * Разрушает объект.

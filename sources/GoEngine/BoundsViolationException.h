@@ -10,6 +10,7 @@
 class BoundsViolationException : public std::exception
 {
 public:
+
     /**
      * Чё?
      * Данный метод возвращает строку с записью о том, что
