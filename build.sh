@@ -35,38 +35,23 @@ buildDebugVersion() {
 		cd ../../report
 		mkdir tests
 		mkdir cppcheck
-		mkdir gcovr
-		cd gcovr
-		mkdir src
-		cd ../
 		mkdir valgrind
-		cd ../build/debug
-		cp -i $(find ./ -name "*.gcno") ../../report/gcovr/src/
-		#cp -i $(find ./ -name "*.gcda") ../../report/gcovr/src/
-		cp -i $(find ./ -name "*.o") ../../report/gcovr/src/
 		cd ../../sources
-		cp -i $(find ./ -name "*.cpp") ../report/gcovr/src/
-		cp -i $(find ./ -name "*.h") ../report/gcovr/src/
 		
 		
-		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/FTestLog.xml || true
-		../build/debug/GoTests/UnitTests/BoardTest -xml -o  ../report/tests/BoardTLog.xml || true
+		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/FunctionalTestLog.xml || true
+		../build/debug/GoTests/UnitTests/BoardTest -xml -o  ../report/tests/BoardTestLog.xml || true
+		../build/debug/GoTests/UnitTests/StoneTest -xml -o  ../report/tests/StoneTestLog.xml || true
 		
 		cppcheck --version
 		cppcheck --enable=all -v --xml-version=2  * 2> ../report/cppcheck/cppcheckLog.xml
 		
-        ls
-		
-		
-		
-		gcovr --version
-		#gcovr --object-directory=/opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/ --root=/opt/tomcat/.jenkins/jobs/Go/workspace/sources
-		gcovr -r ./ --xml --exclude='GoTests' -o ../report/gcovr/gcovrLog.xml
-		rm -r ../report/gcovr/src/
+        	ls
 		
 		valgrind --version
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/GoDevelop/workspace/report/valgrind/valgrindFTest.%p.xml /opt/tomcat/.jenkins/jobs/GoDevelop/workspace/build/debug/GoTests/FunctionalTest/FTest || true
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/GoDevelop/workspace/report/valgrind/valgrindBoardTest.%p.xml /opt/tomcat/.jenkins/jobs/GoDevelop/workspace/build/debug/GoTests/UnitTests/BoardTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/GoDevelop/workspace/report/valgrind/FunctionalTest.%p.xml /opt/tomcat/.jenkins/jobs/GoDevelop/workspace/build/debug/GoTests/FunctionalTest/FTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/GoDevelop/workspace/report/valgrind/BoardTest.%p.xml /opt/tomcat/.jenkins/jobs/GoDevelop/workspace/build/debug/GoTests/UnitTests/BoardTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/GoDevelop/workspace/report/valgrind/StoneTest.%p.xml /opt/tomcat/.jenkins/jobs/GoDevelop/workspace/build/debug/GoTests/UnitTests/StoneTest || true
 
         cd ../report/doxygen
 		if [ -e "goconfig" ]; then
