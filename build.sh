@@ -36,7 +36,7 @@ buildDebugVersion() {
 		mkdir tests
 		mkdir cppcheck
 		mkdir valgrind
-		cd ../../sources
+		cd ../sources
 		
 		
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/FunctionalTestLog.xml || true
