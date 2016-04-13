@@ -17,6 +17,10 @@ dir_*.tex
 
 *.pro.user
 
+#CMake
+
+*.txt.user
+
 #CLion
 
 .idea
