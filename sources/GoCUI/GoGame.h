@@ -1,6 +1,8 @@
 #ifndef GO_GOGAME_H
 #define GO_GOGAME_H
 
+#include <iostream>
+
 #include "../GoEngine/GoEngineInterface.h"
 
 /**
@@ -32,6 +34,26 @@ private:
      * Указатель на объект интерфейса, предоставляемого движком приложению
      */
     GoEngineInterface* goEngineInterface;
+
+    /**
+     * Напечатать, чей ход.
+     */
+    void printWhoseMove();
+
+    /**
+     * Напечатать, сколько камней съели чёрные.
+     */
+    void printStonesEatenByBlack();
+
+    /**
+     * Напечатать, сколько камней съели белые.
+     */
+    void printStonesEatenByWhite();
+
+    /**
+     * Отрисовать текущее состояние доски.
+     */
+    void printBoard();
 
 };
 

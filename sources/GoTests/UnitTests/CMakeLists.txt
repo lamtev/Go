@@ -15,3 +15,13 @@ add_executable(StoneTest StoneTest.cpp)
 target_link_libraries(StoneTest Qt5::Core)
 target_link_libraries(StoneTest Qt5::Test)
 target_link_libraries(StoneTest GoEngine)
+
+add_executable(MotionTest MotionTest.cpp)
+target_link_libraries(MotionTest Qt5::Core)
+target_link_libraries(MotionTest Qt5::Test)
+target_link_libraries(MotionTest GoEngine)
+
+add_executable(ScoreCalculatorTest ScoreCalculatorTest.cpp)
+target_link_libraries(ScoreCalculatorTest Qt5::Core)
+target_link_libraries(ScoreCalculatorTest Qt5::Test)
+target_link_libraries(ScoreCalculatorTest GoEngine)

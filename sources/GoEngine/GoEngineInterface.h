@@ -4,6 +4,9 @@
 #include <string>
 
 #include "Board.h"
+#include "enums.h"
+
+//TODO
 
 /**
  * Класс, предоставляющий интерфейс движка приложению.
@@ -28,8 +31,7 @@ public:
      * @param rules правила подсчета очков
      * @param colorDistribution способ распределения цветов
      */
-    void startGame( const int diagonal, const int rules,
-                           const int colorDistribution );
+    void startGame( const int diagonal, const int rules, const int colorDistribution );
     /**
      * Получить доску.
      *
@@ -47,8 +49,7 @@ public:
      * @param second вторая координата выбранного пункта доски (1 - 19)
      * @return доска
      */
-    void putStone( const int color, const int first,
-                   const int second );
+    void putStone( const int color, const int first, const int second );
 
     /**
      * Пропустить ход.
