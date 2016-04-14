@@ -24,6 +24,7 @@ private Q_SLOTS:
 
 FunctionalTest::FunctionalTest()
 {
+
 }
 
 void FunctionalTest::start()

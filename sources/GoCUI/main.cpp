@@ -9,6 +9,8 @@ void paintBoard(int d);
 
 int main()
 {
+    GoGame game;
+    game.begin();
     menu();
     return 0;
 }

@@ -3,11 +3,36 @@
 
 #include "../GoEngine/GoEngineInterface.h"
 
+/**
+ * Класс, отвечающий за
+ */
 class GoGame
 {
 public:
+
+    /**
+     * Конструктор
+     */
+    GoGame();
+
+    /**
+     * Деструктор
+     */
+    ~GoGame();
+
+    /**
+     * Начать игру
+     * Этот метод объединяет методы данного класса, отвечающие за организацию игрового процесса.
+     */
+    void begin();
+
 private:
-    GoEngineInterface* game;
+
+    /**
+     * Указатель на объект интерфейса, предоставляемого движком приложению
+     */
+    GoEngineInterface* goEngineInterface;
+
 };
 
 
