@@ -58,6 +58,7 @@ void FunctionalTest::makeMove()
             cout << "Black" << endl;
             cout << "Input coordinates" << endl;
             cin >> x >> y;
+            x = 99;
             if( x == 99 )
             {
                 break;
@@ -69,6 +70,7 @@ void FunctionalTest::makeMove()
             cout << "White" << endl;
             cout << "Input coordinates" << endl;
             cin >> x >> y;
+            x = 99;
             if( x == 99 )
             {
                 break;
