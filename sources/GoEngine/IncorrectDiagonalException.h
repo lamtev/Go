@@ -4,34 +4,23 @@
 #include <exception>
 
 /**
- * Класс-исключение неправильная диагональ.
+ * Класс-исключение неправильная диагональ
  * Данное исключение возбуждается, когда инициализируется объект доски
- * непредусмотренным(неправильным) значением диагонали.
+ * непредусмотренным(неправильным) значением диагонали
  */
 class IncorrectDiagonalException : public std::exception
 {
 public:
 
     /**
-     * Конструктор.
+     * Чё?
+     * @return сообщение о том, что значение длины диагонали - неверно
      */
-    IncorrectDiagonalException( const int diagonal ) : diagonal(diagonal){}
-
-    /**
-     * Получить диагональ.
-     * Этот метод возвращает значение неверной диагонали.
-     * @return диагональ
-     */
-    const int getDiagonal() const noexcept
+    const char* what() const noexcept
     {
-        return diagonal;
+        return "Wrong diagonal";
     }
-private:
 
-    /**
-     * Поле диагональ.
-     */
-    const int diagonal;
 };
 
 #endif //GO_INCORRECTDIAGONALEXCEPTION_H

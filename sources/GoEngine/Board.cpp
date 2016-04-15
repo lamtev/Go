@@ -4,7 +4,7 @@ Board::Board( int diagonal ) : diagonal(diagonal)
 {
     if ( diagonal != 7 && diagonal != 13 && diagonal != 19 )
     {
-        throw IncorrectDiagonalException(diagonal);
+        throw IncorrectDiagonalException();
     }
     board.resize(diagonal * diagonal);
 }

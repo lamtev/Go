@@ -5,7 +5,7 @@
 //TODO high performance operator=
 
 /**
- * Класс камень.
+ * Класс камень
  */
 class Stone
 {
