@@ -49,7 +49,7 @@ void MotionTest::throwingExceptions()
     QVERIFY_EXCEPTION_THROWN( motion->putStone(board, 5, 7), MoveRepeatException);
 
     delete board;
-    //delete motion;
+    delete motion;
 }
 
 QTEST_APPLESS_MAIN(MotionTest)
