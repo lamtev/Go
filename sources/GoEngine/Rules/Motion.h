@@ -43,6 +43,18 @@ public:
      */
     bool areTwoPasses() const noexcept;
 
+    /**
+     * Получить номер текущего хода.
+     * @return номер текущего хода
+     */
+    int getMotionIndex() const noexcept;
+
+    /**
+     * Получить вектор всех ходов.
+     * @return вектор всех ходов
+     */
+    vector<Moves>& getMoves() const noexcept;
+
 private:
 
     vector<Moves> moves; /**< Вектор, хранящий все ходы */
@@ -79,8 +91,8 @@ private:
     void ifMoveBeyondBoard( Board* board, int first, int second ) const;
 
     /**
-     * Ход под самоубийство?
-     * Данный метод выбрасывает исключение, если ход совершается под самоубийство
+     * Ход под смерть?
+     * Данный метод выбрасывает исключение, если ход совершается под смерть
      * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата

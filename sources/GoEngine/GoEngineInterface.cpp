@@ -3,11 +3,13 @@
 void GoEngineInterface::startGame(const int diagonal, const int rules, const int colorDistribution)
 {
     board = new Board(diagonal);
+    motion = new Motion();
 }
 
 GoEngineInterface::~GoEngineInterface()
 {
     delete board;
+    delete motion;
 }
 
 Board GoEngineInterface::getBoard() const noexcept

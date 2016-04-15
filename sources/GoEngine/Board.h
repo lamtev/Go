@@ -19,6 +19,7 @@ using std::vector;
 class Board
 {
 public:
+
     /**
      * Конструктор.
      * Конструктор для инициализации объекта по значению диагонали
@@ -48,6 +49,7 @@ public:
      * @return ссылку на объект данного класса
      */
     Board& operator=( const Board& board ) noexcept;
+
 private:
 
     int diagonal; /**< длина диагонали */

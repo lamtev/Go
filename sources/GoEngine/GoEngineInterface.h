@@ -4,6 +4,7 @@
 #include <string>
 
 #include "Board.h"
+#include "Rules/Motion.h"
 #include "enums.h"
 
 //TODO
@@ -109,6 +110,7 @@ public:
 private:
 
     Board* board; /**< Указатель на объект игровой доски */
+    Motion* motion; /**< Указатель на объект процесса ходов */
 };
 
 #endif // GOENGINEINTERFACE_H

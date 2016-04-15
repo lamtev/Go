@@ -3,7 +3,7 @@
 Motion::Motion()
 {
     motionIndex = 0;
-    moves.reserve(361);
+    moves.resize(100);
 }
 
 
@@ -32,8 +32,20 @@ bool Motion::areTwoPasses() const noexcept
     return moves[motionIndex] == passedMove && moves[motionIndex] == moves[motionIndex-2];
 }
 
+int Motion::getMotionIndex() const noexcept
+{
+    return motionIndex;
+}
+
+vector<Moves>& Motion::getMoves() const noexcept
+{
+    return const_cast<vector<Moves>&>(moves);
+}
+
+
 void Motion::ifMoveRepeat( Board* board, int first, int second ) const
 {
+    //TODO fix bug
     if( motionIndex >= 2 )
     {
         Moves passedMove;
@@ -86,6 +98,12 @@ void Motion::pass() noexcept
     moves[motionIndex].putSecond(0);
     ++motionIndex;
 }
+
+
+
+
+
+
 
 
 

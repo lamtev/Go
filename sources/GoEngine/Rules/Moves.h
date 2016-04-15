@@ -9,16 +9,6 @@ class Moves
 public:
 
     /**
-     * Перегруженный оператор равенства
-     */
-    bool operator==( const Moves& moves ) const noexcept;
-
-    /**
-     * Перегруженный оператор неравенства
-     */
-    bool operator!=( const Moves& moves ) const noexcept;
-
-    /**
      * Задать первую координату.
      * @param first первая координата
      */
@@ -29,6 +19,28 @@ public:
      * @param second вторая координата
      */
     void putSecond( int second ) noexcept;
+
+    /**
+     * Получить первую координату.
+     * @return первую координату
+     */
+    int getFirst() const noexcept;
+
+    /**
+     * Получить вторую координату.
+     * @return вторую координату
+     */
+    int getSecond() const noexcept;
+
+    /**
+     * Перегруженный оператор равенства
+     */
+    bool operator==( const Moves& moves ) const noexcept;
+
+    /**
+     * Перегруженный оператор неравенства
+     */
+    bool operator!=( const Moves& moves ) const noexcept;
 
 private:
     int first;
