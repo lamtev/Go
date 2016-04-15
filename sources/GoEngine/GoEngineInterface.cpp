@@ -15,13 +15,13 @@ Board GoEngineInterface::getBoard() const noexcept
     return *board;
 }
 
-void GoEngineInterface::putStone(const int color, const int first, const int second)
+void GoEngineInterface::putStone( const int color, const int first, const int second )
 {
     //TODO
     //board->operator()(first, second) = color;
 }
 
-void GoEngineInterface::pass(int color)
+void GoEngineInterface::pass( int color )
 {
     //TODO
 }

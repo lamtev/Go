@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Stone.h"
+#include "Rules/Motion.h"
 
 #include "BoundsViolationException.h"
 #include "IncorrectDiagonalException.h"
@@ -55,6 +56,7 @@ private:
      * Поле доска
      */
     vector<Stone> board;
+
 };
 
 
