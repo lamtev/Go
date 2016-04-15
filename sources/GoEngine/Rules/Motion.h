@@ -38,7 +38,7 @@ public:
     void pass() noexcept;
 
     /**
-     * Проверка двух последних ходов на пропуск
+     * Проверка двух последних ходов на пропуск.
      * @return true, если оба игрока пропустили поочередно ход
      */
     bool areTwoPasses() const noexcept;
@@ -88,7 +88,7 @@ private:
     void ifMoveToDie( Board* board, int first, int second ) const;
 
     /**
-     * Проверка легитимности хода
+     * Проверка легитимности хода.
      * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата

@@ -42,10 +42,7 @@ public:
     int getColor() const noexcept;
 private:
 
-    /**
-     * Поле класса - цвет камня.
-     */
-    int color;
+    int color; /**< цвет камня */
 };
 
 
