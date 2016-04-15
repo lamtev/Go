@@ -8,6 +8,7 @@ set(srcFiles
         BoundsViolationException.h
         IncorrectDiagonalException.h
         Rules/Motion.cpp Rules/Motion.h
-        Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h)
+        Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h
+        Rules/MoveRepeatException.h Rules/MoveBeyondBoardException.h Rules/MoveToDieException.h Rules/Moves.cpp Rules/Moves.h)
 
 add_library(GoEngine STATIC ${srcFiles})

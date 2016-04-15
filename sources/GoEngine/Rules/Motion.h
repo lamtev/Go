@@ -4,57 +4,97 @@
 #include <vector>
 
 #include "../Board.h"
+#include "Moves.h"
+#include "../enums.h"
+#include "MoveRepeatException.h"
+#include "MoveBeyondBoardException.h"
+#include "MoveToDieException.h"
 
 using std::vector;
-
-struct Moves
-{
-    int firstCoord;
-    int secondCoord;
-};
 
 //TODO
 
 /**
- * Класс ход.
- * Контролирует правильность совершения ходов.
+ * Процесс хода
+ * Контролирует правильность совершения ходов
  */
 class Motion
 {
 public:
 
     /**
-     * Чей ход?
-     * Метод определяющий цвет игрока, чей сейчас ход.
+     * Конструктор
      */
-    int whoseMove() const noexcept;
+    Motion();
 
     /**
-     * Положить камень.
+     * Положить камень
      */
-    void putStone() const;
+    void putStone( Board* board, int first, int second );
 
     /**
-     * Пропустить ход.
+     * Пропустить ход
      */
-    void pass() const noexcept;
+    void pass() noexcept;
 
     /**
-     * Проверка двух последних ходов на пропуск.
+     * Проверка двух последних ходов на пропуск
+     * @return true, если оба игрока пропустили поочередно ход
      */
     bool areTwoPasses() const noexcept;
 
 private:
 
+    vector<Moves> moves; /**< Вектор, хранящий все ходы */
+    int motionIndex; /**< Индекс ходов */
+
     /**
-     * Вектор, хранящий все совершенные ходы
+     * Ход чёрных?
+     * @return true, если ход чёрных, и false - в противном случае
      */
-    vector<Moves> moves;
+    bool isBlacksMove() const noexcept;
+
+    /**
+     * Чей ход?
+     * @return цвет игрока, чей сейчас ход
+     */
+    int whoseMove() const noexcept;
+
+    /**
+     * Повтор хода?
+     * Данный метод выбрасывает исключение, если игрок повторил свой предыдущий ход
+     * @param board указатель на объект доски
+     * @param first первая координата
+     * @param second вторая координата
+     */
+    void ifMoveRepeat( Board* board, int first, int second ) const;
+
+    /**
+     * Ход за пределы доски?
+     * Данный метод выбрасывает исключение, если ход совершается за пределы доски
+     * @param board указатель на объект доски
+     * @param first первая координата
+     * @param second вторая координата
+     */
+    void ifMoveBeyondBoard( Board* board, int first, int second ) const;
+
+    /**
+     * Ход под самоубийство?
+     * Данный метод выбрасывает исключение, если ход совершается под самоубийство
+     * @param board указатель на объект доски
+     * @param first первая координата
+     * @param second вторая координата
+     */
+    void ifMoveToDie( Board* board, int first, int second ) const;
 
     /**
      * Проверка легитимности хода
+     * @param board указатель на объект доски
+     * @param first первая координата
+     * @param second вторая координата
      */
-    bool isMoveLegit();
+    void ifMoveIllegal( Board* board, int first, int second ) const;
+
 };
 
 
