@@ -90,6 +90,8 @@ private:
      */
     void ifMoveBeyondBoard( Board* board, int first, int second ) const;
 
+    //TODO void ifPointNotEmpty( Board* board, int first, int second ) const
+
     /**
      * Ход под смерть?
      * Данный метод выбрасывает исключение, если ход совершается под смерть
