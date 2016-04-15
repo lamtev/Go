@@ -1,11 +1,11 @@
 #include "Moves.h"
 
-bool Moves::operator==( const Moves moves ) const noexcept
+bool Moves::operator==( const Moves& moves ) const noexcept
 {
     return this->first == moves.first && this->second == second;
 }
 
-bool Moves::operator!=(const Moves moves) const noexcept
+bool Moves::operator!=(const Moves& moves) const noexcept
 {
     return !(*this == moves);
 }

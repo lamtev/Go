@@ -25,3 +25,9 @@ add_executable(ScoreCalculatorTest ScoreCalculatorTest.cpp)
 target_link_libraries(ScoreCalculatorTest Qt5::Core)
 target_link_libraries(ScoreCalculatorTest Qt5::Test)
 target_link_libraries(ScoreCalculatorTest GoEngine)
+
+
+add_executable(MovesTest MovesTest.cpp)
+target_link_libraries(MovesTest Qt5::Core)
+target_link_libraries(MovesTest Qt5::Test)
+target_link_libraries(MovesTest GoEngine)

@@ -11,24 +11,25 @@ public:
     /**
      * Перегруженный оператор равенства
      */
-    bool operator==( const Moves moves ) const noexcept;
+    bool operator==( const Moves& moves ) const noexcept;
 
     /**
      * Перегруженный оператор неравенства
      */
-    bool operator!=( const Moves moves ) const noexcept;
+    bool operator!=( const Moves& moves ) const noexcept;
 
     /**
      * Задать первую координату.
      * @param first первая координата
      */
-    void putFirst( int first ) noexcept ;
+    void putFirst( int first ) noexcept;
 
     /**
      * Задать вторую координату.
      * @param second вторая координата
      */
-    void putSecond( int second ) noexcept ;
+    void putSecond( int second ) noexcept;
+
 private:
     int first;
     int second;
