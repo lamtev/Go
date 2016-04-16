@@ -65,7 +65,7 @@ void Motion::ifMoveBeyondBoard( Board* board, int first, int second ) const
     }
 }
 
-void Motion::ifMoveToDie( Board *board, int first, int second ) const
+void Motion::ifMoveToDie( Board* board, int first, int second ) const
 {
     //TODO void Motion::ifMoveToDie
     if( false )
@@ -74,11 +74,13 @@ void Motion::ifMoveToDie( Board *board, int first, int second ) const
     }
 }
 
-void Motion::ifMoveToNotEmptyPoint( int first, int second ) const
+void Motion::ifMoveToNotEmptyPoint( Board* board, int first, int second ) const
 {
+    //TODO void Motion::ifMoveToNotEmptyPoint
     Moves currentMove(first, second);
-    Moves passedMove(0, 0);
-    if( currentMove != passedMove && find(moves.begin(), moves.end(), currentMove) != moves.end() )
+//    Moves passedMove(0, 0);
+
+    if( false/*find(board->getMoves().begin(), board->getMoves().end(), currentMove) != board->getMoves().end()*/ )
     {
         throw MoveToNotEmptyPointException();
     }
@@ -89,7 +91,7 @@ void Motion::ifMoveIllegal( Board* board, int first, int second ) const
     ifMoveRepeat(board, first, second);
     ifMoveBeyondBoard(board, first, second);
     ifMoveToDie(board, first, second);
-    ifMoveToNotEmptyPoint(first, second);
+    ifMoveToNotEmptyPoint(board, first, second);
 }
 
 void Motion::putStone(Board* board, int first, int second)

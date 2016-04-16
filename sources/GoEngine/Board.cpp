@@ -23,11 +23,20 @@ int Board::getDiagonal() const noexcept
     return diagonal;
 }
 
+vector<Stone>& Board::get() const noexcept
+{
+    return const_cast<vector<Stone>&>(board);
+}
+
 Board& Board::operator=(const Board& board) noexcept
 {
     this->diagonal = board.diagonal;
     this->board = board.board;
     return *this;
 }
+
+
+
+
 
 

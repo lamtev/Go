@@ -42,6 +42,8 @@ public:
      */
     int getDiagonal() const noexcept;
 
+    vector<Stone>& get() const noexcept;
+
     /**
      * Оператор присваивания.
      * Перегруженный оператор присваивания

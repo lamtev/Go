@@ -104,10 +104,11 @@ private:
     /**
      * Если ход в занятый пункт.
      * Данная функция-член выбрасывает исключение, если игрок совершает ход в уже занятый пункт.
+     * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveToNotEmptyPoint( int first, int second ) const;
+    void ifMoveToNotEmptyPoint( Board* board, int first, int second ) const;
 
     /**
      * Проверка легитимности хода.

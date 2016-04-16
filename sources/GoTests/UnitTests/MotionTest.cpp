@@ -14,44 +14,58 @@ public:
 
 
 private Q_SLOTS:
-    void throwingExceptions();
+    void throwingMoveToNotEmptyPointException();
+    void throwingMoveBeyondBoardException();
 };
 
 MotionTest::MotionTest()
 {
 }
 
-void MotionTest::throwingExceptions()
+void MotionTest::throwingMoveToNotEmptyPointException()
+{
+    //TODO MotionTest::throwingMoveToNotEmptyPointException
+    Board* board = new Board(19);
+    Motion* motion = new Motion();
+
+    motion->putStone(board, 5, 7);
+    motion->putStone(board, 18, 8);
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::throwingMoveBeyondBoardException()
 {
     Board* board = new Board(19);
     Motion* motion = new Motion();
 
-//    //QVERIFY_EXCEPTION_THROWN( motion->putStone(board, 0, 19), MoveBeyondBoardException);
-//    //QVERIFY_EXCEPTION_THROWN( motion->putStone(board, -1, 18), MoveBeyondBoardException);
-//    //QVERIFY_EXCEPTION_THROWN( motion->putStone(board, 20, 30), MoveBeyondBoardException);
-//
-    motion->putStone(board, 5, 7);
-    //motion->putStone(board, 5, 7);
-//    motion->putStone(board, 5, 8);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 7), MoveToNotEmptyPointException);
-
-//    motion->putStone(board, 5, 8);
-//    std::cout << motion->getMotionIndex() << std::endl;
-//    vector<Moves> v = motion->getMoves();
-//    std::cout << 4 << std::endl;
-//    QVERIFY(v[0] == v[2]);
-//    QVERIFY(v[1] == v[3]);
-//    for( int i = 0; i < motion->getMotionIndex(); ++i )
-//    {
-//        std::cout << v[i].getFirst() << std::endl;
-//        std::cout << v[i].getSecond() << std::endl;
-//        std::cout << std::endl;
-//    }
-//
-//    QVERIFY_EXCEPTION_THROWN( motion->putStone(board, 5, 7), MoveRepeatException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 7, 19), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 10, 24), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -6, -1), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -20, -3), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -12, -6), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 35, 6), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 19, 3), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 27, 7), MoveBeyondBoardException);
 
     delete board;
     delete motion;
+
+    Board* board1 = new Board(13);
+    Motion* motion1 = new Motion();
+
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, 7, 13), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, 10, 24), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, -6, -1), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, -20, -3), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, -12, -6), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, 13, 11), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, 15, 8), MoveBeyondBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion1->putStone(board1, 27, 5), MoveBeyondBoardException);
+
+    delete board1;
+    delete motion1;
 }
 
 QTEST_APPLESS_MAIN(MotionTest)
