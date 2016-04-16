@@ -9,6 +9,16 @@ class Moves
 public:
 
     /**
+     * Конструктор.
+     */
+    Moves();
+
+    /**
+     * Конструктор.
+     */
+    Moves( int first, int second );
+
+    /**
      * Задать первую координату.
      * @param first первая координата
      */

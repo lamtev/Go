@@ -48,9 +48,7 @@ void Motion::ifMoveRepeat( Board* board, int first, int second ) const
     //TODO fix bug
     if( motionIndex >= 2 )
     {
-        Moves passedMove;
-        passedMove.putFirst(0);
-        passedMove.putSecond(0);
+        Moves passedMove(0, 0);
         if( moves[motionIndex] != passedMove && moves[motionIndex] == moves[motionIndex-2] )
         {
             throw MoveRepeatException();
@@ -67,7 +65,7 @@ void Motion::ifMoveBeyondBoard( Board* board, int first, int second ) const
     }
 }
 
-void Motion::ifMoveToDie(Board *board, int first, int second) const
+void Motion::ifMoveToDie( Board *board, int first, int second ) const
 {
     //TODO void Motion::ifMoveToDie
     if( false )
@@ -76,11 +74,22 @@ void Motion::ifMoveToDie(Board *board, int first, int second) const
     }
 }
 
+void Motion::ifMoveToNotEmptyPoint( int first, int second ) const
+{
+    Moves currentMove(first, second);
+    Moves passedMove(0, 0);
+    if( currentMove != passedMove && find(moves.begin(), moves.end(), currentMove) != moves.end() )
+    {
+        throw MoveToNotEmptyPointException();
+    }
+}
+
 void Motion::ifMoveIllegal( Board* board, int first, int second ) const
 {
     ifMoveRepeat(board, first, second);
     ifMoveBeyondBoard(board, first, second);
     ifMoveToDie(board, first, second);
+    ifMoveToNotEmptyPoint(first, second);
 }
 
 void Motion::putStone(Board* board, int first, int second)
@@ -98,6 +107,10 @@ void Motion::pass() noexcept
     moves[motionIndex].putSecond(0);
     ++motionIndex;
 }
+
+
+
+
 
 
 

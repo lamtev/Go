@@ -1,5 +1,15 @@
 #include "Moves.h"
 
+Moves::Moves()
+{
+
+}
+
+Moves::Moves( int first, int second ) : first(first), second(second)
+{
+
+}
+
 void Moves::putFirst( int first ) noexcept
 {
     this->first = first;
@@ -29,6 +39,14 @@ bool Moves::operator!=(const Moves& moves) const noexcept
 {
     return !(*this == moves);
 }
+
+
+
+
+
+
+
+
 
 
 

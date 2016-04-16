@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "../../GoEngine/Rules/Motion.h"
-
+//TODO finish class
 class MotionTest : public QObject
 {
 Q_OBJECT
@@ -30,9 +30,11 @@ void MotionTest::throwingExceptions()
 //    //QVERIFY_EXCEPTION_THROWN( motion->putStone(board, -1, 18), MoveBeyondBoardException);
 //    //QVERIFY_EXCEPTION_THROWN( motion->putStone(board, 20, 30), MoveBeyondBoardException);
 //
-//    motion->putStone(board, 5, 7);
+    motion->putStone(board, 5, 7);
+    //motion->putStone(board, 5, 7);
 //    motion->putStone(board, 5, 8);
-//    motion->putStone(board, 5, 7);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 7), MoveToNotEmptyPointException);
+
 //    motion->putStone(board, 5, 8);
 //    std::cout << motion->getMotionIndex() << std::endl;
 //    vector<Moves> v = motion->getMoves();

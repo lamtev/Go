@@ -2,6 +2,7 @@
 #define GO_MOTION_H
 
 #include <vector>
+#include <algorithm>
 
 #include "../Board.h"
 #include "Moves.h"
@@ -9,6 +10,7 @@
 #include "MoveRepeatException.h"
 #include "MoveBeyondBoardException.h"
 #include "MoveToDieException.h"
+#include "MoveToNotEmtyPointException.h"
 
 using std::vector;
 
@@ -73,7 +75,7 @@ private:
     int whoseMove() const noexcept;
 
     /**
-     * Повтор хода?
+     * Если повтор хода.
      * Данный метод выбрасывает исключение, если игрок повторил свой предыдущий ход
      * @param board указатель на объект доски
      * @param first первая координата
@@ -82,7 +84,7 @@ private:
     void ifMoveRepeat( Board* board, int first, int second ) const;
 
     /**
-     * Ход за пределы доски?
+     * Если ход за пределы доски.
      * Данный метод выбрасывает исключение, если ход совершается за пределы доски
      * @param board указатель на объект доски
      * @param first первая координата
@@ -90,16 +92,23 @@ private:
      */
     void ifMoveBeyondBoard( Board* board, int first, int second ) const;
 
-    //TODO void ifPointNotEmpty( Board* board, int first, int second ) const
-
     /**
-     * Ход под смерть?
+     * Если ход под смерть.
      * Данный метод выбрасывает исключение, если ход совершается под смерть
      * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
     void ifMoveToDie( Board* board, int first, int second ) const;
+
+    /**
+     * Если ход в занятый пункт.
+     * Данная функция-член выбрасывает исключение, если игрок совершает ход в уже занятый пункт.
+     * @param board указатель на объект доски
+     * @param first первая координата
+     * @param second вторая координата
+     */
+    void ifMoveToNotEmptyPoint( int first, int second ) const;
 
     /**
      * Проверка легитимности хода.

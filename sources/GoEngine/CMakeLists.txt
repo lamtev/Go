@@ -9,6 +9,10 @@ set(srcFiles
         IncorrectDiagonalException.h
         Rules/Motion.cpp Rules/Motion.h
         Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h
-        Rules/MoveRepeatException.h Rules/MoveBeyondBoardException.h Rules/MoveToDieException.h Rules/Moves.cpp Rules/Moves.h)
+        Rules/MoveRepeatException.h
+        Rules/MoveBeyondBoardException.h
+        Rules/MoveToDieException.h
+        Rules/Moves.cpp Rules/Moves.h
+        Rules/MoveToNotEmtyPointException.h)
 
 add_library(GoEngine STATIC ${srcFiles})
