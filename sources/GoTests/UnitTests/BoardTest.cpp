@@ -5,7 +5,6 @@
 #include <iostream>
 
 #include "../../GoEngine/Board.h"
-#include "../../GoEngine/Stone.h"
 #include "../../GoEngine/enums.h"
 
 using std::vector;
@@ -46,7 +45,7 @@ void BoardTest::initializationDiagonal()
     {
         for (int j = 0; j < 13; ++j)
         {
-            QVERIFY(b(i,j).getColor() == EMPTY);
+            QVERIFY(b(i,j).isEmpty());
         }
     }
 }
@@ -56,8 +55,8 @@ void BoardTest::indexation()
     Board b(19);
     b(0,0) = BLACK;
     b(18, 18) = WHITE;
-    QVERIFY(b(0,0).getColor() == BLACK);
-    QVERIFY(b(18,18).getColor() == WHITE);
+    QVERIFY(b(0,0).getStatus() == BLACK);
+    QVERIFY(b(18,18).getStatus() == WHITE);
 }
 
 void BoardTest::assigment()
@@ -66,8 +65,8 @@ void BoardTest::assigment()
     b1(0,0) = BLACK;
     b1(6,6) = WHITE;
     Board b2 = b1;
-    QVERIFY(b1(0,0).getColor() == b2(0,0).getColor());
-    QVERIFY(b1(6,6).getColor() == b2(6,6).getColor());
+    QVERIFY(b1(0,0).getStatus() == b2(0,0).getStatus());
+    QVERIFY(b1(6,6).getStatus() == b2(6,6).getStatus());
 }
 
 void BoardTest::exceptionCatcher()
