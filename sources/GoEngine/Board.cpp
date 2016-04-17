@@ -14,12 +14,12 @@ int Board::getDiagonal() const noexcept
     return diagonal;
 }
 
-vector<Stone>& Board::get() const noexcept
+vector<Point>& Board::get() const noexcept
 {
-    return const_cast<vector<Stone>&>(board);
+    return const_cast<vector<Point>&>(board);
 }
 
-Stone& Board::operator()( const int i, const int j )
+Point& Board::operator()( const int i, const int j )
 {
     if( i < 0 || i >= diagonal || j < 0 || j >= diagonal )
     {

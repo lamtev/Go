@@ -1,21 +1,18 @@
-#ifndef GO_STONE_H
-#define GO_STONE_H
+#ifndef GO_POINT_H
+#define GO_POINT_H
 
-//TODO noexcept swap
-//TODO high performance operator=
+#include "enums.h"
 
-/**
- * Класс камень
- */
-class Stone
+class Point
 {
+
 public:
 
     /**
      * Конструктор.
-     * @param color целочисленный тип - цвет камня.
+     * @param status статус пункта.
      */
-    Stone( int color = 0 );
+    Point( int status = EMPTY );
 
     /**
      * Присваивание.
@@ -23,7 +20,7 @@ public:
      * @param stone ссылка на константный объект класса Stone
      * @return ссылка на объект данного класса
      */
-    Stone& operator=( const Stone& stone ) noexcept;
+    Point& operator=( const Point& stone ) noexcept;
 
     /**
      * Присваивание.
@@ -32,19 +29,20 @@ public:
      * @param color целочисленный тип - цвет камня
      * @return ссылка на объект данного класса
      */
-    Stone& operator=( const int color ) noexcept;
+    Point& operator=( const int status ) noexcept;
 
     /**
      * Получить цвет.
      * Метод для получения цвета камня.
      * @return целочисленный тип - цвет камня.
      */
-    int getColor() const noexcept;
-
+    int getStatus() const noexcept;
 private:
 
-    int color; /**< цвет камня */
+    int status;
+
+
 };
 
 
-#endif //GO_STONE_H
+#endif //GO_POINT_H

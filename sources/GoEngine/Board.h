@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Stone.h"
+#include "Point.h"
 #include "Rules/Moves.h"
 
 #include "BoundsViolationException.h"
@@ -38,7 +38,7 @@ public:
      * Получить вектор доски.
      * return вектор доски
      */
-    vector<Stone>& get() const noexcept;
+    vector<Point>& get() const noexcept;
 
     /**
      * Оператор скобки.
@@ -47,7 +47,7 @@ public:
      * @param j координата по столбцам
      * @return ссылку на объект данного класса
      */
-    Stone& operator()( const int i, const int j );
+    Point& operator()( const int i, const int j );
 
     /**
      * Оператор присваивания.
@@ -62,7 +62,7 @@ public:
 private:
 
     int diagonal; /**< длина диагонали */
-    vector<Stone> board; /**< вектор, реализующий модель доски */
+    vector<Point> board; /**< вектор, реализующий модель доски */
 
     /**
      * Получить первую и вторую координату пункта.
