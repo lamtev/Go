@@ -4,23 +4,22 @@ Board::Board( int diagonal ) : diagonal(diagonal)
 {
     if ( diagonal != 7 && diagonal != 13 && diagonal != 19 )
     {
-        throw IncorrectDiagonalException(diagonal);
+        throw IncorrectDiagonalException();
     }
     board.resize(diagonal * diagonal);
 }
 
-Board::Board(const vector<int>& board)
+int Board::getDiagonal() const noexcept
 {
-    if( board.size() != 7*7 && board.size() != 13*13 && board.size() != 19*19 )
-    {
-        throw IncorrectDiagonalException(static_cast<int>(sqrt(board.size())));
-    }
-    this->board.resize( board.size() );
-    this->board = board;
-    this->diagonal = static_cast<int>(sqrt(board.size()));
+    return diagonal;
 }
 
-int& Board::operator()( const int i, const int j )
+vector<Point>& Board::get() const noexcept
+{
+    return const_cast<vector<Point>&>(board);
+}
+
+Point& Board::operator()( const int i, const int j )
 {
     if( i < 0 || i >= diagonal || j < 0 || j >= diagonal )
     {
@@ -29,13 +28,12 @@ int& Board::operator()( const int i, const int j )
     return board[i * diagonal + j];
 }
 
-int Board::getDiagonal() const noexcept
+Board& Board::operator=( const Board& board ) noexcept
 {
-    return diagonal;
-}
-
-Board& Board::operator=( const vector<int>& board ) noexcept
-{
-    this->board = board;
+    this->diagonal = board.diagonal;
+    this->board = board.board;
     return *this;
 }
+
+
+

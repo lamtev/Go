@@ -2,27 +2,66 @@
 #define GO_BOARD_H
 
 #include <vector>
-#include <cmath>
+
+#include "Point.h"
+#include "Rules/Moves.h"
 
 #include "BoundsViolationException.h"
 #include "IncorrectDiagonalException.h"
 
 using std::vector;
 
-//TODO noecept swap
-//TODO high performance =
+//TODO noexcept swap
+//TODO high performance operator=
+
+/**
+ * Доска
+ */
 class Board
 {
 public:
-    Board( int diagonal );
-    Board( const vector<int>& board );
-    int& operator()( const int i, const int j );
+
+    /**
+     * Конструктор.
+     * Конструктор для инициализации объекта по значению диагонали
+     * @param diagonal длина диагонали
+     */
+    Board( int diagonal = 19 );
+
+    /**
+     * Получить диагональ.
+     * @return значение диагонали
+     */
     int getDiagonal() const noexcept;
-    Board& operator=( const vector<int>& board ) noexcept;
+
+    /**
+     * Получить вектор доски.
+     * return вектор доски
+     */
+    vector<Point>& get() const noexcept;
+
+    /**
+     * Оператор скобки.
+     * Используется как оператор индексирования
+     * @param i координата по строкам
+     * @param j координата по столбцам
+     * @return ссылку на объект данного класса
+     */
+    Point& operator()( const int i, const int j );
+
+    /**
+     * Оператор присваивания.
+     * Перегруженный оператор присваивания
+     * @param board присваиваемая доска
+     * @return ссылку на объект данного класса
+     */
+    Board& operator=( const Board& board ) noexcept;
 
 private:
-    int diagonal;
-    vector<int> board;
+
+    int diagonal; /**< длина диагонали */
+    vector<Point> board; /**< вектор, реализующий модель доски */
+
 };
 
 
