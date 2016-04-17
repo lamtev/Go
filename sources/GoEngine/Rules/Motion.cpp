@@ -2,24 +2,27 @@
 
 Motion::Motion()
 {
-    motionIndex = 0;
-    moves.resize(100);
+    moveIndex = 0;
+    //TODO разобраться с автоматическим расширение вектора!
+    moves.resize(movesSize);
 }
 
 void Motion::putStone(Board* board, int first, int second)
 {
+    ifNeedResizeMoves();
     ifMoveIllegalThrowException( board, first, second );
     board->operator()(first, second) = whoseMove();
-    moves[motionIndex].putFirst(first);
-    moves[motionIndex].putSecond(second);
-    ++motionIndex;
+    moves[moveIndex].putFirst(first);
+    moves[moveIndex].putSecond(second);
+    ++moveIndex;
 }
 
 void Motion::pass() noexcept
 {
-    moves[motionIndex].putFirst(0);
-    moves[motionIndex].putSecond(0);
-    ++motionIndex;
+    ifNeedResizeMoves();
+    moves[moveIndex].putFirst(0);
+    moves[moveIndex].putSecond(0);
+    ++moveIndex;
 }
 
 bool Motion::areTwoPasses() const noexcept
@@ -27,12 +30,12 @@ bool Motion::areTwoPasses() const noexcept
     Moves passedMove;
     passedMove.putFirst(0);
     passedMove.putSecond(0);
-    return moves[motionIndex] == passedMove && moves[motionIndex] == moves[motionIndex-2];
+    return moves[moveIndex] == passedMove && moves[moveIndex] == moves[moveIndex-2];
 }
 
-int Motion::getMotionIndex() const noexcept
+int Motion::getMoveIndex() const noexcept
 {
-    return motionIndex;
+    return moveIndex;
 }
 
 vector<Moves>& Motion::getMoves() const noexcept
@@ -40,9 +43,18 @@ vector<Moves>& Motion::getMoves() const noexcept
     return const_cast<vector<Moves>&>(moves);
 }
 
+void Motion::ifNeedResizeMoves() noexcept
+{
+    if( movesSize - 1 == moveIndex )
+    {
+        movesSize += 100;
+        moves.resize(movesSize);
+    }
+}
+
 bool Motion::isBlacksMove() const noexcept
 {
-    return !(motionIndex % 2);
+    return !(moveIndex % 2);
 }
 
 int Motion::whoseMove() const noexcept
@@ -68,10 +80,10 @@ void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int s
 void Motion::ifMoveRepeatThrowException( Board* board, int first, int second ) const
 {
     //TODO fix bug
-    if( motionIndex >= 2 )
+    if( moveIndex >= 2 )
     {
         Moves passedMove(0, 0);
-        if( moves[motionIndex] != passedMove && moves[motionIndex] == moves[motionIndex-2] )
+        if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex-2] )
         {
             throw MoveRepeatException();
         }

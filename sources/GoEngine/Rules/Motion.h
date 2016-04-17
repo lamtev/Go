@@ -8,7 +8,6 @@
 #include "Moves.h"
 #include "../enums.h"
 #include "MoveRepeatException.h"
-#include "MoveBeyondBoardException.h"
 #include "MoveToDieException.h"
 #include "MoveToNotEmtyPointException.h"
 
@@ -49,7 +48,7 @@ public:
      * Получить номер текущего хода.
      * @return номер текущего хода
      */
-    int getMotionIndex() const noexcept;
+    int getMoveIndex() const noexcept;
 
     /**
      * Получить вектор всех ходов.
@@ -60,7 +59,14 @@ public:
 private:
 
     vector<Moves> moves; /**< Вектор, хранящий все ходы */
-    int motionIndex; /**< Индекс ходов */
+    int moveIndex; /**< Индекс ходов */
+    int movesSize = 100;
+
+    /**
+     * Изменить размер вектора moves.
+     * Увеличивает размер вектора moves на 100, если есть необходимость.
+     */
+    void ifNeedResizeMoves() noexcept;
 
     /**
      * Ход чёрных?
