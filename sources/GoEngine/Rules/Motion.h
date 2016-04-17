@@ -84,15 +84,6 @@ private:
     void ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const;
 
     /**
-     * Если ход под смерть.
-     * Данный метод выбрасывает исключение, если ход совершается под смерть
-     * @param board указатель на объект доски
-     * @param first первая координата
-     * @param second вторая координата
-     */
-    void ifMoveToDieThrowException( Board* board, int first, int second ) const;
-
-    /**
      * Если повтор хода.
      * Данный метод выбрасывает исключение, если игрок повторил свой предыдущий ход
      * @param board указатель на объект доски
@@ -102,13 +93,13 @@ private:
     void ifMoveRepeatThrowException( Board* board, int first, int second ) const;
 
     /**
-     * Если ход за пределы доски.
-     * Данный метод выбрасывает исключение, если ход совершается за пределы доски
+     * Если ход под смерть.
+     * Данный метод выбрасывает исключение, если ход совершается под смерть
      * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveBeyondBoardThrowException( Board* board, int first, int second ) const;
+    void ifMoveToDieThrowException( Board* board, int first, int second ) const;
 
     /**
      * Проверка легитимности хода.

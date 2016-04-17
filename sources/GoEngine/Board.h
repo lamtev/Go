@@ -57,18 +57,11 @@ public:
      */
     Board& operator=( const Board& board ) noexcept;
 
-    Moves& f();
-
 private:
 
     int diagonal; /**< длина диагонали */
     vector<Point> board; /**< вектор, реализующий модель доски */
 
-    /**
-     * Получить первую и вторую координату пункта.
-     * Получить первую и вторую координату пункта по индексу вектора.
-     */
-    void getFirstAndSecond( int vectorIndex, int& first, int& second ) const noexcept;
 };
 
 

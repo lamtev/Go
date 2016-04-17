@@ -35,20 +35,5 @@ Board& Board::operator=( const Board& board ) noexcept
     return *this;
 }
 
-void Board::getFirstAndSecond( int vectorIndex, int& first, int& second ) const noexcept
-{
-    for( int i = 0; i < vectorIndex; ++i )
-    {
-        for( int j = 0; j < vectorIndex; ++j )
-        {
-            if( first * diagonal == vectorIndex - second && (vectorIndex - second) % diagonal == 0 )
-            {
-                first = i;
-                second = j;
-                break;
-            }
-        }
-    }
-}
 
 

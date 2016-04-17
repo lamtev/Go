@@ -59,22 +59,9 @@ int Motion::whoseMove() const noexcept
 
 void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const
 {
-    //TODO void Motion::ifMoveToNotEmptyPoint
-    Moves currentMove(first, second);
-//    Moves passedMove(0, 0);
-
-    if( false/*find(board->getMoves().begin(), board->getMoves().end(), currentMove) != board->getMoves().end()*/ )
+    if( board->operator()(first, second).isNotEmpty() )
     {
         throw MoveToNotEmptyPointException();
-    }
-}
-
-void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) const
-{
-    //TODO void Motion::ifMoveToDie
-    if( false )
-    {
-        throw MoveToDieException();
     }
 }
 
@@ -91,19 +78,18 @@ void Motion::ifMoveRepeatThrowException( Board* board, int first, int second ) c
     }
 }
 
-void Motion::ifMoveBeyondBoardThrowException( Board* board, int first, int second ) const
+void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) const
 {
-    int diagonal = board->getDiagonal();
-    if( first < 0 || first >= diagonal || second < 0 || second >= diagonal )
+    //TODO void Motion::ifMoveToDie
+    if( false )
     {
-        throw MoveBeyondBoardException();
+        throw MoveToDieException();
     }
 }
 
 void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) const
 {
-    ifMoveRepeatThrowException(board, first, second);
-    ifMoveBeyondBoardThrowException(board, first, second);
-    ifMoveToDieThrowException(board, first, second);
     ifMoveToNotEmptyPointThrowException(board, first, second);
+    ifMoveRepeatThrowException(board, first, second);
+    ifMoveToDieThrowException(board, first, second);
 }

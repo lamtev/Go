@@ -21,3 +21,13 @@ int Point::getStatus() const noexcept
 {
     return status;
 }
+
+bool Point::isEmpty() const noexcept
+{
+    return status == EMPTY;
+}
+
+bool Point::isNotEmpty() const noexcept
+{
+    return status != EMPTY;
+}

@@ -37,10 +37,22 @@ public:
      * @return целочисленный тип - цвет камня.
      */
     int getStatus() const noexcept;
+
+    /**
+     * Свободный пункт?
+     * return true, если свободный, и false - в противном случае
+     */
+    bool isEmpty() const noexcept;
+
+    /**
+     * Несвободный пункт?
+     * return true, если несвободный, и false - в противном случае
+     */
+    bool isNotEmpty() const noexcept;
+
 private:
 
-    int status;
-
+    int status; /**< статус пункта */
 
 };
 
