@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Stone.h"
+#include "Rules/Moves.h"
 
 #include "BoundsViolationException.h"
 #include "IncorrectDiagonalException.h"
@@ -28,6 +29,18 @@ public:
     Board( int diagonal = 19 );
 
     /**
+     * Получить диагональ.
+     * @return значение диагонали
+     */
+    int getDiagonal() const noexcept;
+
+    /**
+     * Получить вектор доски.
+     * return вектор доски
+     */
+    vector<Stone>& get() const noexcept;
+
+    /**
      * Оператор скобки.
      * Используется как оператор индексирования
      * @param i координата по строкам
@@ -37,14 +50,6 @@ public:
     Stone& operator()( const int i, const int j );
 
     /**
-     * Получить диагональ.
-     * @return значение диагонали
-     */
-    int getDiagonal() const noexcept;
-
-    vector<Stone>& get() const noexcept;
-
-    /**
      * Оператор присваивания.
      * Перегруженный оператор присваивания
      * @param board присваиваемая доска
@@ -52,11 +57,18 @@ public:
      */
     Board& operator=( const Board& board ) noexcept;
 
+    Moves& f();
+
 private:
 
     int diagonal; /**< длина диагонали */
     vector<Stone> board; /**< вектор, реализующий модель доски */
 
+    /**
+     * Получить первую и вторую координату пункта.
+     * Получить первую и вторую координату пункта по индексу вектора.
+     */
+    void getFirstAndSecond( int vectorIndex, int& first, int& second ) const noexcept;
 };
 
 

@@ -75,22 +75,13 @@ private:
     int whoseMove() const noexcept;
 
     /**
-     * Если повтор хода.
-     * Данный метод выбрасывает исключение, если игрок повторил свой предыдущий ход
+     * Если ход в занятый пункт.
+     * Данная функция-член выбрасывает исключение, если игрок совершает ход в уже занятый пункт.
      * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveRepeat( Board* board, int first, int second ) const;
-
-    /**
-     * Если ход за пределы доски.
-     * Данный метод выбрасывает исключение, если ход совершается за пределы доски
-     * @param board указатель на объект доски
-     * @param first первая координата
-     * @param second вторая координата
-     */
-    void ifMoveBeyondBoard( Board* board, int first, int second ) const;
+    void ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const;
 
     /**
      * Если ход под смерть.
@@ -99,16 +90,25 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveToDie( Board* board, int first, int second ) const;
+    void ifMoveToDieThrowException( Board* board, int first, int second ) const;
 
     /**
-     * Если ход в занятый пункт.
-     * Данная функция-член выбрасывает исключение, если игрок совершает ход в уже занятый пункт.
+     * Если повтор хода.
+     * Данный метод выбрасывает исключение, если игрок повторил свой предыдущий ход
      * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveToNotEmptyPoint( Board* board, int first, int second ) const;
+    void ifMoveRepeatThrowException( Board* board, int first, int second ) const;
+
+    /**
+     * Если ход за пределы доски.
+     * Данный метод выбрасывает исключение, если ход совершается за пределы доски
+     * @param board указатель на объект доски
+     * @param first первая координата
+     * @param second вторая координата
+     */
+    void ifMoveBeyondBoardThrowException( Board* board, int first, int second ) const;
 
     /**
      * Проверка легитимности хода.
@@ -116,7 +116,7 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveIllegal( Board* board, int first, int second ) const;
+    void ifMoveIllegalThrowException( Board* board, int first, int second ) const;
 
 };
 

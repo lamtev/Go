@@ -40,6 +40,7 @@ public:
      * @return целочисленный тип - цвет камня.
      */
     int getColor() const noexcept;
+
 private:
 
     int color; /**< цвет камня */
