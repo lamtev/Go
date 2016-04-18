@@ -5,6 +5,7 @@
 
 #include "Board.h"
 #include "Rules/Motion.h"
+#include "Rules/ScoreCalculator.h"
 #include "enums.h"
 
 //TODO
@@ -42,31 +43,29 @@ public:
      * Данный метод возвращает доску
      * @return Board
      */
-    Board getBoard() const noexcept;
+    Board& getBoard() const noexcept;
 
     /**
      * Положить камень в выбранный пункт.
      * Данный метод позволяет игроку положить его иговой камень в пункт доски
-     * @param color цвет игрока
      * @param first первая координата выбранного пункта доски (A - S)
      * @param second вторая координата выбранного пункта доски (1 - 19)
      * @return доска
      */
-    void putStone( const int color, const int first, const int second );
+    void putStone( const int first, const int second );
 
     /**
      * Пропустить ход.
      * Данный метод позваляит игроку пропустить ход
-     * @param color цвет игрока
      */
-    void pass( int color );
+    void pass();
 
     /**
      * Чей ход?
      * Данный метод возвращает цвет того игрока, который должен сделать ход
      * @return цвет игрока, чей сейчас ход
      */
-    int whoseMove() const;
+    int whoseMove() const noexcept;
 
     /**
      * Сдаться.
@@ -111,6 +110,7 @@ private:
 
     Board* board; /**< Указатель на объект игровой доски */
     Motion* motion; /**< Указатель на объект процесса ходов */
+    ScoreCalculator* scoreCalculator; /**< Указатель на объект калькулятора очков */
 };
 
 #endif // GOENGINEINTERFACE_H

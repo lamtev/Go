@@ -56,6 +56,12 @@ public:
      */
     vector<Moves>& getMoves() const noexcept;
 
+    /**
+     * Чей ход?
+     * @return цвет игрока, чей сейчас ход
+     */
+    int whoseMove() const noexcept;
+
 private:
 
     vector<Moves> moves; /**< Вектор, хранящий все ходы */
@@ -73,12 +79,6 @@ private:
      * @return true, если ход чёрных, и false - в противном случае
      */
     bool isBlacksMove() const noexcept;
-
-    /**
-     * Чей ход?
-     * @return цвет игрока, чей сейчас ход
-     */
-    int whoseMove() const noexcept;
 
     /**
      * Если ход в занятый пункт.

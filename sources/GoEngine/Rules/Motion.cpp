@@ -49,6 +49,18 @@ vector<Moves>& Motion::getMoves() const noexcept
     return const_cast<vector<Moves>&>(moves);
 }
 
+int Motion::whoseMove() const noexcept
+{
+    if( isBlacksMove() )
+    {
+        return BLACK;
+    }
+    else
+    {
+        return WHITE;
+    }
+}
+
 void Motion::ifNeedResizeMoves() noexcept
 {
     if( movesSize - 1 == moveIndex )
@@ -61,18 +73,6 @@ void Motion::ifNeedResizeMoves() noexcept
 bool Motion::isBlacksMove() const noexcept
 {
     return !(moveIndex % 2);
-}
-
-int Motion::whoseMove() const noexcept
-{
-    if( isBlacksMove() )
-    {
-        return BLACK;
-    }
-    else
-    {
-        return WHITE;
-    }
 }
 
 void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const

@@ -3,11 +3,11 @@
 #include <vector>
 #include <iostream>
 
-using namespace std;
-
 #include "../../GoEngine/GoEngineInterface.h"
 #include "../../GoCUI/InitBoards.h"
 #include "../../GoEngine/enums.h"
+
+using namespace std;
 
 class FunctionalTest : public QObject
 {
@@ -64,7 +64,7 @@ void FunctionalTest::makeMove()
             {
                 break;
             }
-            Go.putStone(BLACK, x, y);
+            Go.putStone(x, y);
         }
         else
         {
@@ -76,7 +76,7 @@ void FunctionalTest::makeMove()
             {
                 break;
             }
-            Go.putStone(WHITE, x, y);
+            Go.putStone(x, y);
         }
         counter = (++counter) % 2;
     }
