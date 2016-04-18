@@ -34,6 +34,7 @@ public:
     /**
      * Получить цвет.
      * Метод для получения цвета камня.
+     * @param status статус пункта
      * @return целочисленный тип - цвет камня.
      */
     int getStatus() const noexcept;

@@ -3,7 +3,6 @@
 Motion::Motion()
 {
     moveIndex = 0;
-    //TODO разобраться с автоматическим расширение вектора!
     moves.resize(movesSize);
 }
 
@@ -27,10 +26,17 @@ void Motion::pass() noexcept
 
 bool Motion::areTwoPasses() const noexcept
 {
-    Moves passedMove;
-    passedMove.putFirst(0);
-    passedMove.putSecond(0);
-    return moves[moveIndex] == passedMove && moves[moveIndex] == moves[moveIndex-2];
+    if( moveIndex >= 2 )
+    {
+        Moves passedMove;
+        passedMove.putFirst(0);
+        passedMove.putSecond(0);
+        return moves[moveIndex] == passedMove && moves[moveIndex] == moves[moveIndex - 2];
+    }
+    else
+    {
+        return false;
+    }
 }
 
 int Motion::getMoveIndex() const noexcept
@@ -79,7 +85,6 @@ void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int s
 
 void Motion::ifMoveRepeatThrowException( Board* board, int first, int second ) const
 {
-    //TODO fix bug
     if( moveIndex >= 2 )
     {
         Moves passedMove(0, 0);

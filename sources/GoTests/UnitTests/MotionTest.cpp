@@ -15,6 +15,8 @@ public:
 
 private Q_SLOTS:
     void putStone();
+    void pass();
+    void areTwoPasses();
     void throwingMoveToNotEmptyPointException();
     void throwingMoveRepeatException();
     void throwingMoveToDieException();
@@ -28,18 +30,54 @@ void MotionTest::putStone()
 {
     Board* board = new Board(19);
     Motion* motion = new Motion();
+
     int ind = 0;
     for( int i = 0; i < 19; ++i )
     {
         for( int j = 0; j < 19; ++j )
         {
             motion->putStone(board, i, j);
-            std::cout << i << ' ' << j << std::endl;
             QCOMPARE(motion->getMoves()[ind].getFirst(), i);
             QCOMPARE(motion->getMoves()[ind].getSecond(), j);
             ++ind;
         }
     }
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::pass()
+{
+    Board* board = new Board(19);
+    Motion* motion = new Motion();
+
+    motion->pass();
+    QCOMPARE(motion->getMoves()[0].getFirst(), 0);
+    QCOMPARE(motion->getMoves()[0].getSecond(), 0);
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::areTwoPasses()
+{
+    Board* board = new Board(19);
+    Motion* motion = new Motion();
+
+    motion->pass();
+    motion->pass();
+    QVERIFY(motion->areTwoPasses());
+
+    motion->putStone(board, 1, 3);
+    motion->putStone(board, 4, 3);
+    motion->putStone(board, 2, 2);
+    motion->pass();
+    motion->putStone(board, 3, 2);
+    motion->putStone(board, 2, 4);
+    motion->pass();
+    motion->pass();
+    QVERIFY(motion->areTwoPasses());
 
     delete board;
     delete motion;
@@ -67,6 +105,7 @@ void MotionTest::throwingMoveToNotEmptyPointException()
 
 void MotionTest::throwingMoveRepeatException()
 {
+    //Не проходятся, т.к не реализовано съедение
     Board* board = new Board(7);
     Motion* motion = new Motion();
 
@@ -86,7 +125,8 @@ void MotionTest::throwingMoveRepeatException()
 
 void MotionTest::throwingMoveToDieException()
 {
-    //Будет работать, когда будет реализовано съедение
+    //Не проходятся, т.к не реализовано съедение
+    //и не реализовано определение хода под смерть
     Board* board = new Board(13);
     Motion* motion = new Motion();
 
@@ -108,6 +148,9 @@ void MotionTest::throwingMoveToDieException()
     delete board;
     delete motion;
 }
+
+
+
 
 QTEST_APPLESS_MAIN(MotionTest)
 
