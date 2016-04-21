@@ -16,7 +16,7 @@ public:
 private Q_SLOTS:
     void putStone();
     void pass();
-    void areTwoPasses();
+    void isGameOver();
     void throwingMoveToNotEmptyPointException();
     void throwingMoveRepeatException();
     void throwingMoveToDieException();
@@ -60,14 +60,14 @@ void MotionTest::pass()
     delete motion;
 }
 
-void MotionTest::areTwoPasses()
+void MotionTest::isGameOver()
 {
     Board* board = new Board(19);
     Motion* motion = new Motion();
 
     motion->pass();
     motion->pass();
-    QVERIFY(motion->areTwoPasses());
+    QVERIFY(motion->isGameOver());
 
     motion->putStone(board, 1, 3);
     motion->putStone(board, 4, 3);
@@ -77,7 +77,7 @@ void MotionTest::areTwoPasses()
     motion->putStone(board, 2, 4);
     motion->pass();
     motion->pass();
-    QVERIFY(motion->areTwoPasses());
+    QVERIFY(motion->isGameOver());
 
     delete board;
     delete motion;

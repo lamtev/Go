@@ -2,6 +2,7 @@
 #include <QtTest>
 #include <vector>
 #include <iostream>
+#include <sstream>
 
 #include "../../GoEngine/GoEngineInterface.h"
 #include "../../GoCUI/InitBoards.h"
@@ -48,39 +49,41 @@ void FunctionalTest::paintBoard()
 
 void FunctionalTest::makeMove()
 {
-    GoEngineInterface Go;
-    Go.startGame(19, JAPANESE, NIGIRI);
-    int x, y;
-    int counter = 0;
-    while( true )
-    {
-        if( counter % 2 == 0 )
-        {
-            cout << "Black" << endl;
-            cout << "Input coordinates" << endl;
-            cin >> x >> y;
-            x = 99;
-            if( x == 99 )
-            {
-                break;
-            }
-            Go.putStone(x, y);
-        }
-        else
-        {
-            cout << "White" << endl;
-            cout << "Input coordinates" << endl;
-            cin >> x >> y;
-            x = 99;
-            if( x == 99 )
-            {
-                break;
-            }
-            Go.putStone(x, y);
-        }
-        counter = (++counter) % 2;
-    }
+
+//    GoEngineInterface Go;
+//    Go.startGame(19, JAPANESE, NIGIRI);
+//    int x, y;
+//    int counter = 0;
+//    while( true )
+//    {
+//        if( counter % 2 == 0 )
+//        {
+//            cout << "Black" << endl;
+//            cout << "Input coordinates" << endl;
+//            cin >> x >> y;
+//            x = 99;
+//            if( x == 99 )
+//            {
+//                break;
+//            }
+//            Go.putStone(x, y);
+//        }
+//        else
+//        {
+//            cout << "White" << endl;
+//            cout << "Input coordinates" << endl;
+//            cin >> x >> y;
+//            x = 99;
+//            if( x == 99 )
+//            {
+//                break;
+//            }
+//            Go.putStone(x, y);
+//        }
+//        counter = (++counter) % 2;
+//    }
 }
+
 
 QTEST_APPLESS_MAIN(FunctionalTest)
 

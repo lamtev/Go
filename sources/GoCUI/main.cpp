@@ -8,12 +8,12 @@ using namespace std;
 void menu();
 void paintBoard(int d);
 
-int main()
+int main( /*int argc, char* argv[]*/ )
 {
     GoGame game;
 
     game.begin();
-    menu();
+    //menu();
     return 0;
 }
 

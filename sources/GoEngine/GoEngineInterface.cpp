@@ -34,6 +34,13 @@ int GoEngineInterface::whoseMove() const noexcept
     return motion->whoseMove();
 }
 
+bool GoEngineInterface::isGameOver() const
+{
+    return motion->isGameOver();
+}
+
+
+
 
 
 

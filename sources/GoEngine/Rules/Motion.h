@@ -26,7 +26,7 @@ public:
     /**
      * Конструктор
      */
-    Motion();
+    Motion() noexcept;
 
     /**
      * Положить камень
@@ -39,10 +39,10 @@ public:
     void pass() noexcept;
 
     /**
-     * Проверка двух последних ходов на пропуск.
-     * @return true, если оба игрока пропустили поочередно ход
+     * Игра закончена?
+     * @return true, если игра закончилась, и false - в противном случае
      */
-    bool areTwoPasses() const noexcept;
+    bool isGameOver() const noexcept;
 
     /**
      * Получить номер текущего хода.
@@ -67,6 +67,12 @@ private:
     vector<Moves> moves; /**< Вектор, хранящий все ходы */
     int moveIndex; /**< Индекс ходов */
     int movesSize = 100;
+
+    /**
+     * Проверка двух последних ходов на пропуск.
+     * @return true, если оба игрока пропустили поочередно ход
+     */
+    bool areTwoPasses() const noexcept;
 
     /**
      * Изменить размер вектора moves.

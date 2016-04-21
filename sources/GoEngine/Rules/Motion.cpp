@@ -1,6 +1,6 @@
 #include "Motion.h"
 
-Motion::Motion()
+Motion::Motion() noexcept
 {
     moveIndex = 0;
     moves.resize(movesSize);
@@ -9,7 +9,7 @@ Motion::Motion()
 void Motion::putStone(Board* board, int first, int second)
 {
     ifNeedResizeMoves();
-    ifMoveIllegalThrowException( board, first, second );
+    ifMoveIllegalThrowException(board, first, second);
     board->operator()(first, second) = whoseMove();
     moves[moveIndex].putFirst(first);
     moves[moveIndex].putSecond(second);
@@ -24,19 +24,10 @@ void Motion::pass() noexcept
     ++moveIndex;
 }
 
-bool Motion::areTwoPasses() const noexcept
+bool Motion::isGameOver() const noexcept
 {
-    if( moveIndex >= 2 )
-    {
-        Moves passedMove;
-        passedMove.putFirst(0);
-        passedMove.putSecond(0);
-        return moves[moveIndex] == passedMove && moves[moveIndex] == moves[moveIndex - 2];
-    }
-    else
-    {
-        return false;
-    }
+    //TODO добавить условий конца игры
+    return areTwoPasses();
 }
 
 int Motion::getMoveIndex() const noexcept
@@ -58,6 +49,21 @@ int Motion::whoseMove() const noexcept
     else
     {
         return WHITE;
+    }
+}
+
+bool Motion::areTwoPasses() const noexcept
+{
+    if( moveIndex >= 2 )
+    {
+        Moves passedMove;
+        passedMove.putFirst(0);
+        passedMove.putSecond(0);
+        return moves[moveIndex] == passedMove && moves[moveIndex] == moves[moveIndex - 2];
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -98,6 +104,7 @@ void Motion::ifMoveRepeatThrowException( Board* board, int first, int second ) c
 void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) const
 {
     //TODO void Motion::ifMoveToDie
+
     if( false )
     {
         throw MoveToDieException();
@@ -110,3 +117,7 @@ void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) 
     ifMoveRepeatThrowException(board, first, second);
     ifMoveToDieThrowException(board, first, second);
 }
+
+
+
+
