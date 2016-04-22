@@ -43,7 +43,7 @@ void GoGame::startGameCycle( std::string& input, int& first, int& second, bool& 
 
         printWhoseMove();
         std::getline(std::cin, input);
-        inputParsing(input, isInputIncorrect, first, second);
+        parseInput(input, first, second, isInputIncorrect);
         if( isInputIncorrect )
         {
 
@@ -52,7 +52,31 @@ void GoGame::startGameCycle( std::string& input, int& first, int& second, bool& 
     }
 }
 
-void GoGame::inputParsing( const std::string& input, bool& isIncorrectInput, int& first, int& second ) const noexcept
+void GoGame::parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept
+{
+    if( !input.compare("pass") )
+    {
+
+    }
+    else if( !input.compare("surrender") )
+    {
+
+    }
+    else if( !input.compare("exit") )
+    {
+
+    }
+    else
+    {
+        parseFirstCoordinate(input, first, isInputIncorrect);
+        parseSecondCoordinate(input, second, isInputIncorrect);
+    }
+
+
+
+}
+
+void GoGame::parseFirstCoordinate( const std::string& input, int& first, bool& isInputIncorrect ) const noexcept
 {
     switch( input[0] )
     {
@@ -114,16 +138,20 @@ void GoGame::inputParsing( const std::string& input, bool& isIncorrectInput, int
         first = S;
         break;
     default :
-        isIncorrectInput = true;
+        isInputIncorrect = true;
         break;
     }
+}
+
+void GoGame::parseSecondCoordinate( const std::string& input, int& second, bool& isInputIncorrect ) const noexcept
+{
     std::string number;
     number = input.substr(1);
     std::istringstream iss(number, std::istringstream::in);
     iss >> second;
     if( !iss )
     {
-        isIncorrectInput = true;
+        isInputIncorrect = true;
     }
 }
 
@@ -224,6 +252,12 @@ void GoGame::printEatenStonesStat() const
     printStonesEatenByBlack();
     printStonesEatenByWhite();
 }
+
+
+
+
+
+
 
 
 

@@ -55,11 +55,27 @@ private:
     /**
      * Парсить входную строку.
      * @param input строка.
-     * @param isIncorrectInput флаг корректности ввода.
      * @param first первая координата.
      * @param second вторая координата.
+     * @param isIncorrectInput флаг корректности ввода.
      */
-    void inputParsing( const std::string& input, bool& isIncorrectInput, int& first, int& second ) const noexcept;
+    void parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept;
+
+    /**
+     * Парсить первую координату.
+     * @param input строка.
+     * @param first первая координата.
+     * @param isIncorrectInput флаг корректности ввода.
+     */
+    void parseFirstCoordinate( const std::string& input, int& first, bool& isInputIncorrect ) const noexcept;
+
+    /**
+     * Парсить вторую координату.
+     * @param input строка.
+     * @param second первая координата.
+     * @param isIncorrectInput флаг корректности ввода.
+     */
+    void parseSecondCoordinate( const std::string& input, int& second, bool& isInputIncorrect ) const noexcept;
 
     /**
      * Напечатать, чей ход.
