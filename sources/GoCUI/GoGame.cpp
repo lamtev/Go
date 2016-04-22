@@ -40,23 +40,30 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second, bool
     {
         printEatenStonesStat();
         printBoard();
-        if( isCommandIncorrect )
-        {
-            printUnknownCommand();
-            isCommandIncorrect = false;
-        }
+        ifNeedPrintCommandIncorrect(isCommandIncorrect);
         printWhoseMove();
         std::getline(std::cin, command);
         switchParsedCommand(command, first, second, isCommandIncorrect, isExit);
     }
+    switchWhoSurrendered();
 }
+
+void GoGame::ifNeedPrintCommandIncorrect( bool& isCommandIncorrect ) const noexcept
+{
+    if( isCommandIncorrect )
+    {
+        printUnknownCommand();
+        isCommandIncorrect = false;
+    }
+}
+
 
 void GoGame::switchParsedCommand( const std::string& command, int& first, int& second, bool& isCommandIncorrect, bool& isExit )
 {
     switch( parseCommand(command, first, second, isCommandIncorrect) )
     {
     case MOVE :
-        putStone(first, second);
+        putStone(first-1, second-1);
         break;
     case PASS :
         pass();
@@ -66,6 +73,8 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
         break;
     case EXIT :
         isExit = this->isExit(command);
+        break;
+    default :
         break;
     }
 }
@@ -161,22 +170,28 @@ void GoGame::parseFirstCoordinate( const std::string& command, int& first, bool&
 
 void GoGame::parseSecondCoordinate( const std::string& command, int& second, bool& isCommandIncorrect ) const noexcept
 {
-    //BUG
+    if( isCommandIncorrect )
+    {
+        return;
+    }
     std::string number;
     number = command.substr(1);
     std::istringstream iss(number, std::istringstream::in);
-    iss >> second;
-    if( !iss )
-    {
-        isCommandIncorrect = true;
-    }
+    int coordinate;
+    iss >> coordinate;
+    !iss ? (isCommandIncorrect = true) : (second = coordinate);
 }
 
 void GoGame::putStone( const int first, const int second )
 {
+    //TODO exception handling
     try
     {
         goEngineInterface->putStone(first, second);
+    }
+    catch( BoundsViolationException& e )
+    {
+
     }
     catch( MoveToNotEmptyPointException& e )
     {
@@ -203,6 +218,27 @@ void GoGame::surrender() const noexcept
     goEngineInterface->surrender();
 }
 
+int GoGame::whoSurrendered() const noexcept
+{
+    return goEngineInterface->whoSurrendered();
+}
+
+void GoGame::switchWhoSurrendered() const noexcept
+{
+    switch( whoSurrendered() )
+    {
+    case EMPTY :
+        break;
+    case BLACK :
+        printBlackSurrendered();
+        break;
+    case WHITE :
+        printWhiteSurrendered();
+    default :
+        break;
+    }
+}
+
 void GoGame::printUnknownCommand() const noexcept
 {
     std::cout <<  "Previous command was unknown" << std::endl;
@@ -218,6 +254,16 @@ void GoGame::printWhoseMove() const noexcept
     {
         std::cout << "White's move" << std::endl;
     }
+}
+
+void GoGame::printBlackSurrendered() const noexcept
+{
+    std::cout << "Black player has surrendered" <<std::endl;
+}
+
+void GoGame::printWhiteSurrendered() const noexcept
+{
+    std::cout << "White player has surrendered" <<std::endl;
 }
 
 void GoGame::printBoard()
@@ -301,3 +347,5 @@ void GoGame::printEatenStonesStat() const noexcept
     printStonesEatenByBlack();
     printStonesEatenByWhite();
 }
+
+

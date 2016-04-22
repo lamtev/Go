@@ -30,6 +30,11 @@ void GoEngineInterface::surrender() noexcept
     motion->surrender();
 }
 
+int GoEngineInterface::whoSurrendered() const noexcept
+{
+    return motion->whoSurrendered();
+}
+
 Board& GoEngineInterface::getBoard() const noexcept
 {
     return *board;
@@ -44,6 +49,10 @@ bool GoEngineInterface::isGameOver() const
 {
     return motion->isGameOver();
 }
+
+
+
+
 
 
 

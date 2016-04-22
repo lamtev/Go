@@ -10,6 +10,7 @@
 #include "enums.h"
 
 //TODO разобраться с constexpr
+//TODO refactor GoGame
 
 /**
  * Игра.
@@ -80,6 +81,12 @@ private:
     void parseSecondCoordinate( const std::string& command, int& second, bool& isCommandIncorrect ) const noexcept;
 
     /**
+     * Напечатать, что команда не верна.
+     * Если это нужно, напечатать, что предыдущая введенная команда неверна.
+     */
+    void ifNeedPrintCommandIncorrect( bool& isCommandIncorrect ) const noexcept;
+
+    /**
      * Напечатать, что команда была введена нверно.
      */
     void printUnknownCommand() const noexcept;
@@ -105,9 +112,29 @@ private:
     void surrender() const noexcept;
 
     /**
+     * Кто сдался?
+     */
+    int whoSurrendered() const noexcept;
+
+    /**
+     * Выбрать сдавшегося.
+     */
+    void switchWhoSurrendered() const noexcept;
+
+    /**
      * Напечатать, чей ход.
      */
     void printWhoseMove() const noexcept;
+
+    /**
+     * Напечатать, что черный сдался.
+     */
+    void printBlackSurrendered() const noexcept;
+
+    /**
+     * Напечатать, что белый сдался.
+     */
+    void printWhiteSurrendered() const noexcept;
 
     /**
      * Напечатать, сколько камней съели чёрные.

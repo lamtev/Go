@@ -17,7 +17,7 @@ public:
      */
     const char* what() const noexcept
     {
-        return "Board bounds violation";
+        return "You moved outside the board";
     }
 
 };
