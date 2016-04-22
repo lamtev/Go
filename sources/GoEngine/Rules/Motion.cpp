@@ -24,11 +24,22 @@ void Motion::pass() noexcept
     ++moveIndex;
 }
 
+void Motion::surrender() noexcept
+{
+    surrendered = whoseMove();
+}
+
 bool Motion::isGameOver() const noexcept
 {
     //TODO добавить условий конца игры
-    return areTwoPasses();
+    return areTwoPasses() || whoSurrendered();
 }
+
+int Motion::whoSurrendered() const noexcept
+{
+    return surrendered;
+}
+
 
 int Motion::getMoveIndex() const noexcept
 {
@@ -117,6 +128,13 @@ void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) 
     ifMoveRepeatThrowException(board, first, second);
     ifMoveToDieThrowException(board, first, second);
 }
+
+
+
+
+
+
+
 
 
 

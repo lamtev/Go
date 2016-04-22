@@ -14,19 +14,25 @@ GoEngineInterface::~GoEngineInterface()
     delete scoreCalculator;
 }
 
-Board& GoEngineInterface::getBoard() const noexcept
-{
-    return *board;
-}
 
 void GoEngineInterface::putStone( const int first, const int second )
 {
     motion->putStone(board, first, second);
 }
 
-void GoEngineInterface::pass()
+void GoEngineInterface::pass() noexcept
 {
     motion->pass();
+}
+
+void GoEngineInterface::surrender() noexcept
+{
+    motion->surrender();
+}
+
+Board& GoEngineInterface::getBoard() const noexcept
+{
+    return *board;
 }
 
 int GoEngineInterface::whoseMove() const noexcept
@@ -38,6 +44,8 @@ bool GoEngineInterface::isGameOver() const
 {
     return motion->isGameOver();
 }
+
+
 
 
 

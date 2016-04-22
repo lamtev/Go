@@ -39,10 +39,21 @@ public:
     void pass() noexcept;
 
     /**
+     * Сдаться.
+     */
+    void surrender() noexcept;
+
+    /**
      * Игра закончена?
      * @return true, если игра закончилась, и false - в противном случае
      */
     bool isGameOver() const noexcept;
+
+    /**
+     * Кто сдался?
+     * @return цвет сдавшегося.
+     */
+    int whoSurrendered() const noexcept;
 
     /**
      * Получить номер текущего хода.
@@ -66,7 +77,8 @@ private:
 
     vector<Moves> moves; /**< Вектор, хранящий все ходы */
     int moveIndex; /**< Индекс ходов */
-    int movesSize = 100;
+    int movesSize = 100;  /**< Размер вектора ходов */
+    int surrendered = EMPTY; /**< Сдавшийся */
 
     /**
      * Проверка двух последних ходов на пропуск.

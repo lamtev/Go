@@ -38,12 +38,6 @@ public:
      * @param colorDistribution способ распределения цветов
      */
     void startGame( const int diagonal, const int rules, const int colorDistribution );
-    /**
-     * Получить доску.
-     * Данный метод возвращает доску
-     * @return Board
-     */
-    Board& getBoard() const noexcept;
 
     /**
      * Положить камень в выбранный пункт.
@@ -58,7 +52,21 @@ public:
      * Пропустить ход.
      * Данный метод позваляит игроку пропустить ход
      */
-    void pass();
+    void pass() noexcept;
+
+    /**
+     * Сдаться.
+     * Данный метод позволяет игроку сдаться
+     * @param color цвет игрока
+     */
+    void surrender() noexcept;
+
+    /**
+     * Получить доску.
+     * Данный метод возвращает доску
+     * @return Board
+     */
+    Board& getBoard() const noexcept;
 
     /**
      * Чей ход?
@@ -66,13 +74,6 @@ public:
      * @return цвет игрока, чей сейчас ход
      */
     int whoseMove() const noexcept;
-
-    /**
-     * Сдаться.
-     * Данный метод позволяет игроку сдаться
-     * @param color цвет игрока
-     */
-    void resign( int color );
 
     /**
      * Проверка на окончание игры.

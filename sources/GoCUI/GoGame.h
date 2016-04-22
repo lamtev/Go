@@ -6,9 +6,12 @@
 #include <sstream>
 
 #include "../GoEngine/GoEngineInterface.h"
+#include "InitBoards.h"
+
+//TODO разобраться с constexpr
 
 /**
- * Класс, отвечающий за
+ * Игра.
  */
 class GoGame
 {
@@ -32,10 +35,31 @@ public:
 
 private:
 
+    GoEngineInterface*goEngineInterface; /**< Указатель на объект интерфейса движка*/
+
     /**
-     * Указатель на объект интерфейса, предоставляемого движком приложению
+     * Настроить игру.
      */
-    GoEngineInterface*goEngineInterface;
+    void configureGame();
+
+    /**
+     * Начать игровой процесс.
+     */
+    void play();
+
+    /**
+     * Запутить игровой цикл.
+     */
+    void startGameCycle( std::string& input, int& first, int& second, bool& isExit, bool& isIncorrectInput );
+
+    /**
+     * Парсить входную строку.
+     * @param input строка.
+     * @param isIncorrectInput флаг корректности ввода.
+     * @param first первая координата.
+     * @param second вторая координата.
+     */
+    void inputParsing( const std::string& input, bool& isIncorrectInput, int& first, int& second ) const noexcept;
 
     /**
      * Напечатать, чей ход.
@@ -53,6 +77,11 @@ private:
     void printStonesEatenByWhite() const noexcept;
 
     /**
+     * Напечатать статистику съеденных камней.
+     */
+    void printEatenStonesStat() const noexcept;
+
+    /**
      * Отрисовать текущее состояние доски.
      */
     void printBoard();
@@ -64,9 +93,9 @@ private:
     void inputDiagonal( int& diagonal );
 
     /**
-     * Ввести координаты.
+     * Ввести ход.
      */
-    void inputCoordinates();
+    void inputMove();
 
     /**
      * Вывести сообщение ввода диагонали.
