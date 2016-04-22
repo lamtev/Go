@@ -32,10 +32,9 @@ public:
     Point& operator=( const int status ) noexcept;
 
     /**
-     * Получить цвет.
-     * Метод для получения цвета камня.
-     * @param status статус пункта
-     * @return целочисленный тип - цвет камня
+     * Получить статус.
+     * Метод для получения статуса пункта.
+     * @return целочисленный тип - статус пункта
      */
     int getStatus() const noexcept;
 
