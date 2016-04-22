@@ -104,9 +104,10 @@ public:
      */
     int getWhiteScore() const;
 
-
-
-
+    /**
+     * Кто сдался?
+     */
+    int whoSurrendered() const noexcept;
 private:
 
     Board* board; /**< Указатель на объект игровой доски */

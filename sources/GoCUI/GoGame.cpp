@@ -27,57 +27,74 @@ void GoGame::configureGame()
 void GoGame::play()
 {
     bool isExit = false;
-    bool isInputIncorrect = false;
+    bool isCommandIncorrect = false;
     int first, second;
-    std::string input;
-    startGameCycle(input, first, second, isExit, isInputIncorrect);
+    std::string command;
+    startGameCycle(command, first, second, isExit, isCommandIncorrect);
 
 }
 
-void GoGame::startGameCycle( std::string& input, int& first, int& second, bool& isExit, bool& isInputIncorrect )
+void GoGame::startGameCycle( std::string& command, int& first, int& second, bool& isExit, bool& isCommandIncorrect )
 {
-    while( !goEngineInterface->isGameOver() || isExit )
+    while( !goEngineInterface->isGameOver() && !isExit )
     {
         printEatenStonesStat();
         printBoard();
-        if( isInputIncorrect )
+        if( isCommandIncorrect )
         {
             printUnknownCommand();
-            isInputIncorrect = false;
+            isCommandIncorrect = false;
         }
         printWhoseMove();
-        std::getline(std::cin, input);
-        parseInput(input, first, second, isInputIncorrect);
-
-        isExit = this->isExit(input);
+        std::getline(std::cin, command);
+        switchParsedCommand(command, first, second, isCommandIncorrect, isExit);
     }
 }
 
-int GoGame::parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept
+void GoGame::switchParsedCommand( const std::string& command, int& first, int& second, bool& isCommandIncorrect, bool& isExit )
 {
-    if( !input.compare("pass") )
+    switch( parseCommand(command, first, second, isCommandIncorrect) )
+    {
+    case MOVE :
+        putStone(first, second);
+        break;
+    case PASS :
+        pass();
+        break;
+    case SURRENDER :
+        surrender();
+        break;
+    case EXIT :
+        isExit = this->isExit(command);
+        break;
+    }
+}
+
+int GoGame::parseCommand( const std::string& command, int& first, int& second, bool& isCommandIncorrect ) const noexcept
+{
+    if( !command.compare("pass") )
     {
         return PASS;
     }
-    else if( !input.compare("surrender") )
+    else if( !command.compare("surrender") )
     {
         return SURRENDER;
     }
-    else if( isExit(input) )
+    else if( isExit(command) )
     {
         return EXIT;
     }
     else
     {
-        parseFirstCoordinate(input, first, isInputIncorrect);
-        parseSecondCoordinate(input, second, isInputIncorrect);
+        parseFirstCoordinate(command, first, isCommandIncorrect);
+        parseSecondCoordinate(command, second, isCommandIncorrect);
         return MOVE;
     }
 }
 
-void GoGame::parseFirstCoordinate( const std::string& input, int& first, bool& isInputIncorrect ) const noexcept
+void GoGame::parseFirstCoordinate( const std::string& command, int& first, bool& isCommandIncorrect ) const noexcept
 {
-    switch( input[0] )
+    switch( command[0] )
     {
     case 'a' :
         first = A;
@@ -137,22 +154,53 @@ void GoGame::parseFirstCoordinate( const std::string& input, int& first, bool& i
         first = S;
         break;
     default :
-        isInputIncorrect = true;
+        isCommandIncorrect = true;
         break;
     }
 }
 
-void GoGame::parseSecondCoordinate( const std::string& input, int& second, bool& isInputIncorrect ) const noexcept
+void GoGame::parseSecondCoordinate( const std::string& command, int& second, bool& isCommandIncorrect ) const noexcept
 {
     //BUG
     std::string number;
-    number = input.substr(1);
+    number = command.substr(1);
     std::istringstream iss(number, std::istringstream::in);
     iss >> second;
     if( !iss )
     {
-        isInputIncorrect = true;
+        isCommandIncorrect = true;
     }
+}
+
+void GoGame::putStone( const int first, const int second )
+{
+    try
+    {
+        goEngineInterface->putStone(first, second);
+    }
+    catch( MoveToNotEmptyPointException& e )
+    {
+
+    }
+    catch( MoveRepeatException& e )
+    {
+
+    }
+    catch( MoveToDieException& e )
+    {
+
+    }
+
+}
+
+void GoGame::pass() const noexcept
+{
+    goEngineInterface->pass();
+}
+
+void GoGame::surrender() const noexcept
+{
+    goEngineInterface->surrender();
 }
 
 void GoGame::printUnknownCommand() const noexcept
@@ -160,7 +208,7 @@ void GoGame::printUnknownCommand() const noexcept
     std::cout <<  "Previous command was unknown" << std::endl;
 }
 
-void GoGame::printWhoseMove() const
+void GoGame::printWhoseMove() const noexcept
 {
     if( goEngineInterface->whoseMove() == BLACK )
     {
@@ -171,10 +219,6 @@ void GoGame::printWhoseMove() const
         std::cout << "White's move" << std::endl;
     }
 }
-
-
-
-
 
 void GoGame::printBoard()
 {

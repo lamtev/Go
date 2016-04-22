@@ -51,7 +51,7 @@ private:
     /**
      * Запутить игровой цикл.
      */
-    void startGameCycle( std::string& input, int& first, int& second, bool& isExit, bool& isIncorrectInput );
+    void startGameCycle( std::string& command, int& first, int& second, bool& isExit, bool& isCommandIncorrect );
 
     /**
      * Парсить входную строку.
@@ -61,7 +61,7 @@ private:
      * @param isIncorrectInput флаг корректности ввода.
      * @return тип распарсенной команды
      */
-    int parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept;
+    int parseCommand( const std::string& command, int& first, int& second, bool& isCommandIncorrect ) const noexcept;
 
     /**
      * Парсить первую координату.
@@ -69,7 +69,7 @@ private:
      * @param first первая координата.
      * @param isIncorrectInput флаг корректности ввода.
      */
-    void parseFirstCoordinate( const std::string& input, int& first, bool& isInputIncorrect ) const noexcept;
+    void parseFirstCoordinate( const std::string& command, int& first, bool& isCommandIncorrect ) const noexcept;
 
     /**
      * Парсить вторую координату.
@@ -77,19 +77,37 @@ private:
      * @param second первая координата.
      * @param isIncorrectInput флаг корректности ввода.
      */
-    void parseSecondCoordinate( const std::string& input, int& second, bool& isInputIncorrect ) const noexcept;
+    void parseSecondCoordinate( const std::string& command, int& second, bool& isCommandIncorrect ) const noexcept;
 
     /**
      * Напечатать, что команда была введена нверно.
      */
     void printUnknownCommand() const noexcept;
 
-    void switchParsedCommand();
+    /**
+     * Выбрать распарсенную команду
+     */
+    void switchParsedCommand( const std::string& command, int& first, int& second, bool& isCommandIncorrect, bool& isExit );
+
+    /**
+     * Сделать ход.
+     */
+    void putStone( const int first, const int second );
+
+    /**
+     * Пропустить ход.
+     */
+    void pass() const noexcept;
+
+    /**
+     * Cдаться.
+     */
+    void surrender() const noexcept;
 
     /**
      * Напечатать, чей ход.
      */
-    void printWhoseMove() const;
+    void printWhoseMove() const noexcept;
 
     /**
      * Напечатать, сколько камней съели чёрные.
