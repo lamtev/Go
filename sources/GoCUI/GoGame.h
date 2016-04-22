@@ -7,6 +7,7 @@
 
 #include "../GoEngine/GoEngineInterface.h"
 #include "InitBoards.h"
+#include "enums.h"
 
 //TODO разобраться с constexpr
 
@@ -58,8 +59,9 @@ private:
      * @param first первая координата.
      * @param second вторая координата.
      * @param isIncorrectInput флаг корректности ввода.
+     * @return тип распарсенной команды
      */
-    void parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept;
+    int parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept;
 
     /**
      * Парсить первую координату.
@@ -76,6 +78,13 @@ private:
      * @param isIncorrectInput флаг корректности ввода.
      */
     void parseSecondCoordinate( const std::string& input, int& second, bool& isInputIncorrect ) const noexcept;
+
+    /**
+     * Напечатать, что команда была введена нверно.
+     */
+    void printUnknownCommand() const noexcept;
+
+    void switchParsedCommand();
 
     /**
      * Напечатать, чей ход.

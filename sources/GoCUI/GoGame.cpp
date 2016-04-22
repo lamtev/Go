@@ -40,40 +40,39 @@ void GoGame::startGameCycle( std::string& input, int& first, int& second, bool& 
     {
         printEatenStonesStat();
         printBoard();
-
+        if( isInputIncorrect )
+        {
+            printUnknownCommand();
+            isInputIncorrect = false;
+        }
         printWhoseMove();
         std::getline(std::cin, input);
         parseInput(input, first, second, isInputIncorrect);
-        if( isInputIncorrect )
-        {
 
-        }
         isExit = this->isExit(input);
     }
 }
 
-void GoGame::parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept
+int GoGame::parseInput( const std::string& input, int& first, int& second, bool& isInputIncorrect ) const noexcept
 {
     if( !input.compare("pass") )
     {
-
+        return PASS;
     }
     else if( !input.compare("surrender") )
     {
-
+        return SURRENDER;
     }
-    else if( !input.compare("exit") )
+    else if( isExit(input) )
     {
-
+        return EXIT;
     }
     else
     {
         parseFirstCoordinate(input, first, isInputIncorrect);
         parseSecondCoordinate(input, second, isInputIncorrect);
+        return MOVE;
     }
-
-
-
 }
 
 void GoGame::parseFirstCoordinate( const std::string& input, int& first, bool& isInputIncorrect ) const noexcept
@@ -145,6 +144,7 @@ void GoGame::parseFirstCoordinate( const std::string& input, int& first, bool& i
 
 void GoGame::parseSecondCoordinate( const std::string& input, int& second, bool& isInputIncorrect ) const noexcept
 {
+    //BUG
     std::string number;
     number = input.substr(1);
     std::istringstream iss(number, std::istringstream::in);
@@ -153,6 +153,11 @@ void GoGame::parseSecondCoordinate( const std::string& input, int& second, bool&
     {
         isInputIncorrect = true;
     }
+}
+
+void GoGame::printUnknownCommand() const noexcept
+{
+    std::cout <<  "Previous command was unknown" << std::endl;
 }
 
 void GoGame::printWhoseMove() const
@@ -247,11 +252,15 @@ bool GoGame::isExit( const std::string& input ) const noexcept
     return !input.compare("exit");
 }
 
-void GoGame::printEatenStonesStat() const
+void GoGame::printEatenStonesStat() const noexcept
 {
     printStonesEatenByBlack();
     printStonesEatenByWhite();
 }
+
+
+
+
 
 
 
