@@ -36,6 +36,7 @@ void GoGame::play()
 
 void GoGame::startGameCycle( std::string& command, int& first, int& second, bool& isExit, bool& isCommandIncorrect )
 {
+    //BUG
     while( !goEngineInterface->isGameOver() && !isExit )
     {
         printEatenStonesStat();
@@ -44,6 +45,10 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second, bool
         printWhoseMove();
         std::getline(std::cin, command);
         switchParsedCommand(command, first, second, isCommandIncorrect, isExit);
+        if( goEngineInterface->isGameOver() )
+        {
+            std::cout << "BUG DETECTED" << std::endl;
+        }
     }
     switchWhoSurrendered();
 }
@@ -280,7 +285,7 @@ void GoGame::printBoard()
 }
 void GoGame::printStonesEatenByBlack() const noexcept
 {
-
+    //TODO
 }
 
 void GoGame::printStonesEatenByWhite() const noexcept
