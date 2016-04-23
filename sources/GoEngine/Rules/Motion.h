@@ -114,7 +114,7 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveRepeatThrowException( Board* board, int first, int second ) const;
+    void ifMoveRepeatThrowException( int first, int second ) const;
 
     /**
      * Если ход под смерть.

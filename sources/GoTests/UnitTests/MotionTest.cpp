@@ -14,7 +14,7 @@ public:
 
 
 private Q_SLOTS:
-    void putStone();
+    //void putStone();
     void pass();
     void isGameOver();
     void throwingMoveToNotEmptyPointException();
@@ -26,61 +26,74 @@ MotionTest::MotionTest()
 {
 }
 
-void MotionTest::putStone()
-{
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
-
-    int ind = 0;
-    for( int i = 0; i < 19; ++i )
-    {
-        for( int j = 0; j < 19; ++j )
-        {
-            motion->putStone(board, i, j);
-            QCOMPARE(motion->getMoves()[ind].getFirst(), i);
-            QCOMPARE(motion->getMoves()[ind].getSecond(), j);
-            ++ind;
-        }
-    }
-
-    delete board;
-    delete motion;
-}
+//void MotionTest::putStone()
+//{
+//    Board* board = new Board(19);
+//    Motion* motion = new Motion();
+//
+//    int ind = 0;
+//    for( int i = 0; i < 19; ++i )
+//    {
+//        for( int j = 0; j < 19; ++j )
+//        {
+//            motion->putStone(board, i, j);
+//            QCOMPARE(motion->getMoves()[ind].getFirst(), i);
+//            QCOMPARE(motion->getMoves()[ind].getSecond(), j);
+//            ++ind;
+//        }
+//    }
+//
+//    delete board;
+//    delete motion;
+//}
 
 void MotionTest::pass()
 {
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
+    {
+        Board* board = new Board(19);
+        Motion* motion = new Motion();
 
-    motion->pass();
-    QCOMPARE(motion->getMoves()[0].getFirst(), 0);
-    QCOMPARE(motion->getMoves()[0].getSecond(), 0);
+        motion->pass();
+        QCOMPARE(motion->getMoves()[0].getFirst(), PASS_COORD);
+        QCOMPARE(motion->getMoves()[0].getSecond(), PASS_COORD);
 
-    delete board;
-    delete motion;
+        delete board;
+        delete motion;
+    }
+
 }
 
 void MotionTest::isGameOver()
 {
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
+    {
+        Board*board = new Board(19);
+        Motion*motion = new Motion();
 
-    motion->pass();
-    motion->pass();
-    QVERIFY(motion->isGameOver());
+        motion->pass();
+        motion->pass();
+        QVERIFY(motion->isGameOver());
 
-    motion->putStone(board, 1, 3);
-    motion->putStone(board, 4, 3);
-    motion->putStone(board, 2, 2);
-    motion->pass();
-    motion->putStone(board, 3, 2);
-    motion->putStone(board, 2, 4);
-    motion->pass();
-    motion->pass();
-    QVERIFY(motion->isGameOver());
+        delete board;
+        delete motion;
+    }
 
-    delete board;
-    delete motion;
+    {
+        Board*board = new Board(19);
+        Motion*motion = new Motion();
+
+        motion->putStone(board, 1, 3);
+        motion->putStone(board, 4, 3);
+        motion->putStone(board, 2, 2);
+        motion->pass();
+        motion->putStone(board, 3, 2);
+        motion->putStone(board, 2, 4);
+        motion->pass();
+        motion->pass();
+        QVERIFY(motion->isGameOver());
+
+        delete board;
+        delete motion;
+    }
 }
 
 void MotionTest::throwingMoveToNotEmptyPointException()
@@ -105,7 +118,7 @@ void MotionTest::throwingMoveToNotEmptyPointException()
 
 void MotionTest::throwingMoveRepeatException()
 {
-    //Не проходятся, т.к не реализовано съедение
+    //падает, т.к не реализовано съедение
     Board* board = new Board(7);
     Motion* motion = new Motion();
 

@@ -19,8 +19,8 @@ void Motion::putStone(Board* board, int first, int second)
 void Motion::pass() noexcept
 {
     ifNeedResizeMoves();
-    moves[moveIndex].putFirst(0);
-    moves[moveIndex].putSecond(0);
+    moves[moveIndex].putFirst(PASS_COORD);
+    moves[moveIndex].putSecond(PASS_COORD);
     ++moveIndex;
 }
 
@@ -68,9 +68,9 @@ bool Motion::areTwoPasses() const noexcept
     if( moveIndex >= 2 )
     {
         Moves passedMove;
-        passedMove.putFirst(0);
-        passedMove.putSecond(0);
-        return moves[moveIndex] == passedMove && moves[moveIndex] == moves[moveIndex - 2];
+        passedMove.putFirst(PASS_COORD);
+        passedMove.putSecond(PASS_COORD);
+        return moves[moveIndex - 1] == passedMove && moves[moveIndex - 1] == moves[moveIndex - 2];
     }
     else
     {
@@ -100,12 +100,12 @@ void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int s
     }
 }
 
-void Motion::ifMoveRepeatThrowException( Board* board, int first, int second ) const
+void Motion::ifMoveRepeatThrowException( int first, int second ) const
 {
     if( moveIndex >= 2 )
     {
-        Moves passedMove(0, 0);
-        if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex-2] )
+        Moves passedMove(PASS_COORD, PASS_COORD);
+        if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex - 2] )
         {
             throw MoveRepeatException();
         }
@@ -125,7 +125,7 @@ void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) co
 void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) const
 {
     ifMoveToNotEmptyPointThrowException(board, first, second);
-    ifMoveRepeatThrowException(board, first, second);
+    ifMoveRepeatThrowException(first, second);
     ifMoveToDieThrowException(board, first, second);
 }
 
