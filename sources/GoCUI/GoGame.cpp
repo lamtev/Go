@@ -270,6 +270,7 @@ void GoGame::printWhiteSurrendered() const noexcept
 
 void GoGame::printBoard()
 {
+    //TODO print interactive board
     for( int i = 0; i < 21 * 43; ++ i )
     {
         if (i % 43 == 0)

@@ -13,7 +13,7 @@ public:
 
 
 private Q_SLOTS:
-    void getColor();
+    void getStatus();
     void assigmentObject();
     void assigmentInt();
 
@@ -23,7 +23,7 @@ PointTest::PointTest()
 {
 }
 
-void PointTest::getColor()
+void PointTest::getStatus()
 {
     Point s(BLACK);
     QVERIFY(s.getStatus() == BLACK);
