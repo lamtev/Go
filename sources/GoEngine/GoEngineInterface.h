@@ -57,7 +57,6 @@ public:
     /**
      * Сдаться.
      * Данный метод позволяет игроку сдаться
-     * @param color цвет игрока
      */
     void surrender() noexcept;
 
@@ -108,6 +107,18 @@ public:
      * Кто сдался?
      */
     int whoSurrendered() const noexcept;
+
+    /**
+     * Получить число камней, съеденных чёрным.
+     * @return число камней, съеденных чёрным
+     */
+    int getStonesEatenByBlack() const noexcept;
+
+    /**
+     * Получить число камней, съеденных белым.
+     * @return число камней, съеденных белым
+     */
+    int getStonesEatenByWhite() const noexcept;
 
 private:
 

@@ -14,6 +14,7 @@ public:
 
 
 private Q_SLOTS:
+    void putGet();
     void equallity();
     void inequallity();
 
@@ -22,6 +23,19 @@ private Q_SLOTS:
 
 MovesTest::MovesTest()
 {
+}
+
+void MovesTest::putGet()
+{
+    std::vector<Moves> moves(361);
+    for( int i = 0; i < 361; ++i)
+    {
+        moves[i].putFirst(i%19);
+        moves[i].putSecond((i+5)%19);
+
+        QCOMPARE(moves[i].getFirst(), i%19);
+        QCOMPARE(moves[i].getSecond(), (i+5)%19);
+    }
 }
 
 void MovesTest::equallity()

@@ -14,7 +14,7 @@ public:
 
 
 private Q_SLOTS:
-    //void putStone();
+    void putStone();
     void pass();
     void isGameOver();
     void throwingMoveToNotEmptyPointException();
@@ -26,26 +26,26 @@ MotionTest::MotionTest()
 {
 }
 
-//void MotionTest::putStone()
-//{
-//    Board* board = new Board(19);
-//    Motion* motion = new Motion();
-//
-//    int ind = 0;
-//    for( int i = 0; i < 19; ++i )
-//    {
-//        for( int j = 0; j < 19; ++j )
-//        {
-//            motion->putStone(board, i, j);
-//            QCOMPARE(motion->getMoves()[ind].getFirst(), i);
-//            QCOMPARE(motion->getMoves()[ind].getSecond(), j);
-//            ++ind;
-//        }
-//    }
-//
-//    delete board;
-//    delete motion;
-//}
+void MotionTest::putStone()
+{
+    Board* board = new Board(19);
+    Motion* motion = new Motion();
+
+    int ind = 0;
+    for( int i = 0; i < 19; ++i )
+    {
+        for( int j = 0; j < 19; ++j )
+        {
+            motion->putStone(board, i, j);
+            QCOMPARE(motion->getMoves()[ind].getFirst(), i);
+            QCOMPARE(motion->getMoves()[ind].getSecond(), j);
+            ++ind;
+        }
+    }
+
+    delete board;
+    delete motion;
+}
 
 void MotionTest::pass()
 {

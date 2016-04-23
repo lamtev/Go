@@ -50,6 +50,20 @@ bool GoEngineInterface::isGameOver() const
     return motion->isGameOver();
 }
 
+int GoEngineInterface::getStonesEatenByBlack() const noexcept
+{
+    return motion->getStonesEatenByBlack();
+}
+
+int GoEngineInterface::getStonesEatenByWhite() const noexcept
+{
+    return motion->getStonesEatenByWhite();
+}
+
+
+
+
+
 
 
 

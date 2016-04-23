@@ -73,12 +73,26 @@ public:
      */
     int whoseMove() const noexcept;
 
+    /**
+     * Получить число камней, съеденных чёрным.
+     * @return число камней, съеденных чёрным
+     */
+    int getStonesEatenByBlack() const noexcept;
+
+    /**
+     * Получить число камней, съеденных белым.
+     * @return число камней, съеденных белым
+     */
+    int getStonesEatenByWhite() const noexcept;
+
 private:
 
     vector<Moves> moves; /**< Вектор, хранящий все ходы */
     int moveIndex; /**< Индекс ходов */
     int movesSize = 100;  /**< Размер вектора ходов */
     int surrendered = EMPTY; /**< Сдавшийся */
+    int stonesEatenByBlack = 0; /**< Число камней, съеденных чёрным */
+    int stonesEatenByWhite = 0; /**< Число камней, съеденных белым */
 
     /**
      * Проверка двух последних ходов на пропуск.
@@ -119,7 +133,6 @@ private:
     /**
      * Если ход под смерть.
      * Данный метод выбрасывает исключение, если ход совершается под смерть
-     * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */

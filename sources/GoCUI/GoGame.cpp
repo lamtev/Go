@@ -20,7 +20,7 @@ void GoGame::begin()
 void GoGame::configureGame()
 {
     int diagonal;
-    inputDiagonal(diagonal);
+    parseDiagonal(diagonal);
     goEngineInterface->startGame(diagonal, JAPANESE, AGREEMENT);
 }
 
@@ -36,8 +36,6 @@ void GoGame::play()
 
 void GoGame::startGameCycle( std::string& command, int& first, int& second, bool& isExit, bool& isCommandIncorrect )
 {
-    //BUG происходит смена игрока, где не нужно
-    //INPUT : 19 sdfjaf 23
     while( !goEngineInterface->isGameOver() && !isExit )
     {
         printEatenStonesStat();
@@ -76,6 +74,8 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
     case EXIT :
         isExit = this->isExit(command);
         break;
+    case ERROR :
+        return;
     default :
         break;
     }
@@ -99,7 +99,7 @@ int GoGame::parseCommand( const std::string& command, int& first, int& second, b
     {
         parseFirstCoordinate(command, first, isCommandIncorrect);
         parseSecondCoordinate(command, second, isCommandIncorrect);
-        return MOVE;
+        return !isCommandIncorrect ? MOVE : ERROR;
     }
 }
 
@@ -282,23 +282,23 @@ void GoGame::printBoard()
 }
 void GoGame::printStonesEatenByBlack() const noexcept
 {
-    //TODO
+    std::cout << "Stones eaten by black: " << goEngineInterface->getStonesEatenByBlack() << std::endl;
 }
 
 void GoGame::printStonesEatenByWhite() const noexcept
 {
-    //TODO
+    std::cout << "Stones eaten by white: " << goEngineInterface->getStonesEatenByWhite() << std::endl;
 }
 
-void GoGame::inputDiagonal( int& diagonal )
+void GoGame::parseDiagonal( int& diagonal )
 {
-    bool isIncorrectInput = true;
+    bool isInputIncorrect = true;
     std::string input;
-    while( isIncorrectInput )
+    while( isInputIncorrect )
     {
         printDiagonalInputMessage();
         std::getline(std::cin, input);
-        isIncorrectInput = !isDiagonalCorrect(input);
+        isInputIncorrect = !isDiagonalCorrect(input);
     }
     diagonal = getDiagonal(input);
 }

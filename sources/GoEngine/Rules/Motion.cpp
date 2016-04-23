@@ -63,6 +63,16 @@ int Motion::whoseMove() const noexcept
     }
 }
 
+int Motion::getStonesEatenByBlack() const noexcept
+{
+    return stonesEatenByBlack;
+}
+
+int Motion::getStonesEatenByWhite() const noexcept
+{
+    return stonesEatenByWhite;
+}
+
 bool Motion::areTwoPasses() const noexcept
 {
     if( moveIndex >= 2 )
@@ -102,6 +112,7 @@ void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int s
 
 void Motion::ifMoveRepeatThrowException( int first, int second ) const
 {
+    //BUG ifMoveRepeatThrowException
     if( moveIndex >= 2 )
     {
         Moves passedMove(PASS_COORD, PASS_COORD);
@@ -125,9 +136,15 @@ void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) co
 void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) const
 {
     ifMoveToNotEmptyPointThrowException(board, first, second);
-    ifMoveRepeatThrowException(first, second);
+    //ifMoveRepeatThrowException(first, second);
     ifMoveToDieThrowException(board, first, second);
 }
+
+
+
+
+
+
 
 
 

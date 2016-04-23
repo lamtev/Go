@@ -3,7 +3,8 @@
 
 enum TypeOfCommand
 {
-    EXIT = 0,
+    ERROR = 0,
+    EXIT,
     MOVE,
     PASS,
     SURRENDER

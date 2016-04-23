@@ -160,7 +160,7 @@ private:
      * Ввести диагональ.
      * @param diagonal диагональ.
      */
-    void inputDiagonal( int& diagonal );
+    void parseDiagonal( int& diagonal );
 
     /**
      * Ввести ход.
