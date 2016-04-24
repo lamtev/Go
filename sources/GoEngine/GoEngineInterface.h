@@ -120,6 +120,12 @@ public:
      */
     int getStonesEatenByWhite() const noexcept;
 
+    /**
+     * Получить вектор ходов.
+     * @return ссылка на вектор ходов.
+     */
+    std::vector<Moves>& getMoves() const noexcept;
+
 private:
 
     Board* board; /**< Указатель на объект игровой доски */
