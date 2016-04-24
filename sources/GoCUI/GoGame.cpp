@@ -49,7 +49,8 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second, bool
         std::getline(std::cin, command);
         switchParsedCommand(command, first, second, isExit);
     }
-    switchWhoSurrendered();
+    //TODO fix BUG несколько раз выводит сообщение о том, кто сдался после хода в несвободный пункт.
+    printWhoSurrendered();
 }
 
 
@@ -113,61 +114,108 @@ void GoGame::parseFirstCoordinate( const std::string& command, int& first ) noex
     switch( command[0] )
     {
     case 'a' :
+    case 'A' :
         first = A;
         break;
     case 'b' :
+    case 'B' :
         first = B;
         break;
     case 'c' :
+    case 'C' :
         first = C;
         break;
     case 'd' :
+    case 'D' :
         first = D;
         break;
     case 'e' :
+    case 'E' :
         first = E;
         break;
     case 'f' :
+    case 'F' :
         first = F;
         break;
     case 'g' :
+    case 'G' :
         first = G;
         break;
     case 'h' :
+    case 'H' :
         first = H;
         break;
     case 'i' :
+    case 'I' :
         first = I;
         break;
     case 'j' :
+    case 'J' :
         first = J;
         break;
     case 'k' :
+    case 'K' :
         first = K;
         break;
     case 'l' :
+    case 'L' :
         first = L;
         break;
     case 'm' :
+    case 'M' :
         first = M;
         break;
     case 'n' :
+    case 'N' :
         first = N;
         break;
     case 'o' :
+    case 'O' :
         first = O;
         break;
     case 'p' :
+    case 'P' :
         first = P;
         break;
     case 'q' :
+    case 'Q' :
         first = Q;
         break;
     case 'r' :
+    case 'R' :
         first = R;
         break;
     case 's' :
+    case 'S' :
         first = S;
+        break;
+    case 't' :
+    case 'T' :
+        first = T;
+        break;
+    case 'u' :
+    case 'U' :
+        first = U;
+        break;
+    case 'v' :
+    case 'V' :
+        first = V;
+        break;
+    case 'w' :
+    case 'W' :
+        first = W;
+        break;
+    case 'x' :
+    case 'X' :
+        first = X;
+        break;
+    case 'y' :
+    case 'Y' :
+        first = Y;
+        break;
+    case 'z' :
+    case 'Z' :
+        first = Z;
         break;
     default :
         needMessage = true;
@@ -190,7 +238,7 @@ void GoGame::parseSecondCoordinate( const std::string& command, int& second ) no
     if( !iss )
     {
         needMessage = true;
-        MESSAGE = std::string("wrong command");
+        MESSAGE = std::string("Command is wrong");
     }
     else
     {
@@ -204,13 +252,12 @@ void GoGame::putStone( const int first, const int second )
     {
         goEngineInterface->putStone(first, second);
     }
-    catch( const std::exception& e )
+    catch( const MoveException& e )
     {
         needMessage = true;
         MESSAGE = std::string(e.what());
         play();
     }
-
 }
 
 void GoGame::pass() const noexcept
@@ -228,7 +275,7 @@ int GoGame::whoSurrendered() const noexcept
     return goEngineInterface->whoSurrendered();
 }
 
-void GoGame::switchWhoSurrendered() const noexcept
+void GoGame::printWhoSurrendered() const noexcept
 {
     switch( whoSurrendered() )
     {

@@ -75,10 +75,6 @@ void BoardTest::exceptionCatcher()
     QVERIFY_EXCEPTION_THROWN(Board(0), IncorrectDiagonalException);
     QVERIFY_EXCEPTION_THROWN(Board(-5), IncorrectDiagonalException);
     QVERIFY_EXCEPTION_THROWN(Board(20), IncorrectDiagonalException);
-
-    Board b(7);
-    QVERIFY_EXCEPTION_THROWN(b(-1,0), BoundsViolationException);
-    QVERIFY_EXCEPTION_THROWN(b(7,7), BoundsViolationException);
 }
 
 QTEST_APPLESS_MAIN(BoardTest)

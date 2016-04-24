@@ -120,9 +120,10 @@ private:
     int whoSurrendered() const noexcept;
 
     /**
-     * Выбрать сдавшегося.
+     * Вывести на экран, кто сдался.
+     * Данный метод выводит на экран сообщение о том, какой игрок сдался, если это имело место быть.
      */
-    void switchWhoSurrendered() const noexcept;
+    void printWhoSurrendered() const noexcept;
 
     /**
      * Напечатать, чей ход.

@@ -6,7 +6,7 @@
 #include "Point.h"
 #include "Rules/Moves.h"
 
-#include "BoundsViolationException.h"
+#include "Rules/Exceptions/MoveOutsideTheBoardException.h"
 #include "IncorrectDiagonalException.h"
 
 using std::vector;
@@ -47,7 +47,7 @@ public:
      * @param j координата по столбцам
      * @return ссылку на объект данного класса
      */
-    Point& operator()( const int i, const int j );
+    Point& operator()( const int i, const int j ) noexcept;
 
     /**
      * Оператор присваивания.

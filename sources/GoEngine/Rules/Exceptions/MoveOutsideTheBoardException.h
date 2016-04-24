@@ -1,13 +1,13 @@
-#ifndef GO_BOUNDSVIOLATIONEXCEPTION_H
-#define GO_BOUNDSVIOLATIONEXCEPTION_H
+#ifndef GO_MOVEOUTSIDETHEBOARDEXCEPTION_H
+#define GO_MOVEOUTSIDETHEBOARDEXCEPTION_H
 
-#include <exception>
+#include "MoveException.h"
 
 /**
  * Исключение - выход за границы доски.
  * Данное исключение возбуждается при выходе за границы доски
  */
-class BoundsViolationException : public std::exception
+class MoveOutsideTheBoardException : public MoveException
 {
 public:
 
@@ -22,4 +22,4 @@ public:
 
 };
 
-#endif //GO_BOUNDSVIOLATIONEXCEPTION_H
+#endif //GO_MOVEOUTSIDETHEBOARDEXCEPTION_H

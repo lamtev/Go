@@ -17,6 +17,7 @@ private Q_SLOTS:
     void putStone();
     void pass();
     void isGameOver();
+    void throwingMoveOutsideTheBoardException();
     void throwingMoveToNotEmptyPointException();
     void throwingMoveRepeatException();
     void throwingMoveToDieException();
@@ -94,6 +95,24 @@ void MotionTest::isGameOver()
         delete board;
         delete motion;
     }
+}
+
+void MotionTest::throwingMoveOutsideTheBoardException()
+{
+    Board* board = new Board(19);
+    Motion* motion = new Motion();
+
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, -1), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 19), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -2, 7), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 20, 7), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -3, -2), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -4, 30), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 20, -1), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 27, 100), MoveOutsideTheBoardException);
+
+    delete board;
+    delete motion;
 }
 
 void MotionTest::throwingMoveToNotEmptyPointException()

@@ -9,7 +9,8 @@ enum Color
 };
 
 enum LiteralCoordinate
-{A = 1,
+{
+    A = 1,
     B,
     C,
     D,
@@ -27,7 +28,14 @@ enum LiteralCoordinate
     P,
     Q,
     R,
-    S
+    S,
+    T,
+    U,
+    V,
+    W,
+    X,
+    Y,
+    Z
 };
 
 enum Rules

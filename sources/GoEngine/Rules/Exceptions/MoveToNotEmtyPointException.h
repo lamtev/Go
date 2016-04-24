@@ -1,13 +1,13 @@
 #ifndef GO_MOVETONOTEMTYPOINTEXCEPTION_H
 #define GO_MOVETONOTEMTYPOINTEXCEPTION_H
 
-#include <exception>
+#include "MoveException.h"
 
 /**
  * Исключение - ход в несвободный пункт.
  * Выбрасывается, когда игрок ходит в несвободный пункт.
  */
-class MoveToNotEmptyPointException : public std::exception
+class MoveToNotEmptyPointException : public MoveException
 {
 public:
 

@@ -1,13 +1,13 @@
 #ifndef GO_MOVETODIEEXCEPTION_H
 #define GO_MOVETODIEEXCEPTION_H
 
-#include <exception>
+#include "MoveException.h"
 
 /**
  * Исключение - ход под смерть.
  * Выбрасывается, когда игрок ходит под смерть своего камня или группы
  */
-class MoveToDieException : public std::exception
+class MoveToDieException : public MoveException
 {
 public:
 

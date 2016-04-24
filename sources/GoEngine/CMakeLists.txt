@@ -6,16 +6,17 @@ set(srcFiles
         Point.cpp Point.h
         Board.cpp Board.h
 
-        BoundsViolationException.h
+
         IncorrectDiagonalException.h
 
-        Rules/Motion.cpp Rules/Motion.h
         Rules/Moves.cpp Rules/Moves.h
+        Rules/Motion.cpp Rules/Motion.h
+        Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h
 
-        Rules/MoveToNotEmtyPointException.h
-        Rules/MoveRepeatException.h
-        Rules/MoveToDieException.h
-
-        Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h)
+        Rules/Exceptions/MoveException.h
+        Rules/Exceptions/MoveOutsideTheBoardException.h
+        Rules/Exceptions/MoveToNotEmtyPointException.h
+        Rules/Exceptions/MoveRepeatException.h
+        Rules/Exceptions/MoveToDieException.h)
 
 add_library(GoEngine STATIC ${srcFiles})

@@ -102,6 +102,14 @@ bool Motion::isBlacksMove() const noexcept
     return !(moveIndex % 2);
 }
 
+void Motion::ifMoveOutsideTheBoardThrowException( Board* board, int first, int second ) const
+{
+    if( first < 0 || first >= board->getDiagonal() || second < 0 || second >= board->getDiagonal() )
+    {
+        throw MoveOutsideTheBoardException();
+    }
+}
+
 void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const
 {
     if( board->operator()(first, second).isNotEmpty() )
@@ -135,24 +143,8 @@ void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) co
 
 void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) const
 {
+    ifMoveOutsideTheBoardThrowException(board, first, second);
     ifMoveToNotEmptyPointThrowException(board, first, second);
     //ifMoveRepeatThrowException(first, second);
     ifMoveToDieThrowException(board, first, second);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

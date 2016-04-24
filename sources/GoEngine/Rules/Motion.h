@@ -7,9 +7,9 @@
 #include "../Board.h"
 #include "Moves.h"
 #include "../enums.h"
-#include "MoveRepeatException.h"
-#include "MoveToDieException.h"
-#include "MoveToNotEmtyPointException.h"
+#include "Exceptions/MoveRepeatException.h"
+#include "Exceptions/MoveToDieException.h"
+#include "Exceptions/MoveToNotEmtyPointException.h"
 
 using std::vector;
 
@@ -113,7 +113,16 @@ private:
     bool isBlacksMove() const noexcept;
 
     /**
-     * Если ход в занятый пункт.
+     * Если ход за пределы доски бросить исключение.
+     * Данная функция-член выбрасывает исключение, если игрок совершает ход за пределы доски.
+     * @param board указатель на объект доски
+     * @param first первая координата
+     * @param second вторая координата
+     */
+    void ifMoveOutsideTheBoardThrowException( Board* board, int first, int second ) const;
+
+    /**
+     * Если ход в занятый пункт бросить исключение.
      * Данная функция-член выбрасывает исключение, если игрок совершает ход в уже занятый пункт.
      * @param board указатель на объект доски
      * @param first первая координата
@@ -122,7 +131,7 @@ private:
     void ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const;
 
     /**
-     * Если повтор хода.
+     * Если повтор хода бросить исключение.
      * Данный метод выбрасывает исключение, если игрок повторил свой предыдущий ход
      * @param first первая координата
      * @param second вторая координата
@@ -130,7 +139,7 @@ private:
     void ifMoveRepeatThrowException( int first, int second ) const;
 
     /**
-     * Если ход под смерть.
+     * Если ход под смерть бросить исключение.
      * Данный метод выбрасывает исключение, если ход совершается под смерть
      * @param board указатель на объект доски
      * @param first первая координата

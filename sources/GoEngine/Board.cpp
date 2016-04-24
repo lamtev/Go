@@ -19,12 +19,8 @@ vector<Point>& Board::get() const noexcept
     return const_cast<vector<Point>&>(board);
 }
 
-Point& Board::operator()( const int i, const int j )
+Point& Board::operator()( const int i, const int j ) noexcept
 {
-    if( i < 0 || i >= diagonal || j < 0 || j >= diagonal )
-    {
-        throw BoundsViolationException();
-    }
     return board[i * diagonal + j];
 }
 
