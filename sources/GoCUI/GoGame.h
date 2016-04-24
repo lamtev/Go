@@ -37,7 +37,9 @@ public:
 
 private:
 
-    GoEngineInterface*goEngineInterface; /**< Указатель на объект интерфейса движка*/
+    GoEngineInterface*goEngineInterface; /**< Указатель на объект интерфейса движка */
+    bool needMessage = false; /**< Нужно сообщение? */
+    std::string MESSAGE; /**< Сообщение */
 
     /**
      * Настроить игру.
@@ -52,7 +54,7 @@ private:
     /**
      * Запутить игровой цикл.
      */
-    void startGameCycle( std::string& command, int& first, int& second, bool& isExit, bool& isCommandIncorrect );
+    void startGameCycle( std::string& command, int& first, int& second, bool& isExit );
 
     /**
      * Парсить входную строку.
@@ -62,7 +64,7 @@ private:
      * @param isIncorrectInput флаг корректности ввода.
      * @return тип распарсенной команды
      */
-    int parseCommand( const std::string& command, int& first, int& second, bool& isCommandIncorrect ) const noexcept;
+    int parseCommand( const std::string& command, int& first, int& second ) noexcept;
 
     /**
      * Парсить первую координату.
@@ -70,7 +72,7 @@ private:
      * @param first первая координата.
      * @param isIncorrectInput флаг корректности ввода.
      */
-    void parseFirstCoordinate( const std::string& command, int& first, bool& isCommandIncorrect ) const noexcept;
+    void parseFirstCoordinate( const std::string& command, int& first ) noexcept;
 
     /**
      * Парсить вторую координату.
@@ -78,23 +80,23 @@ private:
      * @param second первая координата.
      * @param isIncorrectInput флаг корректности ввода.
      */
-    void parseSecondCoordinate( const std::string& command, int& second, bool& isCommandIncorrect ) const noexcept;
+    void parseSecondCoordinate( const std::string& command, int& second ) noexcept;
 
     /**
-     * Напечатать, что команда не верна.
-     * Если это нужно, напечатать, что предыдущая введенная команда неверна.
+     * Напечатать cообщение, если нужно.
+     * Если это нужно, напечатать соответствующее сообщение.
      */
-    void ifNeedPrintCommandIncorrect( bool& isCommandIncorrect ) const noexcept;
+    void ifNeedPrintMessage() noexcept;
 
     /**
-     * Напечатать, что команда была введена нверно.
+     * Напечатать сообщение.
      */
-    void printUnknownCommand() const noexcept;
+    void printMessage() const noexcept;
 
     /**
      * Выбрать распарсенную команду
      */
-    void switchParsedCommand( const std::string& command, int& first, int& second, bool& isCommandIncorrect, bool& isExit );
+    void switchParsedCommand( const std::string& command, int& first, int& second, bool& isExit );
 
     /**
      * Сделать ход.
