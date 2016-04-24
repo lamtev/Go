@@ -12,16 +12,21 @@ GoGame::~GoGame()
 
 void GoGame::begin()
 {
-    configureGame();
-    play();
-
+    if( configureGame() )
+    {
+        play();
+    }
 }
 
-void GoGame::configureGame()
+bool GoGame::configureGame()
 {
     int diagonal;
-    parseDiagonal(diagonal);
-    goEngineInterface->startGame(diagonal, JAPANESE, AGREEMENT);
+    if( parseDiagonal(diagonal) )
+    {
+        goEngineInterface->startGame(diagonal, JAPANESE, AGREEMENT);
+        return true;
+    }
+    return false;
 }
 
 void GoGame::play()
@@ -199,23 +204,11 @@ void GoGame::putStone( const int first, const int second )
     {
         goEngineInterface->putStone(first, second);
     }
-    catch( BoundsViolationException& e )
+    catch( const std::exception& e )
     {
         needMessage = true;
         MESSAGE = std::string(e.what());
         play();
-    }
-    catch( MoveToNotEmptyPointException& e )
-    {
-        //TODO exception handling MoveToNotEmptyPointException
-    }
-    catch( MoveRepeatException& e )
-    {
-        //TODO exception handling MoveRepeatException
-    }
-    catch( MoveToDieException& e )
-    {
-        //TODO exception handling MoveToDieException
     }
 
 }
@@ -301,7 +294,7 @@ void GoGame::printStonesEatenByWhite() const noexcept
     std::cout << "Stones eaten by white: " << goEngineInterface->getStonesEatenByWhite() << std::endl;
 }
 
-void GoGame::parseDiagonal( int& diagonal )
+bool GoGame::parseDiagonal( int& diagonal )
 {
     bool isInputIncorrect = true;
     std::string input;
@@ -309,9 +302,14 @@ void GoGame::parseDiagonal( int& diagonal )
     {
         printDiagonalInputMessage();
         std::getline(std::cin, input);
+        if( isExit(input) )
+        {
+            return false;
+        }
         isInputIncorrect = !isDiagonalCorrect(input);
     }
     diagonal = getDiagonal(input);
+    return true;
 }
 
 void GoGame::printDiagonalInputMessage()

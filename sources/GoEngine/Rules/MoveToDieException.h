@@ -15,7 +15,7 @@ public:
      * Чё?
      * @return сообщение о том, что игрок ходит под смерть
      */
-    const char* what()
+    const char* what() const noexcept
     {
         return "You moved to die";
     }

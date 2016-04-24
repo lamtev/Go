@@ -43,8 +43,9 @@ private:
 
     /**
      * Настроить игру.
+     * @return true, если настройки прошли успешно, и false - в противном случае.
      */
-    void configureGame();
+    bool configureGame();
 
     /**
      * Начать игровой процесс.
@@ -161,8 +162,9 @@ private:
     /**
      * Ввести диагональ.
      * @param diagonal диагональ.
+     * @return true, если диагональ распарсилась, иначе - false.
      */
-    void parseDiagonal( int& diagonal );
+    bool parseDiagonal( int& diagonal );
 
     /**
      * Ввести ход.
