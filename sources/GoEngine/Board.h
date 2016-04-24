@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Point.h"
-#include "Rules/Moves.h"
+#include "Rules/Move.h"
 
 #include "Rules/Exceptions/MoveOutsideTheBoardException.h"
 #include "IncorrectDiagonalException.h"

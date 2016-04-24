@@ -1,22 +1,22 @@
-#ifndef GO_MOVES_H
-#define GO_MOVES_H
+#ifndef GO_MOVE_H
+#define GO_MOVE_H
 
 /**
- * Ходы.
+ * Ход.
  */
-class Moves
+class Move
 {
 public:
 
     /**
      * Конструктор.
      */
-    Moves();
+    Move();
 
     /**
      * Конструктор.
      */
-    Moves( int first, int second );
+    Move( int first, int second );
 
     /**
      * Задать первую координату.
@@ -45,12 +45,12 @@ public:
     /**
      * Перегруженный оператор равенства
      */
-    bool operator==( const Moves& moves ) const noexcept;
+    bool operator==( const Move& move ) const noexcept;
 
     /**
      * Перегруженный оператор неравенства
      */
-    bool operator!=( const Moves& moves ) const noexcept;
+    bool operator!=( const Move& move ) const noexcept;
 
 private:
     int first;
@@ -58,4 +58,4 @@ private:
 };
 
 
-#endif //GO_MOVES_H
+#endif //GO_MOVE_H

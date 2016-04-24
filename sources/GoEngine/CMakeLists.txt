@@ -9,7 +9,7 @@ set(srcFiles
 
         IncorrectDiagonalException.h
 
-        Rules/Moves.cpp Rules/Moves.h
+        Rules/Move.cpp Rules/Move.h
         Rules/Motion.cpp Rules/Motion.h
         Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h
 

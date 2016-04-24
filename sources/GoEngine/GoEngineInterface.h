@@ -124,13 +124,13 @@ public:
      * Получить вектор ходов.
      * @return ссылка на вектор ходов.
      */
-    std::vector<Moves>& getMoves() const noexcept;
+    std::vector<Move>& getMoves() const noexcept;
 
     /**
      * Получить последний совершённый ход.
      * @return ссылка на последний совершённый ход.
      */
-    Moves& getLastMove() const noexcept;
+    Move& getLastMove() const noexcept;
 
 private:
 

@@ -3,14 +3,14 @@
 
 #include <iostream>
 
-#include "../../GoEngine/Rules/Moves.h"
+#include "../../GoEngine/Rules/Move.h"
 
-class MovesTest : public QObject
+class MoveTest : public QObject
 {
     Q_OBJECT
 
 public:
-    MovesTest();
+    MoveTest();
 
 
 private Q_SLOTS:
@@ -21,13 +21,13 @@ private Q_SLOTS:
 
 };
 
-MovesTest::MovesTest()
+MoveTest::MoveTest()
 {
 }
 
-void MovesTest::putGet()
+void MoveTest::putGet()
 {
-    std::vector<Moves> moves(361);
+    std::vector<Move> moves(361);
     for( int i = 0; i < 361; ++i)
     {
         moves[i].putFirst(i%19);
@@ -38,10 +38,10 @@ void MovesTest::putGet()
     }
 }
 
-void MovesTest::equallity()
+void MoveTest::equallity()
 {
-    Moves move1;
-    Moves move2;
+    Move move1;
+    Move move2;
     move1.putFirst(1);
     move2.putFirst(1);
     move1.putFirst(5);
@@ -55,10 +55,10 @@ void MovesTest::equallity()
     QVERIFY(move1 == move2);
 }
 
-void MovesTest::inequallity()
+void MoveTest::inequallity()
 {
-    Moves move1;
-    Moves move2;
+    Move move1;
+    Move move2;
     move1.putFirst(1);
     move2.putFirst(2);
     move1.putFirst(5);
@@ -73,7 +73,7 @@ void MovesTest::inequallity()
 }
 
 
-QTEST_APPLESS_MAIN(MovesTest)
+QTEST_APPLESS_MAIN(MoveTest)
 
-#include "MovesTest.moc"
+#include "MoveTest.moc"
 

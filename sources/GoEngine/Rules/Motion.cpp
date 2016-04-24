@@ -46,9 +46,9 @@ int Motion::getMoveIndex() const noexcept
     return moveIndex;
 }
 
-vector<Moves>& Motion::getMoves() const noexcept
+vector<Move>& Motion::getMoves() const noexcept
 {
-    return const_cast<vector<Moves>&>(moves);
+    return const_cast<vector<Move>&>(moves);
 }
 
 int Motion::whoseMove() const noexcept
@@ -77,7 +77,7 @@ bool Motion::areTwoPasses() const noexcept
 {
     if( moveIndex >= 2 )
     {
-        Moves passedMove;
+        Move passedMove;
         passedMove.putFirst(PASS_COORD);
         passedMove.putSecond(PASS_COORD);
         return moves[moveIndex - 1] == passedMove && moves[moveIndex - 1] == moves[moveIndex - 2];
@@ -123,7 +123,7 @@ void Motion::ifMoveRepeatThrowException( int first, int second ) const
     //BUG ifMoveRepeatThrowException
     if( moveIndex >= 2 )
     {
-        Moves passedMove(PASS_COORD, PASS_COORD);
+        Move passedMove(PASS_COORD, PASS_COORD);
         if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex - 2] )
         {
             throw MoveRepeatException();
@@ -149,7 +149,7 @@ void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) 
     ifMoveToDieThrowException(board, first, second);
 }
 
-Moves& Motion::getLastMove() const noexcept
+Move& Motion::getLastMove() const noexcept
 {
-    return moves[moveIndex - 1];
+    return const_cast<Move&>(moves[moveIndex - 1]);
 }

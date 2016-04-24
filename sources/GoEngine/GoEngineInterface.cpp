@@ -60,12 +60,12 @@ int GoEngineInterface::getStonesEatenByWhite() const noexcept
     return motion->getStonesEatenByWhite();
 }
 
-vector<Moves>& GoEngineInterface::getMoves() const noexcept
+vector<Move>& GoEngineInterface::getMoves() const noexcept
 {
     return motion->getMoves();
 }
 
-Moves& GoEngineInterface::getLastMove() const
+Move& GoEngineInterface::getLastMove() const noexcept
 {
     return motion->getLastMove();
 }

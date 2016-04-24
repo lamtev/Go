@@ -5,7 +5,7 @@
 #include <algorithm>
 
 #include "../Board.h"
-#include "Moves.h"
+#include "Move.h"
 #include "../enums.h"
 #include "Exceptions/MoveRepeatException.h"
 #include "Exceptions/MoveToDieException.h"
@@ -65,7 +65,7 @@ public:
      * Получить вектор всех ходов.
      * @return вектор всех ходов
      */
-    vector<Moves>& getMoves() const noexcept;
+    vector<Move>& getMoves() const noexcept;
 
     /**
      * Чей ход?
@@ -89,11 +89,11 @@ public:
      * Получить последний совершённый ход.
      * @return ссылка на последний совершённый ход.
      */
-    Moves& getLastMove() const noexcept;
+    Move& getLastMove() const noexcept;
 
 private:
 
-    vector<Moves> moves; /**< Вектор, хранящий все ходы */
+    vector<Move> moves; /**< Вектор, хранящий все ходы */
     int moveIndex; /**< Индекс ходов */
     int movesSize = 100;  /**< Размер вектора ходов */
     int surrendered = EMPTY; /**< Сдавшийся */

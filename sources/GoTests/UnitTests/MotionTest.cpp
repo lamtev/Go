@@ -17,6 +17,12 @@ private Q_SLOTS:
     void putStone();
     void pass();
     void isGameOver();
+    void whoSurrendered();
+    void getMoveIndex();
+    void getMoves();
+    void whoseMove();
+    void getLastMove();
+    void getStonesEatenBy();
     void throwingMoveOutsideTheBoardException();
     void throwingMoveToNotEmptyPointException();
     void throwingMoveRepeatException();
@@ -67,8 +73,8 @@ void MotionTest::pass()
 void MotionTest::isGameOver()
 {
     {
-        Board*board = new Board(19);
-        Motion*motion = new Motion();
+        Board* board = new Board(19);
+        Motion* motion = new Motion();
 
         motion->pass();
         motion->pass();
@@ -79,8 +85,8 @@ void MotionTest::isGameOver()
     }
 
     {
-        Board*board = new Board(19);
-        Motion*motion = new Motion();
+        Board* board = new Board(19);
+        Motion* motion = new Motion();
 
         motion->putStone(board, 1, 3);
         motion->putStone(board, 4, 3);
@@ -95,6 +101,151 @@ void MotionTest::isGameOver()
         delete board;
         delete motion;
     }
+
+    {
+        Board* board = new Board(19);
+        Motion* motion = new Motion();
+
+        motion->surrender();
+        QVERIFY(motion->isGameOver());
+
+        delete board;
+        delete motion;
+    }
+}
+
+void MotionTest::whoSurrendered()
+{
+    Board* board = new Board(7);
+    Motion* motion = new Motion();
+
+    motion->putStone(board, 0, 6);
+    motion->putStone(board, 3, 2);
+    motion->putStone(board, 1, 5);
+    motion->surrender();
+    int status = WHITE;
+    QCOMPARE(motion->whoSurrendered(), status);
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::getMoveIndex()
+{
+    Board* board = new Board(7);
+    Motion* motion = new Motion();
+
+    QCOMPARE(motion->getMoveIndex(), 0);
+    motion->putStone(board, 0, 6);
+    QCOMPARE(motion->getMoveIndex(), 1);
+    motion->putStone(board, 3, 2);
+    QCOMPARE(motion->getMoveIndex(), 2);
+    motion->putStone(board, 1, 5);
+    QCOMPARE(motion->getMoveIndex(), 3);
+    motion->pass();
+    QCOMPARE(motion->getMoveIndex(), 4);
+    motion->putStone(board, 1, 1);
+    QCOMPARE(motion->getMoveIndex(), 5);
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::getMoves()
+{
+    Board* board = new Board(7);
+    Motion* motion = new Motion();
+    std::vector<Move> v{Move(0,0), Move(0,1), Move(0,2), Move(5,1)};
+
+    motion->putStone(board, 0, 0);
+    motion->putStone(board, 0, 1);
+    motion->putStone(board, 0, 2);
+    motion->putStone(board, 5, 1);
+
+    for( int i = 0; i < 4; ++i )
+    {
+        QCOMPARE(v[i].getFirst(), motion->getMoves()[i].getFirst());
+        QCOMPARE(v[i].getSecond(), motion->getMoves()[i].getSecond());
+    }
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::whoseMove()
+{
+    Board* board = new Board(13);
+    Motion* motion = new Motion();
+
+    QVERIFY(motion->whoseMove() == BLACK);
+    motion->pass();
+    QVERIFY(motion->whoseMove() == WHITE);
+    motion->putStone(board, 0, 12);
+    QVERIFY(motion->whoseMove() == BLACK);
+    motion->pass();
+    QVERIFY(motion->whoseMove() == WHITE);
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::getLastMove()
+{
+    Board* board = new Board(19);
+    Motion* motion = new Motion();
+
+    motion->putStone(board, 1, 3);
+    motion->putStone(board, 4, 3);
+    QCOMPARE(motion->getLastMove(), Move(4, 3));
+    motion->putStone(board, 2, 2);
+    motion->putStone(board, 3, 2);
+    motion->putStone(board, 2, 4);
+    QCOMPARE(motion->getLastMove(), Move(2, 4));
+    motion->putStone(board, 3, 4);
+    motion->putStone(board, 3, 3);
+    QCOMPARE(motion->getLastMove(), Move(3, 3));
+    motion->putStone(board, 2, 3);
+    QCOMPARE(motion->getLastMove(), Move(2, 3));
+
+    delete board;
+    delete motion;
+}
+
+void MotionTest::getStonesEatenBy()
+{
+    //Перестанет падать, когда будет реализовано съедение и подсчет съеденных камней!!!
+    Board* board = new Board(19);
+    Motion* motion = new Motion();
+
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 1, 3);
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 4, 3);
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 2, 2);
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 3, 2);
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 2, 4);
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 3, 4);
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 3, 3);
+    QCOMPARE(motion->getStonesEatenByWhite(), 0);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+    motion->putStone(board, 2, 3);
+    QCOMPARE(motion->getStonesEatenByWhite(), 1);
+    QCOMPARE(motion->getStonesEatenByBlack(), 0);
+
+    delete board;
+    delete motion;
 }
 
 void MotionTest::throwingMoveOutsideTheBoardException()
@@ -180,8 +331,6 @@ void MotionTest::throwingMoveToDieException()
     delete board;
     delete motion;
 }
-
-
 
 
 QTEST_APPLESS_MAIN(MotionTest)
