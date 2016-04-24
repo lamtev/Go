@@ -23,10 +23,30 @@ bool GoGame::configureGame()
     int diagonal;
     if( parseDiagonal(diagonal) )
     {
+        initBoard(diagonal);
         goEngineInterface->startGame(diagonal, JAPANESE, AGREEMENT);
         return true;
     }
     return false;
+}
+
+void GoGame::initBoard( int diagonal ) noexcept
+{
+    board.resize((diagonal + 2) * (diagonal * 2 + 5));
+    switch( diagonal )
+    {
+    case 7 :
+        board = BOARD7;
+        break;
+    case 13 :
+        board = BOARD13;
+        break;
+    case 19 :
+        board = BOARD19;
+        break;
+    default :
+        break;
+    }
 }
 
 void GoGame::play()
@@ -320,14 +340,14 @@ void GoGame::printWhiteSurrendered() const noexcept
 
 void GoGame::printBoard()
 {
-    //TODO print interactive board
-    for( int i = 0; i < 21 * 43; ++ i )
+    int diagonal = goEngineInterface->getBoard().getDiagonal();
+    for( int i = 0; i < (diagonal + 2) * (diagonal * 2 + 5); ++ i )
     {
-        if (i % 43 == 0)
+        if (i % (diagonal * 2 + 5) == 0)
         {
             std::cout << std::endl;
         }
-        std::cout << BOARD19[i];
+        std::cout << board[i];
     }
     std::cout << std::endl;
 }

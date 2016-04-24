@@ -40,12 +40,19 @@ private:
     GoEngineInterface*goEngineInterface; /**< Указатель на объект интерфейса движка */
     bool needMessage = false; /**< Нужно сообщение? */
     std::string MESSAGE; /**< Сообщение */
+    std::vector<char> board; /**< Доска для вывода на экран */
 
     /**
      * Настроить игру.
      * @return true, если настройки прошли успешно, и false - в противном случае.
      */
     bool configureGame();
+
+    /**
+     * Инициализировать доску для вывода.
+     * @param diagonal диагональ.
+     */
+    void initBoard( int diagonal ) noexcept;
 
     /**
      * Начать игровой процесс.
