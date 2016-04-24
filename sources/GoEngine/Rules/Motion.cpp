@@ -148,3 +148,8 @@ void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) 
     //ifMoveRepeatThrowException(first, second);
     ifMoveToDieThrowException(board, first, second);
 }
+
+Moves& Motion::getLastMove() const noexcept
+{
+    return moves[moveIndex - 1];
+}

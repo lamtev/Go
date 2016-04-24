@@ -65,6 +65,12 @@ vector<Moves>& GoEngineInterface::getMoves() const noexcept
     return motion->getMoves();
 }
 
+Moves& GoEngineInterface::getLastMove() const
+{
+    return motion->getLastMove();
+}
+
+
 
 
 

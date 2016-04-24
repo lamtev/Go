@@ -126,6 +126,12 @@ public:
      */
     std::vector<Moves>& getMoves() const noexcept;
 
+    /**
+     * Получить последний совершённый ход.
+     * @return ссылка на последний совершённый ход.
+     */
+    Moves& getLastMove() const noexcept;
+
 private:
 
     Board* board; /**< Указатель на объект игровой доски */

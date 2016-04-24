@@ -85,6 +85,12 @@ public:
      */
     int getStonesEatenByWhite() const noexcept;
 
+    /**
+     * Получить последний совершённый ход.
+     * @return ссылка на последний совершённый ход.
+     */
+    Moves& getLastMove() const noexcept;
+
 private:
 
     vector<Moves> moves; /**< Вектор, хранящий все ходы */
