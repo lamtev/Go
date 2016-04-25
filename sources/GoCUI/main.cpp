@@ -5,9 +5,6 @@ using namespace std;
 #include "InitBoards.h"
 #include "GoGame.h"
 
-void menu();
-void paintBoard(int d);
-
 int main( int argc, char* argv[] )
 {
     GoGame game;
