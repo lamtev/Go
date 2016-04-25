@@ -127,15 +127,15 @@ private:
     int whoSurrendered() const noexcept;
 
     /**
+     * Напечатать, чей ход.
+     */
+    void printWhoseMove() const noexcept;
+
+    /**
      * Вывести на экран, кто сдался.
      * Данный метод выводит на экран сообщение о том, какой игрок сдался, если это имело место быть.
      */
     void printWhoSurrendered() const noexcept;
-
-    /**
-     * Напечатать, чей ход.
-     */
-    void printWhoseMove() const noexcept;
 
     /**
      * Напечатать, что черный сдался.
@@ -146,6 +146,16 @@ private:
      * Напечатать, что белый сдался.
      */
     void printWhiteSurrendered() const noexcept;
+
+    /**
+     * Напечатать, что чёрный выиграл.
+     */
+    void printBlackWon() const noexcept;
+
+    /**
+     * Напечатать, что белый выиграл.
+     */
+    void printWhiteWon() const noexcept;
 
     /**
      * Напечатать, сколько камней съели чёрные.
@@ -212,6 +222,20 @@ private:
      * @return true, если введен ключ exit, и false - иначе.
      */
     bool isExit( const std::string& input ) const noexcept;
+
+    /**
+     * Ключ pass?
+     * @param input входная строка.
+     * @return true, если введен ключ exit, и false - иначе.
+     */
+    bool isPass( const std::string& input ) const noexcept;
+
+    /**
+     * Ключ surrender?
+     * @param input входная строка.
+     * @return true, если введен ключ exit, и false - иначе.
+     */
+    bool isSurrender( const std::string& input ) const noexcept;
 
     //TODO
     /**

@@ -40,6 +40,10 @@ int Motion::whoSurrendered() const noexcept
     return surrendered;
 }
 
+int Motion::whoWon() const noexcept
+{
+    //TODO
+}
 
 int Motion::getMoveIndex() const noexcept
 {
@@ -153,3 +157,7 @@ Move& Motion::getLastMove() const noexcept
 {
     return const_cast<Move&>(moves[moveIndex - 1]);
 }
+
+
+
+

@@ -56,6 +56,12 @@ public:
     int whoSurrendered() const noexcept;
 
     /**
+     * Кто победил?
+     * @return цвет победителя.
+     */
+    int whoWon() const noexcept;
+
+    /**
      * Получить номер текущего хода.
      * @return номер текущего хода
      */

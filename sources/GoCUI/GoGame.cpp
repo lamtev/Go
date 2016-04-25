@@ -15,6 +15,7 @@ void GoGame::begin()
     if( configureGame() )
     {
         play();
+        printWhoSurrendered();
     }
 }
 
@@ -55,7 +56,6 @@ void GoGame::play()
     int first, second;
     std::string command;
     startGameCycle(command, first, second, isExit);
-
 }
 
 void GoGame::startGameCycle( std::string& command, int& first, int& second, bool& isExit )
@@ -69,10 +69,7 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second, bool
         std::getline(std::cin, command);
         switchParsedCommand(command, first, second, isExit);
     }
-    //TODO fix BUG несколько раз выводит сообщение о том, кто сдался после хода в несвободный пункт.
-    printWhoSurrendered();
 }
-
 
 void GoGame::ifNeedPrintMessage() noexcept
 {
@@ -109,11 +106,11 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
 
 int GoGame::parseCommand( const std::string& command, int& first, int& second ) noexcept
 {
-    if( !command.compare("pass") )
+    if( isPass(command) )
     {
         return PASS;
     }
-    else if( !command.compare("surrender") )
+    else if( isSurrender(command) )
     {
         return SURRENDER;
     }
@@ -338,6 +335,16 @@ void GoGame::printWhiteSurrendered() const noexcept
     std::cout << "White player has surrendered" <<std::endl;
 }
 
+void GoGame::printBlackWon() const noexcept
+{
+    std::cout << "Black player has won" <<std::endl;
+}
+
+void GoGame::printWhiteWon() const noexcept
+{
+    std::cout << "White player has won" <<std::endl;
+}
+
 void GoGame::printBoard()
 {
     int diagonal = goEngineInterface->getBoard().getDiagonal();
@@ -417,7 +424,17 @@ int GoGame::getDiagonal( const std::string& input ) const noexcept
 
 bool GoGame::isExit( const std::string& input ) const noexcept
 {
-    return !input.compare("exit");
+    return !input.compare("exit") || !input.compare("EXIT");
+}
+
+bool GoGame::isPass( const std::string& input ) const noexcept
+{
+    return !input.compare("pass") || !input.compare("PASS");
+}
+
+bool GoGame::isSurrender( const std::string& input ) const noexcept
+{
+    return !input.compare("surrender") || !input.compare("SURRENDER");
 }
 
 void GoGame::printEatenStonesStat() const noexcept
@@ -425,5 +442,4 @@ void GoGame::printEatenStonesStat() const noexcept
     printStonesEatenByBlack();
     printStonesEatenByWhite();
 }
-
 
