@@ -16,6 +16,7 @@ void GoGame::begin()
     {
         play();
         printWhoSurrendered();
+        printWhoWon();
     }
 }
 
@@ -60,6 +61,7 @@ void GoGame::play()
 
 void GoGame::startGameCycle( std::string& command, int& first, int& second, bool& isExit )
 {
+    //BUG with exit after move to not empty point
     while( !goEngineInterface->isGameOver() && !isExit )
     {
         printEatenStonesStat();
@@ -292,17 +294,35 @@ int GoGame::whoSurrendered() const noexcept
     return goEngineInterface->whoSurrendered();
 }
 
+int GoGame::whoWon() const noexcept
+{
+    return goEngineInterface->whoWon();
+}
+
 void GoGame::printWhoSurrendered() const noexcept
 {
     switch( whoSurrendered() )
     {
-    case EMPTY :
-        break;
     case BLACK :
         printBlackSurrendered();
         break;
     case WHITE :
         printWhiteSurrendered();
+    default :
+        break;
+    }
+}
+
+void GoGame::printWhoWon() const noexcept
+{
+    switch( whoWon() )
+    {
+    case BLACK :
+        printBlackWon();
+        break;
+    case WHITE :
+        printWhiteWon();
+        break;
     default :
         break;
     }
@@ -439,6 +459,7 @@ bool GoGame::isSurrender( const std::string& input ) const noexcept
 
 void GoGame::printEatenStonesStat() const noexcept
 {
+    std::cout << std::endl;
     printStonesEatenByBlack();
     printStonesEatenByWhite();
 }

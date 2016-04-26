@@ -103,6 +103,7 @@ private:
     int moveIndex; /**< Индекс ходов */
     int movesSize = 100;  /**< Размер вектора ходов */
     int surrendered = EMPTY; /**< Сдавшийся */
+    int winner = EMPTY; /**< Победитель */
     int stonesEatenByBlack = 0; /**< Число камней, съеденных чёрным */
     int stonesEatenByWhite = 0; /**< Число камней, съеденных белым */
 

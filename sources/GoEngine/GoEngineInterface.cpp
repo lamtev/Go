@@ -50,6 +50,11 @@ bool GoEngineInterface::isGameOver() const
     return motion->isGameOver();
 }
 
+int GoEngineInterface::whoWon() const
+{
+    return motion->whoWon();
+}
+
 int GoEngineInterface::getStonesEatenByBlack() const noexcept
 {
     return motion->getStonesEatenByBlack();
@@ -69,13 +74,6 @@ Move& GoEngineInterface::getLastMove() const noexcept
 {
     return motion->getLastMove();
 }
-
-
-
-
-
-
-
 
 
 

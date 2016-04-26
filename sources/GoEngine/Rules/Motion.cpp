@@ -42,7 +42,15 @@ int Motion::whoSurrendered() const noexcept
 
 int Motion::whoWon() const noexcept
 {
-    //TODO
+    switch( surrendered )
+    {
+    case BLACK :
+        return WHITE;
+    case WHITE :
+        return BLACK;
+    default :
+        return EMPTY;
+    }
 }
 
 int Motion::getMoveIndex() const noexcept
