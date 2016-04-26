@@ -8,6 +8,7 @@
  */
 class MoveException : public std::exception
 {
+
 public:
 
     /**
@@ -16,8 +17,8 @@ public:
     virtual ~MoveException(){};
 
     /**
-     * Виртуальный чё?
-     * @return сообщение
+     * Виртуальный "Чё?"
+     * @return сообщение об ошибке
      */
     virtual const char* what() const noexcept = 0;
 

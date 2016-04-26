@@ -1,23 +1,26 @@
 #include "Move.h"
 
-Move::Move()
+Move::Move() noexcept
 {
 
 }
 
-Move::Move( int first, int second ) : first(first), second(second)
+Move::Move( int first, int second ) noexcept : first(first), second(second)
 {
 
 }
 
-void Move::putFirst( int first ) noexcept
+Move::Move( const Move& move ) noexcept
 {
-    this->first = first;
+    this->first = move.first;
+    this->second = move.second;
 }
 
-void Move::putSecond( int second ) noexcept
+Move& Move::operator=( const Move& move ) noexcept
 {
-    this->second = second;
+    this->first = move.first;
+    this->second = move.second;
+    return *this;
 }
 
 int Move::getFirst() const noexcept
@@ -32,29 +35,10 @@ int Move::getSecond() const noexcept
 
 bool Move::operator==( const Move& move ) const noexcept
 {
-    return this->first == move.first && this->second == second;
+    return this->first == move.first && this->second == move.second;
 }
 
 bool Move::operator!=( const Move& move ) const noexcept
 {
     return !(*this == move);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

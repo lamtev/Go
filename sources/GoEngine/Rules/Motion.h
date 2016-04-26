@@ -2,16 +2,13 @@
 #define GO_MOTION_H
 
 #include <vector>
-#include <algorithm>
 
 #include "../Board.h"
 #include "Move.h"
-#include "../enums.h"
+#include "Exceptions/MoveOutsideTheBoardException.h"
 #include "Exceptions/MoveRepeatException.h"
 #include "Exceptions/MoveToDieException.h"
 #include "Exceptions/MoveToNotEmtyPointException.h"
-
-using std::vector;
 
 //TODO
 
@@ -21,6 +18,7 @@ using std::vector;
  */
 class Motion
 {
+    
 public:
 
     /**
@@ -71,7 +69,7 @@ public:
      * Получить вектор всех ходов.
      * @return вектор всех ходов
      */
-    vector<Move>& getMoves() const noexcept;
+    std::vector<Move>& getMoves() const noexcept;
 
     /**
      * Чей ход?
@@ -99,7 +97,7 @@ public:
 
 private:
 
-    vector<Move> moves; /**< Вектор, хранящий все ходы */
+    std::vector<Move> moves; /**< Вектор, хранящий все ходы */
     int moveIndex; /**< Индекс ходов */
     int movesSize = 100;  /**< Размер вектора ходов */
     int surrendered = EMPTY; /**< Сдавшийся */

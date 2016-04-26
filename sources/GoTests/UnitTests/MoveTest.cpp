@@ -14,7 +14,7 @@ public:
 
 
 private Q_SLOTS:
-    void putGet();
+    void assigment();
     void equallity();
     void inequallity();
 
@@ -25,53 +25,44 @@ MoveTest::MoveTest()
 {
 }
 
-void MoveTest::putGet()
+void MoveTest::assigment()
 {
-    std::vector<Move> moves(361);
-    for( int i = 0; i < 361; ++i)
-    {
-        moves[i].putFirst(i%19);
-        moves[i].putSecond((i+5)%19);
+    Move move;
 
-        QCOMPARE(moves[i].getFirst(), i%19);
-        QCOMPARE(moves[i].getSecond(), (i+5)%19);
-    }
+    move = Move(1, 2);
+    QCOMPARE(move.getFirst(), 1);
+    QCOMPARE(move.getSecond(), 2);
+
+    move = Move(5, 0);
+    QCOMPARE(move.getFirst(), 5);
+    QCOMPARE(move.getSecond(), 0);
 }
 
 void MoveTest::equallity()
 {
-    Move move1;
-    Move move2;
-    move1.putFirst(1);
-    move2.putFirst(1);
-    move1.putFirst(5);
-    move2.putFirst(5);
+    Move move1(1, 5);
+    Move move2(1, 5);
     QVERIFY(move1 == move2);
 
-    move1.putFirst(6);
-    move2.putFirst(6);
-    move1.putFirst(124);
-    move2.putFirst(124);
+    move1 = Move(7, 2);
+    move2 = Move(7, 2);
     QVERIFY(move1 == move2);
 }
 
 void MoveTest::inequallity()
 {
-    Move move1;
-    Move move2;
-    move1.putFirst(1);
-    move2.putFirst(2);
-    move1.putFirst(5);
-    move2.putFirst(3);
+    Move move1(7, 5);
+    Move move2(7, 2);
     QVERIFY(move1 != move2);
 
-    move1.putFirst(45);
-    move2.putFirst(7);
-    move1.putFirst(123);
-    move2.putFirst(9);
+    move1 = Move(128, 256);
+    move2 = Move(13, 256);
+    QVERIFY(move1 != move2);
+
+    move1 = Move(128, 0);
+    move2 = Move(13, 17);
     QVERIFY(move1 != move2);
 }
-
 
 QTEST_APPLESS_MAIN(MoveTest)
 

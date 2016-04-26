@@ -4,10 +4,6 @@
 #include <vector>
 
 #include "Point.h"
-#include "Rules/Move.h"
-
-#include "Rules/Exceptions/MoveOutsideTheBoardException.h"
-#include "Exceptions/IncorrectDiagonalException.h"
 
 //TODO noexcept swap
 //TODO high performance operator=
@@ -25,7 +21,7 @@ public:
      * Конструктор для инициализации объекта по значению диагонали.
      * @param diagonal диагональ
      */
-    Board( int diagonal = 19 );
+    Board( int diagonal = 19 ) noexcept;
 
     /**
      * Оператор скобки.

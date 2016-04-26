@@ -9,6 +9,7 @@
  */
 class MoveRepeatException : public MoveException
 {
+
 public:
 
     /**
@@ -19,6 +20,7 @@ public:
     {
         return "This move is the same as your previous one";
     }
+
 };
 
 #endif //GO_MOVEREPEATEXCEPTION_H

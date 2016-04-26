@@ -21,29 +21,30 @@ private Q_SLOTS:
 
 PointTest::PointTest()
 {
+
 }
 
 void PointTest::getStatus()
 {
-    Point s(BLACK);
+    Point s{BLACK};
     QVERIFY(s.getStatus() == BLACK);
 }
 
 void PointTest::assigmentObject()
 {
-    Point s1(WHITE);
+    Point s1{WHITE};
     Point s2 = s1;
     QCOMPARE(s1.getStatus(), s2.getStatus());
 
-    Point s3(EMPTY);
-    Point s4 = s3;
+    Point s3{EMPTY};
+    Point s4{s3};
     QCOMPARE(s3.getStatus(), s4.getStatus());
 }
 
 void PointTest::assigmentInt()
 {
-    Point s1(BLACK);
-    Point s2 = BLACK;
+    Point s1{BLACK};
+    Point s2{BLACK};
     QCOMPARE(s1.getStatus(), s2.getStatus());
 
     s1 = s2 = WHITE;

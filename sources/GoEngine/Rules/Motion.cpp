@@ -11,16 +11,14 @@ void Motion::putStone(Board* board, int first, int second)
     ifNeedResizeMoves();
     ifMoveIllegalThrowException(board, first, second);
     board->operator()(first, second) = whoseMove();
-    moves[moveIndex].putFirst(first);
-    moves[moveIndex].putSecond(second);
+    moves[moveIndex] = Move{first, second};
     ++moveIndex;
 }
 
 void Motion::pass() noexcept
 {
     ifNeedResizeMoves();
-    moves[moveIndex].putFirst(PASS_COORD);
-    moves[moveIndex].putSecond(PASS_COORD);
+    moves[moveIndex] = Move{PASS_COORD, PASS_COORD};
     ++moveIndex;
 }
 
@@ -58,9 +56,9 @@ int Motion::getMoveIndex() const noexcept
     return moveIndex;
 }
 
-vector<Move>& Motion::getMoves() const noexcept
+std::vector<Move>& Motion::getMoves() const noexcept
 {
-    return const_cast<vector<Move>&>(moves);
+    return const_cast<std::vector<Move>&>(moves);
 }
 
 int Motion::whoseMove() const noexcept
@@ -89,9 +87,7 @@ bool Motion::areTwoPasses() const noexcept
 {
     if( moveIndex >= 2 )
     {
-        Move passedMove;
-        passedMove.putFirst(PASS_COORD);
-        passedMove.putSecond(PASS_COORD);
+        Move passedMove{PASS_COORD, PASS_COORD};
         return moves[moveIndex - 1] == passedMove && moves[moveIndex - 1] == moves[moveIndex - 2];
     }
     else
@@ -135,7 +131,7 @@ void Motion::ifMoveRepeatThrowException( int first, int second ) const
     //BUG ifMoveRepeatThrowException
     if( moveIndex >= 2 )
     {
-        Move passedMove(PASS_COORD, PASS_COORD);
+        Move passedMove{PASS_COORD, PASS_COORD};
         if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex - 2] )
         {
             throw MoveRepeatException();

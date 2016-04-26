@@ -15,7 +15,13 @@ public:
      * Конструктор.
      * @param status статус пункта.
      */
-    Point( int status = EMPTY );
+    Point( const int status = EMPTY ) noexcept;
+
+    /**
+     * Копирующий конструктор.
+     * @param point ссылка на константный объект класса Point
+     */
+    Point( const Point& point) noexcept;
 
     /**
      * Присваивание.

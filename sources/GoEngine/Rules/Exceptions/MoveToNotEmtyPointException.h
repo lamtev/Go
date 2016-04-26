@@ -9,6 +9,7 @@
  */
 class MoveToNotEmptyPointException : public MoveException
 {
+
 public:
 
     /**
@@ -19,6 +20,7 @@ public:
     {
         return "You moved to not empty point";
     }
+
 };
 
 #endif //GO_MOVETONOTEMTYPOINTEXCEPTION_H

@@ -10,11 +10,12 @@
  */
 class IncorrectDiagonalException : public std::exception
 {
+
 public:
 
     /**
      * Чё?
-     * @return сообщение о том, что значение длины диагонали - неверно
+     * @return сообщение о том, что значение длины диагонали неверно
      */
     const char* what() const noexcept
     {

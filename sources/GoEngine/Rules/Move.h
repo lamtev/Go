@@ -6,29 +6,34 @@
  */
 class Move
 {
+
 public:
 
     /**
      * Конструктор.
      */
-    Move();
+    Move() noexcept;
 
     /**
      * Конструктор.
-     */
-    Move( int first, int second );
-
-    /**
-     * Задать первую координату.
      * @param first первая координата
-     */
-    void putFirst( int first ) noexcept;
-
-    /**
-     * Задать вторую координату.
      * @param second вторая координата
      */
-    void putSecond( int second ) noexcept;
+    Move( int first, int second ) noexcept;
+
+    /**
+     * Копирующий конструктор.
+     * @param move ссылка на константный объект класса Move
+     */
+    Move( const Move& move ) noexcept;
+
+    /**
+     * Присваивание.
+     * Перегруженный оператор присваивания.
+     * @param ссылка на присваиваемый константный объект класса Move
+     * @return ссылку на объект
+     */
+    Move& operator=( const Move& move ) noexcept;
 
     /**
      * Получить первую координату.
@@ -43,18 +48,26 @@ public:
     int getSecond() const noexcept;
 
     /**
-     * Перегруженный оператор равенства
+     * Равенство.
+     * Перегруженный оператор равенства.
+     * @param move ссылка на константный объект класса Move, с которым сравнивается данный объект
+     * @return true, если объекты равны, и false - в противном случае
      */
     bool operator==( const Move& move ) const noexcept;
 
     /**
-     * Перегруженный оператор неравенства
+     * Неравенство.
+     * Перегруженный оператор неравенства.
+     * @param move ссылка на константный объект класса Move, с которым сравнивается данный объект
+     * @return true, если объекты не равны, и false - в противном случае
      */
     bool operator!=( const Move& move ) const noexcept;
 
 private:
-    int first;
-    int second;
+
+    int first; /**< Первая координата */
+    int second; /**< Вторая координата */
+
 };
 
 

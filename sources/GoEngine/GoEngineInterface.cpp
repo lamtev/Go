@@ -1,17 +1,17 @@
 #include "GoEngineInterface.h"
 
-GoEngineInterface::GoEngineInterface()
+GoEngineInterface::GoEngineInterface() noexcept
 {
     board = nullptr;
     motion = nullptr;
     scoreCalculator = nullptr;
 }
 
-void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution)
+void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution) noexcept
 {
-    board = new Board(diagonal);
-    motion = new Motion();
-    scoreCalculator = new ScoreCalculator();
+    board = new Board{diagonal};
+    motion = new Motion{};
+    scoreCalculator = new ScoreCalculator{};
 }
 
 GoEngineInterface::~GoEngineInterface()
@@ -23,7 +23,8 @@ GoEngineInterface::~GoEngineInterface()
 
 void GoEngineInterface::putStone( const int first, const int second )
 {
-    motion->putStone(board, first-1, second-1);
+    //TODO f-1, s-1
+    motion->putStone(board, second-1, first-1);
 }
 
 void GoEngineInterface::pass() noexcept
@@ -41,7 +42,7 @@ int GoEngineInterface::whoseMove() const noexcept
     return motion->whoseMove();
 }
 
-bool GoEngineInterface::isGameOver() const
+bool GoEngineInterface::isGameOver() const noexcept
 {
     return motion->isGameOver();
 }
@@ -71,7 +72,7 @@ int GoEngineInterface::getStonesEatenByWhite() const noexcept
     return motion->getStonesEatenByWhite();
 }
 
-vector<Move>& GoEngineInterface::getMoves() const noexcept
+std::vector<Move>& GoEngineInterface::getMoves() const noexcept
 {
     return motion->getMoves();
 }

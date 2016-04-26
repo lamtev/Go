@@ -18,7 +18,7 @@ public:
     /**
      * Конструктор.
      */
-    GoEngineInterface();
+    GoEngineInterface() noexcept;
 
     /**
      * Начать игру.
@@ -27,7 +27,7 @@ public:
      * @param rules правила подсчета очков
      * @param colorDistribution способ распределения цветов
      */
-    void startGame( const int diagonal, const int rules, const int colorDistribution );
+    void startGame( const int diagonal, const int rules, const int colorDistribution ) noexcept;
 
     /**
      * Деструктор.
@@ -61,7 +61,7 @@ public:
      * Игра закончена?
      * @return true, если игра закончена, и false, если игра не закончена
      */
-    bool isGameOver() const;
+    bool isGameOver() const noexcept;
 
     /**
      * Кто сдался?
@@ -109,13 +109,13 @@ public:
      * Получить очки чёрного.
      * @return очки чёрного
      */
-    int getBlackScore() const;
+    int getBlackScore() const noexcept;
 
     /**
      * Получить очки белого.
      * @return очки белого
      */
-    int getWhiteScore() const;
+    int getWhiteScore() const noexcept;
 
 private:
 

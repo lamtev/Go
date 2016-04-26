@@ -9,6 +9,7 @@
  */
 class MoveToDieException : public MoveException
 {
+
 public:
 
     /**
@@ -19,6 +20,7 @@ public:
     {
         return "You moved to die";
     }
+
 };
 
 #endif //GO_MOVETODIEEXCEPTION_H

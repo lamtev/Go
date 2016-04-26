@@ -1,8 +1,13 @@
 #include "Point.h"
 
-Point::Point( int status ) : status(status)
+Point::Point( const int status ) noexcept : status(status)
 {
 
+}
+
+Point::Point( const Point& point ) noexcept
+{
+    this->status = point.status;
 }
 
 Point& Point::operator=( const Point& point ) noexcept

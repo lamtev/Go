@@ -1,11 +1,7 @@
 #include "Board.h"
 
-Board::Board( int diagonal ) : diagonal(diagonal)
+Board::Board( int diagonal ) noexcept : diagonal(diagonal)
 {
-    if ( diagonal != 7 && diagonal != 13 && diagonal != 19 )
-    {
-        throw IncorrectDiagonalException();
-    }
     board.resize(diagonal * diagonal);
 }
 

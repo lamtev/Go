@@ -272,7 +272,7 @@ void GoGame::putStone( const int first, const int second )
 {
     try
     {
-        goEngineInterface->putStone(second, first);
+        goEngineInterface->putStone(first, second);
     }
     catch( const MoveException& e )
     {

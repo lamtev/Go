@@ -9,11 +9,12 @@
  */
 class MoveOutsideTheBoardException : public MoveException
 {
+
 public:
 
     /**
      * Чё?
-     * @return сообщение о том, что произошёл выход за пределы доски
+     * @return сообщение о том, что ход совершён за пределы доски
      */
     const char* what() const noexcept
     {
