@@ -38,9 +38,9 @@ public:
 private:
 
     GoEngineInterface* goEngineInterface; /**< Указатель на объект интерфейса движка */
-    bool needMessage{false}; /**< Нужно сообщение? */
-    bool hasExceptionThrown{false}; /**< исключение */
-    bool exit{false}; /**< выход? */
+    bool needMessage; /**< Нужно сообщение? */
+    bool hasExceptionThrown; /**< исключение */
+    bool exit; /**< выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
 
@@ -63,24 +63,25 @@ private:
 
     /**
      * Запутить игровой цикл.
+     * @param command строка.
+     * @param first первая координата.
+     * @param second вторая координата.
      */
     void startGameCycle( std::string& command, int& first, int& second );
 
     /**
      * Парсить входную строку.
-     * @param input строка.
+     * @param command строка.
      * @param first первая координата.
      * @param second вторая координата.
-     * @param isIncorrectInput флаг корректности ввода.
      * @return тип распарсенной команды
      */
     int parseCommand( const std::string& command, int& first, int& second ) noexcept;
 
     /**
      * Парсить первую координату.
-     * @param input строка.
+     * @param command строка.
      * @param first первая координата.
-     * @param isIncorrectInput флаг корректности ввода.
      */
     void parseFirstCoordinate( const std::string& command, int& first ) noexcept;
 
@@ -88,7 +89,6 @@ private:
      * Парсить вторую координату.
      * @param input строка.
      * @param second первая координата.
-     * @param isIncorrectInput флаг корректности ввода.
      */
     void parseSecondCoordinate( const std::string& command, int& second ) noexcept;
 

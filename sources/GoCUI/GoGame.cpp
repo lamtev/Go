@@ -3,6 +3,9 @@
 GoGame::GoGame()
 {
     goEngineInterface = new GoEngineInterface{};
+    needMessage = false;
+    hasExceptionThrown = false;
+    exit = false;
 }
 
 GoGame::~GoGame()
