@@ -36,3 +36,15 @@ bool Point::isNotEmpty() const noexcept
 {
     return status != EMPTY;
 }
+
+bool Point::operator==( const Point& point ) const noexcept
+{
+    return this->status == point.status;
+}
+
+bool Point::operator!=( const Point& point ) const noexcept
+{
+    return !(*this == point);
+}
+
+

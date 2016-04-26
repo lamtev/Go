@@ -7,7 +7,7 @@ Board::Board( int diagonal ) noexcept : diagonal(diagonal)
 
 Point& Board::operator()( const int first, const int second ) noexcept
 {
-    return board[first * diagonal + second];
+    return board[(second-1) * diagonal + (first-1)];
 }
 
 Board& Board::operator=( const Board& board ) noexcept

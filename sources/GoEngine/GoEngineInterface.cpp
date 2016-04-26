@@ -23,8 +23,7 @@ GoEngineInterface::~GoEngineInterface()
 
 void GoEngineInterface::putStone( const int first, const int second )
 {
-    //TODO f-1, s-1
-    motion->putStone(board, second-1, first-1);
+    motion->putStone(board, first, second);
 }
 
 void GoEngineInterface::pass() noexcept

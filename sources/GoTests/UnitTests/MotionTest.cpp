@@ -40,9 +40,9 @@ void MotionTest::putStone()
     Motion* motion = new Motion{};
 
     int ind{ 0 };
-    for( int i = 0; i < 19; ++i )
+    for( int i = 1; i <= 19; ++i )
     {
-        for( int j = 0; j < 19; ++j )
+        for( int j = 1; j <= 19; ++j )
         {
             motion->putStone(board, i, j);
             QCOMPARE(motion->getMoves()[ind].getFirst(), i);
@@ -89,12 +89,12 @@ void MotionTest::isGameOver()
         Board* board = new Board{ 19 };
         Motion* motion = new Motion{};
 
-        motion->putStone(board, 1, 3);
-        motion->putStone(board, 4, 3);
-        motion->putStone(board, 2, 2);
+        motion->putStone(board, A, 3);
+        motion->putStone(board, D, 3);
+        motion->putStone(board, B, 2);
         motion->pass();
-        motion->putStone(board, 3, 2);
-        motion->putStone(board, 2, 4);
+        motion->putStone(board, C, 2);
+        motion->putStone(board, B, 4);
         motion->pass();
         motion->pass();
         QVERIFY(motion->isGameOver());
@@ -121,9 +121,9 @@ void MotionTest::whoSurrendered()
         Board* board = new Board{ 7 };
         Motion* motion = new Motion{};
 
-        motion->putStone(board, 0, 6);
-        motion->putStone(board, 3, 2);
-        motion->putStone(board, 1, 5);
+        motion->putStone(board, A, 6);
+        motion->putStone(board, C, 2);
+        motion->putStone(board, A, 5);
         motion->surrender();
         int status{ WHITE };
         QCOMPARE(motion->whoSurrendered(), status);
@@ -136,8 +136,8 @@ void MotionTest::whoSurrendered()
         Board* board = new Board{ 7 };
         Motion* motion = new Motion{};
 
-        motion->putStone(board, 0, 6);
-        motion->putStone(board, 3, 2);
+        motion->putStone(board, B, 6);
+        motion->putStone(board, C, 2);
         int status{ EMPTY };
         QCOMPARE(motion->whoWon(), status);
 
@@ -152,9 +152,9 @@ void MotionTest::whoWon()
         Board* board = new Board{ 7 };
         Motion* motion = new Motion{};
 
-        motion->putStone(board, 0, 6);
-        motion->putStone(board, 3, 2);
-        motion->putStone(board, 1, 5);
+        motion->putStone(board, A, 6);
+        motion->putStone(board, C, 2);
+        motion->putStone(board, A, 5);
         motion->surrender();
         int status{ BLACK };
         QCOMPARE(motion->whoWon(), status);
@@ -167,8 +167,8 @@ void MotionTest::whoWon()
         Board* board = new Board{ 7 };
         Motion* motion = new Motion{};
 
-        motion->putStone(board, 0, 6);
-        motion->putStone(board, 3, 2);
+        motion->putStone(board, A, 6);
+        motion->putStone(board, C, 2);
         motion->surrender();
         int status{ WHITE };
         QCOMPARE(motion->whoWon(), status);
@@ -181,8 +181,8 @@ void MotionTest::whoWon()
         Board* board = new Board{ 7 };
         Motion* motion = new Motion{};
 
-        motion->putStone(board, 0, 6);
-        motion->putStone(board, 3, 2);
+        motion->putStone(board, A, 6);
+        motion->putStone(board, C, 2);
         int status{ EMPTY };
         QCOMPARE(motion->whoWon(), status);
 
@@ -197,15 +197,15 @@ void MotionTest::getMoveIndex()
     Motion* motion = new Motion();
 
     QCOMPARE(motion->getMoveIndex(), 0);
-    motion->putStone(board, 0, 6);
+    motion->putStone(board, A, 7);
     QCOMPARE(motion->getMoveIndex(), 1);
-    motion->putStone(board, 3, 2);
+    motion->putStone(board, C, 2);
     QCOMPARE(motion->getMoveIndex(), 2);
-    motion->putStone(board, 1, 5);
+    motion->putStone(board, A, 5);
     QCOMPARE(motion->getMoveIndex(), 3);
     motion->pass();
     QCOMPARE(motion->getMoveIndex(), 4);
-    motion->putStone(board, 1, 1);
+    motion->putStone(board, A, 1);
     QCOMPARE(motion->getMoveIndex(), 5);
 
     delete board;
@@ -216,12 +216,12 @@ void MotionTest::getMoves()
 {
     Board* board = new Board{ 7 };
     Motion* motion = new Motion{};
-    std::vector<Move> v{ Move{ 0,0 }, Move{ 0,1 }, Move{ 0,2 }, Move{ 5,1 } };
+    std::vector<Move> v{ Move{ A, 1 }, Move{ A, 2 }, Move{ A, 3 }, Move{ E, 1 } };
 
-    motion->putStone(board, 0, 0);
-    motion->putStone(board, 0, 1);
-    motion->putStone(board, 0, 2);
-    motion->putStone(board, 5, 1);
+    motion->putStone(board, A, 1);
+    motion->putStone(board, A, 2);
+    motion->putStone(board, A, 3);
+    motion->putStone(board, E, 1);
 
     for( int i = 0; i < 4; ++i )
     {
@@ -241,7 +241,7 @@ void MotionTest::whoseMove()
     QVERIFY(motion->whoseMove() == BLACK);
     motion->pass();
     QVERIFY(motion->whoseMove() == WHITE);
-    motion->putStone(board, 0, 12);
+    motion->putStone(board, A, 13);
     QVERIFY(motion->whoseMove() == BLACK);
     motion->pass();
     QVERIFY(motion->whoseMove() == WHITE);
@@ -255,21 +255,21 @@ void MotionTest::getLastMove()
     Board* board = new Board{ 19 };
     Motion* motion = new Motion{};
 
-    motion->putStone(board, 1, 3);
-    motion->putStone(board, 4, 3);
-    Move move{ 4, 3 };
+    motion->putStone(board, A, 3);
+    motion->putStone(board, D, 3);
+    Move move{ D, 3 };
     QCOMPARE(motion->getLastMove(), move);
-    motion->putStone(board, 2, 2);
-    motion->putStone(board, 3, 2);
-    motion->putStone(board, 2, 4);
-    move = Move{ 2, 4 };
+    motion->putStone(board, B, 2);
+    motion->putStone(board, C, 2);
+    motion->putStone(board, B, 4);
+    move = Move{ B, 4 };
     QCOMPARE(motion->getLastMove(), move);
-    motion->putStone(board, 3, 4);
-    motion->putStone(board, 3, 3);
-    move = Move{ 3, 3 };
+    motion->putStone(board, C, 4);
+    motion->putStone(board, C, 3);
+    move = Move{ C, 3 };
     QCOMPARE(motion->getLastMove(), move);
-    motion->putStone(board, 2, 3);
-    move = Move{ 2, 3 };
+    motion->putStone(board, B, 3);
+    move = Move{ B, 3 };
     QCOMPARE(motion->getLastMove(), move);
 
     delete board;
@@ -284,28 +284,28 @@ void MotionTest::getStonesEatenBy()
 
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 1, 3);
+    motion->putStone(board, A, 3);
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 4, 3);
+    motion->putStone(board, D, 3);
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 2, 2);
+    motion->putStone(board, B, 2);
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 3, 2);
+    motion->putStone(board, C, 2);
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 2, 4);
+    motion->putStone(board, B, 4);
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 3, 4);
+    motion->putStone(board, C, 4);
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 3, 3);
+    motion->putStone(board, C, 3);
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
-    motion->putStone(board, 2, 3);
+    motion->putStone(board, B, 3);
     QCOMPARE(motion->getStonesEatenByWhite(), 1);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
 
@@ -318,13 +318,15 @@ void MotionTest::throwingMoveOutsideTheBoardException()
     Board* board = new Board{ 19 };
     Motion* motion = new Motion{};
 
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, -1), MoveOutsideTheBoardException);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 19), MoveOutsideTheBoardException);
+    motion->putStone(board, A, 1);
+    motion->putStone(board, S, 19);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 0), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 20), MoveOutsideTheBoardException);
     QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -2, 7), MoveOutsideTheBoardException);
     QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 20, 7), MoveOutsideTheBoardException);
     QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -3, -2), MoveOutsideTheBoardException);
     QVERIFY_EXCEPTION_THROWN(motion->putStone(board, -4, 30), MoveOutsideTheBoardException);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 20, -1), MoveOutsideTheBoardException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 20, 0), MoveOutsideTheBoardException);
     QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 27, 100), MoveOutsideTheBoardException);
 
     delete board;
@@ -336,16 +338,16 @@ void MotionTest::throwingMoveToNotEmptyPointException()
     Board* board = new Board{ 19 };
     Motion* motion = new Motion{};
 
-    motion->putStone(board, 5, 7);
-    motion->putStone(board, 5, 8);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 7), MoveToNotEmptyPointException);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 8), MoveToNotEmptyPointException);
-    motion->putStone(board, 18, 12);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 18, 12), MoveToNotEmptyPointException);
-    motion->putStone(board, 4, 2);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 4, 2), MoveToNotEmptyPointException);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 7), MoveToNotEmptyPointException);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 8), MoveToNotEmptyPointException);
+    motion->putStone(board, E, 7);
+    motion->putStone(board, E, 8);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, E, 7), MoveToNotEmptyPointException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, E, 8), MoveToNotEmptyPointException);
+    motion->putStone(board, S, 12);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, S, 12), MoveToNotEmptyPointException);
+    motion->putStone(board, D, 2);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, D, 2), MoveToNotEmptyPointException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, E, 7), MoveToNotEmptyPointException);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, E, 8), MoveToNotEmptyPointException);
 
     delete board;
     delete motion;
@@ -357,15 +359,15 @@ void MotionTest::throwingMoveRepeatException()
     Board* board = new Board{ 7 };
     Motion* motion = new Motion{};
 
-    motion->putStone(board, 1, 3);
-    motion->putStone(board, 4, 3);
-    motion->putStone(board, 2, 2);
-    motion->putStone(board, 3, 2);
-    motion->putStone(board, 2, 4);
-    motion->putStone(board, 3, 4);
-    motion->putStone(board, 3, 3);
-    motion->putStone(board, 2, 3);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 3, 3), MoveRepeatException);
+    motion->putStone(board, B, 4);
+    motion->putStone(board, E, 4);
+    motion->putStone(board, C, 3);
+    motion->putStone(board, D, 3);
+    motion->putStone(board, C, 5);
+    motion->putStone(board, D, 5);
+    motion->putStone(board, D, 4);
+    motion->putStone(board, C, 4);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, D, 4), MoveRepeatException);
 
     delete board;
     delete motion;
@@ -378,20 +380,19 @@ void MotionTest::throwingMoveToDieException()
     Board* board = new Board{ 13 };
     Motion* motion = new Motion{};
 
-    motion->putStone(board, 1, 0);
-    motion->putStone(board, 1, 1);
-    motion->putStone(board, 0, 1);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 0, 0), MoveToDieException);
+    motion->putStone(board, B, 1);
+    motion->putStone(board, B, 2);
+    motion->putStone(board, A, 2);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, A, 1), MoveToDieException);
 
-    motion->putStone(board, 7, 7);
-    motion->putStone(board, 12, 12);
-    motion->putStone(board, 8, 6);
-    motion->putStone(board, 12, 11);
-    motion->putStone(board, 8, 8);
-    motion->putStone(board, 12, 10);
-    motion->putStone(board, 9, 7);
-    motion->putStone(board, 12, 9);
-    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 8, 7), MoveToDieException);
+    motion->putStone(board, A, 11);
+    motion->putStone(board, B, 13);
+    motion->putStone(board, B, 10);
+    motion->putStone(board, C, 13);
+    motion->putStone(board, C, 11);
+    motion->putStone(board, D, 13);
+    motion->putStone(board, B, 12);
+    QVERIFY_EXCEPTION_THROWN(motion->putStone(board, B, 11), MoveToDieException);
 
     delete board;
     delete motion;

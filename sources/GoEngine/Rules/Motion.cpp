@@ -106,7 +106,7 @@ void Motion::ifNeedResizeMoves() noexcept
 
 void Motion::ifMoveOutsideTheBoardThrowException( Board* board, int first, int second ) const
 {
-    if( first < 0 || first >= board->getDiagonal() || second < 0 || second >= board->getDiagonal() )
+    if( first < 1 || first > board->getDiagonal() || second < 1 || second > board->getDiagonal() )
     {
         throw MoveOutsideTheBoardException();
     }

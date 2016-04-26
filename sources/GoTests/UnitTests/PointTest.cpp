@@ -15,6 +15,8 @@ private Q_SLOTS:
     void getStatus();
     void assigmentObject();
     void assigmentInt();
+    void equallity();
+    void inequallity();
 
 };
 
@@ -49,6 +51,20 @@ void PointTest::assigmentInt()
     s1 = s2 = WHITE;
     QCOMPARE(s1.getStatus(), s2.getStatus());
 
+}
+
+void PointTest::equallity()
+{
+    QVERIFY(Point{ BLACK } == Point{ BLACK });
+    QVERIFY(Point{ EMPTY} == Point{ EMPTY });
+    QVERIFY(Point{ WHITE } == Point{ WHITE });
+}
+
+void PointTest::inequallity()
+{
+    QVERIFY(Point{ EMPTY } != Point{ BLACK });
+    QVERIFY(Point{ BLACK } != Point{ WHITE });
+    QVERIFY(Point{ WHITE } != Point{ EMPTY });
 }
 
 QTEST_APPLESS_MAIN(PointTest)

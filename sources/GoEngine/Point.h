@@ -58,6 +58,22 @@ public:
      */
     bool isNotEmpty() const noexcept;
 
+    /**
+     * Равенство.
+     * Перегруженный оператор равенства.
+     * @param point ссылка на константный объект класса Point, с которым сравнивается данный объект
+     * @return true, если объекты равны, и false - в противном случае
+     */
+    bool operator==( const Point& point ) const noexcept;
+
+    /**
+     * Неравенство.
+     * Перегруженный оператор неравенства.
+     * @param point ссылка на константный объект класса Point, с которым сравнивается данный объект
+     * @return true, если объекты не равны, и false - в противном случае
+     */
+    bool operator!=( const Point& point ) const noexcept;
+
 private:
 
     int status; /**< статус пункта */
