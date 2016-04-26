@@ -7,26 +7,42 @@
 #include "Rules/Move.h"
 
 #include "Rules/Exceptions/MoveOutsideTheBoardException.h"
-#include "IncorrectDiagonalException.h"
-
-using std::vector;
+#include "Exceptions/IncorrectDiagonalException.h"
 
 //TODO noexcept swap
 //TODO high performance operator=
 
 /**
- * Доска
+ * Игровая доска
  */
 class Board
 {
+
 public:
 
     /**
      * Конструктор.
-     * Конструктор для инициализации объекта по значению диагонали
-     * @param diagonal длина диагонали
+     * Конструктор для инициализации объекта по значению диагонали.
+     * @param diagonal диагональ
      */
     Board( int diagonal = 19 );
+
+    /**
+     * Оператор скобки.
+     * Используется в качестве оператора индексирования.
+     * @param first первая координата
+     * @param second вторая координата
+     * @return ссылку на объект
+     */
+    Point& operator()( const int first, const int second ) noexcept;
+
+    /**
+    * Оператор присваивания.
+    * Перегруженный оператор присваивания
+    * @param board ссылка на присваиваемый константный объект
+    * @return ссылку на объект
+    */
+    Board& operator=( const Board& board ) noexcept;
 
     /**
      * Получить диагональ.
@@ -38,31 +54,13 @@ public:
      * Получить вектор доски.
      * return вектор доски
      */
-    vector<Point>& get() const noexcept;
-
-    /**
-     * Оператор скобки.
-     * Используется как оператор индексирования
-     * @param i координата по строкам
-     * @param j координата по столбцам
-     * @return ссылку на объект данного класса
-     */
-    Point& operator()( const int i, const int j ) noexcept;
-
-    /**
-     * Оператор присваивания.
-     * Перегруженный оператор присваивания
-     * @param board присваиваемая доска
-     * @return ссылку на объект данного класса
-     */
-    Board& operator=( const Board& board ) noexcept;
+    std::vector<Point>& get() const noexcept;
 
 private:
 
-    int diagonal; /**< длина диагонали */
-    vector<Point> board; /**< вектор, реализующий модель доски */
+    int diagonal; /**< Диагональ */
+    std::vector<Point> board; /**< Вектор, хранящий пункты доски */
 
 };
-
 
 #endif //GO_BOARD_H

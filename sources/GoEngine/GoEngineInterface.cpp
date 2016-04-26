@@ -1,6 +1,13 @@
 #include "GoEngineInterface.h"
 
-void GoEngineInterface::startGame(const int diagonal, const int rules, const int colorDistribution)
+GoEngineInterface::GoEngineInterface()
+{
+    board = nullptr;
+    motion = nullptr;
+    scoreCalculator = nullptr;
+}
+
+void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution)
 {
     board = new Board(diagonal);
     motion = new Motion();
@@ -14,10 +21,9 @@ GoEngineInterface::~GoEngineInterface()
     delete scoreCalculator;
 }
 
-
 void GoEngineInterface::putStone( const int first, const int second )
 {
-    motion->putStone(board, first, second);
+    motion->putStone(board, first-1, second-1);
 }
 
 void GoEngineInterface::pass() noexcept
@@ -30,16 +36,6 @@ void GoEngineInterface::surrender() noexcept
     motion->surrender();
 }
 
-int GoEngineInterface::whoSurrendered() const noexcept
-{
-    return motion->whoSurrendered();
-}
-
-Board& GoEngineInterface::getBoard() const noexcept
-{
-    return *board;
-}
-
 int GoEngineInterface::whoseMove() const noexcept
 {
     return motion->whoseMove();
@@ -50,9 +46,19 @@ bool GoEngineInterface::isGameOver() const
     return motion->isGameOver();
 }
 
-int GoEngineInterface::whoWon() const
+int GoEngineInterface::whoSurrendered() const noexcept
+{
+    return motion->whoSurrendered();
+}
+
+int GoEngineInterface::whoWon() const noexcept
 {
     return motion->whoWon();
+}
+
+Board& GoEngineInterface::getBoard() const noexcept
+{
+    return *board;
 }
 
 int GoEngineInterface::getStonesEatenByBlack() const noexcept
@@ -74,19 +80,3 @@ Move& GoEngineInterface::getLastMove() const noexcept
 {
     return motion->getLastMove();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

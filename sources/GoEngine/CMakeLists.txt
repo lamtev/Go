@@ -7,7 +7,7 @@ set(srcFiles
         Board.cpp Board.h
 
 
-        IncorrectDiagonalException.h
+        Exceptions/IncorrectDiagonalException.h
 
         Rules/Move.cpp Rules/Move.h
         Rules/Motion.cpp Rules/Motion.h

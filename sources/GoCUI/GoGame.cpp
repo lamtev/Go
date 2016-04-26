@@ -91,7 +91,7 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
     switch( parseCommand(command, first, second) )
     {
     case MOVE :
-        putStone(first-1, second-1);
+        putStone(first, second);
         break;
     case PASS :
         pass();
@@ -272,7 +272,7 @@ void GoGame::putStone( const int first, const int second )
 {
     try
     {
-        goEngineInterface->putStone(first, second);
+        goEngineInterface->putStone(second, first);
     }
     catch( const MoveException& e )
     {

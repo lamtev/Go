@@ -31,7 +31,7 @@ FunctionalTest::FunctionalTest()
 void FunctionalTest::start()
 {
     GoEngineInterface Go;
-    Go.startGame(19, JAPANESE, NIGIRI);
+    Go.startGame(19, CHINESE, NIGIRI);
 }
 
 void FunctionalTest::paintBoard()

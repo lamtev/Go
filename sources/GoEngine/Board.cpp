@@ -9,19 +9,9 @@ Board::Board( int diagonal ) : diagonal(diagonal)
     board.resize(diagonal * diagonal);
 }
 
-int Board::getDiagonal() const noexcept
+Point& Board::operator()( const int first, const int second ) noexcept
 {
-    return diagonal;
-}
-
-vector<Point>& Board::get() const noexcept
-{
-    return const_cast<vector<Point>&>(board);
-}
-
-Point& Board::operator()( const int i, const int j ) noexcept
-{
-    return board[i * diagonal + j];
+    return board[first * diagonal + second];
 }
 
 Board& Board::operator=( const Board& board ) noexcept
@@ -31,5 +21,12 @@ Board& Board::operator=( const Board& board ) noexcept
     return *this;
 }
 
+int Board::getDiagonal() const noexcept
+{
+    return diagonal;
+}
 
-
+std::vector<Point>& Board::get() const noexcept
+{
+    return const_cast<std::vector<Point>&>(board);
+}

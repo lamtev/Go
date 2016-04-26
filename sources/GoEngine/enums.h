@@ -41,7 +41,7 @@ enum LiteralCoordinate
 enum Rules
 {
     JAPANESE = 0,
-    CHINES
+    CHINESE
 };
 
 enum ColorDistribution
