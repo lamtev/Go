@@ -83,6 +83,11 @@ int Motion::getStonesEatenByWhite() const noexcept
     return stonesEatenByWhite;
 }
 
+Move& Motion::getLastMove() const noexcept
+{
+    return const_cast<Move&>(moves[moveIndex - 1]);
+}
+
 bool Motion::areTwoPasses() const noexcept
 {
     if( moveIndex >= 2 )
@@ -96,6 +101,11 @@ bool Motion::areTwoPasses() const noexcept
     }
 }
 
+bool Motion::isBlacksMove() const noexcept
+{
+    return !(moveIndex % 2);
+}
+
 void Motion::ifNeedResizeMoves() noexcept
 {
     if( movesSize - 1 == moveIndex )
@@ -103,11 +113,6 @@ void Motion::ifNeedResizeMoves() noexcept
         movesSize += 100;
         moves.resize(movesSize);
     }
-}
-
-bool Motion::isBlacksMove() const noexcept
-{
-    return !(moveIndex % 2);
 }
 
 void Motion::ifMoveOutsideTheBoardThrowException( Board* board, int first, int second ) const
@@ -156,12 +161,3 @@ void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) 
     //ifMoveRepeatThrowException(first, second);
     ifMoveToDieThrowException(board, first, second);
 }
-
-Move& Motion::getLastMove() const noexcept
-{
-    return const_cast<Move&>(moves[moveIndex - 1]);
-}
-
-
-
-

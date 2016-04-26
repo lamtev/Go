@@ -38,9 +38,9 @@ public:
 private:
 
     GoEngineInterface* goEngineInterface; /**< Указатель на объект интерфейса движка */
-    bool needMessage = false; /**< Нужно сообщение? */
-    bool hasExceptionThrown = false; /**< исключение */
-    bool exit = false; /**< выход? */
+    bool needMessage{false}; /**< Нужно сообщение? */
+    bool hasExceptionThrown{false}; /**< исключение */
+    bool exit{false}; /**< выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
 

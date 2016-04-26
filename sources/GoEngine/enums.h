@@ -1,7 +1,7 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-enum Color
+enum Status
 {
     EMPTY = 0,
     BLACK,

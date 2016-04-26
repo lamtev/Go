@@ -6,8 +6,6 @@
 
 #include "../../GoEngine/Board.h"
 
-using std::vector;
-
 class BoardTest : public QObject
 {
 Q_OBJECT

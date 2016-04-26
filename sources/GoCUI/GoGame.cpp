@@ -2,7 +2,7 @@
 
 GoGame::GoGame()
 {
-    goEngineInterface = new GoEngineInterface();
+    goEngineInterface = new GoEngineInterface{};
 }
 
 GoGame::~GoGame()
@@ -241,7 +241,7 @@ void GoGame::parseFirstCoordinate( const std::string& command, int& first ) noex
         break;
     default :
         needMessage = true;
-        MESSAGE = std::string("wrong command");
+        MESSAGE = std::string{"Command is wrong"};
         break;
     }
 }
@@ -254,13 +254,13 @@ void GoGame::parseSecondCoordinate( const std::string& command, int& second ) no
     }
     std::string number;
     number = command.substr(1);
-    std::istringstream iss(number, std::istringstream::in);
+    std::istringstream iss{number, std::istringstream::in};
     int coordinate;
     iss >> coordinate;
     if( !iss )
     {
         needMessage = true;
-        MESSAGE = std::string("Command is wrong");
+        MESSAGE = std::string{"Command is wrong"};
     }
     else
     {

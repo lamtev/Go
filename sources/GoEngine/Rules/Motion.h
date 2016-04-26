@@ -99,29 +99,29 @@ private:
 
     std::vector<Move> moves; /**< Вектор, хранящий все ходы */
     int moveIndex; /**< Индекс ходов */
-    int movesSize = 100;  /**< Размер вектора ходов */
-    int surrendered = EMPTY; /**< Сдавшийся */
-    int winner = EMPTY; /**< Победитель */
-    int stonesEatenByBlack = 0; /**< Число камней, съеденных чёрным */
-    int stonesEatenByWhite = 0; /**< Число камней, съеденных белым */
+    int movesSize{100};  /**< Размер вектора ходов */
+    int surrendered{EMPTY}; /**< Сдавшийся */
+    int winner{EMPTY}; /**< Победитель */
+    int stonesEatenByBlack{0}; /**< Число камней, съеденных чёрным */
+    int stonesEatenByWhite{0}; /**< Число камней, съеденных белым */
 
     /**
      * Проверка двух последних ходов на пропуск.
-     * @return true, если оба игрока пропустили поочередно ход
+     * @return true, если оба игрока пропустили поочередно ход, false - в противном случае
      */
     bool areTwoPasses() const noexcept;
-
-    /**
-     * Изменить размер вектора moves.
-     * Увеличивает размер вектора moves на 100, если есть необходимость.
-     */
-    void ifNeedResizeMoves() noexcept;
 
     /**
      * Ход чёрных?
      * @return true, если ход чёрных, и false - в противном случае
      */
     bool isBlacksMove() const noexcept;
+
+    /**
+     * Изменить размер вектора moves.
+     * Увеличивает размер вектора moves на 100, если есть необходимость.
+     */
+    void ifNeedResizeMoves() noexcept;
 
     /**
      * Если ход за пределы доски бросить исключение.

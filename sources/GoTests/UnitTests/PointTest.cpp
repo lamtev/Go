@@ -2,7 +2,6 @@
 #include <QtTest>
 
 #include "../../GoEngine/Point.h"
-#include "../../GoEngine/enums.h"
 
 class PointTest : public QObject
 {
@@ -49,6 +48,7 @@ void PointTest::assigmentInt()
 
     s1 = s2 = WHITE;
     QCOMPARE(s1.getStatus(), s2.getStatus());
+
 }
 
 QTEST_APPLESS_MAIN(PointTest)

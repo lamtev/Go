@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "../../GoEngine/Rules/Motion.h"
-//TODO finish class
+
 class MotionTest : public QObject
 {
 Q_OBJECT
@@ -36,13 +36,13 @@ MotionTest::MotionTest()
 
 void MotionTest::putStone()
 {
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
+    Board* board = new Board{19};
+    Motion* motion = new Motion{};
 
-    int ind = 0;
-    for( int i = 0; i < 19; ++i )
+    int ind{0};
+    for( int i{0}; i < 19; ++i )
     {
-        for( int j = 0; j < 19; ++j )
+        for( int j{0}; j < 19; ++j )
         {
             motion->putStone(board, i, j);
             QCOMPARE(motion->getMoves()[ind].getFirst(), i);
@@ -58,8 +58,8 @@ void MotionTest::putStone()
 void MotionTest::pass()
 {
     {
-        Board* board = new Board(19);
-        Motion* motion = new Motion();
+        Board* board = new Board{19};
+        Motion* motion = new Motion{};
 
         motion->pass();
         QCOMPARE(motion->getMoves()[0].getFirst(), PASS_COORD);
@@ -74,8 +74,8 @@ void MotionTest::pass()
 void MotionTest::isGameOver()
 {
     {
-        Board* board = new Board(19);
-        Motion* motion = new Motion();
+        Board* board = new Board{19};
+        Motion* motion = new Motion{};
 
         motion->pass();
         motion->pass();
@@ -86,8 +86,8 @@ void MotionTest::isGameOver()
     }
 
     {
-        Board* board = new Board(19);
-        Motion* motion = new Motion();
+        Board* board = new Board{19};
+        Motion* motion = new Motion{};
 
         motion->putStone(board, 1, 3);
         motion->putStone(board, 4, 3);
@@ -104,8 +104,8 @@ void MotionTest::isGameOver()
     }
 
     {
-        Board* board = new Board(19);
-        Motion* motion = new Motion();
+        Board* board = new Board{19};
+        Motion* motion = new Motion{};
 
         motion->surrender();
         QVERIFY(motion->isGameOver());
@@ -118,14 +118,14 @@ void MotionTest::isGameOver()
 void MotionTest::whoSurrendered()
 {
     {
-        Board* board = new Board(7);
-        Motion* motion = new Motion();
+        Board* board = new Board{7};
+        Motion* motion = new Motion{};
 
         motion->putStone(board, 0, 6);
         motion->putStone(board, 3, 2);
         motion->putStone(board, 1, 5);
         motion->surrender();
-        int status = WHITE;
+        int status{WHITE};
         QCOMPARE(motion->whoSurrendered(), status);
 
         delete board;
@@ -133,12 +133,12 @@ void MotionTest::whoSurrendered()
     }
 
     {
-        Board* board = new Board(7);
-        Motion* motion = new Motion();
+        Board* board = new Board{7};
+        Motion* motion = new Motion{};
 
         motion->putStone(board, 0, 6);
         motion->putStone(board, 3, 2);
-        int status = EMPTY;
+        int status{EMPTY};
         QCOMPARE(motion->whoWon(), status);
 
         delete board;
@@ -149,14 +149,14 @@ void MotionTest::whoSurrendered()
 void MotionTest::whoWon()
 {
     {
-        Board* board = new Board(7);
-        Motion* motion = new Motion();
+        Board* board = new Board{7};
+        Motion* motion = new Motion{};
 
         motion->putStone(board, 0, 6);
         motion->putStone(board, 3, 2);
         motion->putStone(board, 1, 5);
         motion->surrender();
-        int status = BLACK;
+        int status{BLACK};
         QCOMPARE(motion->whoWon(), status);
 
         delete board;
@@ -164,13 +164,13 @@ void MotionTest::whoWon()
     }
 
     {
-        Board* board = new Board(7);
-        Motion* motion = new Motion();
+        Board* board = new Board{7};
+        Motion* motion = new Motion{};
 
         motion->putStone(board, 0, 6);
         motion->putStone(board, 3, 2);
         motion->surrender();
-        int status = WHITE;
+        int status{WHITE};
         QCOMPARE(motion->whoWon(), status);
 
         delete board;
@@ -178,12 +178,12 @@ void MotionTest::whoWon()
     }
 
     {
-        Board* board = new Board(7);
-        Motion* motion = new Motion();
+        Board* board = new Board{7};
+        Motion* motion = new Motion{};
 
         motion->putStone(board, 0, 6);
         motion->putStone(board, 3, 2);
-        int status = EMPTY;
+        int status{EMPTY};
         QCOMPARE(motion->whoWon(), status);
 
         delete board;
@@ -193,7 +193,7 @@ void MotionTest::whoWon()
 
 void MotionTest::getMoveIndex()
 {
-    Board* board = new Board(7);
+    Board* board = new Board{7};
     Motion* motion = new Motion();
 
     QCOMPARE(motion->getMoveIndex(), 0);
@@ -214,16 +214,16 @@ void MotionTest::getMoveIndex()
 
 void MotionTest::getMoves()
 {
-    Board* board = new Board(7);
-    Motion* motion = new Motion();
-    std::vector<Move> v{Move(0,0), Move(0,1), Move(0,2), Move(5,1)};
+    Board* board = new Board{7};
+    Motion* motion = new Motion{};
+    std::vector<Move> v{Move{0,0}, Move{0,1}, Move{0,2}, Move{5,1}};
 
     motion->putStone(board, 0, 0);
     motion->putStone(board, 0, 1);
     motion->putStone(board, 0, 2);
     motion->putStone(board, 5, 1);
 
-    for( int i = 0; i < 4; ++i )
+    for( int i{0}; i < 4; ++i )
     {
         QCOMPARE(v[i].getFirst(), motion->getMoves()[i].getFirst());
         QCOMPARE(v[i].getSecond(), motion->getMoves()[i].getSecond());
@@ -235,8 +235,8 @@ void MotionTest::getMoves()
 
 void MotionTest::whoseMove()
 {
-    Board* board = new Board(13);
-    Motion* motion = new Motion();
+    Board* board = new Board{13};
+    Motion* motion = new Motion{};
 
     QVERIFY(motion->whoseMove() == BLACK);
     motion->pass();
@@ -252,21 +252,25 @@ void MotionTest::whoseMove()
 
 void MotionTest::getLastMove()
 {
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
+    Board* board = new Board{19};
+    Motion* motion = new Motion{};
 
     motion->putStone(board, 1, 3);
     motion->putStone(board, 4, 3);
-    QCOMPARE(motion->getLastMove(), Move(4, 3));
+    Move move{4, 3};
+    QCOMPARE(motion->getLastMove(), move);
     motion->putStone(board, 2, 2);
     motion->putStone(board, 3, 2);
     motion->putStone(board, 2, 4);
-    QCOMPARE(motion->getLastMove(), Move(2, 4));
+    move = Move{2, 4};
+    QCOMPARE(motion->getLastMove(), move);
     motion->putStone(board, 3, 4);
     motion->putStone(board, 3, 3);
-    QCOMPARE(motion->getLastMove(), Move(3, 3));
+    move = Move{3, 3};
+    QCOMPARE(motion->getLastMove(), move);
     motion->putStone(board, 2, 3);
-    QCOMPARE(motion->getLastMove(), Move(2, 3));
+    move = Move{2, 3};
+    QCOMPARE(motion->getLastMove(), move);
 
     delete board;
     delete motion;
@@ -275,8 +279,8 @@ void MotionTest::getLastMove()
 void MotionTest::getStonesEatenBy()
 {
     //Перестанет падать, когда будет реализовано съедение и подсчет съеденных камней!!!
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
+    Board* board = new Board{19};
+    Motion* motion = new Motion{};
 
     QCOMPARE(motion->getStonesEatenByWhite(), 0);
     QCOMPARE(motion->getStonesEatenByBlack(), 0);
@@ -311,8 +315,8 @@ void MotionTest::getStonesEatenBy()
 
 void MotionTest::throwingMoveOutsideTheBoardException()
 {
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
+    Board* board = new Board{19};
+    Motion* motion = new Motion{};
 
     QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, -1), MoveOutsideTheBoardException);
     QVERIFY_EXCEPTION_THROWN(motion->putStone(board, 5, 19), MoveOutsideTheBoardException);
@@ -329,8 +333,8 @@ void MotionTest::throwingMoveOutsideTheBoardException()
 
 void MotionTest::throwingMoveToNotEmptyPointException()
 {
-    Board* board = new Board(19);
-    Motion* motion = new Motion();
+    Board* board = new Board{19};
+    Motion* motion = new Motion{};
 
     motion->putStone(board, 5, 7);
     motion->putStone(board, 5, 8);
@@ -350,8 +354,8 @@ void MotionTest::throwingMoveToNotEmptyPointException()
 void MotionTest::throwingMoveRepeatException()
 {
     //падает, т.к не реализовано съедение
-    Board* board = new Board(7);
-    Motion* motion = new Motion();
+    Board* board = new Board{7};
+    Motion* motion = new Motion{};
 
     motion->putStone(board, 1, 3);
     motion->putStone(board, 4, 3);
@@ -371,8 +375,8 @@ void MotionTest::throwingMoveToDieException()
 {
     //Не проходятся, т.к не реализовано съедение
     //и не реализовано определение хода под смерть
-    Board* board = new Board(13);
-    Motion* motion = new Motion();
+    Board* board = new Board{13};
+    Motion* motion = new Motion{};
 
     motion->putStone(board, 1, 0);
     motion->putStone(board, 1, 1);
