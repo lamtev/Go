@@ -30,13 +30,13 @@ FunctionalTest::FunctionalTest()
 
 void FunctionalTest::start()
 {
-    GoEngineInterface Go{};
+    GoEngineInterface Go;
     Go.startGame(19, CHINESE, NIGIRI);
 }
 
 void FunctionalTest::paintBoard()
 {
-    for( int i{0}; i < 21 * 43; ++ i )
+    for( int i = 0; i < 21 * 43; ++ i )
     {
         if (i % 43 == 0)
         {

@@ -5,7 +5,7 @@ Move::Move() noexcept
 
 }
 
-Move::Move( int first, int second ) noexcept : first(first), second(second)
+Move::Move( const int first, const int second ) noexcept : first(first), second(second)
 {
 
 }

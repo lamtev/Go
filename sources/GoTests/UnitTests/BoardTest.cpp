@@ -28,15 +28,15 @@ BoardTest::BoardTest()
 
 void BoardTest::getDiagonal()
 {
-    Board b{19};
+    Board b{ 19 };
     QCOMPARE(b.getDiagonal(), 19);
-    Board b1{7};
+    Board b1{ 7 };
     QCOMPARE(b1.getDiagonal(), 7);
 }
 
 void BoardTest::initializationDiagonal()
 {
-    Board b{13};
+    Board b{ 13 };
     for( int i = 0; i < 13; ++i )
     {
         for (int j = 0; j < 13; ++j)
@@ -48,7 +48,7 @@ void BoardTest::initializationDiagonal()
 
 void BoardTest::indexation()
 {
-    Board b{19};
+    Board b{ 19 };
     b(0, 0) = BLACK;
     b(18, 18) = WHITE;
     QVERIFY(b(0, 0).getStatus() == BLACK);
@@ -57,7 +57,7 @@ void BoardTest::indexation()
 
 void BoardTest::assigment()
 {
-    Board b1{7};
+    Board b1{ 7 };
     b1(0, 0) = BLACK;
     b1(6, 6) = WHITE;
     Board b2 = b1;

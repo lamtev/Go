@@ -1,6 +1,8 @@
 #ifndef GO_MOVE_H
 #define GO_MOVE_H
 
+#include "../enums.h"
+
 /**
  * Ход.
  */
@@ -8,7 +10,6 @@ class Move
 {
 
 public:
-
     /**
      * Конструктор.
      */
@@ -19,7 +20,7 @@ public:
      * @param first первая координата
      * @param second вторая координата
      */
-    Move( int first, int second ) noexcept;
+    Move( const int first, const int second ) noexcept;
 
     /**
      * Копирующий конструктор.

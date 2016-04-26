@@ -50,6 +50,6 @@ enum ColorDistribution
     AGREEMENT
 };
 
-const int PASS_COORD = -1;
+constexpr int PASS_COORD{ -1 };
 
 #endif // ENUMS_H

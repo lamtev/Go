@@ -3,6 +3,11 @@
 Motion::Motion() noexcept
 {
     moveIndex = 0;
+    movesSize = 100;
+    surrendered = EMPTY;
+    winner = EMPTY;
+    stonesEatenByBlack = 0;
+    stonesEatenByWhite = 0;
     moves.resize(movesSize);
 }
 
@@ -11,14 +16,14 @@ void Motion::putStone(Board* board, int first, int second)
     ifNeedResizeMoves();
     ifMoveIllegalThrowException(board, first, second);
     board->operator()(first, second) = whoseMove();
-    moves[moveIndex] = Move{first, second};
+    moves[moveIndex] = Move{ first, second };
     ++moveIndex;
 }
 
 void Motion::pass() noexcept
 {
     ifNeedResizeMoves();
-    moves[moveIndex] = Move{PASS_COORD, PASS_COORD};
+    moves[moveIndex] = passedMove;
     ++moveIndex;
 }
 
@@ -29,7 +34,6 @@ void Motion::surrender() noexcept
 
 bool Motion::isGameOver() const noexcept
 {
-    //TODO добавить условий конца игры
     return areTwoPasses() || whoSurrendered();
 }
 
@@ -63,14 +67,7 @@ std::vector<Move>& Motion::getMoves() const noexcept
 
 int Motion::whoseMove() const noexcept
 {
-    if( isBlacksMove() )
-    {
-        return BLACK;
-    }
-    else
-    {
-        return WHITE;
-    }
+    return isBlacksMove() ? BLACK : WHITE;
 }
 
 int Motion::getStonesEatenByBlack() const noexcept
@@ -90,15 +87,7 @@ Move& Motion::getLastMove() const noexcept
 
 bool Motion::areTwoPasses() const noexcept
 {
-    if( moveIndex >= 2 )
-    {
-        Move passedMove{PASS_COORD, PASS_COORD};
-        return moves[moveIndex - 1] == passedMove && moves[moveIndex - 1] == moves[moveIndex - 2];
-    }
-    else
-    {
-        return false;
-    }
+    return moveIndex >= 2 ? moves[moveIndex - 1] == passedMove && moves[moveIndex - 1] == moves[moveIndex - 2] : false;
 }
 
 bool Motion::isBlacksMove() const noexcept
@@ -136,7 +125,6 @@ void Motion::ifMoveRepeatThrowException( int first, int second ) const
     //BUG ifMoveRepeatThrowException
     if( moveIndex >= 2 )
     {
-        Move passedMove{PASS_COORD, PASS_COORD};
         if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex - 2] )
         {
             throw MoveRepeatException();

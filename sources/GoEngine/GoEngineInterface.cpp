@@ -9,7 +9,7 @@ GoEngineInterface::GoEngineInterface() noexcept
 
 void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution) noexcept
 {
-    board = new Board{diagonal};
+    board = new Board{ diagonal };
     motion = new Motion{};
     scoreCalculator = new ScoreCalculator{};
 }
