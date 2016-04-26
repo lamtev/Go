@@ -53,23 +53,26 @@ void GoGame::initBoard( int diagonal ) noexcept
 
 void GoGame::play()
 {
-    bool isExit = false;
     int first, second;
     std::string command;
-    startGameCycle(command, first, second, isExit);
+    startGameCycle(command, first, second);
 }
 
-void GoGame::startGameCycle( std::string& command, int& first, int& second, bool& isExit )
+void GoGame::startGameCycle( std::string& command, int& first, int& second )
 {
-    //BUG with exit after move to not empty point
-    while( !goEngineInterface->isGameOver() && !isExit )
+    while( !(goEngineInterface->isGameOver() || exit) )
     {
         printEatenStonesStat();
         printBoard();
         ifNeedPrintMessage();
         printWhoseMove();
         std::getline(std::cin, command);
-        switchParsedCommand(command, first, second, isExit);
+        switchParsedCommand(command, first, second);
+        if( hasExceptionThrown )
+        {
+            hasExceptionThrown = false;
+            return;
+        }
     }
 }
 
@@ -83,7 +86,7 @@ void GoGame::ifNeedPrintMessage() noexcept
 }
 
 
-void GoGame::switchParsedCommand( const std::string& command, int& first, int& second, bool& isExit )
+void GoGame::switchParsedCommand( const std::string& command, int& first, int& second )
 {
     switch( parseCommand(command, first, second) )
     {
@@ -97,7 +100,7 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
         surrender();
         break;
     case EXIT :
-        isExit = this->isExit(command);
+        exit = this->isExit(command);
         break;
     case ERROR :
         return;
@@ -273,6 +276,7 @@ void GoGame::putStone( const int first, const int second )
     }
     catch( const MoveException& e )
     {
+        hasExceptionThrown = true;
         needMessage = true;
         MESSAGE = std::string(e.what());
         play();

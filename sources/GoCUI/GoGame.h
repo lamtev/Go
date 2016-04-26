@@ -37,8 +37,10 @@ public:
 
 private:
 
-    GoEngineInterface*goEngineInterface; /**< Указатель на объект интерфейса движка */
+    GoEngineInterface* goEngineInterface; /**< Указатель на объект интерфейса движка */
     bool needMessage = false; /**< Нужно сообщение? */
+    bool hasExceptionThrown = false; /**< исключение */
+    bool exit = false; /**< выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
 
@@ -62,7 +64,7 @@ private:
     /**
      * Запутить игровой цикл.
      */
-    void startGameCycle( std::string& command, int& first, int& second, bool& isExit );
+    void startGameCycle( std::string& command, int& first, int& second );
 
     /**
      * Парсить входную строку.
@@ -104,7 +106,7 @@ private:
     /**
      * Выбрать распарсенную команду
      */
-    void switchParsedCommand( const std::string& command, int& first, int& second, bool& isExit );
+    void switchParsedCommand( const std::string& command, int& first, int& second );
 
     /**
      * Сделать ход.
@@ -249,12 +251,6 @@ private:
      * @return true, если введен ключ exit, и false - иначе.
      */
     bool isSurrender( const std::string& input ) const noexcept;
-
-    //TODO
-    /**
-     * Завершить программу.
-     */
-    void exit() const noexcept;
 
 };
 
