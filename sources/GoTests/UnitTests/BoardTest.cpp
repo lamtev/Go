@@ -49,10 +49,10 @@ void BoardTest::initialization()
 void BoardTest::indexation()
 {
     Board b{ 19 };
-    b(0, 0) = BLACK;
-    b(18, 18) = WHITE;
-    QVERIFY(b(0, 0).getStatus() == BLACK);
-    QVERIFY(b(18, 18).getStatus() == WHITE);
+    b(1, 1) = BLACK;
+    b(19, 19) = WHITE;
+    QVERIFY(b(1, 1).getStatus() == BLACK);
+    QVERIFY(b(19, 19).getStatus() == WHITE);
 }
 
 void BoardTest::assigment()
@@ -69,11 +69,11 @@ void BoardTest::get()
 {
     Board board{ 7 };
     int counter{ 0 };
-    for( int i = 0; i < 7; ++i )
+    for( int i = 1; i <= 7; ++i )
     {
-        for( int j = 0; j < 7; ++j )
+        for( int j = 1; j <= 7; ++j )
         {
-            board(i+1, j+1) = counter % 3;
+            board(i, j) = counter % 3;
             ++counter;
         }
     }

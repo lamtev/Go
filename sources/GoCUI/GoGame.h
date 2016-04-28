@@ -9,7 +9,6 @@
 #include "InitBoards.h"
 #include "enums.h"
 
-//TODO разобраться с constexpr
 //TODO refactor GoGame
 
 /**
@@ -20,17 +19,17 @@ class GoGame
 public:
 
     /**
-     * Конструктор
+     * Конструктор.
      */
     GoGame();
 
     /**
-     * Деструктор
+     * Деструктор.
      */
     ~GoGame();
 
     /**
-     * Начать игру
+     * Начать игру.
      * Этот метод объединяет методы данного класса, отвечающие за организацию игрового процесса.
      */
     void begin();
@@ -39,8 +38,8 @@ private:
 
     GoEngineInterface* goEngineInterface; /**< Указатель на объект интерфейса движка */
     bool needMessage; /**< Нужно сообщение? */
-    bool hasExceptionThrown; /**< исключение */
-    bool exit; /**< выход? */
+    bool hasExceptionThrown; /**< Было выброшено исключение? */
+    bool exit; /**< Выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
 
