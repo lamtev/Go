@@ -2,6 +2,7 @@
 #define GO_POINT_H
 
 #include "enums.h"
+#include "Stone.h"
 
 /**
  * Пункт игровой доски
@@ -21,7 +22,12 @@ public:
      * Копирующий конструктор.
      * @param point ссылка на константный объект класса Point
      */
-    Point( const Point& point) noexcept;
+    Point( const Point& point ) noexcept;
+
+    /**
+     * Деструктор.
+     */
+    ~Point() noexcept;
 
     /**
      * Присваивание.
@@ -77,6 +83,20 @@ public:
 private:
 
     int status; /**< Статус пункта */
+    Stone* stone; /**< Указатель на объект класса Stone */
+
+    /**
+     * Создать камень.
+     * @param first первая координата
+     * @param second вторая координата
+     * @param color цвет
+     */
+    void createStone( const int first, const int second, const int color, const int breaths ) noexcept;
+
+    /**
+     * Удалить камень.
+     */
+    void deleteStone() noexcept;
 
 };
 

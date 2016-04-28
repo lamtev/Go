@@ -2,12 +2,17 @@
 
 Point::Point( int status ) noexcept : status(status)
 {
-
+    this->stone = nullptr;
 }
 
-Point::Point( const Point& point ) noexcept
+Point::Point( const Point& point ) noexcept : status(point.status)
 {
-    this->status = point.status;
+    this->stone = nullptr;
+}
+
+Point::~Point()
+{
+    deleteStone();
 }
 
 Point& Point::operator=( const Point& point ) noexcept
@@ -47,4 +52,12 @@ bool Point::operator!=( const Point& point ) const noexcept
     return !(*this == point);
 }
 
+void Point::createStone( const int first, const int second, const int color, const int breaths ) noexcept
+{
+    stone = new Stone{ first, second, color, breaths };
+}
 
+void Point::deleteStone() noexcept
+{
+    delete stone;
+}
