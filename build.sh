@@ -45,9 +45,8 @@ buildDebugVersion() {
 		../build/debug/GoTests/UnitTests/MoveTest -xml -o  ../report/tests/MoveTestLog.xml || true
 		../build/debug/GoTests/UnitTests/MotionTest -xml -o  ../report/tests/MotionTestLog.xml || true
 		../build/debug/GoTests/UnitTests/ScoreCalculatorTest -xml -o  ../report/tests/ScoreCalculatorTestLog.xml || true
-		
 		cppcheck --version
-		cppcheck --enable=all --std=c++11 -v --xml-version=2  * 2> ../report/cppcheck/cppcheckLog.xml
+		cppcheck --language=c++ --std=c++11 --enable=all -v --xml-version=2  * 2> ../report/cppcheck/cppcheckLog.xml
 		
         	ls
 		
