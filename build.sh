@@ -40,6 +40,7 @@ buildDebugVersion() {
 		
 		
 		../build/debug/GoTests/FunctionalTest/FTest -xml -o ../report/tests/FunctionalTestLog.xml || true
+		../build/debug/GoTests/UnitTests/StoneTest -xml -o  ../report/tests/StoneTestLog.xml || true
 		../build/debug/GoTests/UnitTests/PointTest -xml -o  ../report/tests/PointTestLog.xml || true
 		../build/debug/GoTests/UnitTests/BoardTest -xml -o  ../report/tests/BoardTestLog.xml || true
 		../build/debug/GoTests/UnitTests/MoveTest -xml -o  ../report/tests/MoveTestLog.xml || true
@@ -52,6 +53,7 @@ buildDebugVersion() {
 		
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/FunctionalTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/StoneTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/StoneTest || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/PointTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/PointTest || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/BoardTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/BoardTest || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/MoveTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/MoveTest || true
