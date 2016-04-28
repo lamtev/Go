@@ -20,6 +20,10 @@ void GoGame::begin()
         play();
         printWhoSurrendered();
         printWhoWon();
+        if( !whoWon() )
+        {
+            printCalculateScores();
+        }
     }
 }
 
@@ -419,7 +423,7 @@ void GoGame::printDiagonalInputMessage()
     std::cout << "   (7, 13 or 19)" << std::endl;
 }
 
-bool GoGame::isDiagonalN( const int n, const std::string& input ) const noexcept
+bool GoGame::isDiagonalN( const std::string& input, const int n ) const noexcept
 {
     std::ostringstream ss;
     ss.str("");
@@ -429,20 +433,20 @@ bool GoGame::isDiagonalN( const int n, const std::string& input ) const noexcept
 
 bool GoGame::isDiagonalCorrect( const std::string& input ) const noexcept
 {
-    return isDiagonalN(7, input) || isDiagonalN(13, input) || isDiagonalN(19, input);
+    return isDiagonalN(input, 7) || isDiagonalN(input, 13) || isDiagonalN(input, 19);
 }
 
 int GoGame::getDiagonal( const std::string& input ) const noexcept
 {
-    if( isDiagonalN(7, input) )
+    if( isDiagonalN(input, 7) )
     {
         return 7;
     }
-    else if( isDiagonalN(13, input) )
+    else if( isDiagonalN(input, 13) )
     {
         return 13;
     }
-    else if( isDiagonalN(19, input) )
+    else if( isDiagonalN(input, 19) )
     {
         return 19;
     }
@@ -471,3 +475,15 @@ void GoGame::printEatenStonesStat() const noexcept
     printStonesEatenByWhite();
 }
 
+void GoGame::updateBoard() noexcept
+{
+//    for( int i = goEngineInterface->getBoard().getDiagonal() + 3; i < board.size(); ++i )
+//    {
+//
+//    }
+}
+
+void GoGame::printCalculateScores() const noexcept
+{
+    std::cout << "Calculate your scores" << std::endl;
+}

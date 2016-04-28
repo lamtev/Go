@@ -122,7 +122,6 @@ void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int s
 
 void Motion::ifMoveRepeatThrowException( int first, int second ) const
 {
-    //BUG ifMoveRepeatThrowException
     if( moveIndex >= 2 )
     {
         if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex - 2] )

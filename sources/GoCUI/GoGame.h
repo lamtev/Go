@@ -192,6 +192,11 @@ private:
     void printBoard();
 
     /**
+     * Напечатать "Посчитайте очки".
+     */
+    void printCalculateScores() const noexcept;
+
+    /**
      * Ввести диагональ.
      * @param diagonal диагональ.
      * @return true, если диагональ распарсилась, иначе - false.
@@ -214,7 +219,7 @@ private:
      * @param input входная строка.
      * @return true, если да, и false, если нет.
      */
-    bool isDiagonalN( const int n, const std::string& input ) const noexcept;
+    bool isDiagonalN( const std::string& input, const int n ) const noexcept;
 
     /**
      * Диагональ корректна?
@@ -250,6 +255,11 @@ private:
      * @return true, если введен ключ exit, и false - иначе.
      */
     bool isSurrender( const std::string& input ) const noexcept;
+
+    /**
+     * Обновить доску
+     */
+    void updateBoard() noexcept;
 
 };
 

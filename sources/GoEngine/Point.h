@@ -76,7 +76,7 @@ public:
 
 private:
 
-    int status; /**< статус пункта */
+    int status; /**< Статус пункта */
 
 };
 

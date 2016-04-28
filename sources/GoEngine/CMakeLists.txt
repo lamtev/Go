@@ -17,6 +17,6 @@ set(srcFiles
         Rules/Exceptions/MoveOutsideTheBoardException.h
         Rules/Exceptions/MoveToNotEmtyPointException.h
         Rules/Exceptions/MoveRepeatException.h
-        Rules/Exceptions/MoveToDieException.h)
+        Rules/Exceptions/MoveToDieException.h Stone.cpp Stone.h)
 
 add_library(GoEngine STATIC ${srcFiles})
