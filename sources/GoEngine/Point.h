@@ -15,7 +15,7 @@ public:
      * Конструктор.
      * @param status статус пункта.
      */
-    explicit Point( const int status = EMPTY ) noexcept;
+    Point( int status = EMPTY ) noexcept;
 
     /**
      * Копирующий конструктор.

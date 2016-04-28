@@ -1,6 +1,6 @@
 #include "Point.h"
 
-Point::Point( const int status ) noexcept : status(status)
+Point::Point( int status ) noexcept : status(status)
 {
 
 }
