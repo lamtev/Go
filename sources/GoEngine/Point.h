@@ -50,7 +50,7 @@ public:
      * @param color цвет
      * @param first первая координата
      * @param second вторая координата
-     * @
+     * @param breaths число дыханий
      */
     void createStone( const int color, const int first, const int second, const int breaths ) noexcept;
 

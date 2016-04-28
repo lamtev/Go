@@ -3,6 +3,9 @@
 
 #include "enums.h"
 
+/**
+ * Камень.
+ */
 class Stone
 {
 
