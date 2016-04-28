@@ -16,6 +16,7 @@ void Motion::putStone(Board* board, int first, int second)
     ifNeedResizeMoves();
     ifMoveIllegalThrowException(board, first, second);
     board->operator()(first, second) = whoseMove();
+    board->operator()(first, second).createStone(board->operator()(first, second).getStatus(), first, second, 0);
     moves[moveIndex] = Move{ first, second };
     ++moveIndex;
 }

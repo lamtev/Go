@@ -10,7 +10,7 @@
 #include "Exceptions/MoveToDieException.h"
 #include "Exceptions/MoveToNotEmtyPointException.h"
 
-//TODO
+//TODO реализовать съедение
 
 /**
  * Процесс хода.

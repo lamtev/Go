@@ -34,10 +34,21 @@ void Point::createStone( const int color, const int first, const int second, con
     stone = new Stone{ color, first, second, breaths };
 }
 
+void Point::deleteStone() noexcept
+{
+    delete stone;
+}
+
 int Point::getStatus() const noexcept
 {
     return status;
 }
+
+Stone& Point::getStone() const noexcept
+{
+    return *stone;
+}
+
 
 bool Point::isEmpty() const noexcept
 {
@@ -57,9 +68,4 @@ bool Point::operator==( const Point& point ) const noexcept
 bool Point::operator!=( const Point& point ) const noexcept
 {
     return !(*this == point);
-}
-
-void Point::deleteStone() noexcept
-{
-    delete stone;
 }

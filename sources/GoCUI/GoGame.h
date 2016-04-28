@@ -10,6 +10,8 @@
 #include "enums.h"
 
 //TODO refactor GoGame
+//TODO реализовать help
+//TODO реализовать интерактивную доску
 
 /**
  * Игра.

@@ -17,6 +17,8 @@ private Q_SLOTS:
     void assigmentInt();
     void equallity();
     void inequallity();
+    void createDeleteStone();
+    void getStone();
 
 };
 
@@ -65,6 +67,30 @@ void PointTest::inequallity()
     QVERIFY(Point{ EMPTY } != Point{ BLACK });
     QVERIFY(Point{ BLACK } != Point{ WHITE });
     QVERIFY(Point{ WHITE } != Point{ EMPTY });
+}
+
+void PointTest::createDeleteStone()
+{
+    Point* point = new Point;
+
+    *point = BLACK;
+    point->createStone(point->getStatus(), A, 5, 2);
+    point->deleteStone();
+    point->createStone(point->getStatus(), M, 19, 3);
+    delete point;
+}
+
+void PointTest::getStone()
+{
+    Point* point = new Point{ WHITE };
+
+    point->createStone(point->getStatus(), A, 5, 2);
+    QVERIFY(point->getStone().getColor() == WHITE);
+    QVERIFY(point->getStone().getFirst() == A);
+    QCOMPARE(point->getStone().getSecond(), 5);
+    QCOMPARE(point->getStone().getBreaths(), 2);
+
+    delete point;
 }
 
 QTEST_APPLESS_MAIN(PointTest)

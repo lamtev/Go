@@ -9,7 +9,7 @@
  */
 class Point
 {
-
+//TODO подумать о сравнении камней
 public:
 
     /**
@@ -55,11 +55,22 @@ public:
     void createStone( const int color, const int first, const int second, const int breaths ) noexcept;
 
     /**
+     * Удалить камень.
+     */
+    void deleteStone() noexcept;
+
+    /**
      * Получить статус.
      * Метод для получения статуса пункта.
      * @return статус пункта
      */
     int getStatus() const noexcept;
+
+    /**
+     * Получить камень.
+     * @return ссылку на объект класса Stone
+     */
+    Stone& getStone() const noexcept;
 
     /**
      * Пункт свободен?
@@ -93,11 +104,6 @@ private:
 
     int status; /**< Статус пункта */
     Stone* stone; /**< Указатель на объект класса Stone */
-
-    /**
-     * Удалить камень.
-     */
-    void deleteStone() noexcept;
 
 };
 
