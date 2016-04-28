@@ -21,7 +21,7 @@ public:
      * Конструктор для инициализации объекта по значению диагонали.
      * @param diagonal диагональ
      */
-    Board( int diagonal = 19 ) noexcept;
+    explicit Board( int diagonal = 19 ) noexcept;
 
     /**
      * Оператор скобки.

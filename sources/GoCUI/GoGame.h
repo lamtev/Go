@@ -87,7 +87,7 @@ private:
 
     /**
      * Парсить вторую координату.
-     * @param input строка.
+     * @param command строка.
      * @param second первая координата.
      */
     void parseSecondCoordinate( const std::string& command, int& second ) noexcept;
