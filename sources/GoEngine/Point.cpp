@@ -18,13 +18,20 @@ Point::~Point()
 Point& Point::operator=( const Point& point ) noexcept
 {
     this->status = point.status;
+    this->stone = point.stone;
     return *this;
 }
 
 Point& Point::operator=( const int status ) noexcept
 {
     this->status = status;
+    this->stone = nullptr;
     return *this;
+}
+
+void Point::createStone( const int color, const int first, const int second, const int breaths ) noexcept
+{
+    stone = new Stone{ color, first, second, breaths };
 }
 
 int Point::getStatus() const noexcept
@@ -50,11 +57,6 @@ bool Point::operator==( const Point& point ) const noexcept
 bool Point::operator!=( const Point& point ) const noexcept
 {
     return !(*this == point);
-}
-
-void Point::createStone( const int first, const int second, const int color, const int breaths ) noexcept
-{
-    stone = new Stone{ first, second, color, breaths };
 }
 
 void Point::deleteStone() noexcept

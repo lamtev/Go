@@ -46,6 +46,15 @@ public:
     Point& operator=( const int status ) noexcept;
 
     /**
+     * Создать камень.
+     * @param color цвет
+     * @param first первая координата
+     * @param second вторая координата
+     * @
+     */
+    void createStone( const int color, const int first, const int second, const int breaths ) noexcept;
+
+    /**
      * Получить статус.
      * Метод для получения статуса пункта.
      * @return статус пункта
@@ -84,14 +93,6 @@ private:
 
     int status; /**< Статус пункта */
     Stone* stone; /**< Указатель на объект класса Stone */
-
-    /**
-     * Создать камень.
-     * @param first первая координата
-     * @param second вторая координата
-     * @param color цвет
-     */
-    void createStone( const int first, const int second, const int color, const int breaths ) noexcept;
 
     /**
      * Удалить камень.
