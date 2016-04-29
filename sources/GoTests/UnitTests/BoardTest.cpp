@@ -92,7 +92,7 @@ void BoardTest::get()
 
     for( int i = 0; i < 49; ++i )
     {
-        QCOMPARE(board.get()[i], vector[i]);
+        QCOMPARE(board.get()[i].getStatus(), vector[i].getStatus());
     }
 }
 

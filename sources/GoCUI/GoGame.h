@@ -12,6 +12,7 @@
 //TODO refactor GoGame
 //TODO реализовать help
 //TODO реализовать интерактивную доску
+//BUG exit -> calculate score
 
 /**
  * Игра.
