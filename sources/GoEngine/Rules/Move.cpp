@@ -1,14 +1,6 @@
 #include "Move.h"
 
-Move::Move() noexcept
-{
-
-}
-
-Move::Move( const int first, const int second ) noexcept : first(first), second(second)
-{
-
-}
+Move::Move( const int first, const int second ) noexcept : first(first), second(second){}
 
 Move::Move( const Move& move ) noexcept
 {

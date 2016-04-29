@@ -10,17 +10,13 @@ class Move
 {
 
 public:
-    /**
-     * Конструктор.
-     */
-    Move() noexcept;
 
     /**
      * Конструктор.
      * @param first первая координата
      * @param second вторая координата
      */
-    Move( const int first, const int second ) noexcept;
+    Move( const int first = -2, const int second = -2 ) noexcept;
 
     /**
      * Копирующий конструктор.
