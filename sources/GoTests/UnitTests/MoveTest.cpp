@@ -17,13 +17,13 @@ private Q_SLOTS:
     void assigment();
     void equallity();
     void inequallity();
+    void getFirst();
+    void getSecond();
 
 
 };
 
-MoveTest::MoveTest()
-{
-}
+MoveTest::MoveTest(){}
 
 void MoveTest::assigment()
 {
@@ -61,6 +61,24 @@ void MoveTest::inequallity()
     move1 = Move{ 128, 0 };
     move2 = Move{ 13, 17 };
     QVERIFY(move1 != move2);
+}
+
+void MoveTest::getFirst()
+{
+    Move move{ 10, 15 };
+    QCOMPARE(move.getFirst(), 10);
+
+    move = Move{ 99, 12 };
+    QCOMPARE(move.getFirst(), 99);
+}
+
+void MoveTest::getSecond()
+{
+    Move move{ 10, 15 };
+    QCOMPARE(move.getSecond(), 15);
+
+    move = Move{ 99, 12 };
+    QCOMPARE(move.getSecond(), 12);
 }
 
 QTEST_APPLESS_MAIN(MoveTest)

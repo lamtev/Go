@@ -14,25 +14,15 @@ public:
 
 
 private Q_SLOTS:
-    void getDiagonal();
     void initialization();
+    void getDiagonal();
     void indexation();
     void assigment();
     void get();
 
 };
 
-BoardTest::BoardTest()
-{
-}
-
-void BoardTest::getDiagonal()
-{
-    Board b{ 19 };
-    QCOMPARE(b.getDiagonal(), 19);
-    Board b1{ 7 };
-    QCOMPARE(b1.getDiagonal(), 7);
-}
+BoardTest::BoardTest(){}
 
 void BoardTest::initialization()
 {
@@ -44,6 +34,14 @@ void BoardTest::initialization()
             QVERIFY(b(i, j).isEmpty());
         }
     }
+}
+
+void BoardTest::getDiagonal()
+{
+    Board b{ 19 };
+    QCOMPARE(b.getDiagonal(), 19);
+    Board b1{ 7 };
+    QCOMPARE(b1.getDiagonal(), 7);
 }
 
 void BoardTest::indexation()

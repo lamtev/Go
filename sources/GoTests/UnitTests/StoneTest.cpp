@@ -21,9 +21,7 @@ private Q_SLOTS:
 
 };
 
-StoneTest::StoneTest()
-{
-}
+StoneTest::StoneTest(){}
 
 void StoneTest::getColor()
 {
