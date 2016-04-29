@@ -12,24 +12,17 @@ public:
 
 
 private Q_SLOTS:
-    void getStatus();
     void assigmentObject();
     void assigmentInt();
     void createDeleteStone();
+    void getStatus();
     void getStone();
+    void isEmpty();
+    void isNotEmpty();
 
 };
 
-PointTest::PointTest()
-{
-
-}
-
-void PointTest::getStatus()
-{
-    Point s{ BLACK };
-    QVERIFY(s.getStatus() == BLACK);
-}
+PointTest::PointTest(){}
 
 void PointTest::assigmentObject()
 {
@@ -63,6 +56,12 @@ void PointTest::createDeleteStone()
     delete point;
 }
 
+void PointTest::getStatus()
+{
+    Point s{ BLACK };
+    QVERIFY(s.getStatus() == BLACK);
+}
+
 void PointTest::getStone()
 {
     Point* point = new Point{ WHITE };
@@ -74,6 +73,28 @@ void PointTest::getStone()
     QCOMPARE(point->getStone().getBreaths(), 2);
 
     delete point;
+}
+
+void PointTest::isEmpty()
+{
+    Point point{ BLACK };
+    QVERIFY(!point.isEmpty());
+    point = EMPTY;
+    QVERIFY(point.isEmpty());
+    point = WHITE;
+    QVERIFY(!point.isEmpty());
+    point = EMPTY;
+    QVERIFY(point.isEmpty());
+}
+
+void PointTest::isNotEmpty()
+{
+    Point point;
+    QVERIFY(!point.isNotEmpty());
+    point = BLACK;
+    QVERIFY(point.isNotEmpty());
+    point = WHITE;
+    QVERIFY(point.isNotEmpty());
 }
 
 QTEST_APPLESS_MAIN(PointTest)
