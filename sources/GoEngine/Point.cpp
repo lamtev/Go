@@ -12,7 +12,7 @@ Point::Point( const Point& point ) noexcept : status(point.status)
 
 Point::~Point()
 {
-    deleteStone();
+    delete stone;
 }
 
 Point& Point::operator=( const Point& point ) noexcept
@@ -37,6 +37,7 @@ void Point::createStone( const int color, const int first, const int second, con
 void Point::deleteStone() noexcept
 {
     delete stone;
+    stone = nullptr;
 }
 
 int Point::getStatus() const noexcept

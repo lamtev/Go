@@ -166,7 +166,7 @@ void MotionTest::whoWon()
     delete board;
     delete motion;
 
-    
+
     board = new Board{ 7 };
     motion = new Motion{};
 
