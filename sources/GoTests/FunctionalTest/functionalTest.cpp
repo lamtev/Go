@@ -5,7 +5,6 @@
 #include <sstream>
 
 #include "../../GoEngine/GoEngineInterface.h"
-#include "../../GoEngine/enums.h"
 #include "InitBoards.h"
 
 using namespace std;
@@ -18,7 +17,7 @@ public:
     FunctionalTest();
 
 private Q_SLOTS:
-    void start();
+    void checkNewDelete();
     void paintBoard();
     void makeMove();
 };
@@ -28,10 +27,12 @@ FunctionalTest::FunctionalTest()
 
 }
 
-void FunctionalTest::start()
+void FunctionalTest::checkNewDelete()
 {
-    GoEngineInterface Go;
-    Go.startGame(19, CHINESE, NIGIRI);
+    GoEngineInterface* go = new GoEngineInterface;
+    delete go;
+    go = nullptr;
+    delete go;
 }
 
 void FunctionalTest::paintBoard()
