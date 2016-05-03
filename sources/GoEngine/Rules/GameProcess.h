@@ -34,13 +34,13 @@ public:
 
     /**
      * Положить камень.
+     * @param first первая координата
+     * @param second вторая координата
      */
     void putStone( int first, int second );
 
     /**
      * Пропустить ход.
-     * @param first первая координата
-     * @param second вторая координата
      */
     void pass() noexcept;
 
