@@ -44,8 +44,7 @@ buildDebugVersion() {
 		../build/debug/GoTests/UnitTests/PointTest -xml -o  ../report/tests/PointTestLog.xml || true
 		../build/debug/GoTests/UnitTests/BoardTest -xml -o  ../report/tests/BoardTestLog.xml || true
 		../build/debug/GoTests/UnitTests/MoveTest -xml -o  ../report/tests/MoveTestLog.xml || true
-		../build/debug/GoTests/UnitTests/MotionTest -xml -o  ../report/tests/MotionTestLog.xml || true
-		../build/debug/GoTests/UnitTests/ScoreCalculatorTest -xml -o  ../report/tests/ScoreCalculatorTestLog.xml || true
+		../build/debug/GoTests/UnitTests/MotionTest -xml -o  ../report/tests/GameProcessTestLog.xml || true
 		cppcheck --version
 		cppcheck --language=c++ --std=c++11 --enable=all -v --xml-version=2  * 2> ../report/cppcheck/cppcheckLog.xml
 		
@@ -57,8 +56,7 @@ buildDebugVersion() {
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/PointTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/PointTest || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/BoardTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/BoardTest || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/MoveTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/MoveTest || true
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/MotionTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/MotionTest || true
-		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/ScoreCalculatorTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/ScoreCalculatorTest || true
+		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/GameProcessTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/GameProcessTest || true
 
         cd ../report/doxygen
 		if [ -e "goconfig" ]; then
