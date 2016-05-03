@@ -10,8 +10,7 @@ set(srcFiles
         Model/Exceptions/IncorrectDiagonalException.h
 
         Rules/Move.cpp Rules/Move.h
-        Rules/Motion.cpp Rules/Motion.h
-        Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h
+        Rules/GameProcess.cpp Rules/GameProcess.h
 
         Rules/Exceptions/MoveException.h
         Rules/Exceptions/MoveOutsideTheBoardException.h

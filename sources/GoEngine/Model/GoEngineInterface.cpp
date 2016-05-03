@@ -2,81 +2,75 @@
 
 GoEngineInterface::GoEngineInterface() noexcept
 {
-    board = nullptr;
-    motion = nullptr;
-    scoreCalculator = nullptr;
+    gameProcess = nullptr;
 }
 
 void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution) noexcept
 {
-    board = new Board{ diagonal };
-    motion = new Motion{};
-    scoreCalculator = new ScoreCalculator{};
+    gameProcess = new GameProcess { diagonal };
 }
 
 GoEngineInterface::~GoEngineInterface()
 {
-    delete board;
-    delete motion;
-    delete scoreCalculator;
+    delete gameProcess;
 }
 
 void GoEngineInterface::putStone( const int first, const int second )
 {
-    motion->putStone(board, first, second);
+    gameProcess->putStone(first, second);
 }
 
 void GoEngineInterface::pass() noexcept
 {
-    motion->pass();
+    gameProcess->pass();
 }
 
 void GoEngineInterface::surrender() noexcept
 {
-    motion->surrender();
+    gameProcess->surrender();
 }
 
 int GoEngineInterface::whoseMove() const noexcept
 {
-    return motion->whoseMove();
+    return gameProcess->whoseMove();
 }
 
 bool GoEngineInterface::isGameOver() const noexcept
 {
-    return motion->isGameOver();
+    return gameProcess->isGameOver();
 }
 
 int GoEngineInterface::whoSurrendered() const noexcept
 {
-    return motion->whoSurrendered();
+    return gameProcess->whoSurrendered();
 }
 
 int GoEngineInterface::whoWon() const noexcept
 {
-    return motion->whoWon();
-}
-
-Board& GoEngineInterface::getBoard() const noexcept
-{
-    return *board;
+    return gameProcess->whoWon();
 }
 
 int GoEngineInterface::getStonesEatenByBlack() const noexcept
 {
-    return motion->getStonesEatenByBlack();
+    return gameProcess->getStonesEatenByBlack();
 }
 
 int GoEngineInterface::getStonesEatenByWhite() const noexcept
 {
-    return motion->getStonesEatenByWhite();
+    return gameProcess->getStonesEatenByWhite();
 }
 
 std::vector<Move>& GoEngineInterface::getMoves() const noexcept
 {
-    return motion->getMoves();
+    return gameProcess->getMoves();
 }
 
 Move& GoEngineInterface::getLastMove() const noexcept
 {
-    return motion->getLastMove();
+    return gameProcess->getLastMove();
+}
+
+int GoEngineInterface::getDiagonal() const noexcept
+{
+    return gameProcess->getBoard().getDiagonal();
 }

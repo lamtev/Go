@@ -378,7 +378,7 @@ void GoGame::printWhiteWon() const noexcept
 
 void GoGame::printBoard()
 {
-    int diagonal = goEngineInterface->getBoard().getDiagonal();
+    int diagonal = goEngineInterface->getDiagonal();
     for( int i = 0; i < (diagonal + 2) * (diagonal * 2 + 5); ++ i )
     {
         if (i % (diagonal * 2 + 5) == 0)

@@ -1,7 +1,8 @@
-#include "Motion.h"
+#include "GameProcess.h"
 
-Motion::Motion() noexcept
+GameProcess::GameProcess( const int diagonal ) noexcept : diagonal(diagonal)
 {
+    board = new Board{ diagonal };
     moveIndex = 0;
     movesSize = 100;
     surrendered = EMPTY;
@@ -11,39 +12,44 @@ Motion::Motion() noexcept
     moves.resize(movesSize);
 }
 
-void Motion::putStone(Board* board, int first, int second)
+GameProcess::~GameProcess()
+{
+    delete board;
+}
+
+void GameProcess::putStone( int first, int second )
 {
     ifNeedResizeMoves();
-    ifMoveIllegalThrowException(board, first, second);
+    ifMoveIllegalThrowException(first, second);
     board->operator()(first, second) = whoseMove();
     board->operator()(first, second).createStone(board->operator()(first, second).getStatus(), first, second, 0);
     moves[moveIndex] = Move{ first, second };
     ++moveIndex;
 }
 
-void Motion::pass() noexcept
+void GameProcess::pass() noexcept
 {
     ifNeedResizeMoves();
     moves[moveIndex] = passedMove;
     ++moveIndex;
 }
 
-void Motion::surrender() noexcept
+void GameProcess::surrender() noexcept
 {
     surrendered = whoseMove();
 }
 
-bool Motion::isGameOver() const noexcept
+bool GameProcess::isGameOver() const noexcept
 {
     return areTwoPasses() || whoSurrendered();
 }
 
-int Motion::whoSurrendered() const noexcept
+int GameProcess::whoSurrendered() const noexcept
 {
     return surrendered;
 }
 
-int Motion::whoWon() const noexcept
+int GameProcess::whoWon() const noexcept
 {
     switch( surrendered )
     {
@@ -56,47 +62,52 @@ int Motion::whoWon() const noexcept
     }
 }
 
-int Motion::getMoveIndex() const noexcept
+int GameProcess::getMoveIndex() const noexcept
 {
     return moveIndex;
 }
 
-std::vector<Move>& Motion::getMoves() const noexcept
+std::vector<Move>& GameProcess::getMoves() const noexcept
 {
     return const_cast<std::vector<Move>&>(moves);
 }
 
-int Motion::whoseMove() const noexcept
+int GameProcess::whoseMove() const noexcept
 {
     return isBlacksMove() ? BLACK : WHITE;
 }
 
-int Motion::getStonesEatenByBlack() const noexcept
+int GameProcess::getStonesEatenByBlack() const noexcept
 {
     return stonesEatenByBlack;
 }
 
-int Motion::getStonesEatenByWhite() const noexcept
+int GameProcess::getStonesEatenByWhite() const noexcept
 {
     return stonesEatenByWhite;
 }
 
-Move& Motion::getLastMove() const noexcept
+Move& GameProcess::getLastMove() const noexcept
 {
     return const_cast<Move&>(moves[moveIndex - 1]);
 }
 
-bool Motion::areTwoPasses() const noexcept
+Board& GameProcess::getBoard() const noexcept
+{
+    return *board;
+}
+
+bool GameProcess::areTwoPasses() const noexcept
 {
     return moveIndex >= 2 ? moves[moveIndex - 1] == passedMove && moves[moveIndex - 1] == moves[moveIndex - 2] : false;
 }
 
-bool Motion::isBlacksMove() const noexcept
+bool GameProcess::isBlacksMove() const noexcept
 {
     return !(moveIndex % 2);
 }
 
-void Motion::ifNeedResizeMoves() noexcept
+void GameProcess::ifNeedResizeMoves() noexcept
 {
     if( movesSize - 1 == moveIndex )
     {
@@ -105,12 +116,12 @@ void Motion::ifNeedResizeMoves() noexcept
     }
 }
 
-void Motion::removeEatenStones() noexcept
+void GameProcess::removeEatenStones() noexcept
 {
     //TODO removeEatenStones
 }
 
-void Motion::ifMoveOutsideTheBoardThrowException( Board* board, int first, int second ) const
+void GameProcess::ifMoveOutsideTheBoardThrowException( int first, int second ) const
 {
     if( first < 1 || first > board->getDiagonal() || second < 1 || second > board->getDiagonal() )
     {
@@ -118,7 +129,7 @@ void Motion::ifMoveOutsideTheBoardThrowException( Board* board, int first, int s
     }
 }
 
-void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const
+void GameProcess::ifMoveToNotEmptyPointThrowException( int first, int second ) const
 {
     if( board->operator()(first, second).isNotEmpty() )
     {
@@ -126,7 +137,7 @@ void Motion::ifMoveToNotEmptyPointThrowException( Board* board, int first, int s
     }
 }
 
-void Motion::ifMoveRepeatThrowException( int first, int second ) const
+void GameProcess::ifMoveRepeatThrowException( int first, int second ) const
 {
     if( moveIndex >= 2 )
     {
@@ -137,9 +148,9 @@ void Motion::ifMoveRepeatThrowException( int first, int second ) const
     }
 }
 
-void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) const
+void GameProcess::ifMoveToDieThrowException( int first, int second ) const
 {
-    //TODO void Motion::ifMoveToDie
+    //TODO void GameProcess::ifMoveToDie
 
     if( false )
     {
@@ -147,10 +158,10 @@ void Motion::ifMoveToDieThrowException( Board* board, int first, int second ) co
     }
 }
 
-void Motion::ifMoveIllegalThrowException( Board* board, int first, int second ) const
+void GameProcess::ifMoveIllegalThrowException( int first, int second ) const
 {
-    ifMoveOutsideTheBoardThrowException(board, first, second);
-    ifMoveToNotEmptyPointThrowException(board, first, second);
+    ifMoveOutsideTheBoardThrowException(first, second);
+    ifMoveToNotEmptyPointThrowException(first, second);
     //ifMoveRepeatThrowException(first, second);
-    ifMoveToDieThrowException(board, first, second);
+    ifMoveToDieThrowException(first, second);
 }

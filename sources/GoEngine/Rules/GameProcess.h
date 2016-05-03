@@ -1,5 +1,5 @@
-#ifndef GO_MOTION_H
-#define GO_MOTION_H
+#ifndef GO_GAMEPROCESS_H
+#define GO_GAMEPROCESS_H
 
 #include <vector>
 
@@ -17,23 +17,30 @@
  * Cледит за тем, чтобы ходы выполнялись в соответствии с правилами.
  * Определяет очерёдность ходов. Определяет победителя и проигравшего.
  */
-class Motion
+class GameProcess
 {
     
 public:
 
     /**
-     * Конструктор
+     * Конструктор.
      */
-    Motion() noexcept;
+    GameProcess( const int diagonal ) noexcept;
 
     /**
-     * Положить камень
+     * Деструктор.
      */
-    void putStone( Board* board, int first, int second );
+    ~GameProcess() noexcept;
 
     /**
-     * Пропустить ход
+     * Положить камень.
+     */
+    void putStone( int first, int second );
+
+    /**
+     * Пропустить ход.
+     * @param first первая координата
+     * @param second вторая координата
      */
     void pass() noexcept;
 
@@ -96,8 +103,16 @@ public:
      */
     Move& getLastMove() const noexcept;
 
+    /**
+     * Получить доску.
+     * @return доску
+     */
+    Board& getBoard() const noexcept;
+
 private:
 
+    int diagonal; /**< Диагональ доски */
+    Board* board; /**< Доска */
     std::vector<Move> moves; /**< Вектор, хранящий все ходы */
     int moveIndex; /**< Индекс ходов */
     int movesSize;  /**< Размер вектора ходов */
@@ -133,20 +148,18 @@ private:
     /**
      * Если ход за пределы доски, бросить исключение.
      * Данная функция-член выбрасывает исключение, если игрок совершает ход за пределы доски.
-     * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveOutsideTheBoardThrowException( Board* board, int first, int second ) const;
+    void ifMoveOutsideTheBoardThrowException( int first, int second ) const;
 
     /**
      * Если ход в занятый пункт, бросить исключение.
      * Данная функция-член выбрасывает исключение, если игрок совершает ход в уже занятый пункт.
-     * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveToNotEmptyPointThrowException( Board* board, int first, int second ) const;
+    void ifMoveToNotEmptyPointThrowException( int first, int second ) const;
 
     /**
      * Если повтор хода, бросить исключение.
@@ -159,21 +172,19 @@ private:
     /**
      * Если ход под смерть, бросить исключение.
      * Данный метод выбрасывает исключение, если ход совершается под смерть
-     * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveToDieThrowException( Board* board, int first, int second ) const;
+    void ifMoveToDieThrowException( int first, int second ) const;
 
     /**
      * Если ход неверен, бросить исключение.
-     * @param board указатель на объект доски
      * @param first первая координата
      * @param second вторая координата
      */
-    void ifMoveIllegalThrowException( Board* board, int first, int second ) const;
+    void ifMoveIllegalThrowException( int first, int second ) const;
 
 };
 
 
-#endif //GO_MOTION_H
+#endif //GO_GAMEPROCESS_H

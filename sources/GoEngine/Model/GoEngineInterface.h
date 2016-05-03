@@ -3,9 +3,7 @@
 
 #include <string>
 
-#include "Board.h"
-#include "../Rules/Motion.h"
-#include "../Rules/ScoreCalculator.h"
+#include "../Rules/GameProcess.h"
 
 /**
  * Интерфейс движка, предоставляемый приложению
@@ -76,10 +74,10 @@ public:
     int whoWon() const noexcept;
 
     /**
-     * Получить доску.
-     * @return ссылку на объект класса Board
+     * Получить диагональ.
+     * @return диагональ
      */
-    Board& getBoard() const noexcept;
+    int getDiagonal() const noexcept;
 
     /**
      * Получить число камней, съеденных чёрным.
@@ -119,9 +117,7 @@ public:
 
 private:
 
-    Board* board; /**< Указатель на объект игровой доски */
-    Motion* motion; /**< Указатель на объект процесса ходов */
-    ScoreCalculator* scoreCalculator; /**< Указатель на объект калькулятора очков */
+    GameProcess* gameProcess; /**< Указатель на объект процесса ходов */
 
 };
 
