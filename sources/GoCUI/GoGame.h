@@ -12,7 +12,6 @@
 
 //TODO refactor GoGame
 //TODO help for console args
-//TODO реализовать интерактивную доску
 
 /**
  * Игра.
@@ -49,6 +48,8 @@ private:
     bool exit; /**< Выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
+    Move* lastMove; /**< Последний ход */
+    Move* penultMove; /**< Предпоследний ход */
 
     /**
      * Настроить игру.
@@ -213,7 +214,7 @@ private:
      * @param diagonal диагональ.
      * @return true, если диагональ распарсилась, иначе - false.
      */
-    bool parseDiagonal( int& diagonal );
+    bool parseDiagonal( int& diagonal ) noexcept;
 
     /**
      * Ввести ход.
@@ -280,6 +281,10 @@ private:
      */
     void updateBoard() noexcept;
 
+    /**
+     * Выделить последний ход.
+     */
+    void markLastMove() noexcept;
 };
 
 #endif //GO_GOGAME_H

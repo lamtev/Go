@@ -74,3 +74,8 @@ int GoEngineInterface::getDiagonal() const noexcept
 {
     return gameProcess->getBoard().getDiagonal();
 }
+
+int GoEngineInterface::getIJPointsStatus( const int i, const int j ) const noexcept
+{
+    return gameProcess->getBoard().operator()(i, j).getStatus();
+}

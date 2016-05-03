@@ -8,12 +8,16 @@ GoGame::GoGame( const int argc, char** argv ) : argc(argc), argv(argv)
     needHelp = false;
     hasExceptionThrown = false;
     exit = false;
+    lastMove = nullptr;
+    penultMove = nullptr;
 }
 
 GoGame::~GoGame()
 {
     delete goEngineInterface;
     delete help;
+    delete lastMove;
+    delete penultMove;
 }
 
 void GoGame::begin()
@@ -74,6 +78,7 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second )
     {
         ifNeedPrintHelp();
         printEatenStonesStat();
+        updateBoard();
         printBoard();
         ifNeedPrintMessage();
         printWhoseMove();
@@ -114,6 +119,8 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
         break;
     case MOVE :
         putStone(first, second);
+        delete lastMove;
+        lastMove = new Move{ first, second};
         break;
     case PASS :
         pass();
@@ -408,6 +415,47 @@ void GoGame::printBoard()
     }
     std::cout << std::endl;
 }
+
+void GoGame::updateBoard() noexcept
+{
+    int diagonal = goEngineInterface->getDiagonal();
+    for( int i = 1; i <= diagonal; ++i )
+    {
+        for( int j = 1; j <= diagonal; ++j )
+        {
+            switch( goEngineInterface->getIJPointsStatus(i, j) )
+            {
+            case EMPTY :
+                board[j*(diagonal * 2 + 5) + 1 + 2 * i] = '.';
+                break;
+            case BLACK :
+                board[j*(diagonal * 2 + 5) + 1 + 2 * i] = 'B';
+                break;
+            case WHITE :
+                board[j * (diagonal * 2 + 5) + 1 + 2 * i] = 'W';
+                break;
+            }
+        }
+    }
+    markLastMove();
+}
+
+void GoGame::markLastMove() noexcept
+{
+    if( penultMove != nullptr)
+    {
+        board[penultMove->getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * penultMove->getFirst()] = ' ';
+        board[penultMove->getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * penultMove->getFirst()] = ' ';
+    }
+    if( lastMove != nullptr )
+    {
+        board[lastMove->getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * (lastMove->getFirst())] = '[';
+        board[lastMove->getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * (lastMove->getFirst())] = ']';
+        delete penultMove;
+        penultMove = new Move{ *lastMove };
+    }
+}
+
 void GoGame::printStonesEatenByBlack() const noexcept
 {
     std::cout << "Stones eaten by black: " << goEngineInterface->getStonesEatenByBlack() << std::endl;
@@ -418,7 +466,7 @@ void GoGame::printStonesEatenByWhite() const noexcept
     std::cout << "Stones eaten by white: " << goEngineInterface->getStonesEatenByWhite() << std::endl;
 }
 
-bool GoGame::parseDiagonal( int& diagonal )
+bool GoGame::parseDiagonal( int& diagonal ) noexcept
 {
     bool isInputIncorrect = true;
     std::string input;
@@ -525,13 +573,7 @@ void GoGame::printEatenStonesStat() const noexcept
     printStonesEatenByWhite();
 }
 
-void GoGame::updateBoard() noexcept
-{
-//    for( int i = goEngineInterface->getBoard().getDiagonal() + 3; i < board.size(); ++i )
-//    {
-//
-//    }
-}
+
 
 void GoGame::printCalculateScores() const noexcept
 {

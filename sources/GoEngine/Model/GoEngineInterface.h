@@ -80,6 +80,11 @@ public:
     int getDiagonal() const noexcept;
 
     /**
+     * Получить статус i,j - го пункта доски.
+     */
+    int getIJPointsStatus( const int i, const int j ) const noexcept;
+
+    /**
      * Получить число камней, съеденных чёрным.
      * @return число камней, съеденных чёрным
      */
