@@ -104,7 +104,7 @@ Board& GameProcess::getBoard() const noexcept
 
 bool GameProcess::areTwoPasses() const noexcept
 {
-    return moveIndex >= 2 ? moves[moveIndex - 1] == passedMove && moves[moveIndex - 1] == moves[moveIndex - 2] : false;
+    return moveIndex >= 2 ? getLastMove() == passedMove && getLastMove() == getPenultMove() : false;
 }
 
 bool GameProcess::isBlacksMove() const noexcept
@@ -146,7 +146,8 @@ void GameProcess::ifMoveRepeatThrowException( int first, int second ) const
 {
     if( moveIndex >= 2 )
     {
-        if( moves[moveIndex] != passedMove && moves[moveIndex] == moves[moveIndex - 2] )
+        Move currentMove{ first, second };
+        if( currentMove != passedMove && currentMove == getPenultMove() )
         {
             throw MoveRepeatException();
         }

@@ -24,6 +24,7 @@ private Q_SLOTS:
     void getBoard();
     void whoseMove();
     void getLastMove();
+    void getPenultMove();
     void getStonesEatenBy();
     void throwingMoveOutsideTheBoardException();
     void throwingMoveToNotEmptyPointException();
@@ -252,6 +253,31 @@ void GameProcessTest::getLastMove()
     delete gameProcess;
 }
 
+void GameProcessTest::getPenultMove()
+{
+    GameProcess* gameProcess = new GameProcess{ 19 };
+
+    gameProcess->putStone(A, 3);
+    gameProcess->putStone(D, 3);
+    Move move{ A, 3 };
+    QCOMPARE(gameProcess->getPenultMove(), move);
+    gameProcess->putStone(B, 2);
+    gameProcess->putStone(C, 2);
+    gameProcess->putStone(B, 4);
+    move = Move{ C, 2 };
+    QCOMPARE(gameProcess->getPenultMove(), move);
+    gameProcess->putStone(C, 4);
+    gameProcess->putStone(C, 3);
+    move = Move{ C, 4 };
+    QCOMPARE(gameProcess->getPenultMove(), move);
+    gameProcess->putStone(B, 3);
+    gameProcess->pass();
+    move = Move{ B, 3 };
+    QCOMPARE(gameProcess->getPenultMove(), move);
+
+    delete gameProcess;
+}
+
 void GameProcessTest::getStonesEatenBy()
 {
     //Перестанет падать, когда будет реализовано съедение и подсчет съеденных камней!!!
@@ -363,7 +389,6 @@ void GameProcessTest::throwingMoveToDieException()
     
     delete gameProcess;
 }
-
 
 QTEST_APPLESS_MAIN(GameProcessTest)
 
