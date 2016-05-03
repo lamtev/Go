@@ -70,6 +70,17 @@ Move& GoEngineInterface::getLastMove() const noexcept
     return gameProcess->getLastMove();
 }
 
+Move& GoEngineInterface::getPenultMove() const noexcept
+{
+    return gameProcess->getPenultMove();
+}
+
+int GoEngineInterface::getMoveIndex() const noexcept
+{
+    return gameProcess->getMoveIndex();
+}
+
+
 int GoEngineInterface::getDiagonal() const noexcept
 {
     return gameProcess->getBoard().getDiagonal();

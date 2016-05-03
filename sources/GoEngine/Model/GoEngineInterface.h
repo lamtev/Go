@@ -109,6 +109,18 @@ public:
     Move& getLastMove() const noexcept;
 
     /**
+     * Получить предпоследний совершённый ход.
+     * @return ссылку на предпоследний совершённый ход
+     */
+    Move& getPenultMove() const noexcept;
+
+    /**
+     * Получить индекс хода.
+     * @return индекс хода
+     */
+    int getMoveIndex() const noexcept;
+
+    /**
      * Получить очки чёрного.
      * @return очки чёрного
      */

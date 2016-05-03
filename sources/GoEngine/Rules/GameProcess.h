@@ -104,6 +104,12 @@ public:
     Move& getLastMove() const noexcept;
 
     /**
+     * Получить предпоследний совершённых ход.
+     * @return ссылка на последний совершённый ход
+     */
+    Move& getPenultMove() const noexcept;
+
+    /**
      * Получить доску.
      * @return доску
      */

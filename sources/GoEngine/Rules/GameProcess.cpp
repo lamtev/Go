@@ -92,6 +92,11 @@ Move& GameProcess::getLastMove() const noexcept
     return const_cast<Move&>(moves[moveIndex - 1]);
 }
 
+Move& GameProcess::getPenultMove() const noexcept
+{
+    return const_cast<Move&>(moves[moveIndex - 2]);
+}
+
 Board& GameProcess::getBoard() const noexcept
 {
     return *board;

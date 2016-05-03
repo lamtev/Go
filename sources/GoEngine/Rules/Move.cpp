@@ -34,3 +34,8 @@ bool Move::operator!=( const Move& move ) const noexcept
 {
     return !(*this == move);
 }
+
+bool Move::isNotPass() const noexcept
+{
+    return *this != Move{ PASS_COORD, PASS_COORD };
+}

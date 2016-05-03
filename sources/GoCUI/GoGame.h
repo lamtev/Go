@@ -48,8 +48,6 @@ private:
     bool exit; /**< Выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
-    Move* lastMove; /**< Последний ход */
-    Move* penultMove; /**< Предпоследний ход */
 
     /**
      * Настроить игру.

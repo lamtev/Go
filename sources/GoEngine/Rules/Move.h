@@ -60,6 +60,12 @@ public:
      */
     bool operator!=( const Move& move ) const noexcept;
 
+    /**
+     * Не пропуск?
+     * @return true, если ход - не пропуск, и false, если пропуск
+     */
+    bool isNotPass() const noexcept;
+
 private:
 
     int first; /**< Первая координата */
