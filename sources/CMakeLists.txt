@@ -4,10 +4,8 @@ project(Go)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -std=c++11 -std=gnu++11 -DNDEBUG")
-set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11 -std=gnu++11 -fprofile-arcs -ftest-coverage -O0 -o --coverage")
-
-link_libraries(gcov)
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -std=c++11 -static-libgcc -static-libstdc++")
+set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11")
 
 add_subdirectory(GoEngine)
 add_subdirectory(GoCUI)

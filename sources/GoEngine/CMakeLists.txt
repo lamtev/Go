@@ -1,21 +1,21 @@
 #GoEngine
 
 set(srcFiles
-        enums.h
-        GoEngineInterface.cpp GoEngineInterface.h
-        Point.cpp Point.h
-        Board.cpp Board.h
+        Model/enums.h
+        Model/GoEngineInterface.cpp Model/GoEngineInterface.h
+        Model/Point.cpp Model/Point.h
+        Model/Board.cpp Model/Board.h
 
-        BoundsViolationException.h
-        IncorrectDiagonalException.h
 
-        Rules/Motion.cpp Rules/Motion.h
-        Rules/Moves.cpp Rules/Moves.h
+        Model/Exceptions/IncorrectDiagonalException.h
 
-        Rules/MoveToNotEmtyPointException.h
-        Rules/MoveRepeatException.h
-        Rules/MoveToDieException.h
+        Rules/Move.cpp Rules/Move.h
+        Rules/GameProcess.cpp Rules/GameProcess.h
 
-        Rules/ScoreCalculator.cpp Rules/ScoreCalculator.h)
+        Rules/Exceptions/MoveException.h
+        Rules/Exceptions/MoveOutsideTheBoardException.h
+        Rules/Exceptions/MoveToNotEmtyPointException.h
+        Rules/Exceptions/MoveRepeatException.h
+        Rules/Exceptions/MoveToDieException.h Model/Stone.cpp Model/Stone.h)
 
 add_library(GoEngine STATIC ${srcFiles})

@@ -2,12 +2,12 @@
 #include <QtTest>
 #include <vector>
 #include <iostream>
+#include <sstream>
+
+#include "../../GoEngine/Model/GoEngineInterface.h"
+#include "InitBoards.h"
 
 using namespace std;
-
-#include "../../GoEngine/GoEngineInterface.h"
-#include "../../GoCUI/InitBoards.h"
-#include "../../GoEngine/enums.h"
 
 class FunctionalTest : public QObject
 {
@@ -17,7 +17,7 @@ public:
     FunctionalTest();
 
 private Q_SLOTS:
-    void start();
+    void checkNewDelete();
     void paintBoard();
     void makeMove();
 };
@@ -27,10 +27,12 @@ FunctionalTest::FunctionalTest()
 
 }
 
-void FunctionalTest::start()
+void FunctionalTest::checkNewDelete()
 {
-    GoEngineInterface Go;
-    Go.startGame(19, JAPANESE, NIGIRI);
+    GoEngineInterface* go = new GoEngineInterface;
+    delete go;
+    go = nullptr;
+    delete go;
 }
 
 void FunctionalTest::paintBoard()
@@ -41,46 +43,16 @@ void FunctionalTest::paintBoard()
         {
             cout << endl;
         }
-        cout << BOARD19[i];
+        cout << BOARD19A[i];
     }
     cout << endl;
 }
 
 void FunctionalTest::makeMove()
 {
-    GoEngineInterface Go;
-    Go.startGame(19, JAPANESE, NIGIRI);
-    int x, y;
-    int counter = 0;
-    while( true )
-    {
-        if( counter % 2 == 0 )
-        {
-            cout << "Black" << endl;
-            cout << "Input coordinates" << endl;
-            cin >> x >> y;
-            x = 99;
-            if( x == 99 )
-            {
-                break;
-            }
-            Go.putStone(BLACK, x, y);
-        }
-        else
-        {
-            cout << "White" << endl;
-            cout << "Input coordinates" << endl;
-            cin >> x >> y;
-            x = 99;
-            if( x == 99 )
-            {
-                break;
-            }
-            Go.putStone(WHITE, x, y);
-        }
-        counter = (++counter) % 2;
-    }
+
 }
+
 
 QTEST_APPLESS_MAIN(FunctionalTest)
 
