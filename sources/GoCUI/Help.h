@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+/**
+ * Help.
+ */
 class Help
 {
 
@@ -64,6 +67,11 @@ private :
      * Вывести сообщение хэлпа
      */
     void emptyLine() const noexcept;
+
+    /**
+     * Вывести сообщение хэлпа
+     */
+    void printSmthAbtGame() const noexcept;
 };
 
 

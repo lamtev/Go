@@ -439,6 +439,7 @@ void GoGame::updateBoard() noexcept
 
 void GoGame::markLastMove() noexcept
 {
+    //BUG with marking last move
     int diagonal = goEngineInterface->getDiagonal();
     int moveIndex = goEngineInterface->getMoveIndex();
 
