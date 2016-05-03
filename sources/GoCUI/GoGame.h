@@ -6,11 +6,12 @@
 #include <sstream>
 
 #include "../GoEngine/Model/GoEngineInterface.h"
+#include "Help.h"
 #include "InitBoards.h"
 #include "enums.h"
 
 //TODO refactor GoGame
-//TODO реализовать help
+//TODO help for console args
 //TODO реализовать интерактивную доску
 
 /**
@@ -23,7 +24,7 @@ public:
     /**
      * Конструктор.
      */
-    GoGame();
+    GoGame( const int argc = 1, char** argv = nullptr );
 
     /**
      * Деструктор.
@@ -39,7 +40,11 @@ public:
 private:
 
     GoEngineInterface* goEngineInterface; /**< Указатель на объект интерфейса движка */
-    bool needMessage; /**< Нужно сообщение? */
+    Help* help; /**< Указатель на объект хэлпа */
+    int argc; /**< Число параметров командной строки */
+    char** argv; /**< Список параметров командной строки */
+    bool needMessage; /**< Нужно сообщение об ошибке? */
+    bool needHelp; /**< Нужен хэлп? */
     bool hasExceptionThrown; /**< Было выброшено исключение? */
     bool exit; /**< Выход? */
     std::string MESSAGE; /**< Сообщение */
@@ -98,6 +103,11 @@ private:
      * Если это нужно, напечатать соответствующее сообщение.
      */
     void ifNeedPrintMessage() noexcept;
+
+    /**
+     * Вывести help, если нужно.
+     */
+    void ifNeedPrintHelp() noexcept;
 
     /**
      * Напечатать сообщение.
@@ -257,6 +267,13 @@ private:
      * @return true, если введен ключ exit, и false - иначе.
      */
     bool isSurrender( const std::string& input ) const noexcept;
+
+    /**
+     * Ключ help?
+     * @param input входная строка.
+     * @return true, если введен ключ help, и false - иначе.
+     */
+    bool isHelp( const std::string& input ) const noexcept;
 
     /**
      * Обновить доску

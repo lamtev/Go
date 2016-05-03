@@ -7,7 +7,8 @@ enum TypeOfCommand
     EXIT,
     MOVE,
     PASS,
-    SURRENDER
+    SURRENDER,
+    HELP
 };
 
 #endif //GO_ENUMS_H

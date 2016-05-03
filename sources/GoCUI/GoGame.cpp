@@ -1,9 +1,11 @@
 #include "GoGame.h"
 
-GoGame::GoGame()
+GoGame::GoGame( const int argc, char** argv ) : argc(argc), argv(argv)
 {
     goEngineInterface = new GoEngineInterface{};
+    help = new Help;
     needMessage = false;
+    needHelp = false;
     hasExceptionThrown = false;
     exit = false;
 }
@@ -11,6 +13,7 @@ GoGame::GoGame()
 GoGame::~GoGame()
 {
     delete goEngineInterface;
+    delete help;
 }
 
 void GoGame::begin()
@@ -69,6 +72,7 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second )
 {
     while( !(goEngineInterface->isGameOver() || exit) )
     {
+        ifNeedPrintHelp();
         printEatenStonesStat();
         printBoard();
         ifNeedPrintMessage();
@@ -92,11 +96,22 @@ void GoGame::ifNeedPrintMessage() noexcept
     }
 }
 
+void GoGame::ifNeedPrintHelp() noexcept
+{
+    if( needHelp )
+    {
+        help->printHelp();
+        needHelp = false;
+    }
+}
 
 void GoGame::switchParsedCommand( const std::string& command, int& first, int& second )
 {
     switch( parseCommand(command, first, second) )
     {
+    case HELP :
+        needHelp = true;
+        break;
     case MOVE :
         putStone(first, second);
         break;
@@ -118,7 +133,11 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
 
 int GoGame::parseCommand( const std::string& command, int& first, int& second ) noexcept
 {
-    if( isPass(command) )
+    if( isHelp(command) )
+    {
+        return HELP;
+    }
+    else if( isPass(command) )
     {
         return PASS;
     }
@@ -405,6 +424,7 @@ bool GoGame::parseDiagonal( int& diagonal )
     std::string input;
     while( isInputIncorrect )
     {
+        ifNeedPrintHelp();
         printDiagonalInputMessage();
         std::getline(std::cin, input);
         if( isExit(input) )
@@ -412,6 +432,10 @@ bool GoGame::parseDiagonal( int& diagonal )
             return false;
         }
         isInputIncorrect = !isDiagonalCorrect(input);
+        if( isHelp(input) )
+        {
+            needHelp = true;
+        }
     }
     diagonal = getDiagonal(input);
     return true;
@@ -455,19 +479,45 @@ int GoGame::getDiagonal( const std::string& input ) const noexcept
 
 bool GoGame::isExit( const std::string& input ) const noexcept
 {
-    return !input.compare("exit") || !input.compare("EXIT");
+    return (input.size() == 4) &&
+           (input[0] == 'e' || input[0] == 'E') &&
+           (input[1] == 'x' || input[1] == 'X') &&
+           (input[2] == 'i' || input[2] == 'I') &&
+           (input[3] == 't' || input[3] == 'T');
 }
 
 bool GoGame::isPass( const std::string& input ) const noexcept
 {
-    return !input.compare("pass") || !input.compare("PASS");
+    return (input.size() == 4) &&
+           (input[0] == 'p' || input[0] == 'P') &&
+           (input[1] == 'a' || input[1] == 'A') &&
+           (input[2] == 's' || input[2] == 'S') &&
+           (input[3] == 's' || input[3] == 'S');
 }
 
 bool GoGame::isSurrender( const std::string& input ) const noexcept
 {
-    return !input.compare("surrender") || !input.compare("SURRENDER");
+    return (input.size() == 9) &&
+           (input[0] == 's' || input[0] == 'S') &&
+           (input[1] == 'u' || input[1] == 'U') &&
+           (input[2] == 'r' || input[2] == 'R') &&
+           (input[3] == 'r' || input[3] == 'R') &&
+           (input[4] == 'e' || input[4] == 'E') &&
+           (input[5] == 'n' || input[5] == 'N') &&
+           (input[6] == 'd' || input[6] == 'D') &&
+           (input[7] == 'e' || input[7] == 'E') &&
+           (input[8] == 'r' || input[8] == 'R');
+
 }
 
+bool GoGame::isHelp( const std::string& input ) const noexcept
+{
+    return (input.size() == 4) &&
+           (input[0] == 'h' || input[0] == 'H') &&
+           (input[1] == 'e' || input[1] == 'E') &&
+           (input[2] == 'l' || input[2] == 'L') &&
+           (input[3] == 'p' || input[3] == 'P');
+}
 void GoGame::printEatenStonesStat() const noexcept
 {
     std::cout << std::endl;

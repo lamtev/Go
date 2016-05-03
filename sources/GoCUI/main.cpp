@@ -7,7 +7,7 @@ using namespace std;
 
 int main( int argc, char* argv[] )
 {
-    GoGame game;
+    GoGame game{ argc, argv };
     game.begin();
     return 0;
 }
