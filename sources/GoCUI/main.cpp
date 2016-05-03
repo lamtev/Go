@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 
 #include "../GoEngine/Model/GoEngineInterface.h"
 #include "InitBoards.h"
