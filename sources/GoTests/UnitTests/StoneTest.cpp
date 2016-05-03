@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "../../GoEngine/Stone.h"
+#include "../../GoEngine/Model/Stone.h"
 
 class StoneTest : public QObject
 {

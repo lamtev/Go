@@ -16,7 +16,7 @@ public:
      * Чё?
      * @return сообщение о том, что ход совершён за пределы доски
      */
-    const char* what() const noexcept
+    const char* what() const noexcept override
     {
         return "You moved outside the board";
     }

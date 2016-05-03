@@ -16,7 +16,7 @@ public:
      * Чё?
      * @return сообщение о том, что игрок текущим ходом повторил свой предыдущий ход
      */
-    const char* what() const noexcept
+    const char* what() const noexcept override
     {
         return "This move is the same as your previous one";
     }

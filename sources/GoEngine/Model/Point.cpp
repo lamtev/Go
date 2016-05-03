@@ -50,7 +50,6 @@ Stone& Point::getStone() const noexcept
     return *stone;
 }
 
-
 bool Point::isEmpty() const noexcept
 {
     return status == EMPTY;

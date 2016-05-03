@@ -105,6 +105,11 @@ void Motion::ifNeedResizeMoves() noexcept
     }
 }
 
+void Motion::removeEatenStones() noexcept
+{
+    //TODO removeEatenStones
+}
+
 void Motion::ifMoveOutsideTheBoardThrowException( Board* board, int first, int second ) const
 {
     if( first < 1 || first > board->getDiagonal() || second < 1 || second > board->getDiagonal() )

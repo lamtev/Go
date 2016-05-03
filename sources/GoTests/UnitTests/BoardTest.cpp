@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "../../GoEngine/Board.h"
+#include "../../GoEngine/Model/Board.h"
 
 class BoardTest : public QObject
 {

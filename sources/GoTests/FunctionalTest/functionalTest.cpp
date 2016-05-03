@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "../../GoEngine/GoEngineInterface.h"
+#include "../../GoEngine/Model/GoEngineInterface.h"
 #include "InitBoards.h"
 
 using namespace std;

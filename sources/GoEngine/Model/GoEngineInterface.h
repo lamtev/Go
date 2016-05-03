@@ -4,8 +4,8 @@
 #include <string>
 
 #include "Board.h"
-#include "Rules/Motion.h"
-#include "Rules/ScoreCalculator.h"
+#include "../Rules/Motion.h"
+#include "../Rules/ScoreCalculator.h"
 
 /**
  * Интерфейс движка, предоставляемый приложению

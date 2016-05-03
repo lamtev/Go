@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../Board.h"
+#include "../Model/Board.h"
 #include "Move.h"
 #include "Exceptions/MoveOutsideTheBoardException.h"
 #include "Exceptions/MoveRepeatException.h"
@@ -14,7 +14,8 @@
 
 /**
  * Процесс хода.
- * Контролирует правильность совершения ходов
+ * Cледит за тем, чтобы ходы выполнялись в соответствии с правилами.
+ * Определяет очерёдность ходов. Определяет победителя и проигравшего.
  */
 class Motion
 {
@@ -123,6 +124,11 @@ private:
      * Увеличивает размер вектора moves на 100, если есть необходимость.
      */
     void ifNeedResizeMoves() noexcept;
+
+    /**
+     * Убрать съеденные камни с доски.
+     */
+    void removeEatenStones() noexcept;
 
     /**
      * Если ход за пределы доски, бросить исключение.

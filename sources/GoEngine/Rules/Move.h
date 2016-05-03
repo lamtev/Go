@@ -1,7 +1,7 @@
 #ifndef GO_MOVE_H
 #define GO_MOVE_H
 
-#include "../enums.h"
+#include "../Model/enums.h"
 
 /**
  * Ход.

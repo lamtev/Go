@@ -16,7 +16,7 @@ public:
      * Чё?
      * @return сообщение о том, что игрок совершил ход в несвободный пункт
      */
-    const char* what() const noexcept
+    const char* what() const noexcept override
     {
         return "You moved to not empty point";
     }

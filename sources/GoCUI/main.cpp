@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "../GoEngine/GoEngineInterface.h"
+#include "../GoEngine/Model/GoEngineInterface.h"
 #include "InitBoards.h"
 #include "GoGame.h"
 

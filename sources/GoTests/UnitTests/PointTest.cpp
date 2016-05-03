@@ -1,7 +1,7 @@
 #include <QString>
 #include <QtTest>
 
-#include "../../GoEngine/Point.h"
+#include "../../GoEngine/Model/Point.h"
 
 class PointTest : public QObject
 {
