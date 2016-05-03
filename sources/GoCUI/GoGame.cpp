@@ -20,7 +20,7 @@ void GoGame::begin()
         play();
         printWhoSurrendered();
         printWhoWon();
-        if( !whoWon() )
+        if( !whoWon() && !exit )
         {
             printCalculateScores();
         }
