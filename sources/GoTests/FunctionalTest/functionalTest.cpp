@@ -28,7 +28,7 @@ void FunctionalTest::checkNewDelete()
 {
     GoEngineInterface* go = new GoEngineInterface;
     go->startGame(19, CHINESE, AGREEMENT);
-    go->putStone(A, 2);
+    go->putStone(A, 3);
     go = nullptr;
     //delete go;
 }
