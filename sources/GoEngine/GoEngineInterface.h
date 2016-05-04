@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../Rules/GameProcess.h"
+#include "Rules/GameProcess.h"
 
 /**
  * Интерфейс движка, предоставляемый приложению
@@ -97,6 +97,12 @@ public:
     int getStonesEatenByWhite() const noexcept;
 
     /**
+     * Получить индекс хода.
+     * @return индекс хода
+     */
+    int getMoveIndex() const noexcept;
+
+    /**
      * Получить вектор ходов.
      * @return ссылку на вектор ходов.
      */
@@ -113,12 +119,6 @@ public:
      * @return ссылку на предпоследний совершённый ход
      */
     Move& getPenultMove() const noexcept;
-
-    /**
-     * Получить индекс хода.
-     * @return индекс хода
-     */
-    int getMoveIndex() const noexcept;
 
     /**
      * Получить очки чёрного.

@@ -59,8 +59,8 @@ void BoardTest::assigment()
     b1(1, 1) = static_cast<int>(Status::BLACK);
     b1(7, 7) = static_cast<int>(Status::WHITE);
     Board b2 = b1;
-    QVERIFY(b1(1, 1).getStatus() == b2(1, 1).getStatus());
-    QVERIFY(b1(7, 7).getStatus() == b2(7, 7).getStatus());
+    QCOMPARE(b1(1, 1).getStatus(), b2(1, 1).getStatus());
+    QCOMPARE(b1(7, 7).getStatus(), b2(7, 7).getStatus());
 }
 
 void BoardTest::get()

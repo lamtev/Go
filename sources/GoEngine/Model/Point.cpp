@@ -36,7 +36,6 @@ void Point::createStone( const int color, const int first, const int second, con
 
 void Point::deleteStone() noexcept
 {
-    delete stone;
     stone = nullptr;
 }
 

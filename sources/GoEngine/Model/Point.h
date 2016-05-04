@@ -1,7 +1,6 @@
 #ifndef GO_POINT_H
 #define GO_POINT_H
 
-#include "enums.h"
 #include "Stone.h"
 
 /**
@@ -87,7 +86,7 @@ public:
 private:
 
     int status; /**< Статус пункта */
-    Stone* stone; /**< Указатель на объект класса Stone */
+    Stone* stone; /**< Указатель на камень */
 
 };
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "../../GoEngine/Model/GoEngineInterface.h"
+#include "../../GoEngine/GoEngineInterface.h"
 #include "InitBoards.h"
 
 using namespace std;
@@ -22,17 +22,15 @@ private Q_SLOTS:
     void makeMove();
 };
 
-FunctionalTest::FunctionalTest()
-{
-
-}
+FunctionalTest::FunctionalTest(){}
 
 void FunctionalTest::checkNewDelete()
 {
     GoEngineInterface* go = new GoEngineInterface;
-    delete go;
+    go->startGame(19, CHINESE, AGREEMENT);
+    go->putStone(A, 2);
     go = nullptr;
-    delete go;
+    //delete go;
 }
 
 void FunctionalTest::paintBoard()

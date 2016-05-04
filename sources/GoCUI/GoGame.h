@@ -5,7 +5,7 @@
 #include <string>
 #include <sstream>
 
-#include "../GoEngine/Model/GoEngineInterface.h"
+#include "../GoEngine/GoEngineInterface.h"
 #include "Help.h"
 #include "InitBoards.h"
 #include "enums.h"

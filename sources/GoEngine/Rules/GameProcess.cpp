@@ -3,18 +3,23 @@
 GameProcess::GameProcess( const int diagonal ) noexcept : diagonal(diagonal)
 {
     board = new Board{ diagonal };
-    moveIndex = 0;
     movesSize = 100;
+    moveIndex = 0;
+    moves.resize(movesSize);
     surrendered = static_cast<int>(Status::EMPTY);
     winner = static_cast<int>(Status::EMPTY);
     stonesEatenByBlack = 0;
     stonesEatenByWhite = 0;
-    moves.resize(movesSize);
 }
 
 GameProcess::~GameProcess()
 {
     delete board;
+}
+
+int GameProcess::whoseMove() const noexcept
+{
+    return isBlacksMove() ? static_cast<int>(Status::BLACK) : static_cast<int>(Status::WHITE);
 }
 
 void GameProcess::putStone( int first, int second )
@@ -72,9 +77,14 @@ std::vector<Move>& GameProcess::getMoves() const noexcept
     return const_cast<std::vector<Move>&>(moves);
 }
 
-int GameProcess::whoseMove() const noexcept
+Move& GameProcess::getLastMove() const noexcept
 {
-    return isBlacksMove() ? static_cast<int>(Status::BLACK) : static_cast<int>(Status::WHITE);
+    return const_cast<Move&>(moves[moveIndex - 1]);
+}
+
+Move& GameProcess::getPenultMove() const noexcept
+{
+    return const_cast<Move&>(moves[moveIndex - 2]);
 }
 
 int GameProcess::getStonesEatenByBlack() const noexcept
@@ -85,16 +95,6 @@ int GameProcess::getStonesEatenByBlack() const noexcept
 int GameProcess::getStonesEatenByWhite() const noexcept
 {
     return stonesEatenByWhite;
-}
-
-Move& GameProcess::getLastMove() const noexcept
-{
-    return const_cast<Move&>(moves[moveIndex - 1]);
-}
-
-Move& GameProcess::getPenultMove() const noexcept
-{
-    return const_cast<Move&>(moves[moveIndex - 2]);
 }
 
 Board& GameProcess::getBoard() const noexcept
