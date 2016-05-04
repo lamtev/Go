@@ -16,7 +16,7 @@ public:
      * Конструктор.
      * @param status статус пункта.
      */
-    Point( int status = EMPTY ) noexcept;
+    explicit Point( int status = static_cast<int>(Status::EMPTY) ) noexcept;
 
     /**
      * Копирующий конструктор.

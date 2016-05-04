@@ -74,7 +74,6 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second )
     {
         ifNeedPrintHelp();
         printEatenStonesStat();
-        //updateBoard();
         printBoard();
         ifNeedPrintMessage();
         printWhoseMove();
@@ -110,24 +109,23 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
 {
     switch( parseCommand(command, first, second) )
     {
-    case HELP :
+    case static_cast<int>(TypeOfCommand::HELP) :
         needHelp = true;
         break;
-    case MOVE :
+    case static_cast<int>(TypeOfCommand::MOVE) :
         putStone(first, second);
         break;
-    case PASS :
+    case static_cast<int>(TypeOfCommand::PASS) :
         pass();
-        needMessage = true;
-        MESSAGE = std::string("Contender passed his move");
+        turnOnMessage("Contender passed his move");
         break;
-    case SURRENDER :
+    case static_cast<int>(TypeOfCommand::SURRENDER) :
         surrender();
         break;
-    case EXIT :
+    case static_cast<int>(TypeOfCommand::EXIT) :
         exit = this->isExit(command);
         break;
-    case ERROR :
+    case static_cast<int>(TypeOfCommand::ERROR) :
         return;
     default :
         break;
@@ -138,25 +136,25 @@ int GoGame::parseCommand( const std::string& command, int& first, int& second ) 
 {
     if( isHelp(command) )
     {
-        return HELP;
+        return static_cast<int>(TypeOfCommand::HELP);
     }
     else if( isPass(command) )
     {
-        return PASS;
+        return static_cast<int>(TypeOfCommand::PASS);
     }
     else if( isSurrender(command) )
     {
-        return SURRENDER;
+        return static_cast<int>(TypeOfCommand::SURRENDER);
     }
     else if( isExit(command) )
     {
-        return EXIT;
+        return static_cast<int>(TypeOfCommand::EXIT);
     }
     else
     {
         parseFirstCoordinate(command, first);
         parseSecondCoordinate(command, second);
-        return !needMessage ? MOVE : ERROR;
+        return !needMessage ? static_cast<int>(TypeOfCommand::MOVE) : static_cast<int>(TypeOfCommand::ERROR);
     }
 }
 
@@ -269,8 +267,7 @@ void GoGame::parseFirstCoordinate( const std::string& command, int& first ) noex
         first = Z;
         break;
     default :
-        needMessage = true;
-        MESSAGE = std::string{"Command is wrong"};
+        turnOnMessage("Command is wrong");
         break;
     }
 }
@@ -283,13 +280,12 @@ void GoGame::parseSecondCoordinate( const std::string& command, int& second ) no
     }
     std::string number;
     number = command.substr(1);
-    std::istringstream iss{number, std::istringstream::in};
+    std::istringstream iss{ number, std::istringstream::in };
     int coordinate;
     iss >> coordinate;
     if( !iss )
     {
-        needMessage = true;
-        MESSAGE = std::string{"Command is wrong"};
+        turnOnMessage("Command is wrong");
     }
     else
     {
@@ -306,10 +302,15 @@ void GoGame::putStone( const int first, const int second )
     catch( const MoveException& e )
     {
         hasExceptionThrown = true;
-        needMessage = true;
-        MESSAGE = std::string(e.what());
+        turnOnMessage(e.what());
         play();
     }
+}
+
+void GoGame::turnOnMessage( const char* message ) noexcept
+{
+    needMessage = true;
+    MESSAGE = std::string{ message };
 }
 
 void GoGame::pass() const noexcept
@@ -336,10 +337,10 @@ void GoGame::printWhoSurrendered() const noexcept
 {
     switch( whoSurrendered() )
     {
-    case BLACK :
+    case static_cast<int>(Status::BLACK) :
         printBlackSurrendered();
         break;
-    case WHITE :
+    case static_cast<int>(Status::WHITE) :
         printWhiteSurrendered();
     default :
         break;
@@ -350,10 +351,10 @@ void GoGame::printWhoWon() const noexcept
 {
     switch( whoWon() )
     {
-    case BLACK :
+    case static_cast<int>(Status::BLACK) :
         printBlackWon();
         break;
-    case WHITE :
+    case static_cast<int>(Status::WHITE) :
         printWhiteWon();
         break;
     default :
@@ -368,7 +369,7 @@ void GoGame::printMessage() const noexcept
 
 void GoGame::printWhoseMove() const noexcept
 {
-    if( goEngineInterface->whoseMove() == BLACK )
+    if( goEngineInterface->whoseMove() == static_cast<int>(Status::BLACK) )
     {
         std::cout << "Black's move" << std::endl;
     }
@@ -422,14 +423,16 @@ void GoGame::updateBoard() noexcept
         {
             switch( goEngineInterface->getIJPointsStatus(i, j) )
             {
-            case EMPTY :
+            case static_cast<int>(Status::EMPTY) :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = '.';
                 break;
-            case BLACK :
+            case static_cast<int>(Status::BLACK) :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = 'X';
                 break;
-            case WHITE :
+            case static_cast<int>(Status::WHITE) :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = 'O';
+                break;
+            default :
                 break;
             }
         }
@@ -439,22 +442,21 @@ void GoGame::updateBoard() noexcept
 
 void GoGame::markLastMove() noexcept
 {
-    //BUG with marking last move
     int diagonal = goEngineInterface->getDiagonal();
     int moveIndex = goEngineInterface->getMoveIndex();
-
-    Move lastMove{ goEngineInterface->getLastMove() };
-    if( lastMove.isNotPass() && moveIndex >= 1 )
-    {
-        board[lastMove.getSecond() * (diagonal * 2 + 5) + 2 * (lastMove.getFirst())] = '[';
-        board[lastMove.getSecond() * (diagonal * 2 + 5) + 2 + 2 * (lastMove.getFirst())] = ']';
-    }
 
     Move penultMove{ goEngineInterface->getPenultMove() };
     if( penultMove.isNotPass() && moveIndex >= 2 )
     {
         board[penultMove.getSecond() * (diagonal * 2 + 5) + 2 * penultMove.getFirst()] = ' ';
         board[penultMove.getSecond() * (diagonal * 2 + 5) + 2 + 2 * penultMove.getFirst()] = ' ';
+    }
+
+    Move lastMove{ goEngineInterface->getLastMove() };
+    if( lastMove.isNotPass() && moveIndex >= 1 )
+    {
+        board[lastMove.getSecond() * (diagonal * 2 + 5) + 2 * (lastMove.getFirst())] = '[';
+        board[lastMove.getSecond() * (diagonal * 2 + 5) + 2 + 2 * (lastMove.getFirst())] = ']';
     }
 }
 

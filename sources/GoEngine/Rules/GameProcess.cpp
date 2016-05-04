@@ -5,8 +5,8 @@ GameProcess::GameProcess( const int diagonal ) noexcept : diagonal(diagonal)
     board = new Board{ diagonal };
     moveIndex = 0;
     movesSize = 100;
-    surrendered = EMPTY;
-    winner = EMPTY;
+    surrendered = static_cast<int>(Status::EMPTY);
+    winner = static_cast<int>(Status::EMPTY);
     stonesEatenByBlack = 0;
     stonesEatenByWhite = 0;
     moves.resize(movesSize);
@@ -53,12 +53,12 @@ int GameProcess::whoWon() const noexcept
 {
     switch( surrendered )
     {
-    case BLACK :
-        return WHITE;
-    case WHITE :
-        return BLACK;
+    case static_cast<int>(Status::BLACK) :
+        return static_cast<int>(Status::WHITE);
+    case static_cast<int>(Status::WHITE) :
+        return static_cast<int>(Status::BLACK);
     default :
-        return EMPTY;
+        return static_cast<int>(Status::EMPTY);
     }
 }
 
@@ -74,7 +74,7 @@ std::vector<Move>& GameProcess::getMoves() const noexcept
 
 int GameProcess::whoseMove() const noexcept
 {
-    return isBlacksMove() ? BLACK : WHITE;
+    return isBlacksMove() ? static_cast<int>(Status::BLACK) : static_cast<int>(Status::WHITE);
 }
 
 int GameProcess::getStonesEatenByBlack() const noexcept

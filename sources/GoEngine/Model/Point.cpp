@@ -52,10 +52,10 @@ Stone& Point::getStone() const noexcept
 
 bool Point::isEmpty() const noexcept
 {
-    return status == EMPTY;
+    return status == static_cast<int>(Status::EMPTY);
 }
 
 bool Point::isNotEmpty() const noexcept
 {
-    return status != EMPTY;
+    return !isEmpty();
 }

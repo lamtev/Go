@@ -1,7 +1,7 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-enum Status
+enum class Status
 {
     EMPTY = 0,
     BLACK,

@@ -5,7 +5,7 @@ GoEngineInterface::GoEngineInterface() noexcept
     gameProcess = nullptr;
 }
 
-void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution) noexcept
+void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution ) noexcept
 {
     gameProcess = new GameProcess { diagonal };
 }

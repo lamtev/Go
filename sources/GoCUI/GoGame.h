@@ -124,6 +124,12 @@ private:
     void putStone( const int first, const int second );
 
     /**
+     * Включить сообщение.
+     * @param message сообщение
+     */
+    void turnOnMessage( const char* message ) noexcept;
+
+    /**
      * Пропустить ход.
      */
     void pass() const noexcept;

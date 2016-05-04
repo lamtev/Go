@@ -26,22 +26,22 @@ PointTest::PointTest(){}
 
 void PointTest::assigmentObject()
 {
-    Point s1{ WHITE };
+    Point s1{ static_cast<int>(Status::WHITE) };
     Point s2 = s1;
     QCOMPARE(s1.getStatus(), s2.getStatus());
 
-    Point s3{ EMPTY };
+    Point s3{ static_cast<int>(Status::EMPTY) };
     Point s4{ s3 };
     QCOMPARE(s3.getStatus(), s4.getStatus());
 }
 
 void PointTest::assigmentInt()
 {
-    Point s1{ BLACK };
-    Point s2{ BLACK };
+    Point s1{ static_cast<int>(Status::BLACK) };
+    Point s2{ static_cast<int>(Status::BLACK) };
     QCOMPARE(s1.getStatus(), s2.getStatus());
 
-    s1 = s2 = WHITE;
+    s1 = s2 =  static_cast<int>(Status::WHITE);
     QCOMPARE(s1.getStatus(), s2.getStatus());
 }
 
@@ -49,7 +49,7 @@ void PointTest::createDeleteStone()
 {
     Point* point = new Point;
 
-    *point = BLACK;
+    *point = static_cast<int>(Status::BLACK);
     point->createStone(point->getStatus(), A, 5, 2);
     point->deleteStone();
     point->createStone(point->getStatus(), M, 19, 3);
@@ -58,17 +58,17 @@ void PointTest::createDeleteStone()
 
 void PointTest::getStatus()
 {
-    Point s{ BLACK };
-    QVERIFY(s.getStatus() == BLACK);
+    Point s{ static_cast<int>(Status::BLACK) };
+    QCOMPARE(s.getStatus(), static_cast<int>(Status::BLACK));
 }
 
 void PointTest::getStone()
 {
-    Point* point = new Point{ WHITE };
+    Point* point = new Point{ static_cast<int>(Status::WHITE) };
 
     point->createStone(point->getStatus(), A, 5, 2);
-    QVERIFY(point->getStone().getColor() == WHITE);
-    QVERIFY(point->getStone().getFirst() == A);
+    QCOMPARE(point->getStone().getColor(), static_cast<int>(Status::WHITE));
+    QCOMPARE(point->getStone().getFirst(), static_cast<int>(A));
     QCOMPARE(point->getStone().getSecond(), 5);
     QCOMPARE(point->getStone().getBreaths(), 2);
 
@@ -77,13 +77,13 @@ void PointTest::getStone()
 
 void PointTest::isEmpty()
 {
-    Point point{ BLACK };
+    Point point{ static_cast<int>(Status::BLACK) };
     QVERIFY(!point.isEmpty());
-    point = EMPTY;
+    point = static_cast<int>(Status::EMPTY);
     QVERIFY(point.isEmpty());
-    point = WHITE;
+    point = static_cast<int>(Status::WHITE);
     QVERIFY(!point.isEmpty());
-    point = EMPTY;
+    point = static_cast<int>(Status::EMPTY);
     QVERIFY(point.isEmpty());
 }
 
@@ -91,9 +91,9 @@ void PointTest::isNotEmpty()
 {
     Point point;
     QVERIFY(!point.isNotEmpty());
-    point = BLACK;
+    point = static_cast<int>(Status::BLACK);
     QVERIFY(point.isNotEmpty());
-    point = WHITE;
+    point = static_cast<int>(Status::WHITE);
     QVERIFY(point.isNotEmpty());
 }
 

@@ -1,7 +1,7 @@
 #ifndef GO_ENUMS_H
 #define GO_ENUMS_H
 
-enum TypeOfCommand
+enum class TypeOfCommand
 {
     ERROR = 0,
     EXIT,
