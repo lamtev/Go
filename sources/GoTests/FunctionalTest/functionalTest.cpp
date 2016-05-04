@@ -30,7 +30,7 @@ void FunctionalTest::checkNewDelete()
     go->startGame(19, CHINESE, AGREEMENT);
     go->putStone(A, 3);
     go = nullptr;
-    //delete go;
+    delete go;
 }
 
 void FunctionalTest::paintBoard()

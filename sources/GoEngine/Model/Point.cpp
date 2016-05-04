@@ -31,11 +31,13 @@ Point& Point::operator=( const int status ) noexcept
 
 void Point::createStone( const int color, const int first, const int second, const int breaths ) noexcept
 {
+    //TODO fix leak or fix double delete
     stone = new Stone{ color, first, second, breaths };
 }
 
 void Point::deleteStone() noexcept
 {
+    //TODO fix leak or fix double delete
     stone = nullptr;
 }
 

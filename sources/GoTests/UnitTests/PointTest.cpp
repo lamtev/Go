@@ -53,6 +53,7 @@ void PointTest::createDeleteStone()
     point->createStone(point->getStatus(), A, 5, 2);
     point->deleteStone();
     point->createStone(point->getStatus(), M, 19, 3);
+
     delete point;
 }
 
