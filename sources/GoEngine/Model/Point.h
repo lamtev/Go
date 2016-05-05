@@ -87,6 +87,7 @@ private:
 
     int status; /**< Статус пункта */
     Stone* stone; /**< Указатель на камень */
+    bool isStoneDeleted; /**< Камень удалён? */
 
 };
 

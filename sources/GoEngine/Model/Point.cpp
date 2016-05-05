@@ -3,22 +3,28 @@
 Point::Point( int status ) noexcept : status(status)
 {
     this->stone = nullptr;
+    this->isStoneDeleted = true;
 }
 
 Point::Point( const Point& point ) noexcept : status(point.status)
 {
     this->stone = nullptr;
+    this->isStoneDeleted = true;
 }
 
-Point::~Point()
+Point::~Point() noexcept
 {
-    delete stone;
+    if( !isStoneDeleted )
+    {
+        deleteStone();
+    }
 }
 
 Point& Point::operator=( const Point& point ) noexcept
 {
     this->status = point.status;
     this->stone = point.stone;
+    this->isStoneDeleted = point.isStoneDeleted;
     return *this;
 }
 
@@ -26,19 +32,20 @@ Point& Point::operator=( const int status ) noexcept
 {
     this->status = status;
     this->stone = nullptr;
+    this->isStoneDeleted = true;
     return *this;
 }
 
 void Point::createStone( const int color, const int first, const int second, const int breaths ) noexcept
 {
-    //TODO fix leak or fix double delete
     stone = new Stone{ color, first, second, breaths };
+    isStoneDeleted = false;
 }
 
 void Point::deleteStone() noexcept
 {
-    //TODO fix leak or fix double delete
-    stone = nullptr;
+    delete stone;
+    isStoneDeleted = true;
 }
 
 int Point::getStatus() const noexcept
