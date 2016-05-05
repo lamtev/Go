@@ -6,7 +6,7 @@ GoGame::GoGame( const int argc, char** argv ) noexcept : goEngineInterface{ new 
                                                          argv{ argv },
                                                          needMessage{ false },
                                                          needHelp{ false },
-                                                         hasExceptionThrown{ false },
+                                                         hasExceptionHandled{ false },
                                                          exit{ false }{}
 
 GoGame::GoGame( const GoGame& go ) noexcept : goEngineInterface(go.goEngineInterface),
@@ -15,7 +15,7 @@ GoGame::GoGame( const GoGame& go ) noexcept : goEngineInterface(go.goEngineInter
                                               argv{ go.argv },
                                               needMessage{ go.needMessage },
                                               needHelp{ go.needHelp },
-                                              hasExceptionThrown{ go.hasExceptionThrown },
+                                              hasExceptionHandled{ go.hasExceptionHandled },
                                               exit{ go.exit }{}
 
 GoGame::~GoGame()
@@ -87,9 +87,9 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second )
         printWhoseMove();
         std::getline(std::cin, command);
         switchParsedCommand(command, first, second);
-        if( hasExceptionThrown )
+        if( hasExceptionHandled )
         {
-            hasExceptionThrown = false;
+            hasExceptionHandled = false;
             return;
         }
     }
@@ -275,7 +275,7 @@ void GoGame::parseFirstCoordinate( const std::string& command, int& first ) noex
         first = Z;
         break;
     default :
-        turnOnMessage("Command is wrong");
+        turnOnMessage("Command is wrong: use help");
         break;
     }
 }
@@ -293,7 +293,7 @@ void GoGame::parseSecondCoordinate( const std::string& command, int& second ) no
     iss >> coordinate;
     if( !iss )
     {
-        turnOnMessage("Command is wrong");
+        turnOnMessage("Command is wrong: use help");
     }
     else
     {
@@ -309,7 +309,7 @@ void GoGame::putStone( const int first, const int second )
     }
     catch( const MoveException& e )
     {
-        hasExceptionThrown = true;
+        hasExceptionHandled = true;
         turnOnMessage(e.what());
         play();
     }
@@ -465,8 +465,8 @@ void GoGame::markLastMove() noexcept
     Move lastMove{ goEngineInterface->getLastMove() };
     if( lastMove.isNotPass() && goEngineInterface->getMoveIndex() >= 1 )
     {
-        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * (lastMove.getFirst())] = '[';
-        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * (lastMove.getFirst())] = ']';
+        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * lastMove.getFirst()] = '[';
+        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * lastMove.getFirst()] = ']';
     }
 }
 

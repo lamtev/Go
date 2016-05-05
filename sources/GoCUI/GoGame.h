@@ -52,7 +52,7 @@ private:
     char** argv; /**< Список параметров командной строки */
     bool needMessage; /**< Нужно сообщение об ошибке? */
     bool needHelp; /**< Нужен хэлп? */
-    bool hasExceptionThrown; /**< Было выброшено исключение? */
+    bool hasExceptionHandled; /**< Было исключение обработано? */
     bool exit; /**< Выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
