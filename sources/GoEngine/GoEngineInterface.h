@@ -19,6 +19,14 @@ public:
     GoEngineInterface() noexcept;
 
     /**
+     * Присваивание.
+     * Перегруженный оператор присваивания.
+     * @param go присваиваемый объект
+     * @return ссылку на объект
+     */
+    GoEngineInterface& operator=( const GoEngineInterface& go ) noexcept;
+
+    /**
      * Начать игру.
      * Начинает игру в соответствии с параметрми, заданными аргументами.
      * @param diagonal диагональ

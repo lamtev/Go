@@ -22,8 +22,16 @@ public:
 
     /**
      * Конструктор.
+     * @param argc число параметров
+     * @param argv список параметров
      */
-    GoGame( const int argc = 1, char** argv = nullptr );
+    GoGame( const int argc = 1, char** argv = nullptr ) noexcept;
+
+    /**
+     * Копирующий конструктор.
+     *
+     */
+    GoGame( const GoGame& go ) noexcept;
 
     /**
      * Деструктор.
