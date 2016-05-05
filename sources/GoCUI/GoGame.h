@@ -294,6 +294,11 @@ private:
     void updateBoard() noexcept;
 
     /**
+     * Убрать выделение предпоследнего хода.
+     */
+    void unmarkPenultMove() noexcept;
+
+    /**
      * Выделить последний ход.
      */
     void markLastMove() noexcept;

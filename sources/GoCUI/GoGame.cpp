@@ -445,26 +445,28 @@ void GoGame::updateBoard() noexcept
             }
         }
     }
+    unmarkPenultMove();
     markLastMove();
+}
+
+void GoGame::unmarkPenultMove() noexcept
+{
+    //TODO подумать об выделении метода
+    Move penultMove{ goEngineInterface->getPenultMove() };
+    if( penultMove.isNotPass() && goEngineInterface->getMoveIndex() >= 2 )
+    {
+        board[penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * penultMove.getFirst()] = ' ';
+        board[penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * penultMove.getFirst()] = ' ';
+    }
 }
 
 void GoGame::markLastMove() noexcept
 {
-    int diagonal = goEngineInterface->getDiagonal();
-    int moveIndex = goEngineInterface->getMoveIndex();
-
-    Move penultMove{ goEngineInterface->getPenultMove() };
-    if( penultMove.isNotPass() && moveIndex >= 2 )
-    {
-        board[penultMove.getSecond() * (diagonal * 2 + 5) + 2 * penultMove.getFirst()] = ' ';
-        board[penultMove.getSecond() * (diagonal * 2 + 5) + 2 + 2 * penultMove.getFirst()] = ' ';
-    }
-
     Move lastMove{ goEngineInterface->getLastMove() };
-    if( lastMove.isNotPass() && moveIndex >= 1 )
+    if( lastMove.isNotPass() && goEngineInterface->getMoveIndex() >= 1 )
     {
-        board[lastMove.getSecond() * (diagonal * 2 + 5) + 2 * (lastMove.getFirst())] = '[';
-        board[lastMove.getSecond() * (diagonal * 2 + 5) + 2 + 2 * (lastMove.getFirst())] = ']';
+        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * (lastMove.getFirst())] = '[';
+        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * (lastMove.getFirst())] = ']';
     }
 }
 
