@@ -1,9 +1,6 @@
 #include "GoEngineInterface.h"
 
-GoEngineInterface::GoEngineInterface() noexcept
-{
-    gameProcess = nullptr;
-}
+GoEngineInterface::GoEngineInterface() noexcept : gameProcess{ nullptr }{}
 
 GoEngineInterface& GoEngineInterface::operator=( const GoEngineInterface& go ) noexcept
 {

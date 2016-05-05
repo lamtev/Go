@@ -1,16 +1,12 @@
 #include "Point.h"
 
-Point::Point( int status ) noexcept : status(status)
-{
-    this->stone = nullptr;
-    this->isStoneDeleted = true;
-}
+Point::Point( int status ) noexcept : status{ status },
+                                      stone{nullptr },
+                                      isStoneDeleted{ true }{}
 
-Point::Point( const Point& point ) noexcept : status(point.status)
-{
-    this->stone = nullptr;
-    this->isStoneDeleted = true;
-}
+Point::Point( const Point& point ) noexcept : status(point.status),
+                                              stone{ point.stone },
+                                              isStoneDeleted{ point.isStoneDeleted }{}
 
 Point::~Point() noexcept
 {

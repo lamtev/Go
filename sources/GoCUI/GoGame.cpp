@@ -1,22 +1,22 @@
 #include "GoGame.h"
 
-GoGame::GoGame( const int argc, char** argv ) noexcept : goEngineInterface(new GoEngineInterface{}),
-                                                         help(new Help{}),
-                                                         argc(argc),
-                                                         argv(argv),
-                                                         needMessage(false),
-                                                         needHelp(false),
-                                                         hasExceptionThrown(false),
-                                                         exit(false){}
+GoGame::GoGame( const int argc, char** argv ) noexcept : goEngineInterface{ new GoEngineInterface{} },
+                                                         help{ new Help{} },
+                                                         argc{ argc },
+                                                         argv{ argv },
+                                                         needMessage{ false },
+                                                         needHelp{ false },
+                                                         hasExceptionThrown{ false },
+                                                         exit{ false }{}
 
 GoGame::GoGame( const GoGame& go ) noexcept : goEngineInterface(go.goEngineInterface),
-                                              help(go.help),
-                                              argc(go.argc),
-                                              argv(go.argv),
-                                              needMessage(go.needMessage),
-                                              needHelp(go.needHelp),
-                                              hasExceptionThrown(go.hasExceptionThrown),
-                                              exit(go.exit){}
+                                              help{ go.help },
+                                              argc{ go.argc },
+                                              argv{ go.argv },
+                                              needMessage{ go.needMessage },
+                                              needHelp{ go.needHelp },
+                                              hasExceptionThrown{ go.hasExceptionThrown },
+                                              exit{ go.exit }{}
 
 GoGame::~GoGame()
 {
