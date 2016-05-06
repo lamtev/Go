@@ -9,5 +9,6 @@ set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -std=c++11")
 
 add_subdirectory(GoEngine)
 add_subdirectory(GoCUI)
+add_subdirectory(GoGUI)
 add_subdirectory(GoTests)
 
