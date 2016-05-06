@@ -470,16 +470,6 @@ void GoGame::markLastMove() noexcept
     }
 }
 
-void GoGame::printStonesEatenByBlack() const noexcept
-{
-    std::cout << "Stones eaten by black: " << goEngineInterface->getStonesEatenByBlack() << std::endl;
-}
-
-void GoGame::printStonesEatenByWhite() const noexcept
-{
-    std::cout << "Stones eaten by white: " << goEngineInterface->getStonesEatenByWhite() << std::endl;
-}
-
 bool GoGame::parseDiagonal( int& diagonal ) noexcept
 {
     bool isInputIncorrect = true;
@@ -582,8 +572,8 @@ bool GoGame::isHelp( const std::string& input ) const noexcept
 void GoGame::printEatenStonesStat() const noexcept
 {
     std::cout << std::endl;
-    printStonesEatenByBlack();
-    printStonesEatenByWhite();
+    std::cout << "Stones eaten by black: " << goEngineInterface->getStonesEatenByBlack() << std::endl;
+    std::cout << "Stones eaten by white: " << goEngineInterface->getStonesEatenByWhite() << std::endl;
 }
 
 

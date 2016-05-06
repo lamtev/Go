@@ -197,16 +197,6 @@ private:
     void printWhiteWon() const noexcept;
 
     /**
-     * Напечатать, сколько камней съели чёрные.
-     */
-    void printStonesEatenByBlack() const noexcept;
-
-    /**
-     * Напечатать, сколько камней съели белые.
-     */
-    void printStonesEatenByWhite() const noexcept;
-
-    /**
      * Напечатать статистику съеденных камней.
      */
     void printEatenStonesStat() const noexcept;
@@ -227,11 +217,6 @@ private:
      * @return true, если диагональ распарсилась, иначе - false.
      */
     bool parseDiagonal( int& diagonal ) noexcept;
-
-    /**
-     * Ввести ход.
-     */
-    void inputMove();
 
     /**
      * Вывести сообщение ввода диагонали.
