@@ -58,6 +58,21 @@ private:
     std::vector<char> board; /**< Доска для вывода на экран */
 
     /**
+     * Открыть меню.
+     */
+    void menu();
+
+    /**
+     * Отрисовать меню.
+     */
+    void printMenu() const noexcept;
+
+    /**
+     * Начать игру.
+     */
+    void startGame();
+
+    /**
      * Настроить игру.
      * @return true, если настройки прошли успешно, и false - в противном случае.
      */

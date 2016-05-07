@@ -26,6 +26,28 @@ GoGame::~GoGame()
 
 void GoGame::begin()
 {
+    menu();
+}
+
+void GoGame::menu()
+{
+    std::string command;
+    printMenu();
+    std::cin >> command;
+    //parseCommand();
+}
+
+void GoGame::printMenu() const noexcept
+{
+    std::cout << "1. Start game" << std::endl;
+    std::cout << "2. Help" << std::endl;
+    std::cout << "3. Exit" << std::endl;
+    std::cout << "Enter the number that matches a choosen" << std::endl;
+    std::cout << "command or enter the command immediately" << std::endl;
+}
+
+void GoGame::startGame()
+{
     if( configureGame() )
     {
         play();
