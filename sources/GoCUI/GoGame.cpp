@@ -26,7 +26,7 @@ GoGame::~GoGame()
 
 void GoGame::begin()
 {
-    menu();
+    startGame();
 }
 
 void GoGame::menu()
@@ -34,7 +34,7 @@ void GoGame::menu()
     std::string command;
     printMenu();
     std::cin >> command;
-    //parseCommand();
+    std::cout << parseCommand(command) << std::endl;
 }
 
 void GoGame::printMenu() const noexcept
@@ -45,6 +45,19 @@ void GoGame::printMenu() const noexcept
     std::cout << "Enter the number that matches a choosen" << std::endl;
     std::cout << "command or enter the command immediately" << std::endl;
 }
+
+int GoGame::parseCommand( const std::string& command ) const noexcept
+{
+    for( auto it = map.begin(); it != map.end(); ++it )
+    {
+        if( map.find(command) != map.end() )
+        {
+            return map.at(command);
+        }
+    }
+    return static_cast<int>(TypeOfCommand::ERROR);
+}
+
 
 void GoGame::startGame()
 {
@@ -137,7 +150,7 @@ void GoGame::ifNeedPrintHelp() noexcept
 
 void GoGame::switchParsedCommand( const std::string& command, int& first, int& second )
 {
-    switch( parseCommand(command, first, second) )
+    switch( parseCommand1(command, first, second) )
     {
     case static_cast<int>(TypeOfCommand::HELP) :
         needHelp = true;
@@ -162,7 +175,7 @@ void GoGame::switchParsedCommand( const std::string& command, int& first, int& s
     }
 }
 
-int GoGame::parseCommand( const std::string& command, int& first, int& second ) noexcept
+int GoGame::parseCommand1( const std::string& command, int& first, int& second ) noexcept
 {
     if( isHelp(command) )
     {

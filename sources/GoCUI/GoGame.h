@@ -68,6 +68,12 @@ private:
     void printMenu() const noexcept;
 
     /**
+     * Распарсить комманду.
+     * @param command команда
+     */
+    int parseCommand( const std::string& command ) const noexcept;
+
+    /**
      * Начать игру.
      */
     void startGame();
@@ -104,7 +110,7 @@ private:
      * @param second вторая координата.
      * @return тип распарсенной команды
      */
-    int parseCommand( const std::string& command, int& first, int& second ) noexcept;
+    int parseCommand1( const std::string& command, int& first, int& second ) noexcept;
 
     /**
      * Парсить первую координату.

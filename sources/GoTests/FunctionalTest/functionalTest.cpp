@@ -47,7 +47,6 @@ void FunctionalTest::paintBoard()
 
 void FunctionalTest::makeMove()
 {
-
 }
 
 
