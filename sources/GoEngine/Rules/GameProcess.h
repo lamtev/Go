@@ -25,6 +25,7 @@ public:
      */
     explicit GameProcess( const int diagonal ) noexcept;
 
+
     /**
      * Деструктор.
      */
@@ -34,6 +35,7 @@ public:
      * Чей ход?
      * @return цвет игрока, чей сейчас ход
      */
+    //todo может быть и тут использовать enum для цвета
     int whoseMove() const noexcept;
 
     /**
@@ -41,6 +43,7 @@ public:
      * @param first первая координата
      * @param second вторая координата
      */
+    //todo first и second вводят в заблуждение
     void putStone( int first, int second );
 
     /**
@@ -63,12 +66,14 @@ public:
      * Кто сдался?
      * @return цвет сдавшегося.
      */
+    //todo может быть и тут использовать enum для цвета
     int whoSurrendered() const noexcept;
 
     /**
      * Кто победил?
      * @return цвет победителя.
      */
+    //todo может быть и тут использовать enum для цвета
     int whoWon() const noexcept;
 
     /**
@@ -120,7 +125,9 @@ private:
     int movesSize;  /**< Размер вектора ходов */
     int moveIndex; /**< Индекс ходов */
     std::vector<Move> moves; /**< Вектор, хранящий все ходы */
+    //todo использовать enum как тип
     int surrendered; /**< Сдавшийся */
+    //todo использовать enum как тип
     int winner; /**< Победитель */
     int stonesEatenByBlack; /**< Число камней, съеденных чёрным */
     int stonesEatenByWhite; /**< Число камней, съеденных белым */
@@ -142,7 +149,13 @@ private:
      * Изменить размер вектора moves.
      * Увеличивает размер вектора moves на 100, если есть необходимость.
      */
+    //todo может не использовать if в названии?
+    //todo лучше не заниматься самостоятельным выделением памяти
+    // в реализации вектора большие бородатые дяденьки, наверно, всю голову сломали,
+    // пока думали как эффеиктивно память выделять, понаписали кучу аллокаторов...
     void ifNeedResizeMoves() noexcept;
+    //возможно лучше просто resizeMoves() все равно метод вызывается постоянно... if награмождает
+    //хотя, здесь подумать надо... сложно что то...
 
     /**
      * Убрать съеденные камни с доски.
@@ -155,6 +168,7 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
+    //todo first second заблуждение...
     void ifMoveOutsideTheBoardThrowException( int first, int second ) const;
 
     /**
@@ -163,6 +177,7 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
+    //todo first second заблуждение...
     void ifMoveToNotEmptyPointThrowException( int first, int second ) const;
 
     /**
@@ -171,6 +186,7 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
+    //todo first second заблуждение...
     void ifMoveRepeatThrowException( int first, int second ) const;
 
     /**
@@ -179,6 +195,7 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
+    //todo first second заблуждение...
     void ifMoveToDieThrowException( int first, int second ) const;
 
     /**
@@ -186,6 +203,7 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
+    //todo first second заблуждение...
     void ifMoveIllegalThrowException( int first, int second ) const;
 
 };

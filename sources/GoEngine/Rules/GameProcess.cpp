@@ -6,6 +6,7 @@ GameProcess::GameProcess( const int diagonal ) noexcept : diagonal(diagonal)
     movesSize = 100;
     moveIndex = 0;
     moves.resize(movesSize);
+    //todo тип enum
     surrendered = static_cast<int>(Status::EMPTY);
     winner = static_cast<int>(Status::EMPTY);
     stonesEatenByBlack = 0;
@@ -26,7 +27,21 @@ void GameProcess::putStone( int first, int second )
 {
     ifNeedResizeMoves();
     ifMoveIllegalThrowException(first, second);
+    //todo не нравится мне вот эта строчка... выходи пункт равен тому, чей ход...
+    //может что нибудь типа такой конструкции:
+    //Point &samplePoint = board(first, second);
+    //samplePoint.setStone(Stone(whoseMove())); ...
+    //тоже не очень хорошо, громоздко, но чуть чуть понятнее
+    //тут подумать надо
     board->operator()(first, second) = whoseMove();
+    //todo слишком длинно, колбаса
+    //todo а можно просто board(first, second)?
+    //лучше разбить на 2-3 строчки.
+    //тут бы еще мог бы метод setStone кстати быть:
+    //Point samplePoint = board(first, second);
+    //Stone sampleStone(samplePoint.getStatus(), first, second, 0);
+    //board(first, second).setStone(sampleStone);
+    //дело вкуса, конечно, но строчка реально длинная и непонятная.
     board->operator()(first, second).createStone(board->operator()(first, second).getStatus(), first, second, 0);
     moves[moveIndex] = Move{ first, second };
     ++moveIndex;
@@ -56,6 +71,7 @@ int GameProcess::whoSurrendered() const noexcept
 
 int GameProcess::whoWon() const noexcept
 {
+    //уже малясь подергивает от кастов, но благо все легко исправляется todo: использовать enum как тип
     switch( surrendered )
     {
     case static_cast<int>(Status::BLACK) :
@@ -104,6 +120,8 @@ Board& GameProcess::getBoard() const noexcept
 
 bool GameProcess::areTwoPasses() const noexcept
 {
+    //todo слишком длинно и слишком сложно осмыслить
+    //лучше не использовать старину элвиса(?:) в таких больших конструкциях
     return moveIndex >= 2 ? getLastMove() == passedMove && getLastMove() == getPenultMove() : false;
 }
 
@@ -128,7 +146,11 @@ void GameProcess::removeEatenStones() noexcept
 
 void GameProcess::ifMoveOutsideTheBoardThrowException( int first, int second ) const
 {
-    if( first < 1 || first > board->getDiagonal() || second < 1 || second > board->getDiagonal() )
+    //todo слишком длинная строка
+    //предлагаю такие переносмот строки делить
+    //красиво же
+    if( first  < 1 || first  > board->getDiagonal() ||
+        second < 1 || second > board->getDiagonal() )
     {
         throw MoveOutsideTheBoardException();
     }

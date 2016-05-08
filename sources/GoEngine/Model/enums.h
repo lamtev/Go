@@ -1,6 +1,8 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
+//todo лучше раскидать все енамы и константы по соответсвующим классам, а этот файл удалить
+
 enum class Status
 {
     EMPTY = 0,

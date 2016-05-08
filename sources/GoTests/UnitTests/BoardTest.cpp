@@ -77,7 +77,7 @@ void BoardTest::get()
     }
     board(1, 4) = static_cast<int>(Status::BLACK);
     board(4, 1) = static_cast<int>(Status::WHITE);
-
+    //todo тип + enum = счастье
     const Point EMPTY{ static_cast<int>(Status::EMPTY) };
     const Point BLACK{ static_cast<int>(Status::BLACK) };
     const Point WHITE{ static_cast<int>(Status::WHITE) };

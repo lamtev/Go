@@ -29,6 +29,7 @@ public:
      * @param second вторая координата
      * @return ссылку на объект
      */
+    //todo first и second вводят в заблуждение
     Point& operator()( const int first, const int second ) noexcept;
 
     /**
