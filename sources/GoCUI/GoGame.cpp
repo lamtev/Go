@@ -87,6 +87,8 @@ void GoGame::startGame()
         }
         if ( goEngineInterface->isGameOver() )
         {
+            std::cout << "Game is over!!!" << std::endl;
+            std::cout << std::endl;
             std::cout << "Would you like to play again? [y/n]" << std::endl;
             std::cout << "n - for quit to menu" << std::endl;
             std::string command;
