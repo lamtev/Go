@@ -68,6 +68,11 @@ private:
     void printMenu() const noexcept;
 
     /**
+     * Хэлп.
+     */
+    void printHelp() const noexcept;
+
+    /**
      * Распарсить комманду.
      * @param command команда
      */

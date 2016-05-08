@@ -26,15 +26,34 @@ GoGame::~GoGame()
 
 void GoGame::begin()
 {
-    startGame();
+    menu();
 }
 
 void GoGame::menu()
 {
     std::string command;
     printMenu();
-    std::cin >> command;
-    std::cout << parseCommand(command) << std::endl;
+    std::getline(std::cin, command);
+    switch( parseCommand(command) )
+    {
+    case 1 :
+    case static_cast<int>(TypeOfCommand::START_GAME) :
+        startGame();
+        return;
+    case 2 :
+    case static_cast<int>(TypeOfCommand::HELP) :
+        printHelp();
+        menu();
+        return;
+    case 3 :
+    case static_cast<int>(TypeOfCommand::EXIT) :
+        return;
+    case static_cast<int>(TypeOfCommand::ERROR) :
+        std::cout << "Command is wrong" << std::endl;
+        std::cout << std::endl;
+        menu();
+        return;
+    }
 }
 
 void GoGame::printMenu() const noexcept
@@ -42,22 +61,18 @@ void GoGame::printMenu() const noexcept
     std::cout << "1. Start game" << std::endl;
     std::cout << "2. Help" << std::endl;
     std::cout << "3. Exit" << std::endl;
-    std::cout << "Enter the number that matches a choosen" << std::endl;
+    std::cout << "Enter the number that matches a chosen" << std::endl;
     std::cout << "command or enter the command immediately" << std::endl;
 }
 
 int GoGame::parseCommand( const std::string& command ) const noexcept
 {
-    for( auto it = map.begin(); it != map.end(); ++it )
+    if( MENU_COMMANDS.find(command) != MENU_COMMANDS.end() )
     {
-        if( map.find(command) != map.end() )
-        {
-            return map.at(command);
-        }
+        return MENU_COMMANDS.at(command);
     }
     return static_cast<int>(TypeOfCommand::ERROR);
 }
-
 
 void GoGame::startGame()
 {
@@ -69,6 +84,27 @@ void GoGame::startGame()
         if( !whoWon() && !exit )
         {
             printCalculateScores();
+        }
+        if ( goEngineInterface->isGameOver() )
+        {
+            std::cout << "Would you like to play again? [y/n]" << std::endl;
+            std::cout << "n - for quit to menu" << std::endl;
+            std::string command;
+            std::getline(std::cin, command);
+            if( !command.compare("y") )
+            {
+                delete goEngineInterface;
+                goEngineInterface = new GoEngineInterface{};
+                startGame();
+                return;
+            }
+            else if( !command.compare("n") )
+            {
+                delete goEngineInterface;
+                goEngineInterface = new GoEngineInterface{};
+                menu();
+                return;
+            }
         }
     }
 }
@@ -127,6 +163,10 @@ void GoGame::startGameCycle( std::string& command, int& first, int& second )
             hasExceptionHandled = false;
             return;
         }
+        if( goEngineInterface->isGameOver() )
+        {
+            needMessage = false;
+        }
     }
 }
 
@@ -134,8 +174,8 @@ void GoGame::ifNeedPrintMessage() noexcept
 {
     if( needMessage )
     {
-        printMessage();
         needMessage = false;
+        printMessage();
     }
 }
 
@@ -143,8 +183,8 @@ void GoGame::ifNeedPrintHelp() noexcept
 {
     if( needHelp )
     {
-        help->printHelp();
         needHelp = false;
+        printHelp();
     }
 }
 
@@ -617,3 +657,10 @@ void GoGame::printCalculateScores() const noexcept
 {
     std::cout << "Calculate your scores" << std::endl;
 }
+
+void GoGame::printHelp() const noexcept
+{
+    help->printHelp();
+}
+
+
