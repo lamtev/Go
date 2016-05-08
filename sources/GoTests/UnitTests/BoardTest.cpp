@@ -47,20 +47,20 @@ void BoardTest::getDiagonal()
 void BoardTest::indexation()
 {
     Board b{ 19 };
-    b(1, 1) = BLACK;
-    b(19, 19) = WHITE;
-    QVERIFY(b(1, 1).getStatus() == BLACK);
-    QVERIFY(b(19, 19).getStatus() == WHITE);
+    b(1, 1) = static_cast<int>(Status::BLACK);
+    b(19, 19) = static_cast<int>(Status::WHITE);
+    QCOMPARE(b(1, 1).getStatus(), static_cast<int>(Status::BLACK));
+    QCOMPARE(b(19, 19).getStatus(), static_cast<int>(Status::WHITE));
 }
 
 void BoardTest::assigment()
 {
     Board b1{ 7 };
-    b1(1, 1) = BLACK;
-    b1(7, 7) = WHITE;
+    b1(1, 1) = static_cast<int>(Status::BLACK);
+    b1(7, 7) = static_cast<int>(Status::WHITE);
     Board b2 = b1;
-    QVERIFY(b1(1, 1).getStatus() == b2(1, 1).getStatus());
-    QVERIFY(b1(7, 7).getStatus() == b2(7, 7).getStatus());
+    QCOMPARE(b1(1, 1).getStatus(), b2(1, 1).getStatus());
+    QCOMPARE(b1(7, 7).getStatus(), b2(7, 7).getStatus());
 }
 
 void BoardTest::get()
@@ -75,9 +75,12 @@ void BoardTest::get()
             ++counter;
         }
     }
-    board(1, 4) = BLACK;
-    board(4, 1) = WHITE;
+    board(1, 4) = static_cast<int>(Status::BLACK);
+    board(4, 1) = static_cast<int>(Status::WHITE);
 
+    const Point EMPTY{ static_cast<int>(Status::EMPTY) };
+    const Point BLACK{ static_cast<int>(Status::BLACK) };
+    const Point WHITE{ static_cast<int>(Status::WHITE) };
     std::vector<Point> vector{
             EMPTY, BLACK, WHITE, WHITE, BLACK, WHITE, EMPTY,
             BLACK, WHITE, EMPTY, BLACK, WHITE, EMPTY, BLACK,

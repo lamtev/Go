@@ -25,28 +25,28 @@ StoneTest::StoneTest(){}
 
 void StoneTest::getColor()
 {
-    Stone stone{ BLACK, A, 5, 2 };
+    Stone stone{ static_cast<int>(Status::BLACK), A, 5, 2 };
 
-    QVERIFY(stone.getColor() == BLACK);
+    QCOMPARE(stone.getColor(), static_cast<int>(Status::BLACK));
 }
 
 void StoneTest::getFirst()
 {
-    Stone stone{ BLACK, A, 5, 2 };
+    Stone stone{ static_cast<int>(Status::BLACK), A, 5, 2 };
 
     QVERIFY(stone.getFirst() == A);
 }
 
 void StoneTest::getSecond()
 {
-    Stone stone{ BLACK, A, 5, 2 };
+    Stone stone{ static_cast<int>(Status::BLACK), A, 5, 2 };
 
     QCOMPARE(stone.getSecond(), 5);
 }
 
 void StoneTest::getBreaths()
 {
-    Stone stone{ BLACK, A, 5, 2 };
+    Stone stone{ static_cast<int>(Status::BLACK), A, 5, 2 };
 
     QCOMPARE(stone.getBreaths(), 2);
 }

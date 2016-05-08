@@ -2,16 +2,16 @@
 #define GO_GOGAME_H
 
 #include <iostream>
-#include <string>
 #include <sstream>
 
-#include "../GoEngine/Model/GoEngineInterface.h"
+#include "../GoEngine/GoEngineInterface.h"
 #include "Help.h"
 #include "InitBoards.h"
 #include "enums.h"
 
 //TODO refactor GoGame
 //TODO help for console args
+//TODO point to function use
 
 /**
  * Игра.
@@ -22,8 +22,16 @@ public:
 
     /**
      * Конструктор.
+     * @param argc число параметров
+     * @param argv список параметров
      */
-    GoGame( const int argc = 1, char** argv = nullptr );
+    GoGame( const int argc = 1, char** argv = nullptr ) noexcept;
+
+    /**
+     * Копирующий конструктор.
+     *
+     */
+    GoGame( const GoGame& go ) noexcept;
 
     /**
      * Деструктор.
@@ -44,10 +52,36 @@ private:
     char** argv; /**< Список параметров командной строки */
     bool needMessage; /**< Нужно сообщение об ошибке? */
     bool needHelp; /**< Нужен хэлп? */
-    bool hasExceptionThrown; /**< Было выброшено исключение? */
+    bool hasExceptionHandled; /**< Было исключение обработано? */
     bool exit; /**< Выход? */
     std::string MESSAGE; /**< Сообщение */
     std::vector<char> board; /**< Доска для вывода на экран */
+
+    /**
+     * Открыть меню.
+     */
+    void menu();
+
+    /**
+     * Отрисовать меню.
+     */
+    void printMenu() const noexcept;
+
+    /**
+     * Хэлп.
+     */
+    void printHelp() const noexcept;
+
+    /**
+     * Распарсить комманду.
+     * @param command команда
+     */
+    int parseCommand( const std::string& command ) const noexcept;
+
+    /**
+     * Начать игру.
+     */
+    void startGame();
 
     /**
      * Настроить игру.
@@ -81,7 +115,7 @@ private:
      * @param second вторая координата.
      * @return тип распарсенной команды
      */
-    int parseCommand( const std::string& command, int& first, int& second ) noexcept;
+    int parseCommand1( const std::string& command, int& first, int& second ) noexcept;
 
     /**
      * Парсить первую координату.
@@ -122,6 +156,12 @@ private:
      * Сделать ход.
      */
     void putStone( const int first, const int second );
+
+    /**
+     * Включить сообщение.
+     * @param message сообщение
+     */
+    void turnOnMessage( const char* message ) noexcept;
 
     /**
      * Пропустить ход.
@@ -183,16 +223,6 @@ private:
     void printWhiteWon() const noexcept;
 
     /**
-     * Напечатать, сколько камней съели чёрные.
-     */
-    void printStonesEatenByBlack() const noexcept;
-
-    /**
-     * Напечатать, сколько камней съели белые.
-     */
-    void printStonesEatenByWhite() const noexcept;
-
-    /**
      * Напечатать статистику съеденных камней.
      */
     void printEatenStonesStat() const noexcept;
@@ -213,11 +243,6 @@ private:
      * @return true, если диагональ распарсилась, иначе - false.
      */
     bool parseDiagonal( int& diagonal ) noexcept;
-
-    /**
-     * Ввести ход.
-     */
-    void inputMove();
 
     /**
      * Вывести сообщение ввода диагонали.
@@ -278,6 +303,11 @@ private:
      * Обновить доску
      */
     void updateBoard() noexcept;
+
+    /**
+     * Убрать выделение предпоследнего хода.
+     */
+    void unmarkPenultMove() noexcept;
 
     /**
      * Выделить последний ход.

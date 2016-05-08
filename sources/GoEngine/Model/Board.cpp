@@ -1,6 +1,6 @@
 #include "Board.h"
 
-Board::Board( int diagonal ) noexcept : diagonal(diagonal)
+Board::Board( const int diagonal ) noexcept : diagonal(diagonal)
 {
     board.resize(diagonal * diagonal);
 }

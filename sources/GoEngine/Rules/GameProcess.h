@@ -1,8 +1,6 @@
 #ifndef GO_GAMEPROCESS_H
 #define GO_GAMEPROCESS_H
 
-#include <vector>
-
 #include "../Model/Board.h"
 #include "Move.h"
 #include "Exceptions/MoveOutsideTheBoardException.h"
@@ -13,7 +11,7 @@
 //TODO реализовать съедение
 
 /**
- * Процесс хода.
+ * Игровой процесс.
  * Cледит за тем, чтобы ходы выполнялись в соответствии с правилами.
  * Определяет очерёдность ходов. Определяет победителя и проигравшего.
  */
@@ -25,12 +23,18 @@ public:
     /**
      * Конструктор.
      */
-    GameProcess( const int diagonal ) noexcept;
+    explicit GameProcess( const int diagonal ) noexcept;
 
     /**
      * Деструктор.
      */
     ~GameProcess() noexcept;
+
+    /**
+     * Чей ход?
+     * @return цвет игрока, чей сейчас ход
+     */
+    int whoseMove() const noexcept;
 
     /**
      * Положить камень.
@@ -80,10 +84,16 @@ public:
     std::vector<Move>& getMoves() const noexcept;
 
     /**
-     * Чей ход?
-     * @return цвет игрока, чей сейчас ход
+     * Получить последний совершённый ход.
+     * @return ссылка на последний совершённый ход.
      */
-    int whoseMove() const noexcept;
+    Move& getLastMove() const noexcept;
+
+    /**
+     * Получить предпоследний совершённых ход.
+     * @return ссылка на последний совершённый ход
+     */
+    Move& getPenultMove() const noexcept;
 
     /**
      * Получить число камней, съеденных чёрным.
@@ -98,18 +108,6 @@ public:
     int getStonesEatenByWhite() const noexcept;
 
     /**
-     * Получить последний совершённый ход.
-     * @return ссылка на последний совершённый ход.
-     */
-    Move& getLastMove() const noexcept;
-
-    /**
-     * Получить предпоследний совершённых ход.
-     * @return ссылка на последний совершённый ход
-     */
-    Move& getPenultMove() const noexcept;
-
-    /**
      * Получить доску.
      * @return доску
      */
@@ -119,9 +117,9 @@ private:
 
     int diagonal; /**< Диагональ доски */
     Board* board; /**< Доска */
-    std::vector<Move> moves; /**< Вектор, хранящий все ходы */
-    int moveIndex; /**< Индекс ходов */
     int movesSize;  /**< Размер вектора ходов */
+    int moveIndex; /**< Индекс ходов */
+    std::vector<Move> moves; /**< Вектор, хранящий все ходы */
     int surrendered; /**< Сдавшийся */
     int winner; /**< Победитель */
     int stonesEatenByBlack; /**< Число камней, съеденных чёрным */

@@ -21,6 +21,14 @@ public:
     Stone( const int color, const int first, const int second, const int breaths ) noexcept;
 
     /**
+     * Присваивание.
+     * Перегруженный оператор присваивания.
+     * @param stone ссылка на константный объект класса Stone - камень
+     * @return ссылку на объект
+     */
+    Stone& operator=( const Stone& stone ) noexcept;
+
+    /**
      * Получить цвет.
      * @return цвет
      */

@@ -1,12 +1,10 @@
 #include "Move.h"
 
-Move::Move( const int first, const int second ) noexcept : first(first), second(second){}
+Move::Move( const int first, const int second ) noexcept : first{ first },
+                                                           second{ second }{}
 
-Move::Move( const Move& move ) noexcept
-{
-    this->first = move.first;
-    this->second = move.second;
-}
+Move::Move( const Move& move ) noexcept : first{ move.first },
+                                          second{ move.second }{}
 
 Move& Move::operator=( const Move& move ) noexcept
 {

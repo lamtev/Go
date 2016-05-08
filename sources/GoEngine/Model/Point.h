@@ -1,7 +1,6 @@
 #ifndef GO_POINT_H
 #define GO_POINT_H
 
-#include "enums.h"
 #include "Stone.h"
 
 /**
@@ -16,7 +15,7 @@ public:
      * Конструктор.
      * @param status статус пункта.
      */
-    Point( int status = EMPTY ) noexcept;
+    explicit Point( int status = static_cast<int>(Status::EMPTY) ) noexcept;
 
     /**
      * Копирующий конструктор.
@@ -87,7 +86,8 @@ public:
 private:
 
     int status; /**< Статус пункта */
-    Stone* stone; /**< Указатель на объект класса Stone */
+    Stone* stone; /**< Указатель на камень */
+    bool isStoneDeleted; /**< Камень удалён? */
 
 };
 

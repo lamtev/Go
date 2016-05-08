@@ -1,11 +1,14 @@
 #include "GoEngineInterface.h"
 
-GoEngineInterface::GoEngineInterface() noexcept
+GoEngineInterface::GoEngineInterface() noexcept : gameProcess{ nullptr }{}
+
+GoEngineInterface& GoEngineInterface::operator=( const GoEngineInterface& go ) noexcept
 {
-    gameProcess = nullptr;
+    this->gameProcess = go.gameProcess;
+    return *this;
 }
 
-void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution) noexcept
+void GoEngineInterface::startGame( const int diagonal, const int rules, const int colorDistribution ) noexcept
 {
     gameProcess = new GameProcess { diagonal };
 }
@@ -50,6 +53,16 @@ int GoEngineInterface::whoWon() const noexcept
     return gameProcess->whoWon();
 }
 
+int GoEngineInterface::getDiagonal() const noexcept
+{
+    return gameProcess->getBoard().getDiagonal();
+}
+
+int GoEngineInterface::getIJPointsStatus( const int i, const int j ) const noexcept
+{
+    return gameProcess->getBoard().operator()(i, j).getStatus();
+}
+
 int GoEngineInterface::getStonesEatenByBlack() const noexcept
 {
     return gameProcess->getStonesEatenByBlack();
@@ -58,6 +71,11 @@ int GoEngineInterface::getStonesEatenByBlack() const noexcept
 int GoEngineInterface::getStonesEatenByWhite() const noexcept
 {
     return gameProcess->getStonesEatenByWhite();
+}
+
+int GoEngineInterface::getMoveIndex() const noexcept
+{
+    return gameProcess->getMoveIndex();
 }
 
 std::vector<Move>& GoEngineInterface::getMoves() const noexcept
@@ -73,20 +91,4 @@ Move& GoEngineInterface::getLastMove() const noexcept
 Move& GoEngineInterface::getPenultMove() const noexcept
 {
     return gameProcess->getPenultMove();
-}
-
-int GoEngineInterface::getMoveIndex() const noexcept
-{
-    return gameProcess->getMoveIndex();
-}
-
-
-int GoEngineInterface::getDiagonal() const noexcept
-{
-    return gameProcess->getBoard().getDiagonal();
-}
-
-int GoEngineInterface::getIJPointsStatus( const int i, const int j ) const noexcept
-{
-    return gameProcess->getBoard().operator()(i, j).getStatus();
 }

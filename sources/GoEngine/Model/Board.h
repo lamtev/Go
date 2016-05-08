@@ -18,10 +18,9 @@ public:
 
     /**
      * Конструктор.
-     * Конструктор для инициализации объекта по значению диагонали.
      * @param diagonal диагональ
      */
-    explicit Board( int diagonal = 19 ) noexcept;
+    explicit Board( const int diagonal = 19 ) noexcept;
 
     /**
      * Оператор скобки.

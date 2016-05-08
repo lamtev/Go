@@ -106,8 +106,7 @@ void GameProcessTest::whoSurrendered()
     gameProcess->putStone(C, 2);
     gameProcess->putStone(A, 5);
     gameProcess->surrender();
-    int status{ WHITE };
-    QCOMPARE(gameProcess->whoSurrendered(), status);
+    QCOMPARE(gameProcess->whoSurrendered(), static_cast<int>(Status::WHITE));
     
     delete gameProcess;
 
@@ -116,8 +115,7 @@ void GameProcessTest::whoSurrendered()
 
     gameProcess->putStone(B, 6);
     gameProcess->putStone(C, 2);
-    status = EMPTY;
-    QCOMPARE(gameProcess->whoWon(), status);
+    QCOMPARE(gameProcess->whoWon(), static_cast<int>(Status::EMPTY));
     
     delete gameProcess;
 }
@@ -130,8 +128,7 @@ void GameProcessTest::whoWon()
     gameProcess->putStone(C, 2);
     gameProcess->putStone(A, 5);
     gameProcess->surrender();
-    int status{ BLACK };
-    QCOMPARE(gameProcess->whoWon(), status);
+    QCOMPARE(gameProcess->whoWon(), static_cast<int>(Status::BLACK));
     
     delete gameProcess;
     
@@ -140,8 +137,7 @@ void GameProcessTest::whoWon()
     gameProcess->putStone(A, 6);
     gameProcess->putStone(C, 2);
     gameProcess->surrender();
-    status = WHITE;
-    QCOMPARE(gameProcess->whoWon(), status);
+    QCOMPARE(gameProcess->whoWon(), static_cast<int>(Status::WHITE));
     
     delete gameProcess;
 
@@ -150,8 +146,7 @@ void GameProcessTest::whoWon()
 
     gameProcess->putStone(A, 6);
     gameProcess->putStone(C, 2);
-    status = EMPTY;
-    QCOMPARE(gameProcess->whoWon(), status);
+    QCOMPARE(gameProcess->whoWon(), static_cast<int>(Status::EMPTY));
     
     delete gameProcess;
 
@@ -203,13 +198,13 @@ void GameProcessTest::getBoard()
     {
         for( int j = 1; j <= 13; ++j )
         {
-            QVERIFY(gameProcess->getBoard().operator()(i, j).getStatus() == EMPTY);
+            QCOMPARE(gameProcess->getBoard().operator()(i, j).getStatus(), static_cast<int>(Status::EMPTY));
         }
     }
     gameProcess->putStone(A, 13);
-    QVERIFY(gameProcess->getBoard().operator()(A, 13).getStatus() == BLACK);
+    QCOMPARE(gameProcess->getBoard().operator()(A, 13).getStatus(), static_cast<int>(Status::BLACK));
     gameProcess->putStone(J, 7);
-    QVERIFY(gameProcess->getBoard().operator()(J, 7).getStatus() == WHITE);
+    QCOMPARE(gameProcess->getBoard().operator()(J, 7).getStatus(), static_cast<int>(Status::WHITE));
 
     delete gameProcess;
 }
@@ -218,13 +213,13 @@ void GameProcessTest::whoseMove()
 {
     GameProcess* gameProcess = new GameProcess { 13 };
 
-    QVERIFY(gameProcess->whoseMove() == BLACK);
+    QCOMPARE(gameProcess->whoseMove(), static_cast<int>(Status::BLACK));
     gameProcess->pass();
-    QVERIFY(gameProcess->whoseMove() == WHITE);
+    QCOMPARE(gameProcess->whoseMove(), static_cast<int>(Status::WHITE));
     gameProcess->putStone(A, 13);
-    QVERIFY(gameProcess->whoseMove() == BLACK);
+    QCOMPARE(gameProcess->whoseMove(), static_cast<int>(Status::BLACK));
     gameProcess->pass();
-    QVERIFY(gameProcess->whoseMove() == WHITE);
+    QCOMPARE(gameProcess->whoseMove(), static_cast<int>(Status::WHITE));
     
     delete gameProcess;
 }
