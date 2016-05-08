@@ -7,6 +7,7 @@
 
 //TODO noexcept swap
 //TODO high performance operator=
+//проверка на присваивавание самому себе
 
 /**
  * Игровая доска

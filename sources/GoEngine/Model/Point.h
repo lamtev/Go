@@ -3,6 +3,10 @@
 
 #include "Stone.h"
 
+//TODO noexcept swap
+//TODO high performance operator=
+//проверка на присваивавание самому себе
+
 /**
  * Пункт игровой доски
  */

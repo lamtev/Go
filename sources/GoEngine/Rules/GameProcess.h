@@ -43,7 +43,6 @@ public:
      * @param first первая координата
      * @param second вторая координата
      */
-    //todo first и second вводят в заблуждение
     void putStone( int first, int second );
 
     /**
@@ -168,7 +167,6 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    //todo first second заблуждение...
     void ifMoveOutsideTheBoardThrowException( int first, int second ) const;
 
     /**
@@ -177,7 +175,6 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    //todo first second заблуждение...
     void ifMoveToNotEmptyPointThrowException( int first, int second ) const;
 
     /**
@@ -186,7 +183,6 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    //todo first second заблуждение...
     void ifMoveRepeatThrowException( int first, int second ) const;
 
     /**
@@ -195,7 +191,6 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    //todo first second заблуждение...
     void ifMoveToDieThrowException( int first, int second ) const;
 
     /**
@@ -203,7 +198,6 @@ private:
      * @param first первая координата
      * @param second вторая координата
      */
-    //todo first second заблуждение...
     void ifMoveIllegalThrowException( int first, int second ) const;
 
 };

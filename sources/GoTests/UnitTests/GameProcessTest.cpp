@@ -57,8 +57,9 @@ void GameProcessTest::pass()
 {
     GameProcess* gameProcess = new GameProcess{ 19 };
 
-    //todo неплохо бы до изменений проверить начальное состояние
-    //а то вдруг любой ход будет координаты пасса давать
+
+    QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
+    QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
     gameProcess->pass();
     QCOMPARE(gameProcess->getMoves()[0].getFirst(), PASS_COORD);
     QCOMPARE(gameProcess->getMoves()[0].getSecond(), PASS_COORD);
@@ -70,8 +71,8 @@ void GameProcessTest::isGameOver()
 {
     GameProcess* gameProcess = new GameProcess{ 19 };
 
-    //todo неплохо бы до изменений проверить начальное состояние
-    //а то вдруг и до пассов геймовер был
+    QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
+    QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
     gameProcess->pass();
     gameProcess->pass();
     QVERIFY(gameProcess->isGameOver());
@@ -80,7 +81,8 @@ void GameProcessTest::isGameOver()
 
     
     gameProcess = new GameProcess{ 7 };
-    //todo неплохо бы до изменений проверить начальное состояние
+    QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
+    QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
     gameProcess->putStone(A, 3);
     gameProcess->putStone(D, 3);
     gameProcess->putStone(B, 2);
@@ -96,7 +98,8 @@ void GameProcessTest::isGameOver()
     
     gameProcess = new GameProcess{ 19 };
 
-    //todo неплохо бы до изменений проверить начальное состояние
+    QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
+    QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
     gameProcess->surrender();
     QVERIFY(gameProcess->isGameOver());
     

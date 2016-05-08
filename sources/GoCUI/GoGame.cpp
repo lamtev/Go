@@ -139,8 +139,7 @@ void GoGame::initBoard( int diagonal ) noexcept
         board = BOARD19;
         break;
     default :
-        //todo лучше все таки добавить какое-нибудь сообщение, а то мало ли что...
-        //легче будет устанвить где ошибка
+    std::cout << "BUG" << std::endl;
         break;
     }
 }
@@ -393,7 +392,7 @@ void GoGame::putStone( const int first, const int second )
     {
         hasExceptionHandled = true;
         turnOnMessage(e.what());
-        //todo опа! рекусия и без выхода. Привет переполенному стэку!
+        //todo опа! рекусия и без выхода. Привет переполенному стэку! СПОРНО!!!
         play();
     }
 }
@@ -593,7 +592,6 @@ void GoGame::printDiagonalInputMessage()
 
 bool GoGame::isDiagonalN( const std::string& input, const int n ) const noexcept
 {
-    //todo вроде, есть более простые способы перевести число в строку или наоборот
     std::ostringstream ss;
     ss.str("");
     ss << n;
@@ -624,51 +622,31 @@ int GoGame::getDiagonal( const std::string& input ) const noexcept
     return 0;
 }
 
+bool GoGame::isCommand( const std::string& input, const char* const command ) const noexcept
+{
+    std::string s{ input };
+    std::transform(s.begin(), s.end(), s.begin(), toupper);
+    return !s.compare(command);
+}
+
 bool GoGame::isExit( const std::string& input ) const noexcept
 {
-    //todo может просто две строки сравнить?
-    //и если не ошибаюь есть функцяи которая сравнивает без учета регистра
-    //или можно просто входную строку в нижний регистр первести и все
-    return (input.size() == 4) &&
-           (input[0] == 'e' || input[0] == 'E') &&
-           (input[1] == 'x' || input[1] == 'X') &&
-           (input[2] == 'i' || input[2] == 'I') &&
-           (input[3] == 't' || input[3] == 'T');
+    return isCommand(input, "EXIT");
 }
 
 bool GoGame::isPass( const std::string& input ) const noexcept
 {
-    //todo может просто две строки сравнить?
-    return (input.size() == 4) &&
-           (input[0] == 'p' || input[0] == 'P') &&
-           (input[1] == 'a' || input[1] == 'A') &&
-           (input[2] == 's' || input[2] == 'S') &&
-           (input[3] == 's' || input[3] == 'S');
+    return isCommand(input, "PASS");
 }
 
 bool GoGame::isSurrender( const std::string& input ) const noexcept
 {
-    //todo может просто две строки сравнить?
-    return (input.size() == 9) &&
-           (input[0] == 's' || input[0] == 'S') &&
-           (input[1] == 'u' || input[1] == 'U') &&
-           (input[2] == 'r' || input[2] == 'R') &&
-           (input[3] == 'r' || input[3] == 'R') &&
-           (input[4] == 'e' || input[4] == 'E') &&
-           (input[5] == 'n' || input[5] == 'N') &&
-           (input[6] == 'd' || input[6] == 'D') &&
-           (input[7] == 'e' || input[7] == 'E') &&
-           (input[8] == 'r' || input[8] == 'R');
+    return isCommand(input, "SURRENDER");
 }
 
 bool GoGame::isHelp( const std::string& input ) const noexcept
 {
-    //todo может просто две строки сравнить?
-    return (input.size() == 4) &&
-           (input[0] == 'h' || input[0] == 'H') &&
-           (input[1] == 'e' || input[1] == 'E') &&
-           (input[2] == 'l' || input[2] == 'L') &&
-           (input[3] == 'p' || input[3] == 'P');
+    return isCommand(input, "HELP");
 }
 void GoGame::printEatenStonesStat() const noexcept
 {

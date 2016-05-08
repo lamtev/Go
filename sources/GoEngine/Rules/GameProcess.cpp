@@ -122,7 +122,10 @@ bool GameProcess::areTwoPasses() const noexcept
 {
     //todo слишком длинно и слишком сложно осмыслить
     //лучше не использовать старину элвиса(?:) в таких больших конструкциях
-    return moveIndex >= 2 ? getLastMove() == passedMove && getLastMove() == getPenultMove() : false;
+    return moveIndex >= 2 ?
+           getLastMove() == passedMove &&
+           getLastMove() == getPenultMove() :
+           false;
 }
 
 bool GameProcess::isBlacksMove() const noexcept
@@ -146,9 +149,6 @@ void GameProcess::removeEatenStones() noexcept
 
 void GameProcess::ifMoveOutsideTheBoardThrowException( int first, int second ) const
 {
-    //todo слишком длинная строка
-    //предлагаю такие переносмот строки делить
-    //красиво же
     if( first  < 1 || first  > board->getDiagonal() ||
         second < 1 || second > board->getDiagonal() )
     {

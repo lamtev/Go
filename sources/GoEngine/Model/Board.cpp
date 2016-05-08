@@ -12,7 +12,6 @@ Point& Board::operator()( const int first, const int second ) noexcept
 
 Board& Board::operator=( const Board& board ) noexcept
 {
-    //todo проверка на присваивание самому себе
     this->diagonal = board.diagonal;
     this->board = board.board;
     return *this;

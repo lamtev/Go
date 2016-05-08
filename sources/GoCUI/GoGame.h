@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
+#include <cctype>
 
 #include "../GoEngine/GoEngineInterface.h"
 #include "Help.h"
@@ -39,7 +41,6 @@ public:
      * Копирующий конструктор.
      *
      */
-    //todo а он точно нужен?
     GoGame( const GoGame& go ) noexcept;
 
     /**
@@ -279,6 +280,14 @@ private:
      * @return диагональ.
      */
     int getDiagonal( const std::string& input ) const noexcept;
+
+    /**
+     * Входная строка совпадает с командой?
+     * @param input входная строка.
+     * @param command команда
+     * @return true, если входная строка совпадает с командой, и false - иначе.
+     */
+    bool isCommand( const std::string& input, const char* const command ) const noexcept;
 
     /**
      * Ключ exit?

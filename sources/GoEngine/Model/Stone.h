@@ -3,6 +3,10 @@
 
 #include "enums.h"
 
+//TODO noexcept swap
+//TODO high performance operator=
+//проверка на присваивавание самому себе
+
 /**
  * Камень.
  */
@@ -19,7 +23,6 @@ public:
      * @param breaths число дыханий
      */
     //todo почему бы не использовать enum для цвета?
-    //todo first и second вводят в заблуждение, не сразу понятно, что это координаты на доске.
     Stone( const int color, const int first, const int second, const int breaths ) noexcept;
 
     /**

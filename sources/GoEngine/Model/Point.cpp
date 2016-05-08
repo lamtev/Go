@@ -18,7 +18,6 @@ Point::~Point() noexcept
 
 Point& Point::operator=( const Point& point ) noexcept
 {
-    //todo проверка на присваивание самому себе
     this->status = point.status;
     this->stone = point.stone;
     this->isStoneDeleted = point.isStoneDeleted;

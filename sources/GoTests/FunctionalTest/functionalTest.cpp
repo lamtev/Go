@@ -18,8 +18,6 @@ public:
 
 private Q_SLOTS:
     void checkNewDelete();
-    void paintBoard();
-    void makeMove();
 };
 
 FunctionalTest::FunctionalTest(){}
@@ -31,26 +29,6 @@ void FunctionalTest::checkNewDelete()
     go->putStone(A, 3);
     delete go;
 }
-
-//todo помоему, печатание доски из левых хедеров к функциональному тесту мало отношения имеет...
-void FunctionalTest::paintBoard()
-{
-    for( int i = 0; i < 21 * 43; ++ i )
-    {
-        if (i % 43 == 0)
-        {
-            cout << endl;
-        }
-        cout << BOARD19A[i];
-    }
-    cout << endl;
-}
-
-//todo доделать бы...
-void FunctionalTest::makeMove()
-{
-}
-
 
 QTEST_APPLESS_MAIN(FunctionalTest)
 
