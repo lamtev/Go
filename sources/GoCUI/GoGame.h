@@ -2,7 +2,6 @@
 #define GO_GOGAME_H
 
 #include <iostream>
-#include <string>
 #include <sstream>
 
 #include "../GoEngine/GoEngineInterface.h"
@@ -12,6 +11,7 @@
 
 //TODO refactor GoGame
 //TODO help for console args
+//TODO point to function use
 
 /**
  * Игра.
