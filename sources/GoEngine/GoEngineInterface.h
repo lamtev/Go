@@ -5,6 +5,11 @@
 
 #include "Rules/GameProcess.h"
 
+//todo может выделить интерфейс в отдельный класс и наследовать вот это от него
+//todo также нельзя назвыть данный класс интерфейсом (в интерфейсе не должено быть реализации чего-либо)
+//при данной реализации такой необходимости, конечно, нет
+//но все же лучше придерживаться некой структуры
+
 /**
  * Интерфейс движка, предоставляемый приложению
  */
@@ -24,6 +29,7 @@ public:
      * @param go присваиваемый объект
      * @return ссылку на объект
      */
+    //todo а нужен он? оператор этот. зачем игру дублировать?
     GoEngineInterface& operator=( const GoEngineInterface& go ) noexcept;
 
     /**
@@ -33,6 +39,8 @@ public:
      * @param rules правила подсчета очков
      * @param colorDistribution способ распределения цветов
      */
+    //todo использовать enum как тип
+    //Rules rules
     void startGame( const int diagonal, const int rules, const int colorDistribution ) noexcept;
 
     /**
@@ -45,6 +53,7 @@ public:
      * @param first первая координата выбранного пункта доски (A - S)
      * @param second вторая координата выбранного пункта доски (1 - 19)
      */
+    //todo first second вводят в заблуждение...
     void putStone( const int first, const int second );
 
     /**
@@ -90,6 +99,7 @@ public:
     /**
      * Получить статус i,j - го пункта доски.
      */
+    //todo везду first second, а тут i и j. Лучше везде одинаково.
     int getIJPointsStatus( const int i, const int j ) const noexcept;
 
     /**

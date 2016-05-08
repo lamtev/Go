@@ -7,6 +7,7 @@ Stone::Stone( const int color, const int first, const int second, const int brea
 
 Stone& Stone::operator=( const Stone& stone ) noexcept
 {
+    //todo добавить проверку на присваивание самому себе.
     this->color = stone.color;
     this->first = stone.first;
     this->second = stone.second;

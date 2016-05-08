@@ -18,6 +18,7 @@ Point::~Point() noexcept
 
 Point& Point::operator=( const Point& point ) noexcept
 {
+    //todo проверка на присваивание самому себе
     this->status = point.status;
     this->stone = point.stone;
     this->isStoneDeleted = point.isStoneDeleted;
@@ -56,6 +57,7 @@ Stone& Point::getStone() const noexcept
 
 bool Point::isEmpty() const noexcept
 {
+    //todo я уже писал про тип в хедере
     return status == static_cast<int>(Status::EMPTY);
 }
 

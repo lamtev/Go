@@ -125,6 +125,7 @@ bool GoGame::configureGame()
 
 void GoGame::initBoard( int diagonal ) noexcept
 {
+    //todo магические числа?
     board.resize((diagonal + 2) * (diagonal * 2 + 5));
     switch( diagonal )
     {
@@ -138,6 +139,8 @@ void GoGame::initBoard( int diagonal ) noexcept
         board = BOARD19;
         break;
     default :
+        //todo лучше все таки добавить какое-нибудь сообщение, а то мало ли что...
+        //легче будет устанвить где ошибка
         break;
     }
 }
@@ -245,6 +248,8 @@ int GoGame::parseCommand1( const std::string& command, int& first, int& second )
 
 void GoGame::parseFirstCoordinate( const std::string& command, int& first ) noexcept
 {
+    //todo не очень хорошо такой большой свич мутить
+    //думаю найдутся более элегантные решения
     switch( command[0] )
     {
     case 'a' :
@@ -388,6 +393,7 @@ void GoGame::putStone( const int first, const int second )
     {
         hasExceptionHandled = true;
         turnOnMessage(e.what());
+        //todo опа! рекусия и без выхода. Привет переполенному стэку!
         play();
     }
 }
@@ -486,6 +492,7 @@ void GoGame::printWhiteWon() const noexcept
 
 void GoGame::printBoard()
 {
+    //todo магические числа
     updateBoard();
     int diagonal = goEngineInterface->getDiagonal();
     for( int i = 0; i < (diagonal + 2) * (diagonal * 2 + 5); ++ i )
@@ -508,6 +515,7 @@ void GoGame::updateBoard() noexcept
         {
             switch( goEngineInterface->getIJPointsStatus(i, j) )
             {
+                //todo магичесие числа
             case static_cast<int>(Status::EMPTY) :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = '.';
                 break;
@@ -532,6 +540,8 @@ void GoGame::unmarkPenultMove() noexcept
     Move penultMove{ goEngineInterface->getPenultMove() };
     if( penultMove.isNotPass() && goEngineInterface->getMoveIndex() >= 2 )
     {
+        //todo магические числа
+        //todo такие большие вычисления в скобка индексации до добра еще никого не доводили...
         board[penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * penultMove.getFirst()] = ' ';
         board[penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * penultMove.getFirst()] = ' ';
     }
@@ -544,6 +554,11 @@ void GoGame::markLastMove() noexcept
     {
         board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * lastMove.getFirst()] = '[';
         board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * lastMove.getFirst()] = ']';
+        //todo магические числа
+        //todo такие большие вычисления в скобка индексации до добра еще никого не доводили...
+        //todo из предыдущего и этого метода можно сделать один
+        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * (lastMove.getFirst())] = '[';
+        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * (lastMove.getFirst())] = ']';
     }
 }
 
@@ -578,6 +593,7 @@ void GoGame::printDiagonalInputMessage()
 
 bool GoGame::isDiagonalN( const std::string& input, const int n ) const noexcept
 {
+    //todo вроде, есть более простые способы перевести число в строку или наоборот
     std::ostringstream ss;
     ss.str("");
     ss << n;
@@ -591,6 +607,8 @@ bool GoGame::isDiagonalCorrect( const std::string& input ) const noexcept
 
 int GoGame::getDiagonal( const std::string& input ) const noexcept
 {
+    //todo может лучше использовать switch?
+    //todo попробовать упростить процесс, все как то не оправдано сложно
     if( isDiagonalN(input, 7) )
     {
         return 7;
@@ -608,6 +626,9 @@ int GoGame::getDiagonal( const std::string& input ) const noexcept
 
 bool GoGame::isExit( const std::string& input ) const noexcept
 {
+    //todo может просто две строки сравнить?
+    //и если не ошибаюь есть функцяи которая сравнивает без учета регистра
+    //или можно просто входную строку в нижний регистр первести и все
     return (input.size() == 4) &&
            (input[0] == 'e' || input[0] == 'E') &&
            (input[1] == 'x' || input[1] == 'X') &&
@@ -617,6 +638,7 @@ bool GoGame::isExit( const std::string& input ) const noexcept
 
 bool GoGame::isPass( const std::string& input ) const noexcept
 {
+    //todo может просто две строки сравнить?
     return (input.size() == 4) &&
            (input[0] == 'p' || input[0] == 'P') &&
            (input[1] == 'a' || input[1] == 'A') &&
@@ -626,6 +648,7 @@ bool GoGame::isPass( const std::string& input ) const noexcept
 
 bool GoGame::isSurrender( const std::string& input ) const noexcept
 {
+    //todo может просто две строки сравнить?
     return (input.size() == 9) &&
            (input[0] == 's' || input[0] == 'S') &&
            (input[1] == 'u' || input[1] == 'U') &&
@@ -640,6 +663,7 @@ bool GoGame::isSurrender( const std::string& input ) const noexcept
 
 bool GoGame::isHelp( const std::string& input ) const noexcept
 {
+    //todo может просто две строки сравнить?
     return (input.size() == 4) &&
            (input[0] == 'h' || input[0] == 'H') &&
            (input[1] == 'e' || input[1] == 'E') &&
@@ -664,5 +688,3 @@ void GoGame::printHelp() const noexcept
 {
     help->printHelp();
 }
-
-

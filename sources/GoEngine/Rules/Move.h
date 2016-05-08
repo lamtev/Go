@@ -16,6 +16,7 @@ public:
      * @param first первая координата
      * @param second вторая координата
      */
+    //todo first second вводят в заблуждение...
     Move( const int first = -2, const int second = -2 ) noexcept;
 
     /**
@@ -68,6 +69,7 @@ public:
 
 private:
 
+    //todo first second вводят в заблуждение...
     int first; /**< Первая координата */
     int second; /**< Вторая координата */
 

@@ -32,6 +32,7 @@ void FunctionalTest::checkNewDelete()
     delete go;
 }
 
+//todo помоему, печатание доски из левых хедеров к функциональному тесту мало отношения имеет...
 void FunctionalTest::paintBoard()
 {
     for( int i = 0; i < 21 * 43; ++ i )
@@ -45,6 +46,7 @@ void FunctionalTest::paintBoard()
     cout << endl;
 }
 
+//todo доделать бы...
 void FunctionalTest::makeMove()
 {
 }

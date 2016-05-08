@@ -8,6 +8,7 @@ Move::Move( const Move& move ) noexcept : first{ move.first },
 
 Move& Move::operator=( const Move& move ) noexcept
 {
+    //todo проверка на присваивавание самому себе
     this->first = move.first;
     this->second = move.second;
     return *this;
