@@ -512,7 +512,7 @@ void GoGame::updateBoard() noexcept
     {
         for( int j = 1; j <= diagonal; ++j )
         {
-            switch( goEngineInterface->getIJPointsStatus(i, j) )
+            switch( goEngineInterface->getPointsStatus(i, j) )
             {
                 //todo магичесие числа
             case static_cast<int>(Status::EMPTY) :

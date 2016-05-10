@@ -58,9 +58,9 @@ int GoEngineInterface::getDiagonal() const noexcept
     return gameProcess->getBoard().getDiagonal();
 }
 
-int GoEngineInterface::getIJPointsStatus( const int i, const int j ) const noexcept
+int GoEngineInterface::getPointsStatus( const int first, const int second ) const noexcept
 {
-    return gameProcess->getBoard().operator()(i, j).getStatus();
+    return gameProcess->getBoard().operator()(first, second).getStatus();
 }
 
 int GoEngineInterface::getStonesEatenByBlack() const noexcept
