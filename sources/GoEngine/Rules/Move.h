@@ -1,11 +1,12 @@
 #ifndef GO_MOVE_H
 #define GO_MOVE_H
 
-#include "../Model/enums.h"
+#include "../Model/Stone.h"
 
-//TODO noexcept swap
-//TODO high performance operator=
+//TODO noexcept swap && high performance operator=
 //проверка на присваивавание самому себе
+
+constexpr int PASS_COORD{ -1 };
 
 /**
  * Ход.

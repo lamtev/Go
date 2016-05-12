@@ -1,11 +1,7 @@
 #include <QString>
 #include <QtTest>
-#include <vector>
-#include <iostream>
-#include <sstream>
 
-#include "../../GoEngine/GoEngineInterface.h"
-#include "InitBoards.h"
+#include "../../GoEngine/GoEngineAPI.h"
 
 using namespace std;
 
@@ -24,7 +20,7 @@ FunctionalTest::FunctionalTest(){}
 
 void FunctionalTest::checkNewDelete()
 {
-    GoEngineInterface* go = new GoEngineInterface;
+    GoEngineAPI* go = new GoEngineAPI;
     go->startGame(19, CHINESE, AGREEMENT);
     go->putStone(A, 3);
     delete go;

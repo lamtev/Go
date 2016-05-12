@@ -1,6 +1,6 @@
 #include "GoGame.h"
 
-GoGame::GoGame( const int argc, char** argv ) noexcept : goEngineInterface{ new GoEngineInterface{} },
+GoGame::GoGame( const int argc, char** argv ) noexcept : goEngineInterface{ new GoEngineAPI{} },
                                                          help{ new Help{} },
                                                          argc{ argc },
                                                          argv{ argv },
@@ -26,6 +26,11 @@ GoGame::~GoGame()
 
 void GoGame::begin()
 {
+    if ( argc == 2 && (!strcmp(argv[1], "--help") || !strcmp(argv[1], "-h")) )
+    {
+        printHelp();
+        return;
+    }
     menu();
 }
 
@@ -67,9 +72,11 @@ void GoGame::printMenu() const noexcept
 
 int GoGame::parseCommand( const std::string& command ) const noexcept
 {
-    if( MENU_COMMANDS.find(command) != MENU_COMMANDS.end() )
+    std::string tempCommand{ command };
+    std::transform(tempCommand.begin(), tempCommand.end(), tempCommand.begin(), toupper);
+    if( MENU_COMMANDS.find(tempCommand) != MENU_COMMANDS.end() )
     {
-        return MENU_COMMANDS.at(command);
+        return MENU_COMMANDS.at(tempCommand);
     }
     return static_cast<int>(TypeOfCommand::ERROR);
 }
@@ -96,14 +103,14 @@ void GoGame::startGame()
             if( !command.compare("y") )
             {
                 delete goEngineInterface;
-                goEngineInterface = new GoEngineInterface{};
+                goEngineInterface = new GoEngineAPI{};
                 startGame();
                 return;
             }
             else if( !command.compare("n") )
             {
                 delete goEngineInterface;
-                goEngineInterface = new GoEngineInterface{};
+                goEngineInterface = new GoEngineAPI{};
                 menu();
                 return;
             }
@@ -125,7 +132,6 @@ bool GoGame::configureGame()
 
 void GoGame::initBoard( int diagonal ) noexcept
 {
-    //todo магические числа?
     board.resize((diagonal + 2) * (diagonal * 2 + 5));
     switch( diagonal )
     {
@@ -247,8 +253,6 @@ int GoGame::parseCommand1( const std::string& command, int& first, int& second )
 
 void GoGame::parseFirstCoordinate( const std::string& command, int& first ) noexcept
 {
-    //todo не очень хорошо такой большой свич мутить
-    //думаю найдутся более элегантные решения
     switch( command[0] )
     {
     case 'a' :
@@ -491,7 +495,6 @@ void GoGame::printWhiteWon() const noexcept
 
 void GoGame::printBoard()
 {
-    //todo магические числа
     updateBoard();
     int diagonal = goEngineInterface->getDiagonal();
     for( int i = 0; i < (diagonal + 2) * (diagonal * 2 + 5); ++ i )
@@ -514,7 +517,6 @@ void GoGame::updateBoard() noexcept
         {
             switch( goEngineInterface->getPointsStatus(i, j) )
             {
-                //todo магичесие числа
             case static_cast<int>(Status::EMPTY) :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = '.';
                 break;
@@ -539,10 +541,11 @@ void GoGame::unmarkPenultMove() noexcept
     Move penultMove{ goEngineInterface->getPenultMove() };
     if( penultMove.isNotPass() && goEngineInterface->getMoveIndex() >= 2 )
     {
-        //todo магические числа
-        //todo такие большие вычисления в скобка индексации до добра еще никого не доводили...
-        board[penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * penultMove.getFirst()] = ' ';
-        board[penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * penultMove.getFirst()] = ' ';
+
+        int leftCursorIndex = penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * penultMove.getFirst();
+        board[leftCursorIndex] = ' ';
+        int rightCursorIndex = penultMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * penultMove.getFirst();
+        board[rightCursorIndex] = ' ';
     }
 }
 
@@ -551,13 +554,10 @@ void GoGame::markLastMove() noexcept
     Move lastMove{ goEngineInterface->getLastMove() };
     if( lastMove.isNotPass() && goEngineInterface->getMoveIndex() >= 1 )
     {
-        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * lastMove.getFirst()] = '[';
-        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * lastMove.getFirst()] = ']';
-        //todo магические числа
-        //todo такие большие вычисления в скобка индексации до добра еще никого не доводили...
-        //todo из предыдущего и этого метода можно сделать один
-        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * (lastMove.getFirst())] = '[';
-        board[lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * (lastMove.getFirst())] = ']';
+        int leftCursorIndex = lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 * lastMove.getFirst();
+        board[leftCursorIndex] = '[';
+        int rightCursorIndex = lastMove.getSecond() * (goEngineInterface->getDiagonal() * 2 + 5) + 2 + 2 * lastMove.getFirst();
+        board[rightCursorIndex] = ']';
     }
 }
 
@@ -605,8 +605,6 @@ bool GoGame::isDiagonalCorrect( const std::string& input ) const noexcept
 
 int GoGame::getDiagonal( const std::string& input ) const noexcept
 {
-    //todo может лучше использовать switch?
-    //todo попробовать упростить процесс, все как то не оправдано сложно
     if( isDiagonalN(input, 7) )
     {
         return 7;

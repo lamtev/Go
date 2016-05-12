@@ -20,12 +20,16 @@ GameProcess::~GameProcess()
 
 int GameProcess::whoseMove() const noexcept
 {
-    return isBlacksMove() ? static_cast<int>(Status::BLACK) : static_cast<int>(Status::WHITE);
+    if( isGameOver() )
+    {
+        return static_cast<int>(Status::EMPTY);
+    }
+    return static_cast<int>((isBlacksMove() ? Status::BLACK : Status::WHITE));
 }
 
 void GameProcess::putStone( int first, int second )
 {
-    ifNeedResizeMoves();
+    resizeMoves();
     ifMoveIllegalThrowException(first, second);
     //todo не нравится мне вот эта строчка... выходи пункт равен тому, чей ход...
     //может что нибудь типа такой конструкции:
@@ -49,7 +53,7 @@ void GameProcess::putStone( int first, int second )
 
 void GameProcess::pass() noexcept
 {
-    ifNeedResizeMoves();
+    resizeMoves();
     moves[moveIndex] = passedMove;
     ++moveIndex;
 }
@@ -120,8 +124,6 @@ Board& GameProcess::getBoard() const noexcept
 
 bool GameProcess::areTwoPasses() const noexcept
 {
-    //todo слишком длинно и слишком сложно осмыслить
-    //лучше не использовать старину элвиса(?:) в таких больших конструкциях
     return moveIndex >= 2 ?
            getLastMove() == passedMove &&
            getLastMove() == getPenultMove() :
@@ -133,7 +135,7 @@ bool GameProcess::isBlacksMove() const noexcept
     return !(moveIndex % 2);
 }
 
-void GameProcess::ifNeedResizeMoves() noexcept
+void GameProcess::resizeMoves() noexcept
 {
     if( movesSize - 1 == moveIndex )
     {

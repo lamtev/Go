@@ -1,7 +1,5 @@
 #include <iostream>
 
-#include "../GoEngine/GoEngineInterface.h"
-#include "InitBoards.h"
 #include "GoGame.h"
 
 int main( int argc, char* argv[] )

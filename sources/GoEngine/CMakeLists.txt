@@ -1,8 +1,10 @@
 #GoEngine
 
 set(srcFiles
-        Model/enums.h
-        GoEngineInterface.cpp GoEngineInterface.h
+
+        GoEngineInterface.h
+
+        GoEngineAPI.cpp GoEngineAPI.h
 
         Model/Stone.cpp Model/Stone.h
         Model/Point.cpp Model/Point.h

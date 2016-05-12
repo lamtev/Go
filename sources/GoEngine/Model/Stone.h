@@ -1,11 +1,57 @@
 #ifndef GO_STONE_H
 #define GO_STONE_H
 
-#include "enums.h"
-
-//TODO noexcept swap
-//TODO high performance operator=
+//TODO noexcept swap && high performance operator=
 //проверка на присваивавание самому себе
+
+enum class Status
+{
+    EMPTY = 0,
+    BLACK,
+    WHITE
+};
+
+enum LiteralCoordinate
+{
+    A = 1,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I,
+    J,
+    K,
+    L,
+    M,
+    N,
+    O,
+    P,
+    Q,
+    R,
+    S,
+    T,
+    U,
+    V,
+    W,
+    X,
+    Y,
+    Z
+};
+
+enum Rules
+{
+    JAPANESE = 0,
+    CHINESE
+};
+
+enum ColorDistribution
+{
+    NIGIRI = 0,
+    AGREEMENT
+};
 
 /**
  * Камень.

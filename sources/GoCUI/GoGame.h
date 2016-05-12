@@ -3,25 +3,40 @@
 
 #include <iostream>
 #include <sstream>
+#include <map>
+#include <string>
 #include <algorithm>
 #include <cctype>
+#include <cstring>
 
-#include "../GoEngine/GoEngineInterface.h"
+#include "../GoEngine/GoEngineAPI.h"
 #include "Help.h"
 #include "InitBoards.h"
-#include "enums.h"
 
-//TODO refactor GoGame
-//TODO help for console args
 //TODO point to function use
+//TODO new parser
 
-//Общие замечания:
-//todo слишком много маленьких методов
-//конечно хорошо делить на методы, но мне пришлось скакать по всему
-//файлу чтобы понять как диагональ считывается из консоли
-//todo слишком усложнен парсинг и весь процесс распознования комманд
-//вполне реально сделать проше, конечно можно и так, но опять очень тяжело воспринять все это
+enum class TypeOfCommand
+{
+    ERROR = 4,
+    EXIT,
+    MOVE,
+    PASS,
+    SURRENDER,
+    HELP,
+    START_GAME
+};
 
+typedef bool (*pfunc)( const std::string& );
+
+const std::map<std::string, int> MENU_COMMANDS{
+        { "1",          1 },
+        { "2",          2 },
+        { "3",          3 },
+        { "START GAME", static_cast<int>(TypeOfCommand::START_GAME) },
+        { "HELP",       static_cast<int>(TypeOfCommand::HELP) },
+        { "EXIT",       static_cast<int>(TypeOfCommand::EXIT) },
+};
 
 /**
  * Игра.
@@ -56,7 +71,7 @@ public:
 
 private:
 
-    GoEngineInterface* goEngineInterface; /**< Указатель на объект интерфейса движка */
+    GoEngineAPI* goEngineInterface; /**< Указатель на объект интерфейса движка */
     Help* help; /**< Указатель на объект хэлпа */
     int argc; /**< Число параметров командной строки */
     char** argv; /**< Список параметров командной строки */

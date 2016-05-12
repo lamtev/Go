@@ -5,7 +5,7 @@ void Help::printHelp() const noexcept
     emptyLine();
     printTitle();
     printConsoleArgs();
-    std::cout << "Not realized yet" << std::endl;
+    std::cout << "-h, --help    Open help only" << std::endl;
     emptyLine();
     printAllStepsOfGame();
     printExit();

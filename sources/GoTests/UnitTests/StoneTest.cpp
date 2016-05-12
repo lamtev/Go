@@ -1,8 +1,6 @@
 #include <QString>
 #include <QtTest>
 
-#include <iostream>
-
 #include "../../GoEngine/Model/Stone.h"
 
 class StoneTest : public QObject

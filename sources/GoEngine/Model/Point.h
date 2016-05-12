@@ -3,8 +3,7 @@
 
 #include "Stone.h"
 
-//TODO noexcept swap
-//TODO high performance operator=
+//TODO noexcept swap && high performance operator=
 //проверка на присваивавание самому себе
 
 /**
@@ -58,13 +57,8 @@ public:
      * @param second вторая координата
      * @param breaths число дыханий
      */
-    //todo first и second вводят в заблуждение
     void createStone( const int color, const int first, const int second, const int breaths ) noexcept;
-    //todo предложение:
-    //может попробовать что-нибуль типа
-    //void setStone(const Stone& stone) noexcept; ?
-    //Возможно, синтаксис типа addStone(Stone( 2, 5, 6, 3)) был бы более понятен
-    //Я не настаиваю, дело вкуса.
+
     /**
      * Удалить камень.
      */
@@ -93,9 +87,6 @@ public:
      * Пункт несвободен?
      * @return true, если несвободен, и false, если свободен
      */
-    //todo может, лучше использовать только isEmpty (с !), похожие методы создают путаницу
-    //может не хорошо получится, если где то пишут isNotEmpty(), а где то !isEmpty().
-    // ИМХО: учше не давать клиенту возможности выбора, чтобы избежать путаницы.
     bool isNotEmpty() const noexcept;
 
 private:

@@ -1,8 +1,6 @@
 #include <QString>
 #include <QtTest>
 
-#include <iostream>
-
 #include "../../GoEngine/Rules/Move.h"
 
 class MoveTest : public QObject

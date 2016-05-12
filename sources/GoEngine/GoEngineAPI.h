@@ -1,20 +1,27 @@
-#ifndef GO_GOENGINEINTERFACE_H
-#define GO_GOENGINEINTERFACE_H
+#ifndef GOENGINEAPI_H
+#define GOENGINEAPI_H
 
-#include "Rules/GameProcess.h"
+#include <string>
+
+#include "GoEngineInterface.h"
 
 /**
- * Интерфейс, предоставляемый движком приложению.
- * Суперкласс для API
+ * API
  */
-class GoEngineInterface
+class GoEngineAPI : public GoEngineInterface
 {
+
 public:
+
+    /**
+     * Конструктор.
+     */
+    GoEngineAPI() noexcept;
 
     /**
      * Деструктор.
      */
-    virtual ~GoEngineInterface() noexcept {}
+    ~GoEngineAPI() noexcept;
 
     /**
      * Присваивание.
@@ -22,7 +29,7 @@ public:
      * @param go присваиваемый объект
      * @return ссылку на объект
      */
-    GoEngineInterface& operator=( const GoEngineInterface& go ) noexcept;
+    GoEngineAPI& operator=( const GoEngineAPI& go ) noexcept;
 
     /**
      * Начать игру.
@@ -33,109 +40,113 @@ public:
      */
     //todo использовать enum как тип
     //Rules rules
-    virtual void startGame( const int diagonal, const int rules, const int colorDistribution ) noexcept = 0;
+    void startGame( const int diagonal, const int rules, const int colorDistribution ) noexcept override;
+
 
     /**
      * Положить камень в выбранный пункт.
      * @param first первая координата выбранного пункта доски (A - S)
      * @param second вторая координата выбранного пункта доски (1 - 19)
      */
-    virtual void putStone( const int first, const int second ) = 0;
+    void putStone( const int first, const int second ) override;
 
     /**
      * Пропустить ход.
      */
-    virtual void pass() noexcept = 0;
+    void pass() noexcept override;
 
     /**
      * Сдаться.
      */
-    virtual void surrender() noexcept = 0;
+    void surrender() noexcept override;
 
     /**
      * Чей ход?
      * @return цвет игрока, чей сейчас ход
      */
-    virtual int whoseMove() const noexcept = 0;
+    int whoseMove() const noexcept override;
 
     /**
      * Игра закончена?
      * @return true, если игра закончена, и false, если игра не закончена
      */
-    virtual bool isGameOver() const noexcept = 0;
+    bool isGameOver() const noexcept override;
 
     /**
      * Кто сдался?
      * @return цвет игрока, который сдался
      */
-    virtual int whoSurrendered() const noexcept = 0;
+    int whoSurrendered() const noexcept override;
 
     /**
      * Кто победил?
      * @return цвет победителя
      */
-    virtual int whoWon() const noexcept = 0;
+    int whoWon() const noexcept override;
 
     /**
      * Получить диагональ.
      * @return диагональ
      */
-    virtual int getDiagonal() const noexcept = 0;
+    int getDiagonal() const noexcept override;
 
     /**
      * Получить статус first, second - го пункта доски.
      */
-    virtual int getPointsStatus( const int first, const int second ) const noexcept = 0;
+    int getPointsStatus( const int first, const int second ) const noexcept override;
 
     /**
      * Получить число камней, съеденных чёрным.
      * @return число камней, съеденных чёрным
      */
-    virtual int getStonesEatenByBlack() const noexcept = 0;
+    int getStonesEatenByBlack() const noexcept override;
 
     /**
      * Получить число камней, съеденных белым.
      * @return число камней, съеденных белым
      */
-    virtual int getStonesEatenByWhite() const noexcept = 0;
+    int getStonesEatenByWhite() const noexcept override;
 
     /**
      * Получить индекс хода.
      * @return индекс хода
      */
-    virtual int getMoveIndex() const noexcept = 0;
+    int getMoveIndex() const noexcept override;
 
     /**
      * Получить вектор ходов.
      * @return ссылку на вектор ходов.
      */
-    virtual std::vector<Move>& getMoves() const noexcept = 0;
+    std::vector<Move>& getMoves() const noexcept override;
 
     /**
      * Получить последний совершённый ход.
      * @return ссылку на последний совершённый ход.
      */
-    virtual Move& getLastMove() const noexcept = 0;
+    Move& getLastMove() const noexcept override;
 
     /**
      * Получить предпоследний совершённый ход.
      * @return ссылку на предпоследний совершённый ход
      */
-    virtual Move& getPenultMove() const noexcept = 0;
+    Move& getPenultMove() const noexcept override;
 
     /**
      * Получить очки чёрного.
      * @return очки чёрного
      */
-    virtual int getBlackScore() const noexcept = 0;
+    int getBlackScore() const noexcept override {};
 
     /**
      * Получить очки белого.
      * @return очки белого
      */
-    virtual int getWhiteScore() const noexcept = 0;
+    int getWhiteScore() const noexcept override {};
+
+private:
+
+    GameProcess* gameProcess; /**< Указатель на объект процесса ходов */
 
 };
 
-
-#endif //GO_GOENGINEINTERFACE_H
+#endif // GOENGINEAPI_H

@@ -5,8 +5,7 @@
 
 #include "Point.h"
 
-//TODO noexcept swap
-//TODO high performance operator=
+//TODO noexcept swap && high performance operator=
 //проверка на присваивавание самому себе
 
 /**
@@ -30,7 +29,6 @@ public:
      * @param second вторая координата
      * @return ссылку на объект
      */
-    //todo first и second вводят в заблуждение
     Point& operator()( const int first, const int second ) noexcept;
 
     /**
