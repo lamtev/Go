@@ -47,17 +47,17 @@ void BoardTest::getDiagonal()
 void BoardTest::indexation()
 {
     Board b{ 19 };
-    b(1, 1) = static_cast<int>(Status::BLACK);
-    b(19, 19) = static_cast<int>(Status::WHITE);
-    QCOMPARE(b(1, 1).getStatus(), static_cast<int>(Status::BLACK));
-    QCOMPARE(b(19, 19).getStatus(), static_cast<int>(Status::WHITE));
+    b(1, 1) = Status::BLACK;
+    b(19, 19) = Status::WHITE;
+    QCOMPARE(b(1, 1).getStatus(), Status::BLACK);
+    QCOMPARE(b(19, 19).getStatus(), Status::WHITE);
 }
 
 void BoardTest::assigment()
 {
     Board b1{ 7 };
-    b1(1, 1) = static_cast<int>(Status::BLACK);
-    b1(7, 7) = static_cast<int>(Status::WHITE);
+    b1(1, 1) = Status::BLACK;
+    b1(7, 7) = Status::WHITE;
     Board b2 = b1;
     QCOMPARE(b1(1, 1).getStatus(), b2(1, 1).getStatus());
     QCOMPARE(b1(7, 7).getStatus(), b2(7, 7).getStatus());
@@ -71,16 +71,15 @@ void BoardTest::get()
     {
         for( int j = 1; j <= 7; ++j )
         {
-            board(i, j) = counter % 3;
+            board(i, j) = static_cast<Status>(counter % 3);
             ++counter;
         }
     }
-    board(1, 4) = static_cast<int>(Status::BLACK);
-    board(4, 1) = static_cast<int>(Status::WHITE);
-    //todo тип + enum = счастье
-    const Point EMPTY{ static_cast<int>(Status::EMPTY) };
-    const Point BLACK{ static_cast<int>(Status::BLACK) };
-    const Point WHITE{ static_cast<int>(Status::WHITE) };
+    board(1, 4) = Status::BLACK;
+    board(4, 1) = Status::WHITE;
+    const Point EMPTY{ Status::EMPTY };
+    const Point BLACK{ Status::BLACK };
+    const Point WHITE{ Status::WHITE };
     std::vector<Point> vector{
             EMPTY, BLACK, WHITE, WHITE, BLACK, WHITE, EMPTY,
             BLACK, WHITE, EMPTY, BLACK, WHITE, EMPTY, BLACK,
