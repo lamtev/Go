@@ -61,7 +61,7 @@ void GameProcess::pass() noexcept
 void GameProcess::surrender() noexcept
 {
     surrendered = whoseMove();
-    winner = whoseMove() == Status::BLACK ? Status::WHITE : Status::BLACK;
+    winner = (surrendered == Status::BLACK ? Status::WHITE : Status::BLACK);
 }
 
 bool GameProcess::isGameOver() const noexcept
