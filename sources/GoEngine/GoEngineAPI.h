@@ -64,7 +64,7 @@ public:
      * Чей ход?
      * @return цвет игрока, чей сейчас ход
      */
-    int whoseMove() const noexcept override;
+    Status whoseMove() const noexcept override;
 
     /**
      * Игра закончена?
@@ -76,13 +76,13 @@ public:
      * Кто сдался?
      * @return цвет игрока, который сдался
      */
-    int whoSurrendered() const noexcept override;
+    Status whoSurrendered() const noexcept override;
 
     /**
      * Кто победил?
      * @return цвет победителя
      */
-    int whoWon() const noexcept override;
+    Status whoWon() const noexcept override;
 
     /**
      * Получить диагональ.
@@ -93,7 +93,7 @@ public:
     /**
      * Получить статус first, second - го пункта доски.
      */
-    int getPointsStatus( const int first, const int second ) const noexcept override;
+    Status getPointsStatus( const int first, const int second ) const noexcept override;
 
     /**
      * Получить число камней, съеденных чёрным.

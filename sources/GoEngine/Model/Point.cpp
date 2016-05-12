@@ -1,6 +1,6 @@
 #include "Point.h"
 
-Point::Point( int status ) noexcept : status{ status },
+Point::Point( Status status ) noexcept : status{ status },
                                       stone{nullptr },
                                       isStoneDeleted{ true }{}
 
@@ -24,7 +24,7 @@ Point& Point::operator=( const Point& point ) noexcept
     return *this;
 }
 
-Point& Point::operator=( const int status ) noexcept
+Point& Point::operator=( const Status status ) noexcept
 {
     this->status = status;
     this->stone = nullptr;
@@ -44,7 +44,7 @@ void Point::deleteStone() noexcept
     isStoneDeleted = true;
 }
 
-int Point::getStatus() const noexcept
+Status Point::getStatus() const noexcept
 {
     return status;
 }
@@ -56,8 +56,7 @@ Stone& Point::getStone() const noexcept
 
 bool Point::isEmpty() const noexcept
 {
-    //todo я уже писал про тип в хедере
-    return status == static_cast<int>(Status::EMPTY);
+    return status == Status::EMPTY;
 }
 
 bool Point::isNotEmpty() const noexcept

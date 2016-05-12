@@ -202,13 +202,13 @@ private:
      * Кто сдался?
      * @return цвет победителя.
      */
-    int whoSurrendered() const noexcept;
+    Status whoSurrendered() const noexcept;
 
     /**
      * Кто победил?
      * @return цвет победителя.
      */
-    int whoWon() const noexcept;
+    Status whoWon() const noexcept;
 
     /**
      * Напечатать, чей ход.

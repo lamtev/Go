@@ -18,9 +18,7 @@ public:
      * Конструктор.
      * @param status статус пункта.
      */
-    //todo почему бы сразу не использовать enum как тип переменной?
-    //explicit Point( Status status = Status::EMPTY ) noexcept;
-    explicit Point( int status = static_cast<int>(Status::EMPTY) ) noexcept;
+    explicit Point( Status status = Status::EMPTY ) noexcept;
 
     /**
      * Копирующий конструктор.
@@ -47,8 +45,7 @@ public:
      * @param status присваиваемый статус пункта
      * @return ссылку на объект
      */
-    //todo почему бы сразу не использовать enum как тип переменной?
-    Point& operator=( const int status ) noexcept;
+    Point& operator=( const Status status ) noexcept;
 
     /**
      * Создать камень.
@@ -69,7 +66,7 @@ public:
      * Метод для получения статуса пункта.
      * @return статус пункта
      */
-    int getStatus() const noexcept;
+    Status getStatus() const noexcept;
 
     /**
      * Получить камень.
@@ -90,8 +87,7 @@ public:
     bool isNotEmpty() const noexcept;
 
 private:
-    //todo почему бы сразу не использовать enum как тип переменной?
-    int status; /**< Статус пункта */
+    Status status; /**< Статус пункта */
     Stone* stone; /**< Указатель на камень */
     bool isStoneDeleted; /**< Камень удалён? */
 

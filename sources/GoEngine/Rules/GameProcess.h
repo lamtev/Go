@@ -35,8 +35,7 @@ public:
      * Чей ход?
      * @return цвет игрока, чей сейчас ход
      */
-    //todo может быть и тут использовать enum для цвета
-    int whoseMove() const noexcept;
+    Status whoseMove() const noexcept;
 
     /**
      * Положить камень.
@@ -65,15 +64,13 @@ public:
      * Кто сдался?
      * @return цвет сдавшегося.
      */
-    //todo может быть и тут использовать enum для цвета
-    int whoSurrendered() const noexcept;
+    Status whoSurrendered() const noexcept;
 
     /**
      * Кто победил?
      * @return цвет победителя.
      */
-    //todo может быть и тут использовать enum для цвета
-    int whoWon() const noexcept;
+    Status whoWon() const noexcept;
 
     /**
      * Получить номер текущего хода.
@@ -124,10 +121,8 @@ private:
     int movesSize;  /**< Размер вектора ходов */
     int moveIndex; /**< Индекс ходов */
     std::vector<Move> moves; /**< Вектор, хранящий все ходы */
-    //todo использовать enum как тип
-    int surrendered; /**< Сдавшийся */
-    //todo использовать enum как тип
-    int winner; /**< Победитель */
+    Status surrendered; /**< Сдавшийся */
+    Status winner; /**< Победитель */
     int stonesEatenByBlack; /**< Число камней, съеденных чёрным */
     int stonesEatenByWhite; /**< Число камней, съеденных белым */
     const Move passedMove{ PASS_COORD, PASS_COORD }; /**< Пропущенный ход */

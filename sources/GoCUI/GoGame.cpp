@@ -88,7 +88,7 @@ void GoGame::startGame()
         play();
         printWhoSurrendered();
         printWhoWon();
-        if( !whoWon() && !exit )
+        if( !static_cast<bool>(whoWon()) && !exit )
         {
             printCalculateScores();
         }
@@ -417,12 +417,12 @@ void GoGame::surrender() const noexcept
     goEngineInterface->surrender();
 }
 
-int GoGame::whoSurrendered() const noexcept
+Status GoGame::whoSurrendered() const noexcept
 {
     return goEngineInterface->whoSurrendered();
 }
 
-int GoGame::whoWon() const noexcept
+Status GoGame::whoWon() const noexcept
 {
     return goEngineInterface->whoWon();
 }
@@ -431,10 +431,10 @@ void GoGame::printWhoSurrendered() const noexcept
 {
     switch( whoSurrendered() )
     {
-    case static_cast<int>(Status::BLACK) :
+    case Status::BLACK :
         printBlackSurrendered();
         break;
-    case static_cast<int>(Status::WHITE) :
+    case Status::WHITE :
         printWhiteSurrendered();
     default :
         break;
@@ -445,10 +445,10 @@ void GoGame::printWhoWon() const noexcept
 {
     switch( whoWon() )
     {
-    case static_cast<int>(Status::BLACK) :
+    case Status::BLACK :
         printBlackWon();
         break;
-    case static_cast<int>(Status::WHITE) :
+    case Status::WHITE :
         printWhiteWon();
         break;
     default :
@@ -463,11 +463,11 @@ void GoGame::printMessage() const noexcept
 
 void GoGame::printWhoseMove() const noexcept
 {
-    if( goEngineInterface->whoseMove() == static_cast<int>(Status::BLACK) )
+    if( goEngineInterface->whoseMove() == Status::BLACK )
     {
         std::cout << "Black's move" << std::endl;
     }
-    else
+    else if( goEngineInterface->whoseMove() == Status::WHITE )
     {
         std::cout << "White's move" << std::endl;
     }
@@ -517,13 +517,13 @@ void GoGame::updateBoard() noexcept
         {
             switch( goEngineInterface->getPointsStatus(i, j) )
             {
-            case static_cast<int>(Status::EMPTY) :
+            case Status::EMPTY :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = '.';
                 break;
-            case static_cast<int>(Status::BLACK) :
+            case Status::BLACK :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = 'X';
                 break;
-            case static_cast<int>(Status::WHITE) :
+            case Status::WHITE :
                 board[j * (diagonal * 2 + 5) + 1 + 2 * i] = 'O';
                 break;
             default :

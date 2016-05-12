@@ -56,7 +56,7 @@ public:
      * Чей ход?
      * @return цвет игрока, чей сейчас ход
      */
-    virtual int whoseMove() const noexcept = 0;
+    virtual Status whoseMove() const noexcept = 0;
 
     /**
      * Игра закончена?
@@ -68,13 +68,13 @@ public:
      * Кто сдался?
      * @return цвет игрока, который сдался
      */
-    virtual int whoSurrendered() const noexcept = 0;
+    virtual Status whoSurrendered() const noexcept = 0;
 
     /**
      * Кто победил?
      * @return цвет победителя
      */
-    virtual int whoWon() const noexcept = 0;
+    virtual Status whoWon() const noexcept = 0;
 
     /**
      * Получить диагональ.
@@ -85,7 +85,7 @@ public:
     /**
      * Получить статус first, second - го пункта доски.
      */
-    virtual int getPointsStatus( const int first, const int second ) const noexcept = 0;
+    virtual Status getPointsStatus( const int first, const int second ) const noexcept = 0;
 
     /**
      * Получить число камней, съеденных чёрным.

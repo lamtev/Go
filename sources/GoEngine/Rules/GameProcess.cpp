@@ -4,9 +4,8 @@ GameProcess::GameProcess( const int diagonal ) noexcept : diagonal{ diagonal },
                                                           board{ new Board{ diagonal } },
                                                           movesSize{ 100 },
                                                           moveIndex{ 0 },
-                                                          //todo тип enum
-                                                          surrendered{ static_cast<int>(Status::EMPTY) },
-                                                          winner{ static_cast<int>(Status::EMPTY) },
+                                                          surrendered{ Status::EMPTY },
+                                                          winner{ Status::EMPTY },
                                                           stonesEatenByBlack{ 0 },
                                                           stonesEatenByWhite{ 0 }
 {
@@ -18,19 +17,20 @@ GameProcess::~GameProcess()
     delete board;
 }
 
-int GameProcess::whoseMove() const noexcept
+Status GameProcess::whoseMove() const noexcept
 {
     if( isGameOver() )
     {
-        return static_cast<int>(Status::EMPTY);
+        return Status::EMPTY;
     }
-    return static_cast<int>((isBlacksMove() ? Status::BLACK : Status::WHITE));
+    return isBlacksMove() ? Status::BLACK : Status::WHITE;
 }
 
 void GameProcess::putStone( int first, int second )
 {
     resizeMoves();
     ifMoveIllegalThrowException(first, second);
+    //TODO обдумать постановку камня на доску!!!
     //todo не нравится мне вот эта строчка... выходи пункт равен тому, чей ход...
     //может что нибудь типа такой конструкции:
     //Point &samplePoint = board(first, second);
@@ -61,30 +61,22 @@ void GameProcess::pass() noexcept
 void GameProcess::surrender() noexcept
 {
     surrendered = whoseMove();
+    winner = whoseMove() == Status::BLACK ? Status::WHITE : Status::BLACK;
 }
 
 bool GameProcess::isGameOver() const noexcept
 {
-    return areTwoPasses() || whoSurrendered();
+    return areTwoPasses() || static_cast<bool>(whoSurrendered());
 }
 
-int GameProcess::whoSurrendered() const noexcept
+Status GameProcess::whoSurrendered() const noexcept
 {
     return surrendered;
 }
 
-int GameProcess::whoWon() const noexcept
+Status GameProcess::whoWon() const noexcept
 {
-    //уже малясь подергивает от кастов, но благо все легко исправляется todo: использовать enum как тип
-    switch( surrendered )
-    {
-    case static_cast<int>(Status::BLACK) :
-        return static_cast<int>(Status::WHITE);
-    case static_cast<int>(Status::WHITE) :
-        return static_cast<int>(Status::BLACK);
-    default :
-        return static_cast<int>(Status::EMPTY);
-    }
+    return winner;
 }
 
 int GameProcess::getMoveIndex() const noexcept

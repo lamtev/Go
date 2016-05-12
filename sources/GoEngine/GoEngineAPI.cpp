@@ -33,7 +33,7 @@ void GoEngineAPI::surrender() noexcept
     gameProcess->surrender();
 }
 
-int GoEngineAPI::whoseMove() const noexcept
+Status GoEngineAPI::whoseMove() const noexcept
 {
     return gameProcess->whoseMove();
 }
@@ -43,12 +43,12 @@ bool GoEngineAPI::isGameOver() const noexcept
     return gameProcess->isGameOver();
 }
 
-int GoEngineAPI::whoSurrendered() const noexcept
+Status GoEngineAPI::whoSurrendered() const noexcept
 {
     return gameProcess->whoSurrendered();
 }
 
-int GoEngineAPI::whoWon() const noexcept
+Status GoEngineAPI::whoWon() const noexcept
 {
     return gameProcess->whoWon();
 }
@@ -58,7 +58,7 @@ int GoEngineAPI::getDiagonal() const noexcept
     return gameProcess->getBoard().getDiagonal();
 }
 
-int GoEngineAPI::getPointsStatus( const int first, const int second ) const noexcept
+Status GoEngineAPI::getPointsStatus( const int first, const int second ) const noexcept
 {
     return gameProcess->getBoard().operator()(first, second).getStatus();
 }
