@@ -10,6 +10,7 @@ buildReleaseVersion() {
 
 	if [ -e "Makefile" ]; then
 		cmake --build ./ --target GoCUI --
+		cmake --build ./ --target GoGUI --
 		cd ../..
 	else
 	    cd ../..

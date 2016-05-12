@@ -74,7 +74,6 @@ public:
      * @param second вторая координата
      * @param breaths число дыханий
      */
-    //todo почему бы не использовать enum для цвета?
     Stone( const Color color, const int first, const int second, const int breaths ) noexcept;
 
     /**

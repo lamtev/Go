@@ -38,8 +38,6 @@ public:
      * @param rules правила подсчета очков
      * @param colorDistribution способ распределения цветов
      */
-    //todo использовать enum как тип
-    //Rules rules
     void startGame( const int diagonal, const int rules, const int colorDistribution ) noexcept override;
 
 
