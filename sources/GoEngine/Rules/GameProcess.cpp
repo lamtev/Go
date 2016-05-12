@@ -1,16 +1,16 @@
 #include "GameProcess.h"
 
-GameProcess::GameProcess( const int diagonal ) noexcept : diagonal(diagonal)
+GameProcess::GameProcess( const int diagonal ) noexcept : diagonal{ diagonal },
+                                                          board{ new Board{ diagonal } },
+                                                          movesSize{ 100 },
+                                                          moveIndex{ 0 },
+                                                          //todo тип enum
+                                                          surrendered{ static_cast<int>(Status::EMPTY) },
+                                                          winner{ static_cast<int>(Status::EMPTY) },
+                                                          stonesEatenByBlack{ 0 },
+                                                          stonesEatenByWhite{ 0 }
 {
-    board = new Board{ diagonal };
-    movesSize = 100;
-    moveIndex = 0;
     moves.resize(movesSize);
-    //todo тип enum
-    surrendered = static_cast<int>(Status::EMPTY);
-    winner = static_cast<int>(Status::EMPTY);
-    stonesEatenByBlack = 0;
-    stonesEatenByWhite = 0;
 }
 
 GameProcess::~GameProcess()
