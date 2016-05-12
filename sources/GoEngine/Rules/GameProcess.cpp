@@ -46,7 +46,7 @@ void GameProcess::putStone( int first, int second )
     //Stone sampleStone(samplePoint.getStatus(), first, second, 0);
     //board(first, second).setStone(sampleStone);
     //дело вкуса, конечно, но строчка реально длинная и непонятная.
-    board->operator()(first, second).createStone(board->operator()(first, second).getStatus(), first, second, 0);
+    board->operator()(first, second).createStone(static_cast<Color>(board->operator()(first, second).getStatus()), first, second, 0);
     moves[moveIndex] = Move{ first, second };
     ++moveIndex;
 }

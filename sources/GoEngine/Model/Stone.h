@@ -11,6 +11,12 @@ enum class Status
     WHITE
 };
 
+enum class Color
+{
+    BLACK = 1,
+    WHITE
+};
+
 enum LiteralCoordinate
 {
     A = 1,
@@ -69,7 +75,7 @@ public:
      * @param breaths число дыханий
      */
     //todo почему бы не использовать enum для цвета?
-    Stone( const int color, const int first, const int second, const int breaths ) noexcept;
+    Stone( const Color color, const int first, const int second, const int breaths ) noexcept;
 
     /**
      * Присваивание.
@@ -83,7 +89,7 @@ public:
      * Получить цвет.
      * @return цвет
      */
-    int getColor() const noexcept;
+    Color getColor() const noexcept;
 
     /**
      * Получить первую координату.
@@ -105,7 +111,7 @@ public:
 
 private:
 
-    int color; /**< Цвет */
+    Color color; /**< Цвет */
     int first; /**< Первая координата */
     int second; /**< Вторая координата */
     int breaths; /**< Число дыханий */

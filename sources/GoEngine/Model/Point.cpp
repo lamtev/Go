@@ -32,7 +32,7 @@ Point& Point::operator=( const int status ) noexcept
     return *this;
 }
 
-void Point::createStone( const int color, const int first, const int second, const int breaths ) noexcept
+void Point::createStone( const Color color, const int first, const int second, const int breaths ) noexcept
 {
     stone = new Stone{ color, first, second, breaths };
     isStoneDeleted = false;

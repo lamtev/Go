@@ -57,7 +57,7 @@ public:
      * @param second вторая координата
      * @param breaths число дыханий
      */
-    void createStone( const int color, const int first, const int second, const int breaths ) noexcept;
+    void createStone( const Color color, const int first, const int second, const int breaths ) noexcept;
 
     /**
      * Удалить камень.
@@ -91,7 +91,6 @@ public:
 
 private:
     //todo почему бы сразу не использовать enum как тип переменной?
-    //Status status;
     int status; /**< Статус пункта */
     Stone* stone; /**< Указатель на камень */
     bool isStoneDeleted; /**< Камень удалён? */

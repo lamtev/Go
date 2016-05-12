@@ -1,6 +1,6 @@
 #include "Stone.h"
 
-Stone::Stone( const int color, const int first, const int second, const int breaths ) noexcept : color{ color },
+Stone::Stone( const Color color, const int first, const int second, const int breaths ) noexcept : color{ color },
                                                                                                  first{ first },
                                                                                                  second{ second },
                                                                                                  breaths{ breaths }{}
@@ -14,7 +14,7 @@ Stone& Stone::operator=( const Stone& stone ) noexcept
     return *this;
 }
 
-int Stone::getColor() const noexcept
+Color Stone::getColor() const noexcept
 {
     return color;
 }
