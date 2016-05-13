@@ -103,13 +103,13 @@ zip_artifacts() {
 	mkdir "$TITLE"
 	
 	if [ -e "build/release/GoCUI/GoCUI" ]; then
-		cp build/release/GoCUI/GoCUI $TITLE/Go_v${BUILD_NUMBER}
+		cp build/release/GoCUI/GoCUI $TITLE/GoCUI_v${BUILD_NUMBER}
 	else
 		echo "GoCUI does not exist"
 	fi
 	
 	if [ -e "build/release/GoGUI/GoGUI" ]; then
-		cp build/release/GoGUI/GoGUI $TITLE/Go_v${BUILD_NUMBER}
+		cp build/release/GoGUI/GoGUI $TITLE/GoGUI_v${BUILD_NUMBER}
 	else
 		echo "GoGUI does not exist"
 	fi
@@ -120,11 +120,11 @@ zip_artifacts() {
 		echo "refman.pdf does not exist"
 	fi
 	
-	if [-e "build/release/GoCUI/GoCUI" || -e "build/release/GoGUI/GoGUI" || -e "report/doxygen/latex/refman.pdf" ]; then
+	if [ (-e "build/release/GoCUI/GoCUI") || (-e "build/release/GoGUI/GoGUI") || (-e "report/doxygen/latex/refman.pdf") ]; then
 		zip --version
 		zip $TITLE.zip $TITLE/*
 	else
-		echo "GoCUI, GoGUI and refman.pdf does not exist"
+		echo "GoCUI, GoGUI and refman.pdf do not exist"
 		echo "Zip failure!"
 		exit 1
 	fi
