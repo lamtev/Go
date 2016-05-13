@@ -120,7 +120,7 @@ zip_artifacts() {
 		echo "refman.pdf does not exist"
 	fi
 	
-	if [ (-e "build/release/GoCUI/GoCUI") || (-e "build/release/GoGUI/GoGUI") || (-e "report/doxygen/latex/refman.pdf") ]; then
+	if [ ((-e "build/release/GoCUI/GoCUI")) || ((-e "build/release/GoGUI/GoGUI")) || ((-e "report/doxygen/latex/refman.pdf")) ]; then
 		zip --version
 		zip $TITLE.zip $TITLE/*
 	else
