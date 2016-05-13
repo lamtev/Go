@@ -68,7 +68,7 @@ build_debug() {
 	fi
 }
 
-makeReport() {
+make_report() {
 	cd report/doxygen/
 	ls
 	if [ -e "goconfig" ]; then
@@ -91,7 +91,7 @@ makeReport() {
 	fi
 }
 
-zipFiles() {
+zip_artifacts() {
     ls
 	if [ -z ${JOB_NAME} ] || [ -z ${BUILD_NUMBER}]; then
 		echo "Vars JOB_NAME/BUILD_NUMBER are unset"
