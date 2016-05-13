@@ -1,7 +1,11 @@
-#include <iostream>
+#include <QtWidgets>
 
-int main( int argc, char* argv[] )
+int main( int argc, char** argv )
 {
-    std::cout << "GoGUI" << std::endl;
-    return 0;
+    QApplication goGUI{ argc, argv };
+    QLabel label{ "GoGUI" };
+
+    label.show();
+
+    return goGUI.exec();
 }
