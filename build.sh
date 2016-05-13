@@ -1,6 +1,8 @@
+#!/usr/bin/env bash
+
 export PATH=$PATH:/opt/Qt5.5.0/5.5/gcc_64/bin/
 
-buildReleaseVersion() {
+build_release() {
 	mkdir build 
 	cd build
 	mkdir release
@@ -11,17 +13,16 @@ buildReleaseVersion() {
 	if [ -e "Makefile" ]; then
 		cmake --build ./ --target GoCUI --
 		cmake --build ./ --target GoGUI --
-		cd ../..
 	else
-	    cd ../..
 		echo "Makefile does not exist"
 		echo "Build of release version failed!"
 		exit 1
 	fi
+	cd ../..
 	ls
 }
 
-buildDebugVersion() {
+build_debug() {
     cd sources
     cloc --version
 	cloc --by-file --xml --out=../report/cloc/clocLog.xml *
@@ -49,7 +50,7 @@ buildDebugVersion() {
 		cppcheck --version
 		cppcheck --language=c++ --std=c++11 --enable=all -v --xml-version=2  * 2> ../report/cppcheck/cppcheckLog.xml
 		
-        	ls
+        ls
 		
 		valgrind --version
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/FunctionalTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/FunctionalTest/FTest || true
@@ -59,16 +60,6 @@ buildDebugVersion() {
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/MoveTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/MoveTest || true
 		valgrind --leak-check=full --xml=yes --xml-file=/opt/tomcat/.jenkins/jobs/Go/workspace/report/valgrind/GameProcessTest.%p.xml /opt/tomcat/.jenkins/jobs/Go/workspace/build/debug/GoTests/UnitTests/GameProcessTest || true
 
-        cd ../report/doxygen
-		if [ -e "goconfig" ]; then
-			doxygen --version
-			doxygen goconfig
-		else
-			echo "Doxygen failed"
-			echo "goconfig does not exist"
-		fi
-
-		cd ../..
 	else
 	    cd ..
 		echo "Makefile does not exist"
@@ -110,16 +101,37 @@ zipFiles() {
 
 	TITLE="${JOB_NAME}_v${BUILD_NUMBER}"
 	mkdir "$TITLE"
-
+	
+	NULL = 0
+	CUI_FOUND = NULL
 	if [ -e "build/release/GoCUI/GoCUI" ]; then
+		CUI_FOUND = 1
 		cp build/release/GoCUI/GoCUI $TITLE/Go_v${BUILD_NUMBER}
-		if [ -e "report/doxygen/latex/refman.pdf" ]; then
-			cp report/doxygen/latex/refman.pdf $TITLE/Go_v${BUILD_NUMBER}.pdf
-		fi
+	else
+		echo "GoCUI does not exist"
+	fi
+	
+	GUI_FOUND = NULL
+	if [ -e "build/release/GoGUI/GoGUI" ]; then
+		GUI_FOUND = 1	
+		cp build/release/GoGUI/GoGUI $TITLE/Go_v${BUILD_NUMBER}
+	else
+		echo "GoGUI does not exist"
+	fi
+	
+	REFMAN_FOUND = NULL
+	if [ -e "report/doxygen/latex/refman.pdf" ]; then
+		REFMAN_FOUND = 1
+		cp report/doxygen/latex/refman.pdf $TITLE/Go_v${BUILD_NUMBER}.pdf
+	else
+		echo "refman.pdf does not exist"
+	fi
+	
+	if [ "$REFMAN_FOUND" -ne "$NULL" && "$GUI_FOUND" -ne "$NULL" && "$CUI_FOUND" -ne "$NULL"]; then
 		zip --version
 		zip $TITLE.zip $TITLE/*
 	else
-		echo "GoCUI does not exist"
+		echo "GoCUI, GoGUI and refman.pdf does not exist"
 		echo "Zip failure!"
 		exit 1
 	fi

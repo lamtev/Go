@@ -1,6 +1,6 @@
 #GoEngine
 
-set(srcFiles
+set(src
 
         GoEngineInterface.h
 
@@ -21,4 +21,4 @@ set(srcFiles
         Rules/Exceptions/MoveRepeatException.h
         Rules/Exceptions/MoveToDieException.h)
 
-add_library(GoEngine STATIC ${srcFiles})
+add_library(GoEngine STATIC ${src})
