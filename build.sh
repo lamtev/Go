@@ -93,7 +93,7 @@ make_report() {
 
 zip_artifacts() {
     ls
-	if [ -z ${JOB_NAME} ] || [ -z ${BUILD_NUMBER}]; then
+	if [ -z ${JOB_NAME} ] || [ -z ${BUILD_NUMBER} ]; then
 		echo "Vars JOB_NAME/BUILD_NUMBER are unset"
 		echo "Zip failure!"
 		exit 1
@@ -120,7 +120,7 @@ zip_artifacts() {
 		echo "refman.pdf does not exist"
 	fi
 	
-	if [ -e "build/release/GoCUI/GoCUI" || -e "build/release/GoGUI/GoGUI" || -e "report/doxygen/latex/refman.pdf" ]; then
+	if [ -e "build/release/GoCUI/GoCUI" ] || [ -e "build/release/GoGUI/GoGUI" ]  || [ -e "report/doxygen/latex/refman.pdf" ]; then
 		zip --version
 		zip $TITLE.zip $TITLE/*
 	else
