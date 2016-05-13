@@ -102,32 +102,25 @@ zip_artifacts() {
 	TITLE="${JOB_NAME}_v${BUILD_NUMBER}"
 	mkdir "$TITLE"
 	
-	declare -i NULL = 0
-	declare -i CUI_FOUND = $NULL
 	if [ -e "build/release/GoCUI/GoCUI" ]; then
-		CUI_FOUND = 1
 		cp build/release/GoCUI/GoCUI $TITLE/Go_v${BUILD_NUMBER}
 	else
 		echo "GoCUI does not exist"
 	fi
 	
-	declare -i GUI_FOUND = $NULL
 	if [ -e "build/release/GoGUI/GoGUI" ]; then
-		GUI_FOUND = 1	
 		cp build/release/GoGUI/GoGUI $TITLE/Go_v${BUILD_NUMBER}
 	else
 		echo "GoGUI does not exist"
 	fi
 	
-	declare -i REFMAN_FOUND = $NULL
 	if [ -e "report/doxygen/latex/refman.pdf" ]; then
-		REFMAN_FOUND = 1
 		cp report/doxygen/latex/refman.pdf $TITLE/Go_v${BUILD_NUMBER}.pdf
 	else
 		echo "refman.pdf does not exist"
 	fi
 	
-	if [ "$REFMAN_FOUND" -ne "$NULL" && "$GUI_FOUND" -ne "$NULL" && "$CUI_FOUND" -ne "$NULL"]; then
+	if [-e "build/release/GoCUI/GoCUI" || -e "build/release/GoGUI/GoGUI" || -e "report/doxygen/latex/refman.pdf" ]; then
 		zip --version
 		zip $TITLE.zip $TITLE/*
 	else
