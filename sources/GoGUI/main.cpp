@@ -2,23 +2,24 @@
 #include <QVector>
 #include <QString>
 
+#include "Counter.h"
+
 int main( int argc, char** argv )
 {
     QApplication goGUI{ argc, argv };
-    const QVector<QString> vec{
-        "GUI is almost done!",
-        "AHAHAHAHA",
-        "Go"
-    };
 
-    QLabel label1{ vec[1] };
-    label1.show();
+    QLabel lbl{ "0" };
+    QPushButton cmd{ "ADD" };
+    Counter counter;
 
-    QLabel label2{ vec[0] };
-    label2.show();
+    lbl.show();
+    cmd.show();
 
-    QLabel label3{ vec[2] };
-    label3.show();
+    QObject::connect(&cmd, SIGNAL(clicked()), &counter, SLOT(slotIncrement()));
+
+    QObject::connect(&counter, SIGNAL(counterChanged(int)), &lbl, SLOT(setNum(int)));
+
+    QObject::connect(&counter, SIGNAL(goodbye()), &goGUI, SLOT(quit()));
 
     return goGUI.exec();
 }
