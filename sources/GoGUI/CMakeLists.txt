@@ -6,7 +6,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
-set(src 
+set(src
     main.cpp
     Counter.cpp Counter.h)
 
