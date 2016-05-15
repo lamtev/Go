@@ -10,19 +10,22 @@
 int main( int argc, char** argv )
 {
     QApplication goGUI{ argc, argv };
+    QWidget wgt;
 
-    QLabel lbl{ "0" };
-    QPushButton cmd{ "ADD" };
-    Counter counter;
+    QPushButton* pcmdStartGame = new QPushButton{ "Start game" };
+    QPushButton* pcmdHelp = new QPushButton{ "Help" };
+    QPushButton* pcmdSettings = new QPushButton{ "Settings" };
+    QPushButton* pcmdExit = new QPushButton{ "Exit" };
 
-    lbl.show();
-    cmd.show();
+    QBoxLayout* pbxLayout = new QBoxLayout{ QBoxLayout::TopToBottom };
+    pbxLayout->addWidget(pcmdStartGame, 1);
+    pbxLayout->addWidget(pcmdHelp, 2);
+    pbxLayout->addWidget(pcmdSettings, 3);
+    pbxLayout->addWidget(pcmdExit, 4);
+    wgt.setLayout(pbxLayout);
 
-    QObject::connect(&cmd, SIGNAL(clicked()), &counter, SLOT(slotIncrement()));
-
-    QObject::connect(&counter, SIGNAL(counterChanged(int)), &lbl, SLOT(setNum(int)));
-
-    QObject::connect(&counter, SIGNAL(goodbye()), &goGUI, SLOT(quit()));
+    wgt.resize(300, 200);
+    wgt.show();
 
     qDebug() <<  goGUI.metaObject()->superClass()->superClass()->superClass()->className();
 
