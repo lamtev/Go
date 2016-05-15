@@ -1,37 +1,35 @@
 #include <QtWidgets>
-#include <QVector>
-#include <QString>
 #include <QDebug>
 
 #include <iostream>
 
-#include "Counter.h"
 
 int main( int argc, char** argv )
 {
     QApplication goGUI{ argc, argv };
-    QWidget wgt;
 
-    QPushButton* pcmdStartGame = new QPushButton{ "Start game" };
-    QPushButton* pcmdHelp = new QPushButton{ "Help" };
-    QPushButton* pcmdSettings = new QPushButton{ "Settings" };
-    QPushButton* pcmdExit = new QPushButton{ "Exit" };
+    QSplitter spl{ Qt::Vertical };
+    QTextEdit* ptxt1 = new QTextEdit;
+    QTextEdit* ptxt2 = new QTextEdit;
+    spl.addWidget(ptxt1);
+    spl.addWidget(ptxt2);
 
-    QVBoxLayout* pvbxLayout = new QVBoxLayout;
-    QHBoxLayout* phbxLayout = new QHBoxLayout;
-    phbxLayout->setMargin(5);
-    phbxLayout->setSpacing(5);
-    phbxLayout->addWidget(pcmdHelp);
-    phbxLayout->addWidget(pcmdExit);
+    ptxt1->setPlainText(
+        "GoGUI 1\n"
+        "GoGUI 2\n"
+        "GoGUI 3\n"
+        "GoGUI 4\n"
+        "GoGUI 5\n"
+        "GoGUI 6\n"
+        "GoGUI 7\n"
+        "GoGUI 8\n"
+        "GoGUI 9\n"
+        "GoGUI 10\n"
+    );
+    ptxt2->setPlainText(ptxt1->toPlainText());
 
-    pvbxLayout->setMargin(5);
-    pvbxLayout->setSpacing(5);
-    pvbxLayout->addWidget(pcmdStartGame);
-    pvbxLayout->addWidget(pcmdSettings);
-    pvbxLayout->addLayout(phbxLayout);
-    wgt.setLayout(pvbxLayout);
-
-    wgt.show();
+    spl.resize(200, 200);
+    spl.show();
 
     qDebug() <<  goGUI.metaObject()->superClass()->superClass()->superClass()->className();
 

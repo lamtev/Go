@@ -7,8 +7,7 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 set(src
-    main.cpp
-    Counter.cpp Counter.h)
+    main.cpp)
 
 add_executable(GoGUI ${src})
 
