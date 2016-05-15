@@ -17,15 +17,20 @@ int main( int argc, char** argv )
     QPushButton* pcmdSettings = new QPushButton{ "Settings" };
     QPushButton* pcmdExit = new QPushButton{ "Exit" };
 
-    QHBoxLayout* pbhxLayout = new QHBoxLayout;
-    pbhxLayout->setMargin(10);
-    pbhxLayout->setSpacing(20);
-    pbhxLayout->addWidget(pcmdStartGame);
-    pbhxLayout->addWidget(pcmdHelp);
-    pbhxLayout->addWidget(pcmdSettings);
-    pbhxLayout->addWidget(pcmdExit);
-    wgt.setLayout(pbhxLayout);
-    
+    QVBoxLayout* pvbxLayout = new QVBoxLayout;
+    QHBoxLayout* phbxLayout = new QHBoxLayout;
+    phbxLayout->setMargin(5);
+    phbxLayout->setSpacing(5);
+    phbxLayout->addWidget(pcmdHelp);
+    phbxLayout->addWidget(pcmdExit);
+
+    pvbxLayout->setMargin(5);
+    pvbxLayout->setSpacing(5);
+    pvbxLayout->addWidget(pcmdStartGame);
+    pvbxLayout->addWidget(pcmdSettings);
+    pvbxLayout->addLayout(phbxLayout);
+    wgt.setLayout(pvbxLayout);
+
     wgt.show();
 
     qDebug() <<  goGUI.metaObject()->superClass()->superClass()->superClass()->className();
