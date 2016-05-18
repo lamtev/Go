@@ -7,19 +7,17 @@
  * Исключение - ход под смерть.
  * Выбрасывается, когда игрок ходит под смерть своего камня или группы
  */
-class MoveToDieException : public MoveException
-{
+class MoveToDieException: public MoveException {
 
-public:
+ public:
 
-    /**
-     * Чё?
-     * @return сообщение о том, что игрок ходит под смерть
-     */
-    const char* what() const noexcept override
-    {
-        return "You moved to die";
-    }
+  /**
+   * Чё?
+   * @return сообщение о том, что игрок ходит под смерть
+   */
+  const char *what() const noexcept override {
+    return "You moved to die";
+  }
 
 };
 

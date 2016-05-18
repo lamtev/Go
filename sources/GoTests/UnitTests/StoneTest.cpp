@@ -3,50 +3,45 @@
 
 #include "../../GoEngine/Model/Stone.h"
 
-class StoneTest : public QObject
-{
-    Q_OBJECT
+class StoneTest: public QObject {
+ Q_OBJECT
 
-public:
-    StoneTest();
+ public:
+  StoneTest();
 
 
-private Q_SLOTS:
-    void getColor();
-    void getFirst();
-    void getSecond();
-    void getBreaths();
+ private Q_SLOTS:
+  void getColor();
+  void getFirst();
+  void getSecond();
+  void getBreaths();
 
 };
 
-StoneTest::StoneTest(){}
+StoneTest::StoneTest() { }
 
-void StoneTest::getColor()
-{
-    Stone stone{ Color::BLACK, A, 5, 2 };
+void StoneTest::getColor() {
+  Stone stone{Color::BLACK, A, 5, 2};
 
-    QCOMPARE(stone.getColor(), Color::BLACK);
+  QCOMPARE(stone.getColor(), Color::BLACK);
 }
 
-void StoneTest::getFirst()
-{
-    Stone stone{ Color::BLACK, A, 5, 2 };
+void StoneTest::getFirst() {
+  Stone stone{Color::BLACK, A, 5, 2};
 
-    QVERIFY(stone.getFirst() == A);
+  QVERIFY(stone.getFirst()==A);
 }
 
-void StoneTest::getSecond()
-{
-    Stone stone{ Color::BLACK, A, 5, 2 };
+void StoneTest::getSecond() {
+  Stone stone{Color::BLACK, A, 5, 2};
 
-    QCOMPARE(stone.getSecond(), 5);
+  QCOMPARE(stone.getSecond(), 5);
 }
 
-void StoneTest::getBreaths()
-{
-    Stone stone{Color::BLACK, A, 5, 2 };
+void StoneTest::getBreaths() {
+  Stone stone{Color::BLACK, A, 5, 2};
 
-    QCOMPARE(stone.getBreaths(), 2);
+  QCOMPARE(stone.getBreaths(), 2);
 }
 
 QTEST_APPLESS_MAIN(StoneTest)

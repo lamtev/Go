@@ -1,10 +1,10 @@
 #GoCUI
 
-set(src 
-	main.cpp
-	InitBoards.h 
-	GoGame.cpp GoGame.h 
-	Help.cpp Help.h)
+set(src
+        main.cpp
+        InitBoards.h
+        GoGame.cpp GoGame.h
+        Help.cpp Help.h)
 
 add_executable(GoCUI ${src})
 

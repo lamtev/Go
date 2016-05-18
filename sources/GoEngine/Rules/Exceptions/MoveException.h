@@ -6,21 +6,20 @@
 /**
  * Супер-класс для всех классов исключений, связанных с ходом.
  */
-class MoveException : public std::exception
-{
+class MoveException: public std::exception {
 
-public:
+ public:
 
-    /**
-     * Виртуальный деструктор.
-     */
-    virtual ~MoveException(){};
+  /**
+   * Виртуальный деструктор.
+   */
+  virtual ~MoveException() { };
 
-    /**
-     * Виртуальный "Чё?"
-     * @return сообщение об ошибке
-     */
-    virtual const char* what() const noexcept = 0;
+  /**
+   * Виртуальный "Чё?"
+   * @return сообщение об ошибке
+   */
+  virtual const char *what() const noexcept = 0;
 
 };
 

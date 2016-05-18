@@ -2,9 +2,8 @@
 
 #include "GoGame.h"
 
-int main( int argc, char* argv[] )
-{
-    GoGame game{ argc, argv };
-    game.begin();
-    return 0;
+int main(int argc, char *argv[]) {
+  GoGame game{argc, argv};
+  game.begin();
+  return 0;
 }

@@ -7,19 +7,17 @@
  * Исключение - ход в несвободный пункт.
  * Выбрасывается, когда игрок ходит в несвободный пункт.
  */
-class MoveToNotEmptyPointException : public MoveException
-{
+class MoveToNotEmptyPointException: public MoveException {
 
-public:
+ public:
 
-    /**
-     * Чё?
-     * @return сообщение о том, что игрок совершил ход в несвободный пункт
-     */
-    const char* what() const noexcept override
-    {
-        return "You moved to not empty point";
-    }
+  /**
+   * Чё?
+   * @return сообщение о том, что игрок совершил ход в несвободный пункт
+   */
+  const char *what() const noexcept override {
+    return "You moved to not empty point";
+  }
 
 };
 

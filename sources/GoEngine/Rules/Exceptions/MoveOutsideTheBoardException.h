@@ -7,19 +7,17 @@
  * Исключение - выход за границы доски.
  * Данное исключение возбуждается при выходе за границы доски
  */
-class MoveOutsideTheBoardException : public MoveException
-{
+class MoveOutsideTheBoardException: public MoveException {
 
-public:
+ public:
 
-    /**
-     * Чё?
-     * @return сообщение о том, что ход совершён за пределы доски
-     */
-    const char* what() const noexcept override
-    {
-        return "You moved outside the board";
-    }
+  /**
+   * Чё?
+   * @return сообщение о том, что ход совершён за пределы доски
+   */
+  const char *what() const noexcept override {
+    return "You moved outside the board";
+  }
 
 };
 
