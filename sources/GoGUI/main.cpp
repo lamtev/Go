@@ -1,5 +1,6 @@
 #include <QtWidgets>
 #include <QDebug>
+#include <QTranslator>
 
 #include <iostream>
 
@@ -14,7 +15,7 @@ int main(int argc, char **argv) {
   spl.addWidget(ptxt2);
 
   ptxt1->setPlainText(
-      "GoGUI 1\n"
+      QTranslator::tr("GoGUI 1\n"
           "GoGUI 2\n"
           "GoGUI 3\n"
           "GoGUI 4\n"
@@ -23,7 +24,7 @@ int main(int argc, char **argv) {
           "GoGUI 7\n"
           "GoGUI 8\n"
           "GoGUI 9\n"
-          "GoGUI 10\n"
+          "GoGUI 10\n")
   );
   ptxt2->setPlainText(ptxt1->toPlainText());
 

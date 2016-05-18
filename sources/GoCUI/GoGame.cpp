@@ -9,7 +9,7 @@ GoGame::GoGame(const int argc, char **argv) noexcept : goEngineInterface{new GoE
                                                        hasExceptionHandled{false},
                                                        exit{false} { }
 
-GoGame::GoGame(const GoGame &go) noexcept : goEngineInterface(go.goEngineInterface),
+GoGame::GoGame(const GoGame &go) noexcept : goEngineInterface{go.goEngineInterface},
                                             help{go.help},
                                             argc{go.argc},
                                             argv{go.argv},
