@@ -5,23 +5,34 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QMenu>
+#include <QVBoxLayout>
+#include <QGridLayout>
+//#include <QRect>
 
 
-class Menu : public QMainWindow {
+class Menu : public QWidget {
   Q_OBJECT
 
  public:
-  explicit Menu(QWidget *parent = nullptr) noexcept;
+  explicit Menu(QWidget *parent = Q_NULLPTR) noexcept;
 
  private:
-  QPushButton *btnStartGame = new QPushButton{tr("Start game")};
-  QPushButton *btnSettings = new QPushButton{tr("Settings")};
-  QPushButton *btnHelp = new QPushButton{tr("Help")};
-  QPushButton *btnQuit = new QPushButton{tr("Quit")};
+  QPalette *palette;
+  QVBoxLayout *vLayout;
+  QPushButton *btnStartGame;
+  QPushButton *btnSettings;
+  QPushButton *btnHelp;
+  QPushButton *btnQuit;
+
+  void connectSignals() const noexcept;
 
  signals:
 
  private slots:
+  void startGame(){};
+  void openSettings(){};
+  void openHelp(){};
+
 };
 
 
