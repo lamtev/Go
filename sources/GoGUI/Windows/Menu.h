@@ -7,8 +7,10 @@
 #include <QMenu>
 #include <QVBoxLayout>
 #include <QGridLayout>
-//#include <QRect>
 
+#include "Game.h"
+#include "Settings.h"
+#include "Help.h"
 
 class Menu : public QWidget {
   Q_OBJECT
@@ -24,16 +26,23 @@ class Menu : public QWidget {
   QPushButton *btnHelp;
   QPushButton *btnQuit;
 
+  Game *game;
+  Settings *settings;
+  Help *help;
+
+  void configurePalette() noexcept;
+  void configureVLayout() noexcept;
+  void configureButtons() noexcept;
+
   void connectSignals() const noexcept;
 
  signals:
 
  private slots:
-  void startGame(){};
-  void openSettings(){};
-  void openHelp(){};
+  void slotOpenGame() noexcept;
+  void slotOpenSettings() noexcept;
+  void slotOpenHelp() noexcept;
 
 };
-
 
 #endif //GO_MENU_H
