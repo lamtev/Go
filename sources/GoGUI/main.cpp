@@ -2,35 +2,13 @@
 #include <QDebug>
 #include <QTranslator>
 
-#include <iostream>
-
+#include "Windows/Menu.h"
 
 int main(int argc, char **argv) {
   QApplication goGUI{argc, argv};
+  Menu menu{nullptr};
 
-  QSplitter spl{Qt::Vertical};
-  QTextEdit *ptxt1 = new QTextEdit;
-  QTextEdit *ptxt2 = new QTextEdit;
-  spl.addWidget(ptxt1);
-  spl.addWidget(ptxt2);
-
-  ptxt1->setPlainText(
-      QTranslator::tr("GoGUI 1\n"
-          "GoGUI 2\n"
-          "GoGUI 3\n"
-          "GoGUI 4\n"
-          "GoGUI 5\n"
-          "GoGUI 6\n"
-          "GoGUI 7\n"
-          "GoGUI 8\n"
-          "GoGUI 9\n"
-          "GoGUI 10\n")
-  );
-  ptxt2->setPlainText(ptxt1->toPlainText());
-
-  spl.resize(200, 200);
-  spl.show();
-
+  menu.show();
   qDebug() << goGUI.metaObject()->superClass()->superClass()->superClass()->className();
 
   return goGUI.exec();

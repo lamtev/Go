@@ -7,7 +7,8 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 set(src
-        main.cpp)
+        main.cpp
+        Windows/Menu.cpp Windows/Menu.h)
 
 add_executable(GoGUI ${src})
 
