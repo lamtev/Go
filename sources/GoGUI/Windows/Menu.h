@@ -1,12 +1,9 @@
 #ifndef GO_MENU_H
 #define GO_MENU_H
 
-#include <QtWidgets>
-#include <QMainWindow>
+#include <QWidget>
 #include <QPushButton>
-#include <QMenu>
 #include <QVBoxLayout>
-#include <QGridLayout>
 
 #include "Game.h"
 #include "Settings.h"
@@ -21,10 +18,10 @@ class Menu : public QWidget {
  private:
   QPalette *menuPalette;
   QVBoxLayout *vLayout;
-  QPushButton *btnStartGame;
-  QPushButton *btnSettings;
-  QPushButton *btnHelp;
-  QPushButton *btnQuit;
+  QPushButton *buttonStartGame;
+  QPushButton *buttonSettings;
+  QPushButton *buttonHelp;
+  QPushButton *buttonQuit;
 
   Game *game;
   Settings *settings;
@@ -33,8 +30,11 @@ class Menu : public QWidget {
   void configurePalette() noexcept;
   void configureVLayout() noexcept;
   void configureButtons() noexcept;
+  void configureButtonStartGame() noexcept;
+  void configureButtonSettings() noexcept;
+  void configureButtonHelp() noexcept;
+  void configureButtonQuit() noexcept;
 
-  void connectSignals() const noexcept;
 
  signals:
 

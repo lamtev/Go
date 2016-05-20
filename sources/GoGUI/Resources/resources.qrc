@@ -1,6 +1,6 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource prefix="/">
-        <file>smile1.jpg</file>
+        <file>smile.jpg</file>
     </qresource>
 </RCC>
