@@ -7,3 +7,4 @@ Game::Game(QWidget *parent) noexcept : QWidget{parent} {
   mbox.show();
   mbox.exec();
 }
+

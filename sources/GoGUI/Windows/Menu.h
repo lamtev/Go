@@ -5,12 +5,12 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include "Game.h"
+#include "StartGame.h"
 #include "Settings.h"
 #include "Help.h"
 
 class Menu : public QWidget {
-  Q_OBJECT
+ Q_OBJECT
 
  public:
   explicit Menu(QWidget *parent = nullptr) noexcept;
@@ -23,7 +23,7 @@ class Menu : public QWidget {
   QPushButton *buttonHelp;
   QPushButton *buttonQuit;
 
-  Game *game;
+  StartGame *startGame;
   Settings *settings;
   Help *help;
 
@@ -39,7 +39,7 @@ class Menu : public QWidget {
  signals:
 
  private slots:
-  void slotOpenGame() noexcept;
+  void slotOpenStartGame() noexcept;
   void slotOpenSettings() noexcept;
   void slotOpenHelp() noexcept;
 

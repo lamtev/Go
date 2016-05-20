@@ -7,13 +7,13 @@ Menu::Menu(QWidget *parent) noexcept : QWidget{parent},
                                        buttonSettings{new QPushButton{tr("Settings"), this}},
                                        buttonHelp{new QPushButton{tr("Help"), this}},
                                        buttonQuit{new QPushButton{tr("Quit"), this}},
-                                       game{nullptr},
+                                       startGame{nullptr},
                                        settings{nullptr},
                                        help{nullptr} {
   setGeometry(QPixmap{":/smile.jpg"}.rect());
   configurePalette();
-  configureVLayout();
   configureButtons();
+  configureVLayout();
 }
 
 void Menu::configurePalette() noexcept {
@@ -39,7 +39,7 @@ void Menu::configureButtons() noexcept {
 }
 
 void Menu::configureButtonStartGame() noexcept {
-  connect(buttonStartGame, SIGNAL(clicked()), SLOT(slotOpenGame()));
+  connect(buttonStartGame, SIGNAL(clicked()), SLOT(slotOpenStartGame()));
 }
 
 void Menu::configureButtonSettings() noexcept {
@@ -54,9 +54,9 @@ void Menu::configureButtonQuit() noexcept {
   connect(buttonQuit, SIGNAL(clicked()), SLOT(close()));
 }
 
-void Menu::slotOpenGame() noexcept {
-  game = new Game{this};
-  game->show();
+void Menu::slotOpenStartGame() noexcept {
+  startGame = new StartGame{};
+  startGame->show();
 }
 
 void Menu::slotOpenSettings() noexcept {

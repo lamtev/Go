@@ -1,14 +1,16 @@
 #ifndef GO_GAME_H
 #define GO_GAME_H
 
-#include <QtWidgets>
+#include <QWidget>
+#include <QMessageBox>
 
-class Game : public QWidget{
-Q_OBJECT
+#include "../../GoEngine/GoEngineAPI.h"
+
+class Game : public QWidget {
+ Q_OBJECT
 
  public:
-  Game(QWidget *parent = nullptr) noexcept;
-
+  explicit Game(QWidget *parent = nullptr) noexcept;
  private:
 
  signals:
@@ -16,5 +18,6 @@ Q_OBJECT
  private slots:
 
 };
+
 
 #endif //GO_GAME_H

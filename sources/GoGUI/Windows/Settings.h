@@ -7,7 +7,7 @@ class Settings : public QWidget {
  Q_OBJECT
 
  public:
-  Settings(QWidget *parent = nullptr) noexcept;
+  explicit Settings(QWidget *parent = nullptr) noexcept;
 
  private:
 

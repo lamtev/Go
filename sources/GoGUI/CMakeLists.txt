@@ -9,9 +9,9 @@ find_package(Qt5Widgets REQUIRED)
 set(src
         main.cpp
         Windows/Menu.cpp Windows/Menu.h
-        Windows/Game.cpp Windows/Game.h
+        Windows/StartGame.cpp Windows/StartGame.h
         Windows/Settings.cpp Windows/Settings.h
-        Windows/Help.cpp Windows/Help.h)
+        Windows/Help.cpp Windows/Help.h Windows/Game.cpp Windows/Game.h)
 
 
 qt5_add_resources(qrsrc Resources/resources.qrc)
