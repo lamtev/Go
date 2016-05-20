@@ -19,7 +19,7 @@ class MoveException: public std::exception {
    * Виртуальный "Чё?"
    * @return сообщение об ошибке
    */
-  virtual const char *what() const noexcept = 0;
+  virtual const char *what() const noexcept override = 0;
 
 };
 
