@@ -7,7 +7,7 @@ class Help : public QWidget {
   Q_OBJECT
 
  public:
-  Help(QWidget *parent = Q_NULLPTR) noexcept;
+  Help(QWidget *parent = nullptr) noexcept;
 
  private:
 

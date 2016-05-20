@@ -7,7 +7,7 @@ class Game : public QWidget{
 Q_OBJECT
 
  public:
-  Game(QWidget *parent = Q_NULLPTR) noexcept;
+  Game(QWidget *parent = nullptr) noexcept;
 
  private:
 

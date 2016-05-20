@@ -1,15 +1,15 @@
 #include "Menu.h"
 
 Menu::Menu(QWidget *parent) noexcept : QWidget{parent},
-                                       palette{new QPalette},
+                                       menuPalette{new QPalette},
                                        vLayout{new QVBoxLayout{this}},
                                        btnStartGame{new QPushButton{tr("Start game"), this}},
                                        btnSettings{new QPushButton{tr("Settings"), this}},
                                        btnHelp{new QPushButton{tr("Help"), this}},
                                        btnQuit{new QPushButton{tr("Quit"), this}},
-                                       game{Q_NULLPTR},
-                                       settings{Q_NULLPTR},
-                                       help{Q_NULLPTR} {
+                                       game{nullptr},
+                                       settings{nullptr},
+                                       help{nullptr} {
 
   setGeometry(QPixmap{":/smile1.jpg"}.rect());
   configurePalette();
@@ -18,16 +18,9 @@ Menu::Menu(QWidget *parent) noexcept : QWidget{parent},
   connectSignals();
 }
 
-void Menu::connectSignals() const noexcept {
-  connect(btnStartGame, SIGNAL(clicked()), SLOT(slotOpenGame()));
-  connect(btnSettings, SIGNAL(clicked()), SLOT(slotOpenSettings()));
-  connect(btnHelp, SIGNAL(clicked()), SLOT(slotOpenHelp()));
-  connect(btnQuit, SIGNAL(clicked()), SLOT(close()));
-}
-
 void Menu::configurePalette() noexcept {
-  palette->setBrush(backgroundRole(), QBrush{QPixmap{":/smile1.jpg"}});
-  setPalette(*palette);
+  menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/smile1.jpg"}});
+  setPalette(*menuPalette);
 }
 
 void Menu::configureVLayout() noexcept {
@@ -45,6 +38,13 @@ void Menu::configureButtons() noexcept {}
 void Menu::slotOpenGame() noexcept {
   game = new Game{this};
   game->show();
+}
+
+void Menu::connectSignals() const noexcept {
+  connect(btnStartGame, SIGNAL(clicked()), SLOT(slotOpenGame()));
+  connect(btnSettings, SIGNAL(clicked()), SLOT(slotOpenSettings()));
+  connect(btnHelp, SIGNAL(clicked()), SLOT(slotOpenHelp()));
+  connect(btnQuit, SIGNAL(clicked()), SLOT(close()));
 }
 
 void Menu::slotOpenSettings() noexcept {

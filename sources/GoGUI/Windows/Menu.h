@@ -16,10 +16,10 @@ class Menu : public QWidget {
   Q_OBJECT
 
  public:
-  explicit Menu(QWidget *parent = Q_NULLPTR) noexcept;
+  explicit Menu(QWidget *parent = nullptr) noexcept;
 
  private:
-  QPalette *palette;
+  QPalette *menuPalette;
   QVBoxLayout *vLayout;
   QPushButton *btnStartGame;
   QPushButton *btnSettings;
