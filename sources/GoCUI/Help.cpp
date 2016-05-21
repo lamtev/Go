@@ -50,7 +50,7 @@ void Help::printPass() const noexcept {
 }
 
 void Help::printSurrender() const noexcept {
-  std::cout << "surrender     Surrender this game" << std::endl;
+  std::cout << "surrender     Surrender this startGame" << std::endl;
 }
 
 void Help::printMove() const noexcept {
