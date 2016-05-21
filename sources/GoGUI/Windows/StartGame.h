@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QRadioButton>
 #include <QLabel>
+#include <QDebug>
 
 #include "Game.h"
 

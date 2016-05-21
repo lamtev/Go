@@ -55,8 +55,12 @@ void Menu::configureButtonQuit() noexcept {
 }
 
 void Menu::slotOpenStartGame() noexcept {
-  startGame = new StartGame{};
+  startGame = new StartGame;
+  startGame->move((QApplication::desktop()->width() - startGame->width())/2,
+                  (QApplication::desktop()->height() - startGame->height())/2);
+  startGame->setAttribute(Qt::WA_DeleteOnClose);
   startGame->show();
+  qDebug() << "startGame->parent() " << startGame->parent();
 }
 
 void Menu::slotOpenSettings() noexcept {
@@ -68,3 +72,4 @@ void Menu::slotOpenHelp() noexcept {
   help = new Help{this};
   help->show();
 }
+
