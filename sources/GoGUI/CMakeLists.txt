@@ -5,6 +5,7 @@ set(CMAKE_AUTOMOC ON)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5LinguistTools REQUIRED)
 
 set(src
         main.cpp
@@ -15,8 +16,10 @@ set(src
 
 
 qt5_add_resources(qrsrc Resources/resources.qrc)
+qt5_add_translation(i18n
+                         Internationalization/i18n_ru.ts)
 
-add_executable(GoGUI ${src} ${qrsrc})
+add_executable(GoGUI ${src} ${qrsrc} ${i18n})
 
 target_link_libraries(GoGUI GoEngine)
 target_link_libraries(GoGUI Qt5::Core)

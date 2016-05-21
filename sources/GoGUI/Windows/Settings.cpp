@@ -3,7 +3,7 @@
 Settings::Settings(QWidget *parent) noexcept : QWidget{parent} {
   //для тестирования
   QMessageBox mbox;
-  mbox.setText("Setings");
+  mbox.setText(QObject::tr("Setings"));
   mbox.show();
   mbox.exec();
 }

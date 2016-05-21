@@ -2,13 +2,13 @@
 
 StartGame::StartGame(QWidget *parent) noexcept : QWidget{parent},
                                                  vLayout{new QVBoxLayout{this}},
-                                                 gLayout{new QGridLayout/*{this}*/},
-                                                 text{new QLabel{tr("Chose board size"), this}},
-                                                 rButton19x19{new QRadioButton{tr("19 x 19"), this}},
-                                                 rButton13x13{new QRadioButton{tr("13 x 13"), this}},
-                                                 rButton7x7{new QRadioButton{tr(" 7 x 7"), this}},
-                                                 buttonStartGame{new QPushButton{tr("Start game"), this}},
-                                                 buttonCancel{new QPushButton{tr("Cancel"), this}},
+                                                 gLayout{new QGridLayout{this}},
+                                                 text{new QLabel{QObject::tr("Chose board size"), this}},
+                                                 rButton19x19{new QRadioButton{QObject::tr("19 x 19"), this}},
+                                                 rButton13x13{new QRadioButton{QObject::tr("13 x 13"), this}},
+                                                 rButton7x7{new QRadioButton{QObject::tr(" 7 x 7"), this}},
+                                                 buttonStartGame{new QPushButton{QObject::tr("Start game"), this}},
+                                                 buttonCancel{new QPushButton{QObject::tr("Cancel"), this}},
                                                  game{nullptr} {
   qDebug() << "vLayout->parent() " << vLayout->parent();
   configureButtons();
@@ -67,21 +67,3 @@ void StartGame::slotStartGame() noexcept {
   game->move((width() - game->width())/2, (height() - game->height())/2);
   game->show();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

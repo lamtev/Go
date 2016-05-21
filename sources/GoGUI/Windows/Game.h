@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QMessageBox>
+#include <QPalette>
+#include <QVBoxLayout>
+#include <QGridLayout>
 
 #include "../../GoEngine/GoEngineAPI.h"
 
@@ -11,7 +14,10 @@ class Game : public QWidget {
 
  public:
   explicit Game(QWidget *parent = nullptr) noexcept;
+
  private:
+  QPalette *gamePalette;
+
 
  signals:
 
