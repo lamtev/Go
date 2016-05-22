@@ -6,23 +6,42 @@
 
 
 % Содержание
+\hypertarget{toc}
 \tableofcontents
 \newpage
 
 
 
-\section{Цель работы}
+\section*{Игра Го}
+\addcontentsline{toc}{section}{Глава 1. Игра Го}
 
 
-\section{Программа работы}
+\section*{Проектирование приложения, реализующего эмулятор игры Го}
+\addcontentsline{toc}{section}{Глава 2. Проектирование приложения, реализующего эмулятор игры Го}
 
 
-\section{Теоретическая информация}
+\section*{Реализация игры Го}
+\addcontentsline{toc}{section}{Глава 3. Реализация игры Го}
 
 
-\section{Ход выполнения работы}
+\section*{Процесс обеспечения качества и тестирование}
+\addcontentsline{toc}{section}{Глава 4. Процесс обеспечения качества и тестирование}
 
-\subsection{Список}
+
+\section*{Выводы}
+\addcontentsline{toc}{section}{Глава 5. Выводы}
+
+\section*{Приложения}
+\addcontentsline{toc}{section}{Приложения}
+
+\subsection*{Приложение 1. Листинги кода}
+\addcontentsline{toc}{subsection}{Приложение 1. Листинги кода}
+
+
+\subsection*{Приложение 2. Doxygen документация}
+\addcontentsline{toc}{subsection}{Приложение 2. Doxygen документация}
+
+\subsection*{Список}
 
 \begin{itemize}
 \item первый элемент списка
@@ -30,7 +49,7 @@
 \end{itemize}
 
 
-\subsection{Картинка}
+\subsection*{Картинка}
 
 \begin{figure}[H]
 	\begin{center}
@@ -41,7 +60,7 @@
 \end{figure}
 
 
-\subsection{Листинг}
+\subsection*{Листинг}
 
 \captionof{lstlisting}{hell\_o.c} % для печати символ '_' требует выходной символ '\'
 \lstinputlisting[label=code:hello]{listings/hell_o.c}
@@ -53,7 +72,7 @@
 \noindent Новый параграф с принудительно выключенным отступом
 
 
-\subsection{Частичный листинг}
+\subsection*{Частичный листинг}
 % настрока частичного ввода (требуется один раз)
 \makeatletter
 \def\lst@PlaceNumber{\llap{\normalfont
@@ -64,7 +83,7 @@
 \lstinputlisting[label=code:hello_mod, linerange={4-5}]{listings/hell_o.c}
 \parindent=1cm
 
-\subsection{Таблица}
+\subsection*{Таблица}
 
 \begin{table}[H]
 	\begin{center}
@@ -78,7 +97,7 @@
 	\end{center}
 \end{table}
 
-\section{Выводы}
+\section*{Выводы}
 \LaTeX\ удобен для создания отчётов, так как сам следит за нумерацией таблиц, рисунков, листингов и отсылок к ним (так, например, здесь всегда будет указан номер рисунка "sample" не зависимо от того, какой он (1,2 или другой) - это рисунок \ref{pic:pic_name}). Не менее важно что весь документ оформлен в едином стиле, а исходные материалы подключаются к отчёту, а не хранятся в нём. Всё это позволяет легко получить качественный отчёт без дополнительных трат на его офрмление.
 
 Исключения, пожалуй, составляют таблицы, так как их значительно сложнее создавать кодом, нежели в графическом редакторе. Но здесь никто не запрещает использовать визуальные средства создания таблиц для \LaTeX\ .

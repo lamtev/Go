@@ -12,6 +12,7 @@ dir_*.tex
 *.log
 *.out
 *.toc
+*.pdf
 
 #Qt
 
