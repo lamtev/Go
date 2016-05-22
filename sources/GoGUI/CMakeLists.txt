@@ -12,10 +12,11 @@ set(src
         Windows/Menu.cpp Windows/Menu.h
         Windows/StartGame.cpp Windows/StartGame.h
         Windows/Settings.cpp Windows/Settings.h
-        Windows/Help.cpp Windows/Help.h Windows/Game.cpp Windows/Game.h)
+        Windows/Help.cpp Windows/Help.h Windows/Game.cpp Windows/Game.h Windows/Board.cpp Windows/Board.h)
 
 
-qt5_add_resources(qrsrc Resources/resources.qrc)
+qt5_add_resources(qrsrc
+                        Resources/resources.qrc)
 qt5_add_translation(i18n
                          Internationalization/i18n_ru.ts)
 

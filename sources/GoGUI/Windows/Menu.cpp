@@ -10,14 +10,14 @@ Menu::Menu(QWidget *parent) noexcept : QWidget{parent},
                                        startGame{nullptr},
                                        settings{nullptr},
                                        help{nullptr} {
-  setGeometry(QPixmap{":/smile.jpg"}.rect());
+  setGeometry(QPixmap{":/menu_background.jpg"}.rect());
   configurePalette();
   configureButtons();
   configureVLayout();
 }
 
 void Menu::configurePalette() noexcept {
-  menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/smile.jpg"}});
+  menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/menu_background.jpg"}});
   setPalette(*menuPalette);
 }
 

@@ -6,6 +6,9 @@
 #include <QPalette>
 #include <QVBoxLayout>
 #include <QGridLayout>
+#include <QRect>
+
+#include "Board.h"
 
 #include "../../GoEngine/GoEngineAPI.h"
 
@@ -17,6 +20,8 @@ class Game : public QWidget {
 
  private:
   QPalette *gamePalette;
+
+  GoEngineAPI *engine;
 
 
  signals:
