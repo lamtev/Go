@@ -1,4 +1,6 @@
 \documentclass[a4paper]{article}
+\usepackage[warn]{mathtext} %для поддержки кириллицы в формулах
+\usepackage{amsmath} %основной пакет для формул
 \usepackage[utf8x]{inputenc}
 \usepackage[T1,T2A]{fontenc}
 \usepackage[russian]{babel}
@@ -6,12 +8,18 @@
 \usepackage{indentfirst}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{here}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{graphicx}
 
+\definecolor{linkcolor}{HTML}{000000} % цвет ссылок 000000 = чёрный
+\definecolor{urlcolor}{HTML}{0000FF} % цвет гиперссылок 0000FF = синий
+ 
+\hypersetup{pdfstartview=FitH, pagecolor=black, linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
 \usepackage{caption}
+
 \renewcommand{\lstlistingname}{Программа} % заголовок листингов кода
 
 \usepackage{listings}
