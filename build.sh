@@ -93,8 +93,8 @@ make_report() {
 	cd report/main/
 	ls
 	if [ -e "main.tex" ] && [ -e "titlepage.tex" ] && [ -e "settings.tex" ]; then
-		latex main.tex
-		latex main.tex
+		pdflatex main.tex
+		pdflatex main.tex
 		rm -f *.aux *.log *.dvi *.toc *.out
 	else
 		echo "main.tex or titlepage.tex or settings.tex does not exist"
