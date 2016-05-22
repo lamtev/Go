@@ -72,11 +72,11 @@ make_report() {
 	cd report/doxygen/
 	ls
 	if [ -e "goconfig" ]; then
-			doxygen --version
-			doxygen goconfig
-		else
-			echo "Doxygen failed"
-			echo "goconfig does not exist"
+		doxygen --version
+		doxygen goconfig
+	else
+		echo "Doxygen failed"
+		echo "goconfig does not exist"
 	fi
 	cd latex
 	if [ -e "Makefile" ]; then
@@ -88,6 +88,17 @@ make_report() {
 		echo "Report failure!"
 		cd ../../..
 		exit 1
+	fi
+	
+	cd report/main/
+	ls
+	if [ -e "main.tex" ] && [ -e "titlepage.tex" ] && [ -e "settings.tex" ]; then
+		latex main.tex
+		latex main.tex
+		rm -f *.aux *.log *.dvi *.toc *.out
+	else
+		echo "main.tex or titlepage.tex or settings.tex does not exist"
+		echo "Report failure!"
 	fi
 }
 
@@ -120,11 +131,17 @@ zip_artifacts() {
 		echo "refman.pdf does not exist"
 	fi
 	
-	if [ -e "build/release/GoCUI/GoCUI" ] || [ -e "build/release/GoGUI/GoGUI" ]  || [ -e "report/doxygen/latex/refman.pdf" ]; then
+	if [ -e "report/main/main.pdf" ]; then
+		cp report/main/main.pdf $TITLE/Report_v${BUILD_NUMBER}.pdf
+	else
+		echo "report.pdf does not exist"
+	fi
+	
+	if [ -e "build/release/GoCUI/GoCUI" ] || [ -e "build/release/GoGUI/GoGUI" ]  || [ -e "report/doxygen/latex/refman.pdf" ] || [ -e "report/main/main.pdf" ]; then
 		zip --version
 		zip $TITLE.zip $TITLE/*
 	else
-		echo "GoCUI, GoGUI and refman.pdf do not exist"
+		echo "GoCUI, GoGUI, main.pdf and refman.pdf do not exist"
 		echo "Zip failure!"
 		exit 1
 	fi
