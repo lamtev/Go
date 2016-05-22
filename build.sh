@@ -96,9 +96,11 @@ make_report() {
 		pdflatex main.tex
 		pdflatex main.tex
 		rm -f *.aux *.log *.dvi *.toc *.out
+		cd ../..
 	else
 		echo "main.tex or titlepage.tex or settings.tex does not exist"
 		echo "Report failure!"
+		cd ../..
 	fi
 }
 
