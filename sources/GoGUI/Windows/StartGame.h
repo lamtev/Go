@@ -12,7 +12,7 @@
 
 #include "Game.h"
 
-class StartGame : public QWidget{
+class StartGame : public QWidget {
  Q_OBJECT
 
  public:

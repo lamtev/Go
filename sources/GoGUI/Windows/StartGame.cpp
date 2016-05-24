@@ -30,7 +30,6 @@ void StartGame::configureVLayout() noexcept {
 void StartGame::configureGLayout() noexcept {
   gLayout->addWidget(buttonCancel, 0, 0);
   gLayout->addWidget(buttonStartGame, 0, 1);
-
 }
 
 void StartGame::configureButtons() noexcept {
