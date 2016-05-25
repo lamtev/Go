@@ -4,5 +4,6 @@
         <file>smile.jpg</file>
 		<file>menu_background.jpg</file>
 		<file>board_background.jpg</file>
+        <file>menu_background _small.jpg</file>
     </qresource>
 </RCC>

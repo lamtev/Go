@@ -10,9 +10,10 @@ find_package(Qt5LinguistTools REQUIRED)
 set(src
         main.cpp
         Windows/Menu.cpp Windows/Menu.h
-        Windows/StartGame.cpp Windows/StartGame.h
         Windows/Settings.cpp Windows/Settings.h
-        Windows/Help.cpp Windows/Help.h Windows/Game.cpp Windows/Game.h Windows/Board.cpp Windows/Board.h)
+        Windows/Help.cpp Windows/Help.h
+        Windows/Game.cpp Windows/Game.h
+        Windows/Widgets/Board.cpp Windows/Widgets/Board.h)
 
 
 qt5_add_resources(qrsrc

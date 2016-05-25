@@ -1,34 +1,31 @@
 #ifndef GO_MENU_H
 #define GO_MENU_H
 
-#include <QWidget>
 #include <QPushButton>
-#include <QVBoxLayout>
+#include <QMainWindow>
 
-#include "StartGame.h"
+#include "Game.h"
 #include "Settings.h"
 #include "Help.h"
 
-class Menu : public QWidget {
+class Menu : public QMainWindow {
  Q_OBJECT
 
  public:
-  explicit Menu(QWidget *parent = nullptr) noexcept;
+  explicit Menu(QMainWindow *parent = nullptr) noexcept;
 
  private:
   QPalette *menuPalette;
-  QVBoxLayout *vLayout;
   QPushButton *buttonStartGame;
   QPushButton *buttonSettings;
   QPushButton *buttonHelp;
   QPushButton *buttonQuit;
 
-  StartGame *startGame;
+  Game *game;
   Settings *settings;
   Help *help;
 
   void configurePalette() noexcept;
-  void configureVLayout() noexcept;
   void configureButtons() noexcept;
   void configureButtonStartGame() noexcept;
   void configureButtonSettings() noexcept;
@@ -39,7 +36,7 @@ class Menu : public QWidget {
  signals:
 
  private slots:
-  void slotOpenStartGame() noexcept;
+  void slotOpenGame() noexcept;
   void slotOpenSettings() noexcept;
   void slotOpenHelp() noexcept;
 

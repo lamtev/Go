@@ -8,7 +8,7 @@
 #include <QGridLayout>
 #include <QRect>
 
-#include "Board.h"
+#include "Windows/Widgets/Board.h"
 
 #include "../../GoEngine/GoEngineAPI.h"
 
