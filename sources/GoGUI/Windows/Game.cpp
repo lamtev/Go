@@ -1,13 +1,19 @@
+#include <QtWidgets/QGraphicsScene>
 #include "Game.h"
 
-Game::Game(const int boardSize, QWidget *parent) noexcept : QWidget{parent},
-                                       engine{new GoEngineAPI} {
-  setWindowFlags(Qt::Window);
-  QPixmap b{":/menu_background.jpg"};
-  setFixedSize(b.size());
-  engine->startGame(19, Rules::JAPANESE, ColorDistribution::AGREEMENT);
-  engine->putStone(A, 12);
-  engine->putStone(B, 13);
-  engine->surrender();
+Game::Game(const int boardSize, QWidget *parent) noexcept : QWidget{parent, Qt::WindowCloseButtonHint |
+                                                                            Qt::WindowMinimizeButtonHint},
+                                                            background{new QPixmap{":/menu_background.jpg"}},
+                                                            gamePalette{new QPalette},
+                                                            boardSize{boardSize} {
+  configureGamePalette();
 }
+
+void Game::configureGamePalette() noexcept {
+  setFixedSize(background->width(), background->height());
+  gamePalette->setBrush(backgroundRole(), QBrush{*background});
+  setPalette(*gamePalette);
+}
+
+
 

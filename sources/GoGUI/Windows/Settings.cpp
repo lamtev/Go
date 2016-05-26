@@ -1,9 +1,9 @@
 #include <QtWidgets/QTabWidget>
 #include "Settings.h"
 
-Settings::Settings(QWidget *parent) noexcept : QWidget{parent},
-                                               background{nullptr},
-                                               settingsPalette{nullptr},
+Settings::Settings(QWidget *parent) noexcept : QWidget{parent, Qt::WindowStaysOnTopHint},
+                                               background{new QPixmap{":/small_window_background.jpg"}},
+                                               settingsPalette{new QPalette},
                                                text{new QLabel{this}},
                                                rButton19x19{new QRadioButton{this}},
                                                rButton13x13{new QRadioButton{this}},
@@ -14,16 +14,13 @@ Settings::Settings(QWidget *parent) noexcept : QWidget{parent},
                                                boardSize{19},
                                                game{nullptr},
                                                menu{nullptr} {
-  setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
   configureSettingsPalette();
   configureText();
   configureButtons();
 }
 
 void Settings::configureSettingsPalette() noexcept {
-  background = new QPixmap{":/small_window_background.jpg"};
   setFixedSize(background->size());
-  settingsPalette = new QPalette;
   settingsPalette->setBrush(backgroundRole(), QBrush{*background});
   setPalette(*settingsPalette);
 }

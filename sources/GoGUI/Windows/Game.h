@@ -9,10 +9,6 @@
 #include <QRect>
 #include <QLabel>
 
-#include "Windows/Widgets/Board.h"
-
-#include "../../GoEngine/GoEngineAPI.h"
-
 class Game : public QWidget {
  Q_OBJECT
 
@@ -20,9 +16,12 @@ class Game : public QWidget {
   explicit Game(const int boardSize = 19, QWidget *parent = nullptr) noexcept;
 
  private:
+  QPixmap *background;
   QPalette *gamePalette;
 
-  GoEngineAPI *engine;
+  const int boardSize;
+
+  void configureGamePalette() noexcept;
 
 
  signals:

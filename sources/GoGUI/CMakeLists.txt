@@ -12,8 +12,7 @@ set(src
         Windows/Menu.cpp Windows/Menu.h
         Windows/Settings.cpp Windows/Settings.h
         Windows/Help.cpp Windows/Help.h
-        Windows/Game.cpp Windows/Game.h
-        Windows/Widgets/Board.cpp Windows/Widgets/Board.h)
+        Windows/Game.cpp Windows/Game.h)
 
 
 qt5_add_resources(qrsrc
