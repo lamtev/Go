@@ -28,8 +28,8 @@
         <translation type="unfinished">Вернуться в меню</translation>
     </message>
     <message>
-        <source>Save settings</source>
-        <translation type="unfinished">Сохранить настройки</translation>
+        <source>Quit</source>
+        <translation type="unfinished">Выйти</translation>
     </message>
     <message>
         <source>Game</source>

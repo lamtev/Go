@@ -17,18 +17,15 @@ class Menu : public QMainWindow {
  private:
   QPalette *menuPalette;
   QPushButton *buttonStartGame;
-  QPushButton *buttonSettings;
   QPushButton *buttonHelp;
   QPushButton *buttonQuit;
 
-  Game *game;
   Settings *settings;
   Help *help;
 
   void configurePalette() noexcept;
   void configureButtons() noexcept;
   void configureButtonStartGame() noexcept;
-  void configureButtonSettings() noexcept;
   void configureButtonHelp() noexcept;
   void configureButtonQuit() noexcept;
 
@@ -36,7 +33,7 @@ class Menu : public QMainWindow {
  signals:
 
  private slots:
-  void slotOpenGame() noexcept;
+  //void slotOpenGame() noexcept;
   void slotOpenSettings() noexcept;
   void slotOpenHelp() noexcept;
 

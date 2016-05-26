@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(QWidget *parent) noexcept : QWidget{parent},
+Game::Game(const int boardSize, QWidget *parent) noexcept : QWidget{parent},
                                        engine{new GoEngineAPI} {
   //setGeometry(0, 0, 1200, 800);
   QPixmap b{":/menu_background_small.jpg"};

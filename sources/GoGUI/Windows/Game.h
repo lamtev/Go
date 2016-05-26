@@ -16,7 +16,7 @@ class Game : public QWidget {
  Q_OBJECT
 
  public:
-  explicit Game(QWidget *parent = nullptr) noexcept;
+  explicit Game(const int boardSize = 19, QWidget *parent = nullptr) noexcept;
 
  private:
   QPalette *gamePalette;

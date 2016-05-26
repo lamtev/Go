@@ -2,9 +2,13 @@
 #define GO_SETTINGS_H
 
 #include <QWidget>
+#include <QTabWidget>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QPushButton>
+
+#include "Game.h"
+#include "Menu.h"
 
 class Settings : public QWidget {
  Q_OBJECT
@@ -13,26 +17,38 @@ class Settings : public QWidget {
   explicit Settings(QWidget *parent = nullptr) noexcept;
 
  private:
+  QPixmap *background;
   QPalette *settingsPalette;
   QLabel *text;
   QRadioButton *rButton19x19;
   QRadioButton *rButton13x13;
   QRadioButton *rButton7x7;
+  QPushButton *buttonStartGame;
   QPushButton *buttonReturnToMenu;
-  QPushButton *buttonSaveSettings;
+  QPushButton *buttonQuit;
+
+  int boardSize;
+
+  Game *game;
+  Menu *menu;
 
   void configureSettingsPalette() noexcept;
+  void configureText() noexcept;
   void configureButtons() noexcept;
   void configureRButton19x19() noexcept;
   void configureRButton13x13() noexcept;
   void configureRButton7x7() noexcept;
+  void configureButtonStartGame() noexcept;
   void configureButtonReturnToMenu() noexcept;
-  void configureButtonSaveSettings() noexcept;
+  void configureButtonQuit() noexcept;
+  void determineBoardSize() noexcept;
+
 
  signals:
 
  private slots:
-  void slotSaveSettings() noexcept {};
+  void slotOpenGame() noexcept;
+  void slotReturnToMenu() noexcept;
 
 };
 
