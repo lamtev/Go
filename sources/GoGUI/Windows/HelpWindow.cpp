@@ -1,6 +1,6 @@
-#include "Help.h"
+#include "HelpWindow.h"
 
-Help::Help(QWidget *parent) noexcept : QWidget{parent}{
+HelpWindow::HelpWindow(QWidget *parent) noexcept : QWidget{parent}{
   //для тестирования
   QMessageBox mbox;
   mbox.setText(QObject::tr("Help"));

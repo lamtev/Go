@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QTranslator>
-#include "Windows/Menu.h"
+#include "Windows/MenuWindow.h"
 
 int main(int argc, char **argv) {
   QApplication goGUI{argc, argv};
@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
 
   goGUI.installTranslator(ptranslator);
 
-  Menu menu{nullptr};
+  MenuWindow menu{nullptr};
   menu.move((QApplication::desktop()->width() - menu.width())/2,
             (QApplication::desktop()->height() - menu.height())/2);
   menu.show();

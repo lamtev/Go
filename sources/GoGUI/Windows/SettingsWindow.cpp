@@ -1,7 +1,7 @@
 #include <QtWidgets/QTabWidget>
-#include "Settings.h"
+#include "SettingsWindow.h"
 
-Settings::Settings(QWidget *parent) noexcept : QWidget{parent, Qt::WindowStaysOnTopHint},
+SettingsWindow::SettingsWindow(QWidget *parent) noexcept : QWidget{parent, Qt::WindowStaysOnTopHint},
                                                background{new QPixmap{":/small_window_background.jpg"}},
                                                settingsPalette{new QPalette},
                                                text{new QLabel{this}},
@@ -19,19 +19,19 @@ Settings::Settings(QWidget *parent) noexcept : QWidget{parent, Qt::WindowStaysOn
   configureButtons();
 }
 
-void Settings::configureSettingsPalette() noexcept {
+void SettingsWindow::configureSettingsPalette() noexcept {
   setFixedSize(background->size());
   settingsPalette->setBrush(backgroundRole(), QBrush{*background});
   setPalette(*settingsPalette);
 }
 
-void Settings::configureText() noexcept {
+void SettingsWindow::configureText() noexcept {
   text->setText(QObject::tr("Chose board size"));
   text->move((width() - text->width())/2,
              (height() - text->height())/2 - 2*text->height());
 }
 
-void Settings::configureButtons() noexcept {
+void SettingsWindow::configureButtons() noexcept {
   configureRButton19x19();
   configureRButton13x13();
   configureRButton7x7();
@@ -40,47 +40,47 @@ void Settings::configureButtons() noexcept {
   configureButtonQuit();
 }
 
-void Settings::configureRButton19x19() noexcept {
+void SettingsWindow::configureRButton19x19() noexcept {
   rButton19x19->setText(QObject::tr("19 x 19"));
   rButton19x19->setChecked(true);
   rButton19x19->move((width() - rButton19x19->width())/2,
                      (height() - rButton19x19->height())/2 - rButton19x19->height());
 }
 
-void Settings::configureRButton13x13() noexcept {
+void SettingsWindow::configureRButton13x13() noexcept {
   rButton13x13->setText(QObject::tr("13 x 13"));
   rButton13x13->move((width() - rButton13x13->width())/2,
                      (height() - rButton13x13->height())/2);
 }
 
-void Settings::configureRButton7x7() noexcept {
+void SettingsWindow::configureRButton7x7() noexcept {
   rButton7x7->setText(QObject::tr(" 7 x 7"));
   rButton7x7->move((width() - rButton7x7->width())/2,
                      (height() - rButton7x7->height())/2 + rButton7x7->height());
 }
 
-void Settings::configureButtonStartGame() noexcept {
+void SettingsWindow::configureButtonStartGame() noexcept {
   buttonStartGame->setText(QObject::tr("Start game"));
   buttonStartGame->move((width() - buttonStartGame->width())/2 - buttonStartGame->width(),
                         (height() - buttonStartGame->height())/2 + 2*buttonStartGame->height());
   connect(buttonStartGame, SIGNAL(clicked()), SLOT(slotOpenGame()));
 }
 
-void Settings::configureButtonReturnToMenu() noexcept {
+void SettingsWindow::configureButtonReturnToMenu() noexcept {
   buttonReturnToMenu->setText(QObject::tr("Return to menu"));
   buttonReturnToMenu->move((width() - buttonReturnToMenu->width())/2,
                            (height() - buttonReturnToMenu->height())/2 + 2*buttonReturnToMenu->height());
   connect(buttonReturnToMenu, SIGNAL(clicked()), SLOT(slotReturnToMenu()));
 }
 
-void Settings::configureButtonQuit() noexcept {
+void SettingsWindow::configureButtonQuit() noexcept {
   buttonQuit->setText(QObject::tr("Quit"));
   buttonQuit->move((width() - buttonQuit->width())/2 + buttonQuit->width() + 23,
                    (height() - buttonQuit->height())/2 + 2*buttonQuit->height());
   connect(buttonQuit, SIGNAL(clicked()), SLOT(close()));
 }
 
-void Settings::determineBoardSize() noexcept {
+void SettingsWindow::determineBoardSize() noexcept {
   if (rButton19x19->isChecked()) {
     boardSize = 19;
   }
@@ -93,16 +93,16 @@ void Settings::determineBoardSize() noexcept {
   }
 }
 
-void Settings::slotOpenGame() noexcept {
+void SettingsWindow::slotOpenGame() noexcept {
   determineBoardSize();
-  game = new Game{boardSize, nullptr};
+  game = new GameWindow{boardSize, nullptr};
   close();
   game->move(x(), y());
   game->show();
 }
 
-void Settings::slotReturnToMenu() noexcept {
-  menu = new Menu{nullptr};
+void SettingsWindow::slotReturnToMenu() noexcept {
+  menu = new MenuWindow{nullptr};
   close();
   menu->show();
 }

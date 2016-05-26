@@ -1,5 +1,5 @@
-#ifndef GO_SETTINGS_H
-#define GO_SETTINGS_H
+#ifndef GO_SETTINGSWINDOW_H
+#define GO_SETTINGSWINDOW_H
 
 #include <QWidget>
 #include <QTabWidget>
@@ -7,16 +7,17 @@
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QPushButton>
 
-#include "Game.h"
-#include "Menu.h"
+#include "GameWindow.h"
+#include "MenuWindow.h"
 
-class Menu;
+class MenuWindow;
+class GameWindow;
 
-class Settings : public QWidget {
+class SettingsWindow : public QWidget {
  Q_OBJECT
 
  public:
-  explicit Settings(QWidget *parent = nullptr) noexcept;
+  explicit SettingsWindow(QWidget *parent = nullptr) noexcept;
 
  private:
   QPixmap *background;
@@ -31,8 +32,8 @@ class Settings : public QWidget {
 
   int boardSize;
 
-  Game *game;
-  Menu *menu;
+  GameWindow *game;
+  MenuWindow *menu;
 
   void configureSettingsPalette() noexcept;
   void configureText() noexcept;
@@ -45,7 +46,6 @@ class Settings : public QWidget {
   void configureButtonQuit() noexcept;
   void determineBoardSize() noexcept;
 
-
  signals:
 
  private slots:
@@ -54,4 +54,4 @@ class Settings : public QWidget {
 
 };
 
-#endif //GO_SETTINGS_H
+#endif //GO_SETTINGSWINDOW_H

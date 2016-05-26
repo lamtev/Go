@@ -44,8 +44,16 @@
         <translation type="unfinished">Настройки</translation>
     </message>
     <message>
-        <source>Quit</source>
-        <translation type="unfinished">Выйти</translation>
+    <source>Quit</source>
+<translation type="unfinished">Выйти</translation>
+    </message>
+    <message>
+        <source>Pass</source>
+        <translation type="unfinished">Пропустить ход</translation>
+    </message>
+    <message>
+        <source>Surrender</source>
+        <translation type="unfinished">Сдаться</translation>
     </message>
 </context>
 </TS>
