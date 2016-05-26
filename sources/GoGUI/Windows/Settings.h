@@ -10,6 +10,8 @@
 #include "Game.h"
 #include "Menu.h"
 
+class Menu;
+
 class Settings : public QWidget {
  Q_OBJECT
 

@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QRect>
+#include <QLabel>
 
 #include "Windows/Widgets/Board.h"
 

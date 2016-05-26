@@ -64,20 +64,22 @@ void Settings::configureRButton7x7() noexcept {
 
 void Settings::configureButtonStartGame() noexcept {
   buttonStartGame->setText(QObject::tr("Start game"));
-  buttonStartGame->move((width() - buttonStartGame->width())/2 - buttonStartGame->width()/2,
+  buttonStartGame->move((width() - buttonStartGame->width())/2 - buttonStartGame->width(),
                         (height() - buttonStartGame->height())/2 + 2*buttonStartGame->height());
   connect(buttonStartGame, SIGNAL(clicked()), SLOT(slotOpenGame()));
 }
 
 void Settings::configureButtonReturnToMenu() noexcept {
   buttonReturnToMenu->setText(QObject::tr("Return to menu"));
-  buttonReturnToMenu->move((width() - buttonReturnToMenu->width())/2 + buttonReturnToMenu->width()/2,
+  buttonReturnToMenu->move((width() - buttonReturnToMenu->width())/2,
                            (height() - buttonReturnToMenu->height())/2 + 2*buttonReturnToMenu->height());
   connect(buttonReturnToMenu, SIGNAL(clicked()), SLOT(slotReturnToMenu()));
 }
 
 void Settings::configureButtonQuit() noexcept {
   buttonQuit->setText(QObject::tr("Quit"));
+  buttonQuit->move((width() - buttonQuit->width())/2 + buttonQuit->width() + 23,
+                   (height() - buttonQuit->height())/2 + 2*buttonQuit->height());
   connect(buttonQuit, SIGNAL(clicked()), SLOT(close()));
 }
 
@@ -98,6 +100,7 @@ void Settings::slotOpenGame() noexcept {
   determineBoardSize();
   game = new Game{boardSize, nullptr};
   close();
+  game->move(x(), y());
   game->show();
 }
 

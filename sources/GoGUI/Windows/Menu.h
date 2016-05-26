@@ -8,6 +8,8 @@
 #include "Settings.h"
 #include "Help.h"
 
+class Settings;
+
 class Menu : public QMainWindow {
  Q_OBJECT
 
