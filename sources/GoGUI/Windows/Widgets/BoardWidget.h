@@ -3,7 +3,9 @@
 
 #include <QFrame>
 #include <QDebug>
-#include <QPalette>
+#include <QPainter>
+#include <QVector>
+#include <QBrush>
 
 class BoardWidget : public QFrame {
  Q_OBJECT
@@ -14,6 +16,9 @@ class BoardWidget : public QFrame {
  private:
   const int boardSize;
 
+  QPalette *boardPalette;
+
+  void configureBoardPalette();
 
  signals:
 

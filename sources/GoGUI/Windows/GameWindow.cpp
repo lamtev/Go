@@ -1,3 +1,4 @@
+#include <Windows/Widgets/BoardWidget.h>
 #include "GameWindow.h"
 
 GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept : QWidget{parent, Qt::WindowCloseButtonHint |
