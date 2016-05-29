@@ -14,6 +14,7 @@
 #include "../../GoEngine/GoEngineAPI.h"
 
 class MenuWindow;
+class BoardWidget;
 
 class GameWindow : public QWidget {
  Q_OBJECT
