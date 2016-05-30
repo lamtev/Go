@@ -429,29 +429,35 @@
 \addcontentsline{toc}{subsection}{GoGUI}
 
 В приложении реализовано на данный момент: окно меню, окно настроек и окно игрового процесса без доски, но с работающими кнопками,
-влиющими на игровой процесс. Есть интернационализация.
+влиющими на игровой процесс. Есть интернационализация: реализована поддержка русского и английского языков.\\
+
+На рис. \ref{pic:GUI_Menu} представлено главное меню приложения. Оно содержит 3 кнопки: \textit{Начать игру}, \textit{Помощь} и \textit{Выход}.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.5]{pics/GoGUI/Menu.png}
 	    \caption{Главное меню} 
-		\label{pic:CUI_Menu}
+		\label{pic:GUI_Menu}
 	\end{center}
 \end{figure}
+
+На рис. \ref{pic:GUI_Settings} представлено окно с предыгровыми настройками: есть возможность выбрать размер доски и начать игру, вернуться в главное меню или выйти из приложения.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.6]{pics/GoGUI/Settings.png}
 	    \caption{Предыгровые настройки} 
-		\label{pic:CUI_Settings}
+		\label{pic:GUI_Settings}
 	\end{center}
 \end{figure}
 
+На рис. \ref{pic:GUI_board} продемонстрировано окно с игровым процессоv. В центре окна расположена доска $7 \times 7$. Слева от неё есть три кнопки: \textit{Вернуться в меню}, \textit{Пропустить ход} и \textit{Сдаться.}
+
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.5]{pics/GoGUI/Game.png}
-	    \caption{Окно игрового процесса} 
-		\label{pic:CUI_Game}
+		\includegraphics[scale=0.5]{pics/GoGUI/board.png}
+	    \caption{Окно игрового процесса } 
+		\label{pic:GUI_board}
 	\end{center}
 \end{figure}
 
@@ -597,6 +603,15 @@
 	\item Добавить возможность начать игру заново.
 	\item Выводить сообщение с подсказкой при неверном вводе.
 	\item В конце игры выводить сообщение об окончании и предлагать начать заново.
+\end{itemize}
+
+\item GUI. Навигация по приложению: меню, настройки, окно игрового процесса без доски.\\
+
+Комментарии участников демонстрации:
+
+\begin{itemize}
+	\item Увеличить кнопки.
+	\item Задать стиль кнопок. 
 \end{itemize}
 
 \end{enumerate}

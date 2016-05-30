@@ -21,6 +21,7 @@ class GameWindow : public QWidget {
 
  public:
   explicit GameWindow(const int boardSize = 19, QWidget *parent = nullptr) noexcept;
+  ~GameWindow() noexcept;
 
  private:
   const int boardSize;

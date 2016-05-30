@@ -21,6 +21,10 @@ GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
   board->resize(QSize{720, 720});
 }
 
+GameWindow::~GameWindow() noexcept {
+  delete board;
+}
+
 void GameWindow::configureGamePalette() noexcept {
   setFixedSize(background->width(), background->height());
   gamePalette->setBrush(backgroundRole(), QBrush{*background});
