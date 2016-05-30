@@ -1,7 +1,8 @@
 #include <Windows/Widgets/BoardWidget.h>
 #include "GameWindow.h"
 
-GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept : QWidget{parent, Qt::WindowCloseButtonHint |
+GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
+                                                            QWidget{parent, Qt::WindowCloseButtonHint |
                                                                             Qt::WindowMinimizeButtonHint},
                                                             boardSize{boardSize},
                                                             background{new QPixmap{":/menu_background.jpg"}},
@@ -9,11 +10,15 @@ GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept : QWidget{
                                                             buttonReturnToMenu{new QPushButton{this}},
                                                             buttonPass{new QPushButton{this}},
                                                             buttonSurrender{new QPushButton{this}},
+                                                            board{new BoardWidget{boardSize, this}},
                                                             go{nullptr},
                                                             menu{nullptr} {
   configureGamePalette();
   configureButtons();
   configureGo();
+
+  board->move(300, 20);
+  board->resize(QSize{720, 720});
 }
 
 void GameWindow::configureGamePalette() noexcept {

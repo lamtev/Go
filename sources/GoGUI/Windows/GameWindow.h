@@ -31,6 +31,7 @@ class GameWindow : public QWidget {
   QPushButton *buttonPass;
   QPushButton *buttonSurrender;
 
+  BoardWidget *board;
   GoEngineAPI *go;
   MenuWindow *menu;
 
