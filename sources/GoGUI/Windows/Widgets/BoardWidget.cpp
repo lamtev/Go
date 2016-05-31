@@ -5,19 +5,60 @@ BoardWidget::BoardWidget(const int BOARD_DIAG, QWidget *parent) noexcept :
     BOARD_DIAG{BOARD_DIAG},
     BOARD_HEIGHT{QImage{":/board_background2.jpg"}.height()},
     POINT_HEIGHT{BOARD_HEIGHT/(BOARD_DIAG + 1)},
-    BOARD_RECT{QPixmap{":/board_background2.jpg"}.rect()},
     DELTA{BOARD_HEIGHT - (BOARD_HEIGHT/(BOARD_DIAG + 1))*(BOARD_DIAG + 1)},
-    boardPalette{nullptr} {
+    ACTIVE_BOARD_LEFT{QPixmap{":/board_background2.jpg"}.rect().left() + 3*POINT_HEIGHT/4},
+    ACTIVE_BOARD_TOP{QPixmap{":/board_background2.jpg"}.rect().top() + 3*POINT_HEIGHT/4},
+    ACTIVE_BOARD_RIGHT{QPixmap{":/board_background2.jpg"}.rect().right() - 3*POINT_HEIGHT/2},
+    ACTIVE_BOARD_BOTTOM{QPixmap{":/board_background2.jpg"}.rect().bottom() - 3*POINT_HEIGHT/2},
+    ACTIVE_BOARD_RECT{ACTIVE_BOARD_LEFT, ACTIVE_BOARD_TOP, ACTIVE_BOARD_RIGHT, ACTIVE_BOARD_BOTTOM},
+    BOARD_RECT{QPixmap{":/board_background2.jpg"}.rect()},
+    isGoConfigured{false},
+    go{nullptr} {
   setFixedSize(QPixmap{":/board_background2.jpg"}.size());
+  configureGo();
 }
 
-void BoardWidget::paintEvent(QPaintEvent *paintEvent) {
+BoardWidget::~BoardWidget() noexcept {
+  if(isGoConfigured) {
+    delete go;
+  }
+}
+
+GoEngineAPI *BoardWidget::getGo() const noexcept {
+  return go;
+}
+
+void BoardWidget::configureGo() noexcept {
+  go = new GoEngineAPI;
+  go->startGame(BOARD_DIAG, JAPANESE, NIGIRI);
+  isGoConfigured = true;
+}
+
+
+void BoardWidget::paintEvent(QPaintEvent *paintEvent) noexcept {
   QFrame::paintEvent(paintEvent);
 
   QPainter painter{this};
   painter.setRenderHint(QPainter::Antialiasing);
 
   drawBoard(painter);
+}
+
+void BoardWidget::update() noexcept {
+
+  QWidget::update();
+}
+
+void BoardWidget::mousePressEvent(QMouseEvent *mouseEvent) {
+  if(ACTIVE_BOARD_RECT.contains(mouseEvent->pos()))
+  {
+    qDebug() << "nice!!!";
+    int first = determinePointCoordinates(mouseEvent->pos()).x();
+    int second = determinePointCoordinates(mouseEvent->pos()).y();
+    //go->putStone(first, second);
+  }
+  update();
+  QWidget::mousePressEvent(mouseEvent);
 }
 
 void BoardWidget::drawBoard(QPainter &painter) const noexcept {
@@ -36,4 +77,10 @@ void BoardWidget::drawBoard(QPainter &painter) const noexcept {
   }
 }
 
+void BoardWidget::drawStone(QPainter &painter, const QString& color) const noexcept {
+  painter.drawImage(BOARD_RECT, QImage{":/" + color + "_stone_" + QString{BOARD_DIAG}});
+}
 
+QPoint BoardWidget::determinePointCoordinates(const QPoint &qPoint) const noexcept {
+  return QPoint{1, 1};
+}

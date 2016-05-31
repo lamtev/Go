@@ -11,8 +11,6 @@
 
 #include "MenuWindow.h"
 
-#include "../../GoEngine/GoEngineAPI.h"
-
 class MenuWindow;
 class BoardWidget;
 
@@ -33,7 +31,6 @@ class GameWindow : public QWidget {
   QPushButton *buttonSurrender;
 
   BoardWidget *board;
-  GoEngineAPI *go;
   MenuWindow *menu;
 
   void configureGamePalette() noexcept;
@@ -42,7 +39,6 @@ class GameWindow : public QWidget {
   void configureButtonPass() noexcept;
   void configureButtonSurrender() noexcept;
   void configureStatusBar() noexcept;
-  void configureGo() noexcept;
 
  signals:
 

@@ -11,14 +11,12 @@ GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
                                                             buttonPass{new QPushButton{this}},
                                                             buttonSurrender{new QPushButton{this}},
                                                             board{new BoardWidget{boardSize, this}},
-                                                            go{nullptr},
                                                             menu{nullptr} {
   configureGamePalette();
   configureButtons();
-  configureGo();
 
   board->move(300, 20);
-  board->resize(QSize{720, 720});
+  //board->resize(QSize{720, 720});
 }
 
 GameWindow::~GameWindow() noexcept {
@@ -59,11 +57,6 @@ void GameWindow::configureStatusBar() noexcept {
 
 }
 
-void GameWindow::configureGo() noexcept {
-  go = new GoEngineAPI;
-  go->startGame(BOARD_DIAG, JAPANESE, NIGIRI);
-}
-
 void GameWindow::slotReturnToMenu() noexcept {
   menu = new MenuWindow{nullptr};
   menu->move(x(), y());
@@ -72,14 +65,14 @@ void GameWindow::slotReturnToMenu() noexcept {
 }
 
 void GameWindow::slotPass() noexcept {
-  go->pass();
-  qDebug() << "Move is passed: " << !go->getLastMove().isNotPass();
-  qDebug() << "GameWindow is over: " << go->isGameOver();
+  board->getGo()->pass();
+  qDebug() << "Move is passed: " << !board->getGo()->getLastMove().isNotPass();
+  qDebug() << "Game is over: " << board->getGo()->isGameOver();
 }
 
 void GameWindow::slotSurrender() noexcept {
-  go->surrender();
-  qDebug() << "Surrendered: " << static_cast<int>(go->whoSurrendered());
-  qDebug() << "Winner: " << static_cast<int>(go->whoWon());
+  board->getGo()->surrender();
+  qDebug() << "Surrendered: " << static_cast<int>(board->getGo()->whoSurrendered());
+  qDebug() << "Winner: " << static_cast<int>(board->getGo()->whoWon());
 }
 
