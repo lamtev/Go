@@ -28,7 +28,7 @@ class BoardWidget : public QFrame {
   void mousePressEvent(QMouseEvent *mouseEvent) override;
 
  private:
-  const QPixmap BACKGROUND;
+  const QImage BACKGROUND;
   const int BOARD_DIAG;
   const int BOARD_HEIGHT;
   const int POINT_HEIGHT;
@@ -52,7 +52,7 @@ class BoardWidget : public QFrame {
 
   void drawBoard(QPainter &painter) const noexcept;
   void drawStones(QPainter &painter) noexcept;
-  void drawStone(QPainter &painter, const QString& color) const noexcept;
+  void drawStone(QPainter &painter, const QRect &stoneRect, const QString& color) const noexcept;
   QPoint determinePointCoordinates(const QPoint &qPoint) const noexcept;
   void configureGo() noexcept;
 
