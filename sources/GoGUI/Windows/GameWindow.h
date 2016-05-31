@@ -24,7 +24,7 @@ class GameWindow : public QWidget {
   ~GameWindow() noexcept;
 
  private:
-  const int boardSize;
+  const int BOARD_DIAG;
 
   QPixmap *background;
   QPalette *gamePalette;

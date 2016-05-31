@@ -30,7 +30,7 @@ class SettingsWindow : public QWidget {
   QPushButton *buttonReturnToMenu;
   QPushButton *buttonQuit;
 
-  int boardSize;
+  int boardDiag;
 
   GameWindow *game;
   MenuWindow *menu;

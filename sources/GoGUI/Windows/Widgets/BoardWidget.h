@@ -16,13 +16,16 @@ class BoardWidget : public QFrame {
  Q_OBJECT
 
  public:
-  explicit BoardWidget(const int boardSize = 19, QWidget *parent = nullptr) noexcept;
+  explicit BoardWidget(const int BOARD_DIAG = 19, QWidget *parent = nullptr) noexcept;
 
  protected:
   void paintEvent(QPaintEvent *paintEvent) override;
 
  private:
-  const int boardSize;
+  const int BOARD_DIAG;
+  const int BOARD_HEIGHT;
+  const int POINT_HEIGHT;
+  const int DELTA;
   const QRect BOARD_RECT;
 
   QPalette *boardPalette;

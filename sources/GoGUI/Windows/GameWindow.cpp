@@ -4,7 +4,7 @@
 GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
                                                             QWidget{parent, Qt::WindowCloseButtonHint |
                                                                             Qt::WindowMinimizeButtonHint},
-                                                            boardSize{boardSize},
+                                                            BOARD_DIAG{boardSize},
                                                             background{new QPixmap{":/menu_background.jpg"}},
                                                             gamePalette{new QPalette},
                                                             buttonReturnToMenu{new QPushButton{this}},
@@ -61,7 +61,7 @@ void GameWindow::configureStatusBar() noexcept {
 
 void GameWindow::configureGo() noexcept {
   go = new GoEngineAPI;
-  go->startGame(boardSize, JAPANESE, NIGIRI);
+  go->startGame(BOARD_DIAG, JAPANESE, NIGIRI);
 }
 
 void GameWindow::slotReturnToMenu() noexcept {

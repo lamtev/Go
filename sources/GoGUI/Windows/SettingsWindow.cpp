@@ -11,7 +11,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) noexcept : QWidget{parent, Qt::W
                                                buttonStartGame{new QPushButton{this}},
                                                buttonReturnToMenu{new QPushButton{this}},
                                                buttonQuit{new QPushButton{this}},
-                                               boardSize{19},
+                                               boardDiag{19},
                                                game{nullptr},
                                                menu{nullptr} {
   configureSettingsPalette();
@@ -82,20 +82,20 @@ void SettingsWindow::configureButtonQuit() noexcept {
 
 void SettingsWindow::determineBoardSize() noexcept {
   if (rButton19x19->isChecked()) {
-    boardSize = 19;
+    boardDiag = 19;
   }
   else if (rButton13x13->isChecked()) {
-    boardSize = 13;
+    boardDiag = 13;
   }
   else if (rButton7x7->isChecked())
   {
-    boardSize = 7;
+    boardDiag = 7;
   }
 }
 
 void SettingsWindow::slotOpenGame() noexcept {
   determineBoardSize();
-  game = new GameWindow{boardSize, nullptr};
+  game = new GameWindow{boardDiag, nullptr};
   close();
   game->move(x(), y());
   game->show();
