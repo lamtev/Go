@@ -29,6 +29,7 @@ BoardWidget::BoardWidget(const int BOARD_DIAG, QWidget *parent) noexcept :
   setFixedSize(BACKGROUND.size());
   configureGo();
   go->putStone(D, 6);
+  go->putStone(E, 7);
 }
 
 BoardWidget::~BoardWidget() noexcept {
@@ -66,7 +67,11 @@ void BoardWidget::update() noexcept {
 void BoardWidget::mousePressEvent(QMouseEvent *mouseEvent) {
   if(ACTIVE_ZONE_RECT.contains(mouseEvent->pos()))
   {
-    qDebug() << "nice!!!";
+    for (int i = 0; i < BOARD_DIAG*BOARD_DIAG; ++i) {
+      if (pointsRects[i].contains(mouseEvent->pos()));
+        //qDebug() << i;
+    }
+
     int first = determinePointCoordinates(mouseEvent->pos()).x();
     int second = determinePointCoordinates(mouseEvent->pos()).y();
     //go->putStone(first, second);
@@ -99,7 +104,6 @@ void BoardWidget::drawStones(QPainter &painter) noexcept {
   int top = ACTIVE_BOARD_TOP - POINT_HEIGHT/2;
   for (int i = 0; i < pointsRects.size(); ++i) {
     if (i % BOARD_DIAG == 0 && i != 0) {
-      qDebug() << i;
       top += POINT_HEIGHT;
       left = ACTIVE_BOARD_LEFT - POINT_HEIGHT/2;
     }
@@ -142,11 +146,11 @@ void BoardWidget::drawStone(QPainter &painter, const QRect &stoneRect, const QSt
     default:
       qDebug() << "Wrong diagonal";
   }
-  QRect rect{ACTIVE_BOARD_LEFT - POINT_HEIGHT/2,
-             ACTIVE_BOARD_TOP - POINT_HEIGHT/2,
-             POINT_HEIGHT,
-             POINT_HEIGHT};
-  painter.drawImage(rect, QImage{":/" + color + "_stone_" + diagonal + ".png"});
+//  QRect rect{ACTIVE_BOARD_LEFT - POINT_HEIGHT/2,
+//             ACTIVE_BOARD_TOP - POINT_HEIGHT/2,
+//             POINT_HEIGHT,
+//             POINT_HEIGHT};
+  painter.drawImage(stoneRect, QImage{":/" + color + "_stone_" + diagonal + ".png"});
   //ainter.drawImage(rect, QImage{":/white_stone.png"});
 }
 
