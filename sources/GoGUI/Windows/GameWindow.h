@@ -1,6 +1,7 @@
 #ifndef GO_GAMEWINDOW_H
 #define GO_GAMEWINDOW_H
 
+#include <QMainWindow>
 #include <QWidget>
 #include <QMainWindow>
 #include <QMessageBox>
@@ -14,7 +15,7 @@
 class MenuWindow;
 class BoardWidget;
 
-class GameWindow : public QWidget {
+class GameWindow : public QMainWindow {
  Q_OBJECT
 
  public:
@@ -23,6 +24,22 @@ class GameWindow : public QWidget {
 
  private:
   const int BOARD_DIAG;
+  const QString pushButtonsStyle {
+      "QPushButton "
+          "{"
+          " background: #000000; "
+          " color: #ffffff; "
+          " font-size: 25px; "
+          "}"
+          "QPushButton:pressed "
+          "{"
+          " color: #808080;"
+          "}"
+          "QPushButton:flat "
+          "{"
+          " border: none;"
+          " background: #000000; "
+          "}"};
 
   QPixmap *background;
   QPalette *gamePalette;
@@ -33,9 +50,10 @@ class GameWindow : public QWidget {
   BoardWidget *board;
   MenuWindow *menu;
 
-  QString whoseMove;
+  QString whoseMove{QObject::tr("Black's move")};
 
  protected:
+  void mousePressEvent(QMouseEvent *mouseEvent) override;
   void update() noexcept;
 
   void configureGamePalette() noexcept;

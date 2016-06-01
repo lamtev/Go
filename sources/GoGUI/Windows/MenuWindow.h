@@ -3,6 +3,7 @@
 
 #include <QPushButton>
 #include <QMainWindow>
+#include <QColor>
 
 #include "GameWindow.h"
 #include "SettingsWindow.h"
@@ -17,6 +18,22 @@ class MenuWindow : public QMainWindow {
   explicit MenuWindow(QMainWindow *parent = nullptr) noexcept;
 
  private:
+  const QString pushButtonsStyle {
+      "QPushButton "
+          "{"
+          " background: #000000; "
+          " color: #ffffff; "
+          " font-size: 25px; "
+          "}"
+          "QPushButton:pressed "
+          "{"
+          " color: #808080;"
+          "}"
+          "QPushButton:flat "
+          "{"
+          " border: none;"
+          " background: #000000; "
+          "}"};
   QPalette *menuPalette;
   QPushButton *buttonStartGame;
   QPushButton *buttonHelp;

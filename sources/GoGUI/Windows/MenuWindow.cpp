@@ -14,7 +14,9 @@ MenuWindow::MenuWindow(QMainWindow *parent) noexcept : QMainWindow{parent},
 }
 
 void MenuWindow::configurePalette() noexcept {
-  menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/menu_background.jpg"}});
+  //menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/menu_background.jpg"}});
+  //menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/menu_background.jpg"}});
+  menuPalette->setColor(QPalette::Background, QColor{0, 0, 255, 0});
   setPalette(*menuPalette);
 }
 
@@ -25,18 +27,24 @@ void MenuWindow::configureButtons() noexcept {
 }
 
 void MenuWindow::configureButtonStartGame() noexcept {
+  buttonStartGame->setStyleSheet(pushButtonsStyle);
+  buttonStartGame->setFixedSize(300, 50);
   buttonStartGame->move((width() - buttonStartGame->width())/2,
                        (height() - buttonStartGame->height())/2 - buttonStartGame->height());
   connect(buttonStartGame, SIGNAL(clicked()), SLOT(slotOpenSettings()));
 }
 
 void MenuWindow::configureButtonHelp() noexcept {
+  buttonHelp->setStyleSheet(pushButtonsStyle);
+  buttonHelp->setFixedSize(300, 50);
   buttonHelp->move((width() - buttonHelp->width())/2,
                    (height() - buttonHelp->height())/2);
   connect(buttonHelp, SIGNAL(clicked()), SLOT(slotOpenHelp()));
 }
 
 void MenuWindow::configureButtonQuit() noexcept {
+  buttonQuit->setStyleSheet(pushButtonsStyle);
+  buttonQuit->setFixedSize(300, 50);
   buttonQuit->move((width() - buttonQuit->width())/2,
                    (height() - buttonQuit->height())/2 + buttonQuit->height());
   connect(buttonQuit, SIGNAL(clicked()), SLOT(close()));

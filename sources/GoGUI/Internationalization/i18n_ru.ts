@@ -56,8 +56,8 @@
         <translation type="unfinished">Сдаться</translation>
     </message>
     <message>
-        <source>Game is over</source>
-        <translation type="unfinished">Игра окончена</translation>
+        <source>Game is over.</source>
+        <translation type="unfinished">Игра окончена.</translation>
     </message>
     <message>
         <source>Now calculate your scores.</source>
@@ -72,12 +72,20 @@
         <translation type="unfinished">Белый игрок</translation>
     </message>
     <message>
+        <source> has won!!!</source>
+        <translation type="unfinished"> одержал победу!!!</translation>
+    </message>
+    <message>
         <source> has surrendered.</source>
         <translation type="unfinished"> сдался.</translation>
     </message>
     <message>
-        <source> has won!!!</source>
-        <translation type="unfinished"> одержал победу!!!</translation>
+        <source>Black's move</source>
+        <translation type="unfinished">Ход чёрных</translation>
+    </message>
+    <message>
+        <source>White's move</source>
+        <translation type="unfinished">Ход белых</translation>
     </message>
 </context>
 </TS>
