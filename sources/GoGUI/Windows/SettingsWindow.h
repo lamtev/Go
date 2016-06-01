@@ -20,6 +20,39 @@ class SettingsWindow : public QWidget {
   explicit SettingsWindow(QWidget *parent = nullptr) noexcept;
 
  private:
+  const QString pushButtonsStyle {
+      "QPushButton "
+       "{"
+          " background: #00ffff; "
+          " color: #0000cd; "
+          " font-size: 25px; "
+          " border: none; "
+       "}"
+       "QPushButton:pressed:focus "
+        "{"
+          " color: #000000;"
+        "}"
+        "QPushButton:hover"
+        "{"
+          " color: #ff1493; "
+        "}"
+  };
+  const QString textStyle {
+      "QLabel "
+       "{"
+          " background: #00ffff; "
+          " color: #0000cd; "
+          " font-size: 25px; "
+       "}"
+  };
+  const QString rButtonsStyle {
+      "QRadioButton "
+       "{"
+          " background: #00ffff; "
+          " color: #0000cd; "
+          " font-size: 25px; "
+       "}"
+  };
   QPixmap *background;
   QPalette *settingsPalette;
   QLabel *text;

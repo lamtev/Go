@@ -21,19 +21,20 @@ class MenuWindow : public QMainWindow {
   const QString pushButtonsStyle {
       "QPushButton "
           "{"
-          " background: #000000; "
-          " color: #ffffff; "
+          " background: #00ffff; "
+          " color: #0000cd; "
           " font-size: 25px; "
+          " border: none; "
           "}"
-          "QPushButton:pressed "
+          "QPushButton:pressed:focus "
           "{"
-          " color: #808080;"
+          " color: #000000;"
           "}"
-          "QPushButton:flat "
+          "QPushButton:hover"
           "{"
-          " border: none;"
-          " background: #000000; "
-          "}"};
+          " color: #ff1493; "
+          "}"
+  };
   QPalette *menuPalette;
   QPushButton *buttonStartGame;
   QPushButton *buttonHelp;

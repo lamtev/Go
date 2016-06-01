@@ -46,7 +46,7 @@ void GameWindow::update() noexcept {
 
 void GameWindow::configureGamePalette() noexcept {
   setFixedSize(background->width(), background->height());
-  gamePalette->setBrush(backgroundRole(), QBrush{QColor{0, 0, 0, 0}});
+  gamePalette->setColor(QPalette::Background, QColor{QRgb{0x00ffff}});
   setPalette(*gamePalette);
 }
 
@@ -82,7 +82,7 @@ void GameWindow::configureButtonSurrender() noexcept {
 
 void GameWindow::configureStatusBar() noexcept {
   statusBar()->setFixedSize(300, 30);
-  statusBar()->setStyleSheet("color: #ffffff;"
+  statusBar()->setStyleSheet("color: #0000cd;"
                              "font-size: 25px;");
   statusBar()->showMessage(whoseMove);
 }
@@ -104,6 +104,9 @@ void GameWindow::slotPass() noexcept {
     twoPassesMessageBox.setText(gameIsOver + "\n" + calculateYourScores);
     twoPassesMessageBox.show();
     twoPassesMessageBox.exec();
+    board->setEnabled(false);
+    buttonPass->setEnabled(false);
+    buttonSurrender->setEnabled(false);
   }
 }
 

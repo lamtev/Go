@@ -16,7 +16,7 @@ MenuWindow::MenuWindow(QMainWindow *parent) noexcept : QMainWindow{parent},
 void MenuWindow::configurePalette() noexcept {
   //menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/menu_background.jpg"}});
   //menuPalette->setBrush(backgroundRole(), QBrush{QPixmap{":/menu_background.jpg"}});
-  menuPalette->setColor(QPalette::Background, QColor{0, 0, 255, 0});
+  menuPalette->setColor(QPalette::Background, QColor{QRgb{0x00ffff}});
   setPalette(*menuPalette);
 }
 
@@ -28,7 +28,7 @@ void MenuWindow::configureButtons() noexcept {
 
 void MenuWindow::configureButtonStartGame() noexcept {
   buttonStartGame->setStyleSheet(pushButtonsStyle);
-  buttonStartGame->setFixedSize(300, 50);
+  buttonStartGame->setFixedSize(175, 50);
   buttonStartGame->move((width() - buttonStartGame->width())/2,
                        (height() - buttonStartGame->height())/2 - buttonStartGame->height());
   connect(buttonStartGame, SIGNAL(clicked()), SLOT(slotOpenSettings()));
@@ -52,8 +52,7 @@ void MenuWindow::configureButtonQuit() noexcept {
 
 void MenuWindow::slotOpenSettings() noexcept {
   settings = new SettingsWindow{nullptr};
-  settings->move((width() - settings->width())/2,
-             (height() - settings->height())/2);
+  settings->move(x(), y());
   close();
   settings->show();
 }

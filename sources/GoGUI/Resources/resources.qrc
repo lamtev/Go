@@ -1,18 +1,10 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource prefix="/">
-        <file>smile.jpg</file>
 		<file>menu_background.jpg</file>
-		<file>board_background.jpg</file>
 		<file>board_background2.jpg</file>
         <file>small_window_background.jpg</file>
         <file>black_stone.png</file>
-        <file>black_stone_7.png</file>
-        <file>black_stone_13.png</file>
-        <file>black_stone_19.png</file>
         <file>white_stone.png</file>
-        <file>white_stone_7.png</file>
-        <file>white_stone_13.png</file>
-        <file>white_stone_19.png</file>
     </qresource>
 </RCC>
