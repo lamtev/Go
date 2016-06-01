@@ -1,3 +1,4 @@
+#include <QtWidgets/QMessageBox>
 #include "BoardWidget.h"
 
 BoardWidget::BoardWidget(const int BOARD_DIAG, QWidget *parent) noexcept :
@@ -71,7 +72,15 @@ void BoardWidget::mousePressEvent(QMouseEvent *mouseEvent) {
       if (pointsRects[i].contains(mouseEvent->pos())) {
         int first = convertToCoordinates(i).x();
         int second = convertToCoordinates(i).y();
-        go->putStone(first, second);
+        try {
+          go->putStone(first, second);
+        }
+        catch (MoveException &e) {
+          QMessageBox exceptionBox;
+          exceptionBox.setText(e.what());
+          exceptionBox.show();
+          exceptionBox.exec();
+        }
         break;
       }
     }
@@ -135,10 +144,6 @@ void BoardWidget::determinePointsRects() noexcept {
 
 void BoardWidget::drawStone(QPainter &painter, const QRect &stoneRect, const QString& color) const noexcept {
   painter.drawImage(stoneRect, QImage{":/" + color + "_stone" + ".png"});
-}
-
-QPoint BoardWidget::determinePointCoordinates(const QPoint &qPoint) const noexcept {
-  return QPoint{1, 1};
 }
 
 QPoint BoardWidget::convertToCoordinates(int index) const noexcept {

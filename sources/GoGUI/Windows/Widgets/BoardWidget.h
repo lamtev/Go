@@ -54,7 +54,6 @@ class BoardWidget : public QFrame {
   void drawStones(QPainter &painter) noexcept;
   void determinePointsRects() noexcept;
   void drawStone(QPainter &painter, const QRect &stoneRect, const QString& color) const noexcept;
-  QPoint determinePointCoordinates(const QPoint &qPoint) const noexcept;
   void configureGo() noexcept;
   QPoint convertToCoordinates(int index) const noexcept;
 
