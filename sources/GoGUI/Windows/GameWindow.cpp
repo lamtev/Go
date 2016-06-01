@@ -14,13 +14,27 @@ GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
                                                             menu{nullptr} {
   configureGamePalette();
   configureButtons();
-
   board->move(300, 20);
-  //board->resize(QSize{720, 720});
 }
 
 GameWindow::~GameWindow() noexcept {
   delete board;
+}
+
+void GameWindow::update() noexcept {
+  switch (board->getGo()->whoseMove())
+  {
+    case Status::BLACK :
+      whoseMove = QObject::tr("Black's move");
+      break;
+    case Status::WHITE :
+      whoseMove = QObject::tr("White's move");
+      break;
+    default :
+      whoseMove = QObject::tr("Game is over");
+      break;
+  }
+  QWidget::update();
 }
 
 void GameWindow::configureGamePalette() noexcept {
@@ -66,13 +80,40 @@ void GameWindow::slotReturnToMenu() noexcept {
 
 void GameWindow::slotPass() noexcept {
   board->getGo()->pass();
-  qDebug() << "Move is passed: " << !board->getGo()->getLastMove().isNotPass();
-  qDebug() << "Game is over: " << board->getGo()->isGameOver();
+  QMessageBox twoPassesMessageBox;
+  if (board->getGo()->isGameOver()) {
+    QString gameIsOver{QObject::tr("Game is over")};
+    QString calculateYourScores{QObject::tr("Now calculate your scores.")};
+    twoPassesMessageBox.setText(gameIsOver + "\n" + calculateYourScores);
+    twoPassesMessageBox.show();
+    twoPassesMessageBox.exec();
+  }
 }
 
 void GameWindow::slotSurrender() noexcept {
   board->getGo()->surrender();
-  qDebug() << "Surrendered: " << static_cast<int>(board->getGo()->whoSurrendered());
-  qDebug() << "Winner: " << static_cast<int>(board->getGo()->whoWon());
+  QMessageBox surrenderMessageBox;
+  QString surrendered;
+  QString winner;
+  switch (board->getGo()->whoSurrendered()) {
+    case Status::BLACK :
+      surrendered = QObject::tr("Black player");
+      winner = QObject::tr("White player");
+      break;
+    default :
+      surrendered = QObject::tr("White player");
+      winner = QObject::tr("Black player");
+      break;
+  }
+  QString gameIsOver{QObject::tr("Game is over")};
+  QString hasSurrendered{QObject::tr(" has surrendered.")};
+  QString hasWon{QObject::tr(" has won!!!")};
+  surrenderMessageBox.setText(gameIsOver + "\n" + surrendered + hasSurrendered + "\n" + winner + hasWon);
+  surrenderMessageBox.show();
+  surrenderMessageBox.exec();
+  close();
 }
+
+
+
 

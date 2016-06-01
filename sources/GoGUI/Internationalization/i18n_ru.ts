@@ -44,8 +44,8 @@
         <translation type="unfinished">Настройки</translation>
     </message>
     <message>
-    <source>Quit</source>
-<translation type="unfinished">Выйти</translation>
+        <source>Quit</source>
+        <translation type="unfinished">Выйти</translation>
     </message>
     <message>
         <source>Pass</source>
@@ -54,6 +54,30 @@
     <message>
         <source>Surrender</source>
         <translation type="unfinished">Сдаться</translation>
+    </message>
+    <message>
+        <source>Game is over</source>
+        <translation type="unfinished">Игра окончена</translation>
+    </message>
+    <message>
+        <source>Now calculate your scores.</source>
+        <translation type="unfinished">Теперь посчитайте свои очки.</translation>
+    </message>
+    <message>
+        <source>Black player</source>
+        <translation type="unfinished">Чёрный игрок</translation>
+    </message>
+    <message>
+        <source>White player</source>
+        <translation type="unfinished">Белый игрок</translation>
+    </message>
+    <message>
+        <source> has surrendered.</source>
+        <translation type="unfinished"> сдался.</translation>
+    </message>
+    <message>
+        <source> has won!!!</source>
+        <translation type="unfinished"> одержал победу!!!</translation>
     </message>
 </context>
 </TS>

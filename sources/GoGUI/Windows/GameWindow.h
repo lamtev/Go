@@ -33,6 +33,11 @@ class GameWindow : public QWidget {
   BoardWidget *board;
   MenuWindow *menu;
 
+  QString whoseMove;
+
+ protected:
+  void update() noexcept;
+
   void configureGamePalette() noexcept;
   void configureButtons() noexcept;
   void configureButtonReturnToMenu() noexcept;
