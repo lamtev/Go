@@ -28,12 +28,12 @@ BoardWidget::BoardWidget(const int BOARD_DIAG, QWidget *parent) noexcept :
     go{nullptr} {
   setFixedSize(BACKGROUND.size());
   configureGo();
-  go->putStone(D, 6);
-  go->putStone(E, 7);
+//  go->putStone(D, 6);
+//  go->putStone(E, 6);
 }
 
 BoardWidget::~BoardWidget() noexcept {
-  if(isGoConfigured) {
+   if (isGoConfigured) {
     delete go;
   }
 }
@@ -68,13 +68,13 @@ void BoardWidget::mousePressEvent(QMouseEvent *mouseEvent) {
   if(ACTIVE_ZONE_RECT.contains(mouseEvent->pos()))
   {
     for (int i = 0; i < BOARD_DIAG*BOARD_DIAG; ++i) {
-      if (pointsRects[i].contains(mouseEvent->pos()));
-        //qDebug() << i;
+      if (pointsRects[i].contains(mouseEvent->pos())) {
+        int first = convertToCoordinates(i).x();
+        int second = convertToCoordinates(i).y();
+        go->putStone(first, second);
+        break;
+      }
     }
-
-    int first = determinePointCoordinates(mouseEvent->pos()).x();
-    int second = determinePointCoordinates(mouseEvent->pos()).y();
-    //go->putStone(first, second);
   }
   update();
   QWidget::mousePressEvent(mouseEvent);
@@ -97,8 +97,25 @@ void BoardWidget::drawBoard(QPainter &painter) const noexcept {
 }
 
 void BoardWidget::drawStones(QPainter &painter) noexcept {
-  pointsRects.resize(BOARD_DIAG*BOARD_DIAG);
+  determinePointsRects();
+  for (int i = 1; i <= BOARD_DIAG; ++i) {
+    for (int j = 1; j <= BOARD_DIAG; ++j) {
+     switch (go->getPointsStatus(i, j)) {
+       case Status::BLACK :
+         drawStone(painter, pointsRects.at((j-1)*BOARD_DIAG+i-1), "black");
+         break;
+       case Status::WHITE :
+         drawStone(painter, pointsRects.at((j-1)*BOARD_DIAG+i-1), "white");
+         break;
+       default :
+         break;
+     }
+    }
+  }
+}
 
+void BoardWidget::determinePointsRects() noexcept {
+  pointsRects.resize(BOARD_DIAG*BOARD_DIAG);
   int i = 0;
   int left = ACTIVE_BOARD_LEFT - POINT_HEIGHT/2;
   int top = ACTIVE_BOARD_TOP - POINT_HEIGHT/2;
@@ -113,47 +130,24 @@ void BoardWidget::drawStones(QPainter &painter) noexcept {
     pointsRects[i].setHeight(POINT_HEIGHT);
     left+=POINT_HEIGHT;
   }
-
-  for (int i = 1; i <= BOARD_DIAG; ++i) {
-    for (int j = 1; j <= BOARD_DIAG; ++j) {
-     switch (go->getPointsStatus(i, j)) {
-       case Status::BLACK :
-         drawStone(painter, pointsRects[(j-1)*BOARD_DIAG+i-1], "black");
-         break;
-       case Status::WHITE :
-         drawStone(painter, pointsRects.at((j-1)*BOARD_DIAG+i-1), "white");
-         break;
-       default :
-         break;
-     }
-    }
-  }
-  //drawStone(painter, "black");
 }
 
+
 void BoardWidget::drawStone(QPainter &painter, const QRect &stoneRect, const QString& color) const noexcept {
-  const char *diagonal;
-  switch (BOARD_DIAG) {
-    case 19 :
-      diagonal = "19";
-      break;
-    case 13 :
-      diagonal = "13";
-      break;
-    case 7 :
-      diagonal = "7";
-      break;
-    default:
-      qDebug() << "Wrong diagonal";
-  }
-//  QRect rect{ACTIVE_BOARD_LEFT - POINT_HEIGHT/2,
-//             ACTIVE_BOARD_TOP - POINT_HEIGHT/2,
-//             POINT_HEIGHT,
-//             POINT_HEIGHT};
-  painter.drawImage(stoneRect, QImage{":/" + color + "_stone_" + diagonal + ".png"});
-  //ainter.drawImage(rect, QImage{":/white_stone.png"});
+  painter.drawImage(stoneRect, QImage{":/" + color + "_stone" + ".png"});
 }
 
 QPoint BoardWidget::determinePointCoordinates(const QPoint &qPoint) const noexcept {
   return QPoint{1, 1};
 }
+
+QPoint BoardWidget::convertToCoordinates(int index) const noexcept {
+  int i = 0;
+  while (index - BOARD_DIAG >= 0) {
+    index -= BOARD_DIAG;
+    ++i;
+  }
+  return QPoint{index+1, i+1};
+}
+
+
