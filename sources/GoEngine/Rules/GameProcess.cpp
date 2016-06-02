@@ -50,6 +50,7 @@ void GameProcess::putStone(int first, int second) {
   moves[moveIndex] = Move{first, second};
   ++moveIndex;
   determineEatenStones();
+  //TODO реализовать нормальное съедение
   //deleteEatenStones();
 }
 
@@ -106,8 +107,8 @@ Board &GameProcess::getBoard() const noexcept {
 
 bool GameProcess::isStoneEaten(int first, int second) const noexcept {
   if (board->operator()(first, second).isNotEmpty()) {
-    Status pointStatus{board->operator()(first, second).getStatus()};
-    Status eaterStatus{pointStatus==Status::BLACK ? Status::WHITE : Status::BLACK};
+    Status pointStatus{/*board->operator()(first, second).getStatus()*/whoseMove()};
+    Status eaterStatus{pointStatus == Status::BLACK ? Status::WHITE : Status::BLACK};
     if (first == 1) {
       if (second == 1) {
         Status rightStatus{board->operator()(first+1, second).getStatus()};
@@ -201,6 +202,7 @@ void GameProcess::determineEatenStones() noexcept {
 //        pointsWithEatenStones.resize(++count);
 //        pointsWithEatenStones[count-1] = &board->operator()(i, j);
         board->operator()(i, j).deleteStone();
+        whoseMove() == Status ::BLACK ? ++stonesEatenByWhite : ++stonesEatenByBlack;
       }
     }
   }
@@ -261,9 +263,7 @@ void GameProcess::ifMoveRepeatThrowException(int first, int second) const {
 }
 
 void GameProcess::ifMoveToDieThrowException(int first, int second) const {
-  //TODO void GameProcess::ifMoveToDie
-
-  if (false) {
+  if (isStoneEaten(first, second)) {
     throw MoveToDieException();
   }
 }
@@ -271,6 +271,6 @@ void GameProcess::ifMoveToDieThrowException(int first, int second) const {
 void GameProcess::ifMoveIllegalThrowException(int first, int second) const {
   ifMoveOutsideTheBoardThrowException(first, second);
   ifMoveToNotEmptyPointThrowException(first, second);
-  //ifMoveRepeatThrowException(first, second);
+  ifMoveRepeatThrowException(first, second);
   ifMoveToDieThrowException(first, second);
 }
