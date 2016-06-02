@@ -50,7 +50,7 @@ Status GameProcess::whoWon() const noexcept {
 int GameProcess::getMoveIndex() const noexcept {
   return moves.size()+1;
 }
-
+3
 std::vector<Move> &GameProcess::getMoves() const noexcept {
   return const_cast<std::vector<Move> &>(moves);
 }
@@ -61,7 +61,7 @@ Move &GameProcess::getLastMove() const noexcept {
 
 Move &GameProcess::getPenultMove() const noexcept {
   if (moves.size() >= 2) {
-    return const_cast<Move &>(moves.at(moves.size()-2));
+    return const_cast<Move &>(*(moves.end()-2));
   }
   return getLastMove();
 }

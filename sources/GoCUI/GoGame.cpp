@@ -470,7 +470,7 @@ void GoGame::updateBoard() noexcept {
 void GoGame::unmarkPenultMove() noexcept {
   //TODO подумать об выделении метода
   Move penultMove{goEngineInterface->getPenultMove()};
-  if (penultMove.isNotPass() && goEngineInterface->getMoveIndex() >= 2) {
+  if (penultMove.isNotPass() && goEngineInterface->getMoveIndex() >= 3) {
 
     int leftCursorIndex = penultMove.getSecond()*(goEngineInterface->getDiagonal()*2 + 5) + 2*penultMove.getFirst();
     board[leftCursorIndex] = ' ';
@@ -482,7 +482,7 @@ void GoGame::unmarkPenultMove() noexcept {
 
 void GoGame::markLastMove() noexcept {
   Move lastMove{goEngineInterface->getLastMove()};
-  if (lastMove.isNotPass() && goEngineInterface->getMoveIndex() >= 1) {
+  if (lastMove.isNotPass() && goEngineInterface->getMoveIndex() >= 2) {
     int leftCursorIndex = lastMove.getSecond()*(goEngineInterface->getDiagonal()*2 + 5) + 2*lastMove.getFirst();
     board[leftCursorIndex] = '[';
     int rightCursorIndex = lastMove.getSecond()*(goEngineInterface->getDiagonal()*2 + 5) + 2 + 2*lastMove.getFirst();
