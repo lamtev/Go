@@ -9,6 +9,8 @@ GameProcess::GameProcess(const int diagonal) noexcept : diagonal{diagonal},
                                                         stonesEatenByBlack{0},
                                                         stonesEatenByWhite{0} {
   moves.resize(movesSize);
+  pointsWithEatenStones.resize(1);
+  pointsWithEatenStones[0] = nullptr;
 }
 
 GameProcess::~GameProcess() {
@@ -47,6 +49,8 @@ void GameProcess::putStone(int first, int second) {
                                                0);
   moves[moveIndex] = Move{first, second};
   ++moveIndex;
+  determineEatenStones();
+  //deleteEatenStones();
 }
 
 void GameProcess::pass() noexcept {
@@ -98,6 +102,118 @@ int GameProcess::getStonesEatenByWhite() const noexcept {
 
 Board &GameProcess::getBoard() const noexcept {
   return *board;
+}
+
+bool GameProcess::isStoneEaten(int first, int second) const noexcept {
+  if (board->operator()(first, second).isNotEmpty()) {
+    Status pointStatus{board->operator()(first, second).getStatus()};
+    Status eaterStatus{pointStatus==Status::BLACK ? Status::WHITE : Status::BLACK};
+    if (first == 1) {
+      if (second == 1) {
+        Status rightStatus{board->operator()(first+1, second).getStatus()};
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            downStatus == rightStatus &&
+            downStatus == eaterStatus;
+      }
+      else if (second == diagonal) {
+        Status rightStatus{board->operator()(first+1, second).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            upStatus == rightStatus &&
+            upStatus == eaterStatus;
+      }
+      else {
+        Status rightStatus{board->operator()(first+1, second).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            upStatus == rightStatus &&
+            upStatus == downStatus &&
+            upStatus == eaterStatus;
+      }
+    }
+    else if (first == diagonal) {
+      if (second == 1) {
+        Status leftStatus{board->operator()(first-1, second).getStatus()};
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            downStatus == leftStatus &&
+            downStatus == eaterStatus;
+      }
+      else if (second == diagonal) {
+        Status leftStatus{board->operator()(first-1, second).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            upStatus == leftStatus &&
+            upStatus == eaterStatus;
+      }
+      else {
+        Status leftStatus{board->operator()(first-1, second).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            upStatus == leftStatus &&
+                upStatus == downStatus &&
+                upStatus == eaterStatus;
+      }
+    }
+    else {
+      if (second == 1) {
+        Status leftStatus{board->operator()(first-1, second).getStatus()};
+        Status rightStatus{board->operator()(first+1, second).getStatus()};
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            downStatus == leftStatus &&
+            downStatus == rightStatus &&
+            downStatus == eaterStatus;
+      }
+      else if (second == diagonal) {
+        Status leftStatus{board->operator()(first-1, second).getStatus()};
+        Status rightStatus{board->operator()(first+1, second).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            upStatus == leftStatus &&
+            upStatus == rightStatus &&
+            upStatus == eaterStatus;
+      }
+      else {
+        Status leftStatus{board->operator()(first-1, second).getStatus()};
+        Status rightStatus{board->operator()(first+1, second).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            upStatus == leftStatus &&
+            upStatus == rightStatus &&
+            upStatus == downStatus &&
+            upStatus == eaterStatus;
+      }
+    }
+  }
+  return false;
+}
+
+void GameProcess::determineEatenStones() noexcept {
+  unsigned count = 0;
+  for (int i = 1; i <= diagonal; ++i) {
+    for (int j = 1; j <= diagonal; ++j) {
+      if (isStoneEaten(i, j)) {
+//        pointsWithEatenStones.resize(++count);
+//        pointsWithEatenStones[count-1] = &board->operator()(i, j);
+        board->operator()(i, j).deleteStone();
+      }
+    }
+  }
+//  for (auto point : pointsWithEatenStones) {
+//    point = nullptr;
+//  }
+//  pointsWithEatenStones.resize(0);
+}
+
+void GameProcess::deleteEatenStones() noexcept {
+  for (auto point : pointsWithEatenStones) {
+    point->deleteStone();
+  }
 }
 
 bool GameProcess::areTwoPasses() const noexcept {

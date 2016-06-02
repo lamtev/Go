@@ -129,11 +129,28 @@ class GameProcess {
   /**< Сдавшийся */
   Status winner;
   /**< Победитель */
-  int stonesEatenByBlack;
-  /**< Число камней, съеденных чёрным */
-  int stonesEatenByWhite;
-  /**< Число камней, съеденных белым */
+  int stonesEatenByBlack; /**< Число камней, съеденных чёрным */
+  int stonesEatenByWhite; /**< Число камней, съеденных белым */
   const Move passedMove{PASS_COORD, PASS_COORD}; /**< Пропущенный ход */
+  std::vector<Point *> pointsWithEatenStones; /**< Вектор указателей на пункты со съеденными камнями */
+
+  /**
+   * Камень съеден?
+   * @param first первая координата
+   * @param second вторая координата
+   * @return true, если камень съеден, и false, если не съеден
+   */
+  bool isStoneEaten(int first, int second) const noexcept;
+
+  /**
+   * Определить съеденные камни.
+   */
+  void determineEatenStones() noexcept;
+
+  /**
+   * Убрать съеденные камни.
+   */
+  void deleteEatenStones() noexcept;
 
   /**
    * Проверка двух последних ходов на пропуск.
