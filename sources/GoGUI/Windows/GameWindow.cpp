@@ -7,6 +7,8 @@ GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
                                                             BOARD_DIAG{boardSize},
                                                             background{new QPixmap{":/menu_background.jpg"}},
                                                             gamePalette{new QPalette},
+                                                            stonesEatenByBlack{new QLabel{this}},
+                                                            stonesEatenByWhite{new QLabel{this}},
                                                             buttonReturnToMenu{new QPushButton{this}},
                                                             buttonPass{new QPushButton{this}},
                                                             buttonSurrender{new QPushButton{this}},
@@ -16,6 +18,7 @@ GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
   configureButtons();
   board->move(300, 20);
   configureStatusBar();
+  configureStonesEatenBy();
 }
 
 GameWindow::~GameWindow() noexcept {
@@ -41,6 +44,7 @@ void GameWindow::update() noexcept {
       break;
   }
   statusBar()->showMessage(whoseMove);
+  configureStonesEatenBy();
   QWidget::update();
 }
 
@@ -48,6 +52,30 @@ void GameWindow::configureGamePalette() noexcept {
   setFixedSize(background->width(), background->height());
   gamePalette->setColor(QPalette::Background, QColor{QRgb{0x00ffff}});
   setPalette(*gamePalette);
+}
+
+void GameWindow::configureStonesEatenBy() noexcept {
+  std::string black;
+  std::ostringstream oss;
+  oss.str("");
+  oss <<  board->getGo()->getStonesEatenByBlack();
+  black = oss.str();
+  QString STONES_EATEN_BY_BLACK{QObject::tr("Stones eaten by black:")};
+  stonesEatenByBlack->setText(STONES_EATEN_BY_BLACK + " " + QString::fromStdString(black));
+  stonesEatenByBlack->setStyleSheet(textStyle);
+  stonesEatenByBlack->setFixedSize(350, 35);
+  stonesEatenByBlack->move(rect().right() - 325,
+                           (height() - stonesEatenByBlack->height())/2 - stonesEatenByBlack->height()/2);
+  oss.str("");
+  std::string white;
+  oss <<  board->getGo()->getStonesEatenByWhite();
+  white = oss.str();
+  QString STONES_EATEN_BY_WHITE{QObject::tr("Stones eaten by white:")};
+  stonesEatenByWhite->setText(STONES_EATEN_BY_WHITE + " " + QString::fromStdString(white));
+  stonesEatenByWhite->setStyleSheet(textStyle);
+  stonesEatenByWhite->setFixedSize(350, 35);
+  stonesEatenByWhite->move(rect().right() - 325,
+                           (height() - stonesEatenByWhite->height())/2 + stonesEatenByWhite->height()/2);
 }
 
 void GameWindow::configureButtons() noexcept {

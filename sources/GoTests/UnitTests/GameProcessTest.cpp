@@ -350,7 +350,6 @@ void GameProcessTest::throwingMoveRepeatException() {
 }
 
 void GameProcessTest::throwingMoveToDieException() {
-  //Не проходятся, т.к не реализовано съедение
   //и не реализовано определение хода под смерть
   GameProcess *gameProcess = new GameProcess{13};
 

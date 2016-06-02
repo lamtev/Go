@@ -87,5 +87,13 @@
         <source>White's move</source>
         <translation type="unfinished">Ход белых</translation>
     </message>
+    <message>
+        <source>Stones eaten by black:</source>
+        <translation type="unfinished">Камней съедено чёрными:</translation>
+    </message>
+    <message>
+        <source>Stones eaten by white:</source>
+        <translation type="unfinished">Камней съедено белыми:</translation>
+    </message>
 </context>
 </TS>

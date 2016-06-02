@@ -1,6 +1,8 @@
 #ifndef GO_GAMEWINDOW_H
 #define GO_GAMEWINDOW_H
 
+#include <sstream>
+
 #include <QMainWindow>
 #include <QWidget>
 #include <QMainWindow>
@@ -41,9 +43,18 @@ class GameWindow : public QMainWindow {
           " color: #ff1493; "
           "}"
   };
-
+  const QString textStyle {
+      "QLabel "
+          "{"
+          " background: #00ffff; "
+          " color: #0000cd; "
+          " font-size: 20px; "
+          "}"
+  };
   QPixmap *background;
   QPalette *gamePalette;
+  QLabel *stonesEatenByBlack;
+  QLabel *stonesEatenByWhite;
   QPushButton *buttonReturnToMenu;
   QPushButton *buttonPass;
   QPushButton *buttonSurrender;
@@ -58,6 +69,7 @@ class GameWindow : public QMainWindow {
   void update() noexcept;
 
   void configureGamePalette() noexcept;
+  void configureStonesEatenBy() noexcept;
   void configureButtons() noexcept;
   void configureButtonReturnToMenu() noexcept;
   void configureButtonPass() noexcept;
