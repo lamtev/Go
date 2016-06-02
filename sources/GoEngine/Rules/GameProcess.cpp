@@ -50,7 +50,7 @@ Status GameProcess::whoWon() const noexcept {
 int GameProcess::getMoveIndex() const noexcept {
   return moves.size()+1;
 }
-3
+
 std::vector<Move> &GameProcess::getMoves() const noexcept {
   return const_cast<std::vector<Move> &>(moves);
 }
@@ -80,6 +80,89 @@ Board &GameProcess::getBoard() const noexcept {
 
 Status GameProcess::whoseMove() const noexcept {
   return static_cast<Status>(walketh);
+}
+
+
+
+bool GameProcess::couldStoneBeEaten(int first, int second) const noexcept {
+  Status pointStatus{board->operator()(first, second).getStatus()};
+  Status eaterStatus{static_cast<Status>(-static_cast<int>(pointStatus))};
+  if (pointStatus != Status::EMPTY) {
+    if (first==1) {
+      Status rightStatus{board->operator()(first+1, second).getStatus()};
+      if (second==1) {
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            rightStatus==downStatus &&
+            rightStatus==eaterStatus;
+      }
+      else if (second==diagonal) {
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            rightStatus==upStatus &&
+            rightStatus==eaterStatus;
+      }
+      else {
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            rightStatus==downStatus &&
+            rightStatus==upStatus &&
+            rightStatus==eaterStatus;
+      }
+    }
+    else if (first==diagonal) {
+      Status leftStatus{board->operator()(first-1, second).getStatus()};
+      if (second==1) {
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            leftStatus==downStatus &&
+            leftStatus==eaterStatus;
+      }
+      else if (second==diagonal) {
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            leftStatus==upStatus &&
+            leftStatus==eaterStatus;
+      }
+      else {
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            leftStatus==downStatus &&
+            leftStatus==upStatus &&
+            leftStatus==eaterStatus;
+      }
+    }
+    else {
+      Status rightStatus{board->operator()(first+1, second).getStatus()};
+      Status leftStatus{board->operator()(first-1, second).getStatus()};
+      if (second==1) {
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        return
+            rightStatus==leftStatus &&
+            rightStatus==downStatus &&
+            rightStatus==eaterStatus;
+      }
+      else if (second==diagonal) {
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            rightStatus==leftStatus &&
+            rightStatus==upStatus &&
+            rightStatus==eaterStatus;
+      }
+      else {
+        Status downStatus{board->operator()(first, second+1).getStatus()};
+        Status upStatus{board->operator()(first, second-1).getStatus()};
+        return
+            rightStatus==leftStatus &&
+            rightStatus==downStatus &&
+            rightStatus==upStatus &&
+            rightStatus==eaterStatus;
+      }
+    }
+  }
+  return false;
 }
 
 void GameProcess::updateWalketh() noexcept {
@@ -118,7 +201,7 @@ void GameProcess::ifMoveRepeatThrowException(int first, int second) const {
 }
 
 void GameProcess::ifMoveToDieThrowException(int first, int second) const {
-  if (/*isStoneEaten(first, second)*/false) {
+  if (/*couldStoneBeEaten(first, second)*/false) {
     throw MoveToDieException();
   }
 }
@@ -129,3 +212,4 @@ void GameProcess::ifMoveIllegalThrowException(int first, int second) const {
   ifMoveRepeatThrowException(first, second);
   ifMoveToDieThrowException(first, second);
 }
+

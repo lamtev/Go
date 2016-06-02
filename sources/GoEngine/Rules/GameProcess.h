@@ -133,6 +133,14 @@ class GameProcess {
   std::vector<Point *> pointsWithEatenStones; /**< Вектор ссылок на пункты со съеденными камнями */
 
   /**
+   * Камень может быть съеден?
+   * @param first первая координата
+   * @param second вторая координата
+   * @return true, если камень может быть съеден, и false, если нет
+   */
+  bool couldStoneBeEaten(int first, int second) const noexcept;
+
+  /**
    * Обновить ходящего
    */
   void updateWalketh() noexcept;
