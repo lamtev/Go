@@ -160,5 +160,7 @@ void GameWindow::slotSurrender() noexcept {
   surrenderMessageBox.setText(gameIsOver + "\n" + surrendered + hasSurrendered + "\n" + winner + hasWon);
   surrenderMessageBox.show();
   surrenderMessageBox.exec();
-  close();
+  board->setEnabled(false);
+  buttonPass->setEnabled(false);
+  buttonSurrender->setEnabled(false);
 }

@@ -5,14 +5,14 @@
 //проверка на присваивавание самому себе
 
 enum class Status {
+  BLACK = -1,
   EMPTY = 0,
-  BLACK,
-  WHITE
+  WHITE = 1
 };
 
 enum class Color {
-  BLACK = 1,
-  WHITE
+  BLACK = -1,
+  WHITE = 1
 };
 
 enum LiteralCoordinate {

@@ -18,7 +18,6 @@ class GameProcessTest: public QObject {
   void isGameOver();
   void whoSurrendered();
   void whoWon();
-  void getMoveIndex();
   void getMoves();
   void getBoard();
   void whoseMove();
@@ -52,12 +51,9 @@ void GameProcessTest::putStone() {
 void GameProcessTest::pass() {
   GameProcess *gameProcess = new GameProcess{19};
 
-
-  QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
-  QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
   gameProcess->pass();
-  QCOMPARE(gameProcess->getMoves()[0].getFirst(), PASS_COORD);
-  QCOMPARE(gameProcess->getMoves()[0].getSecond(), PASS_COORD);
+  QCOMPARE(gameProcess->getMoves().back().getFirst(), PASS_COORD);
+  QCOMPARE(gameProcess->getMoves().back().getSecond(), PASS_COORD);
 
   delete gameProcess;
 }
@@ -65,8 +61,6 @@ void GameProcessTest::pass() {
 void GameProcessTest::isGameOver() {
   GameProcess *gameProcess = new GameProcess{19};
 
-  QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
-  QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
   gameProcess->pass();
   gameProcess->pass();
   QVERIFY(gameProcess->isGameOver());
@@ -75,8 +69,6 @@ void GameProcessTest::isGameOver() {
 
 
   gameProcess = new GameProcess{7};
-  QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
-  QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
   gameProcess->putStone(A, 3);
   gameProcess->putStone(D, 3);
   gameProcess->putStone(B, 2);
@@ -92,8 +84,6 @@ void GameProcessTest::isGameOver() {
 
   gameProcess = new GameProcess{19};
 
-  QCOMPARE(gameProcess->getMoves()[0].getFirst(), -2);
-  QCOMPARE(gameProcess->getMoves()[0].getSecond(), -2);
   gameProcess->surrender();
   QVERIFY(gameProcess->isGameOver());
 
@@ -150,24 +140,6 @@ void GameProcessTest::whoWon() {
 
   delete gameProcess;
 
-}
-
-void GameProcessTest::getMoveIndex() {
-  GameProcess *gameProcess = new GameProcess{7};
-
-  QCOMPARE(gameProcess->getMoveIndex(), 0);
-  gameProcess->putStone(A, 7);
-  QCOMPARE(gameProcess->getMoveIndex(), 1);
-  gameProcess->putStone(C, 2);
-  QCOMPARE(gameProcess->getMoveIndex(), 2);
-  gameProcess->putStone(A, 5);
-  QCOMPARE(gameProcess->getMoveIndex(), 3);
-  gameProcess->pass();
-  QCOMPARE(gameProcess->getMoveIndex(), 4);
-  gameProcess->putStone(A, 1);
-  QCOMPARE(gameProcess->getMoveIndex(), 5);
-
-  delete gameProcess;
 }
 
 void GameProcessTest::getMoves() {

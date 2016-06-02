@@ -21,15 +21,9 @@ Point &Point::operator=(const Point &point) noexcept {
   return *this;
 }
 
-Point &Point::operator=(const Status status) noexcept {
-  this->status = status;
-  this->stone = nullptr;
-  this->isStoneDeleted = true;
-  return *this;
-}
-
-void Point::createStone(const Color color, const int first, const int second, const int breaths) noexcept {
+void Point::addStone(const Color color, const int first, const int second, const int breaths) noexcept {
   stone = new Stone{color, first, second, breaths};
+  status = static_cast<Status>(color);
   isStoneDeleted = false;
 }
 

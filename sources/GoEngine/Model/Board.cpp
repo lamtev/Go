@@ -18,6 +18,6 @@ int Board::getDiagonal() const noexcept {
   return diagonal;
 }
 
-std::vector<Point> &Board::get() const noexcept {
+const std::vector<Point> &Board::get() const noexcept {
   return const_cast<std::vector<Point> &>(board);
 }

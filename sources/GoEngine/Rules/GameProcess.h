@@ -31,12 +31,6 @@ class GameProcess {
   ~GameProcess() noexcept;
 
   /**
-   * Чей ход?
-   * @return цвет игрока, чей сейчас ход
-   */
-  Status whoseMove() const noexcept;
-
-  /**
    * Положить камень.
    * @param first первая координата
    * @param second вторая координата
@@ -113,16 +107,20 @@ class GameProcess {
    */
   Board &getBoard() const noexcept;
 
+  /**
+   * Чей ход.
+   * @return чей ход.
+   */
+  Status whoseMove() const noexcept;
+
  private:
 
   int diagonal;
   /**< Диагональ доски */
   Board *board;
   /**< Доска */
-  int movesSize;
-  /**< Размер вектора ходов */
-  int moveIndex;
-  /**< Индекс ходов */
+  int walketh;
+  /**< Ходящий игрок */
   std::vector<Move> moves;
   /**< Вектор, хранящий все ходы */
   Status surrendered;
@@ -132,48 +130,18 @@ class GameProcess {
   int stonesEatenByBlack; /**< Число камней, съеденных чёрным */
   int stonesEatenByWhite; /**< Число камней, съеденных белым */
   const Move passedMove{PASS_COORD, PASS_COORD}; /**< Пропущенный ход */
-  std::vector<Point *> pointsWithEatenStones; /**< Вектор указателей на пункты со съеденными камнями */
+  std::vector<Point *> pointsWithEatenStones; /**< Вектор ссылок на пункты со съеденными камнями */
 
   /**
-   * Камень съеден?
-   * @param first первая координата
-   * @param second вторая координата
-   * @return true, если камень съеден, и false, если не съеден
+   * Обновить ходящего
    */
-  bool isStoneEaten(int first, int second) const noexcept;
-
-  /**
-   * Определить съеденные камни.
-   */
-  void determineEatenStones() noexcept;
-
-  /**
-   * Убрать съеденные камни.
-   */
-  void deleteEatenStones() noexcept;
+  void updateWalketh() noexcept;
 
   /**
    * Проверка двух последних ходов на пропуск.
    * @return true, если оба игрока пропустили поочередно ход, false - в противном случае
    */
   bool areTwoPasses() const noexcept;
-
-  /**
-   * Ход чёрных?
-   * @return true, если ход чёрных, и false - в противном случае
-   */
-  bool isBlacksMove() const noexcept;
-
-  /**
-   * Изменить размер вектора moves.
-   * Увеличивает размер вектора moves на 100, если есть необходимость.
-   */
-  void resizeMoves() noexcept;
-
-  /**
-   * Убрать съеденные камни с доски.
-   */
-  void removeEatenStones() noexcept;
 
   /**
    * Если ход за пределы доски, бросить исключение.

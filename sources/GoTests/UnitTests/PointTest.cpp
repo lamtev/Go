@@ -38,17 +38,17 @@ void PointTest::assigmentInt() {
   Point s2{Status::BLACK};
   QCOMPARE(s1.getStatus(), s2.getStatus());
 
-  s1 = s2 = Status::WHITE;
+  s1 = s2 = Point{Status::WHITE};
   QCOMPARE(s1.getStatus(), s2.getStatus());
 }
 
 void PointTest::createDeleteStone() {
   Point *point = new Point;
 
-  *point = Status::BLACK;
-  point->createStone(static_cast<Color>(point->getStatus()), A, 5, 2);
+  *point = Point{Status::BLACK};
+  point->addStone(static_cast<Color>(point->getStatus()), A, 5, 2);
   point->deleteStone();
-  point->createStone(static_cast<Color>(point->getStatus()), M, 19, 3);
+  point->addStone(static_cast<Color>(point->getStatus()), M, 19, 3);
 
   delete point;
 }
@@ -61,7 +61,7 @@ void PointTest::getStatus() {
 void PointTest::getStone() {
   Point *point = new Point{Status::WHITE};
 
-  point->createStone(static_cast<Color>(point->getStatus()), A, 5, 2);
+  point->addStone(static_cast<Color>(point->getStatus()), A, 5, 2);
   QCOMPARE(point->getStone().getColor(), Color::WHITE);
   QCOMPARE(point->getStone().getFirst(), static_cast<int>(A));
   QCOMPARE(point->getStone().getSecond(), 5);
@@ -73,20 +73,20 @@ void PointTest::getStone() {
 void PointTest::isEmpty() {
   Point point{Status::BLACK};
   QVERIFY(!point.isEmpty());
-  point = Status::EMPTY;
+  point = Point{Status::EMPTY};
   QVERIFY(point.isEmpty());
-  point = Status::WHITE;
+  point = Point{Status::WHITE};
   QVERIFY(!point.isEmpty());
-  point = Status::EMPTY;
+  point = Point{Status::EMPTY};
   QVERIFY(point.isEmpty());
 }
 
 void PointTest::isNotEmpty() {
   Point point;
   QVERIFY(!point.isNotEmpty());
-  point = Status::BLACK;
+  point = Point{Status::BLACK};
   QVERIFY(point.isNotEmpty());
-  point = Status::WHITE;
+  point = Point{Status::WHITE};
   QVERIFY(point.isNotEmpty());
 }
 

@@ -48,7 +48,7 @@ class Board {
    * Получить вектор доски.
    * return вектор доски
    */
-  std::vector<Point> &get() const noexcept;
+  const std::vector<Point> &get() const noexcept;
 
  private:
 

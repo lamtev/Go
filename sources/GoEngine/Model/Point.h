@@ -39,21 +39,13 @@ class Point {
   Point &operator=(const Point &point) noexcept;
 
   /**
-   * Присваивание.
-   * Перегруженный оператор присваивания. Позволяет присваивать объекту целочисленное значение - статус пункта.
-   * @param status присваиваемый статус пункта
-   * @return ссылку на объект
-   */
-  Point &operator=(const Status status) noexcept;
-
-  /**
    * Создать камень.
    * @param color цвет
    * @param first первая координата
    * @param second вторая координата
    * @param breaths число дыханий
    */
-  void createStone(const Color color, const int first, const int second, const int breaths) noexcept;
+  void addStone(const Color color, const int first, const int second, const int breaths) noexcept;
 
   /**
    * Удалить камень.
