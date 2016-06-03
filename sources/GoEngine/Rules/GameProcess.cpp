@@ -8,7 +8,7 @@ GameProcess::GameProcess(const int diagonal) noexcept : diagonal{diagonal},
                                                         stonesEatenByBlack{0},
                                                         stonesEatenByWhite{0} {
   moves.reserve(1000);
-  //pointsWithEatenStones.reserve(361);
+  pointsWithEatenStones.reserve(361);
 }
 
 GameProcess::~GameProcess() {
@@ -22,6 +22,8 @@ void GameProcess::putStone(int first, int second) {
                                             second,
                                             0);
   moves.push_back(Move{first, second});
+  determineEatenStones();
+  deleteEatenStones();
   updateWalketh();
 }
 
@@ -82,7 +84,23 @@ Status GameProcess::whoseMove() const noexcept {
   return static_cast<Status>(walketh);
 }
 
+void GameProcess::determineEatenStones() noexcept {
+  for (int i = 1; i <= diagonal; ++i) {
+    for (int j = 1; j <= diagonal; ++j) {
+      if (board->operator()(i, j).getStatus() != whoseMove() && couldStoneBeEaten(i, j)) {
+        pointsWithEatenStones.push_back(&board->operator()(i, j));
+      }
+    }
+  }
+}
 
+void GameProcess::deleteEatenStones() noexcept {
+  for (auto point : pointsWithEatenStones) {
+    ++(point->getStatus()==Status::BLACK ? stonesEatenByWhite : stonesEatenByBlack);
+    point->deleteStone();
+  }
+  pointsWithEatenStones.erase(pointsWithEatenStones.cbegin(), pointsWithEatenStones.cend());
+}
 
 bool GameProcess::couldStoneBeEaten(int first, int second) const noexcept {
   Status pointStatus{board->operator()(first, second).getStatus()};
@@ -165,6 +183,27 @@ bool GameProcess::couldStoneBeEaten(int first, int second) const noexcept {
   return false;
 }
 
+bool GameProcess::isMoveToDie(int first, int second) const noexcept {
+  Point &point = board->operator()(first, second);
+  point.addStone(static_cast<Color>(whoseMove()), first, second, 4);
+  bool canNotEat = true;
+  for (int i = 1; i <= diagonal; ++i) {
+    for (int j = 1; j <= diagonal; ++j) {
+      if (board->operator()(i, j).getStatus()==static_cast<Status>(-static_cast<int>(whoseMove())) &&
+          couldStoneBeEaten(i, j)) {
+        canNotEat = false;
+        break;
+      }
+    }
+    if (!canNotEat) {
+      break;
+    }
+  }
+  bool result{couldStoneBeEaten(first, second) && canNotEat};
+  point.deleteStone();
+  return result;
+}
+
 void GameProcess::updateWalketh() noexcept {
   if (isGameOver()) {
     walketh = 0;
@@ -201,7 +240,7 @@ void GameProcess::ifMoveRepeatThrowException(int first, int second) const {
 }
 
 void GameProcess::ifMoveToDieThrowException(int first, int second) const {
-  if (/*couldStoneBeEaten(first, second)*/false) {
+  if (isMoveToDie(first, second)) {
     throw MoveToDieException();
   }
 }

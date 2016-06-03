@@ -8,7 +8,7 @@
 #include "Exceptions/MoveToDieException.h"
 #include "Exceptions/MoveToNotEmtyPointException.h"
 
-//TODO реализовать съедение
+//TODO усовершенствовать съедение
 
 /**
  * Игровой процесс.
@@ -130,7 +130,17 @@ class GameProcess {
   int stonesEatenByBlack; /**< Число камней, съеденных чёрным */
   int stonesEatenByWhite; /**< Число камней, съеденных белым */
   const Move passedMove{PASS_COORD, PASS_COORD}; /**< Пропущенный ход */
-  std::vector<Point *> pointsWithEatenStones; /**< Вектор ссылок на пункты со съеденными камнями */
+  std::vector<Point *> pointsWithEatenStones; /**< Вектор указателей на пункты со съеденными камнями */
+
+  /**
+   * Определить съеденные камни.
+   */
+  void determineEatenStones() noexcept;
+
+  /**
+   * Убрать с доски съеденные камни.
+   */
+  void deleteEatenStones() noexcept;
 
   /**
    * Камень может быть съеден?
@@ -139,6 +149,14 @@ class GameProcess {
    * @return true, если камень может быть съеден, и false, если нет
    */
   bool couldStoneBeEaten(int first, int second) const noexcept;
+
+  /**
+   * Ход под смерть?
+   * @param first первая координата
+   * @param second вторая координата
+   * @return true, если ход под смерть, и false, если нет
+   */
+  bool isMoveToDie(int first, int second) const noexcept;
 
   /**
    * Обновить ходящего

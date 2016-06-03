@@ -35,15 +35,12 @@ GameProcessTest::GameProcessTest() { }
 void GameProcessTest::putStone() {
   GameProcess *gameProcess = new GameProcess{19};
 
-  int ind{0};
-  for (int i = 1; i <= 19; ++i) {
-    for (int j = 1; j <= 19; ++j) {
-      gameProcess->putStone(i, j);
-      QCOMPARE(gameProcess->getMoves()[ind].getFirst(), i);
-      QCOMPARE(gameProcess->getMoves()[ind].getSecond(), j);
-      ++ind;
-    }
-  }
+  gameProcess->putStone(A, 12);
+  QCOMPARE(gameProcess->getLastMove().getFirst(), 1);
+  QCOMPARE(gameProcess->getLastMove().getSecond(), 12);
+  gameProcess->putStone(D, 19);
+  QCOMPARE(gameProcess->getLastMove().getFirst(), 4);
+  QCOMPARE(gameProcess->getLastMove().getSecond(), 19);
 
   delete gameProcess;
 }
@@ -237,7 +234,6 @@ void GameProcessTest::getPenultMove() {
 }
 
 void GameProcessTest::getStonesEatenBy() {
-  //Перестанет падать, когда будет реализовано съедение и подсчет съеденных камней!!!
   GameProcess *gameProcess = new GameProcess{19};
 
   QCOMPARE(gameProcess->getStonesEatenByWhite(), 0);
@@ -305,7 +301,6 @@ void GameProcessTest::throwingMoveToNotEmptyPointException() {
 }
 
 void GameProcessTest::throwingMoveRepeatException() {
-  //падает, т.к не реализовано съедение
   GameProcess *gameProcess = new GameProcess{7};
 
   gameProcess->putStone(B, 4);
@@ -322,7 +317,6 @@ void GameProcessTest::throwingMoveRepeatException() {
 }
 
 void GameProcessTest::throwingMoveToDieException() {
-  //и не реализовано определение хода под смерть
   GameProcess *gameProcess = new GameProcess{13};
 
   gameProcess->putStone(B, 1);
