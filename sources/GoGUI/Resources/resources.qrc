@@ -3,8 +3,8 @@
     <qresource prefix="/">
 		<file>menu_background.jpg</file>
 		<file>board_background2.jpg</file>
-        <file>small_window_background.jpg</file>
         <file>black_stone.png</file>
         <file>white_stone.png</file>
+        <file>icon100x100.png</file>
     </qresource>
 </RCC>

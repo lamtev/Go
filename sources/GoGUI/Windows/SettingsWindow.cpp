@@ -14,6 +14,8 @@ SettingsWindow::SettingsWindow(QWidget *parent) noexcept : QWidget{parent, Qt::W
                                                boardDiag{19},
                                                game{nullptr},
                                                menu{nullptr} {
+  setWindowTitle(QObject::tr("Go"));
+  setWindowIcon(QIcon{":/icon100x100.png"});
   configureSettingsPalette();
   configureText();
   configureButtons();

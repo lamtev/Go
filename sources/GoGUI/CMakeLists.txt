@@ -20,7 +20,7 @@ qt5_add_resources(qrsrc
 qt5_add_translation(i18n
                          Internationalization/i18n_ru.ts)
 
-add_executable(GoGUI ${src} ${qrsrc} ${i18n})
+add_executable(GoGUI ${src} ${qrsrc} ${i18n} Resources/go.rc)
 
 target_link_libraries(GoGUI GoEngine)
 target_link_libraries(GoGUI Qt5::Core)

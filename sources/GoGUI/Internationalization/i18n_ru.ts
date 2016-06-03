@@ -4,6 +4,10 @@
 <context>
     <name>QObject</name>
     <message>
+        <source>Go</source>
+        <translation type="unfinished">Го</translation>
+    </message>   
+    <message>
         <source>Chose board size</source>
         <translation type="unfinished">Выберите размер доски</translation>
     </message>

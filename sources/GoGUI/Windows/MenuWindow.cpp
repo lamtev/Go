@@ -8,7 +8,8 @@ MenuWindow::MenuWindow(QMainWindow *parent) noexcept : QMainWindow{parent},
                                            settings{nullptr},
                                            help{nullptr} {
   setFixedSize(QPixmap{":/menu_background.jpg"}.size());
-//  setGeometry(QPixmap{":/menu_background.jpg"}.rect());
+  setWindowTitle(QObject::tr("Go"));
+  setWindowIcon(QIcon{":/icon100x100.png"});
   configurePalette();
   configureButtons();
 }

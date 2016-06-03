@@ -14,6 +14,8 @@ GameWindow::GameWindow(const int boardSize, QWidget *parent) noexcept :
                                                             buttonSurrender{new QPushButton{this}},
                                                             board{new BoardWidget{boardSize, this}},
                                                             menu{nullptr} {
+  setWindowTitle(QObject::tr("Go"));
+  setWindowIcon(QIcon{":/icon100x100.png"});
   configureGamePalette();
   configureButtons();
   board->move(300, 20);
