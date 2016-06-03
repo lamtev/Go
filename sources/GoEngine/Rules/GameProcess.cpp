@@ -99,7 +99,7 @@ void GameProcess::deleteEatenStones() noexcept {
     ++(point->getStatus()==Status::BLACK ? stonesEatenByWhite : stonesEatenByBlack);
     point->deleteStone();
   }
-  pointsWithEatenStones.erase(pointsWithEatenStones.cbegin(), pointsWithEatenStones.cend());
+  pointsWithEatenStones.erase(pointsWithEatenStones./*c*/begin(), pointsWithEatenStones./*c*/end());
 }
 
 bool GameProcess::couldStoneBeEaten(int first, int second) const noexcept {
