@@ -25,7 +25,7 @@ dir_*.tex
 #CLion
 
 .idea
-.js*
+*.js*
 
 #Building
 
