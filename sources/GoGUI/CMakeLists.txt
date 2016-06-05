@@ -7,6 +7,7 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5LinguistTools REQUIRED)
 
+
 set(src
         main.cpp
         Windows/MenuWindow.cpp Windows/MenuWindow.h
@@ -14,11 +15,12 @@ set(src
         Windows/HelpWindow.cpp Windows/HelpWindow.h
         Windows/GameWindow.cpp Windows/GameWindow.h Windows/Widgets/BoardWidget.cpp Windows/Widgets/BoardWidget.h)
 
+qt5_add_translation(i18n
+        Internationalization/i18n_ru.ts)
 
 qt5_add_resources(qrsrc
                         Resources/resources.qrc)
-qt5_add_translation(i18n
-                         Internationalization/i18n_ru.ts)
+
 
 add_executable(GoGUI ${src} ${qrsrc} ${i18n} Resources/go.rc)
 
