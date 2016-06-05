@@ -28,8 +28,8 @@ install:
 
 script: 
   - mkdir build && cd build
-  - cmake -G "Unix Makefiles" ../sources/
+  #- cmake -G "Unix Makefiles" ../sources/
   - cmake --build ./ --target GoTests --
   - make
-  - cd GoTests/UnitTests && ls && cd ../FunctionalTest && ls && ../..
-  #- cd GoTests/UnitTests && echo "Unit tests" && ./StoneTest && ./PointTes t&& ./BoardTest && ./MoveTest && ./GameProcessTest && cd ../FunctionalTest && echo "Functional test" && ./FTest && cd ../../.. && echo "CLOC" && cloc GoEngine GoCUI GoGUI GoTests ./CMakeLists.txt
+  #- cd GoTests/UnitTests && ls && cd ../FunctionalTest && ls && cd ../..
+  - cd GoTests/UnitTests && echo "Unit tests" && ./StoneTest && ./PointTest && ./BoardTest && ./MoveTest && ./GameProcessTest && cd ../FunctionalTest && echo "Functional test" && ./FTest && cd ../../.. && echo "CLOC" && cloc GoEngine GoCUI GoGUI GoTests ./CMakeLists.txt
