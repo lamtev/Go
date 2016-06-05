@@ -9,5 +9,6 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Test REQUIRED)
 
 target_link_libraries(FTest Qt5::Core)
+find_library(FTest GoEngine)
 target_link_libraries(FTest Qt5::Test)
 target_link_libraries(FTest GoEngine)
