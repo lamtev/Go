@@ -29,7 +29,7 @@ install:
 
 script: 
   - mkdir build && cd build
-  - cmake –G "Unix Makefiles" ../sources
+  - cmake -D CMAKE_BUILD_TYPE=Tests –G "Unix Makefiles" ../sources
   - make
   - ls
   - cd ../sources/GoTests/UnitTests && echo "Unit tests" && ./StoneTest && ./PointTes t&& ./BoardTest && ./MoveTest && ./GameProcessTest && cd ../FunctionalTest && echo "Functional test" && ./FTest && cd ../.. && echo "CLOC" && cloc GoEngine GoCUI GoGUI GoTests ./CMakeLists.txt
