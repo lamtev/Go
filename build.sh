@@ -30,7 +30,7 @@ build_debug() {
 	mkdir debug
 	cd debug
 	cmake --version
-	cmake -D CMAKE_BUILD_TYPE=RelWithDebInfo –G "Unix Makefiles" ../../sources
+	cmake -D CMAKE_BUILD_TYPE=Debug –G "Unix Makefiles" ../../sources
 	if [ -e "Makefile" ]; then
 		cmake --build ./ --clean-first --
 
