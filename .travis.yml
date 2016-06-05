@@ -32,5 +32,6 @@ script:
   - cmake --build ./ --target GoTests --
   - make GoTests
   - ls
+  - cd GoTests && ls
   #- cd GoTests/UnitTests && ls && cd ../FunctionalTest && ls && cd ../..
   #- cd GoTests/UnitTests && echo "Unit tests" && ./StoneTest && ./PointTest && ./BoardTest && ./MoveTest && ./GameProcessTest && cd ../FunctionalTest && echo "Functional test" && ./FTest && cd ../../../sources && echo "CLOC" && cloc GoEngine GoCUI GoGUI GoTests ./CMakeLists.txt
