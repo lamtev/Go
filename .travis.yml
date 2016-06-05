@@ -14,7 +14,7 @@ before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
   - sudo apt-get update -qq
-  - sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
+  - sudo apt-get install -qq qttools5-dev qttools5-dev-tools qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libsqlite3-dev
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sudo apt-get install -y cloc
@@ -28,11 +28,9 @@ install:
 
 script: 
   - mkdir build && cd build
-  - cmake -G "Unix Makefiles" ../sources/GoEngine
+  - cmake -G "Unix Makefiles" ../sources/
+  - cmake --build ./ --target GoTests --
   - make
-  - cmake –G "Unix Makefiles" ../sources/GoTests
-  - ls
-  - cd CMakeFiles && ls && cd ..
-  - make
-  - ls
-  - cd ../sources/GoTests/UnitTests && echo "Unit tests" && ./StoneTest && ./PointTes t&& ./BoardTest && ./MoveTest && ./GameProcessTest && cd ../FunctionalTest && echo "Functional test" && ./FTest && cd ../.. && echo "CLOC" && cloc GoEngine GoCUI GoGUI GoTests ./CMakeLists.txt
+  #- ls
+  #- cd GoTests/UnitTests && ls && cd ../..
+  #- cd GoTests/UnitTests && echo "Unit tests" && ./StoneTest && ./PointTes t&& ./BoardTest && ./MoveTest && ./GameProcessTest && cd ../FunctionalTest && echo "Functional test" && ./FTest && cd ../../.. && echo "CLOC" && cloc GoEngine GoCUI GoGUI GoTests ./CMakeLists.txt
