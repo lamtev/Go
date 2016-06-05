@@ -28,8 +28,8 @@ install:
 
 script: 
   - mkdir build && cd build
-  - cmake -G "Unix Makefiles" ../sources/
-  - cmake --build ./ --target GoTests --
+  - cmake -G "Unix Makefiles" ../sources
+  - cmake --build . --target GoTests --
   - make GoTests
   - ls
   - cd GoTests/UnitTests && ls && cd ../FunctionalTest && ls && cd ../..
