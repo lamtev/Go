@@ -28,6 +28,7 @@ install:
 
 script: 
   - mkdir build && cd build
+  - cmake -G "Unix Makefiles" ../sources/GoEngine
   - cmake –G "Unix Makefiles" ../sources/GoTests
   - make
   - ls
