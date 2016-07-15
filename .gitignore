@@ -14,10 +14,6 @@ dir_*.tex
 *.toc
 *.pdf
 
-#Qt
-
-*.pro.user
-
 #CMake
 
 *.txt.user
@@ -42,6 +38,6 @@ release*
 #Miscellaneous
 
 *.autosave
-~
+~*
 *.tdo
 *.in

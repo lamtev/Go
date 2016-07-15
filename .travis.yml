@@ -29,13 +29,10 @@ matrix:
 before_install:
   - lsb_release -a
   - sudo apt-add-repository -y ppa:beineri/opt-qt561-trusty
-  - sudo apt-add-repository -y ppa:kojoley/boost
-  - sudo apt-get update -qq
+  - sudo apt-get update -y
 
 install:
   - sudo apt-get install -y qt56base qt56declarative qt56translations
-  - sudo apt-get install -y boost1.58
-  - sudo apt-get install -y cmake
   - sudo apt-get install -y cloc
   - sudo apt-get install -y cppcheck
   - sudo apt-get install -y valgrind
