@@ -1,26 +1,10 @@
 language: generic
 
-compiler:
-  - gcc
+compiler: gcc
 
 dist: trusty
 
 sudo: required
-
-install:
-  - lsb_release -a
-  - sudo apt-add-repository -y ppa:beineri/opt-qt561-trusty
-  - sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-add-repository -y ppa:kojoley/boost
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq qt56base qt56declarative qt56translations
-  - sudo apt-get install -y boost1.58
-  - sudo apt-get install -y cmake
-  - cmake --version
-  - export DISPLAY=:99.0
-  - sudo apt-get install -y cloc
-  - sudo apt-get install -y cppcheck
-  - sudo apt-get install -y valgrind
 
 cache:
   apt: true
@@ -34,13 +18,27 @@ matrix:
             - g++-5
           sources: &sources
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.7
     - env: CXX=g++-6 CC=gcc-6
       addons:
         apt:
           packages:
             - g++-6
           sources: *sources
+
+
+before_install:
+  - lsb_release -a
+  - sudo apt-add-repository -y ppa:beineri/opt-qt561-trusty
+  - sudo apt-add-repository -y ppa:kojoley/boost
+  - sudo apt-get update -qq
+
+install:
+  - sudo apt-get install -y qt56base qt56declarative qt56translations
+  - sudo apt-get install -y boost1.58
+  - sudo apt-get install -y cmake
+  - sudo apt-get install -y cloc
+  - sudo apt-get install -y cppcheck
+  - sudo apt-get install -y valgrind
 
 script:
   - mkdir build && cd build
