@@ -10,18 +10,21 @@ enum class StoneColor {
 
 class Stone {
  public:
-  Stone(StoneColor color = StoneColor::BLACK) noexcept
-      : color(color) { }
+  explicit constexpr Stone(StoneColor color = StoneColor::BLACK) noexcept
+      : color{color} { }
 
-  StoneColor getColor() const noexcept {
+  constexpr Stone(const Stone &stone) noexcept
+      : color{stone.color} { }
+
+  constexpr StoneColor getColor() const noexcept {
     return color;
   }
 
-  bool operator==(const Stone &stone) const noexcept {
+  constexpr bool operator==(const Stone &stone) const noexcept {
     return color == stone.color;
   }
 
-  bool operator!=(const Stone& stone) const noexcept {
+  constexpr bool operator!=(const Stone& stone) const noexcept {
     return !(*this == stone);
   }
 

@@ -10,16 +10,16 @@ using HorizontalCoordinate = short;
 
 class PointLocation {
  public:
-  PointLocation(VerticalCoordinate verticalCoordinate = VerticalCoordinate::A,
+  constexpr PointLocation(VerticalCoordinate verticalCoordinate = VerticalCoordinate::A,
                           HorizontalCoordinate horizontalCoordinate = 1) noexcept
-      : verticalCoordinate(verticalCoordinate),
-        horizontalCoordinate(horizontalCoordinate) { }
+      : verticalCoordinate{verticalCoordinate},
+        horizontalCoordinate{horizontalCoordinate} { }
 
-  VerticalCoordinate getVerticalCoordinate() const noexcept {
+  constexpr VerticalCoordinate getVerticalCoordinate() const noexcept {
     return verticalCoordinate;
   }
 
-  HorizontalCoordinate getHorizontalCoordinate() const noexcept {
+  constexpr HorizontalCoordinate getHorizontalCoordinate() const noexcept {
     return horizontalCoordinate;
   }
 

@@ -34,10 +34,10 @@ release*
 *.exe
 *.[ao]
 *.obj
-
 #Miscellaneous
 
 *.autosave
 ~*
 *.tdo
 *.in
+clean.sh

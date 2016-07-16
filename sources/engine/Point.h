@@ -8,43 +8,23 @@
 
 namespace Go {
 
-enum class PointStatus: short {
+enum class PointStatus {
   EMPTY = 0,
   HAS_BLACK_STONE,
   HAS_WHITE_STONE
 };
 
-PointLocation defaultLocation{VerticalCoordinate::A, 1};
+constexpr PointLocation defaultLocation{VerticalCoordinate::A, 1};
 
 class Point {
  public:
-  Point(PointLocation location = defaultLocation, PointStatus status = PointStatus::EMPTY) noexcept
-      : location(location),
-        status(status),
-        stone(nullptr) { }
-  ~Point() {}
-
-  PointLocation getLocation() const noexcept {
-    return location;
-  }
-
-  PointStatus getStatus() const noexcept {
-    return status;
-  }
-
-  Stone getStone() const noexcept {
-    return *stone;
-  }
-
-  void addStone(const Stone &stone) {
-    this->stone = std::make_unique<Stone>(stone);
-    status = static_cast<PointStatus>(stone.getColor());
-  }
-
-  void deleteStone() {
-    stone.reset();
-    status = PointStatus::EMPTY;
-  }
+  Point(PointLocation location = defaultLocation, PointStatus status = PointStatus::EMPTY) noexcept;
+  ~Point() noexcept;
+  PointLocation getLocation() const noexcept;
+  PointStatus getStatus() const noexcept;
+  Stone getStone() const noexcept;
+  void addStone(const Stone &stone) noexcept;
+  void deleteStone() noexcept;
 
  private:
   PointLocation location;

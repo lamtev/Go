@@ -38,7 +38,5 @@ install:
   - sudo apt-get install -y valgrind
 
 script:
-  - mkdir build && cd build
-  - cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build .
-  - cd .. && cloc CMakeLists.txt sources && cd build
-  - cd sources/tests && ctest -VV
+  - sudo chmod 755 travis_build.sh
+  - ./travis_build.sh
