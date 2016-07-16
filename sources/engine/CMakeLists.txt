@@ -1,7 +1,6 @@
 #engine
 
-set(
-    ENGINE_SOURCE_FILES
+set(ENGINE_SOURCE_FILES
         API.cpp API.h
         Stone.h
         PointLocation.h
