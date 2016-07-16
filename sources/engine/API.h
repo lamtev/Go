@@ -5,16 +5,15 @@ namespace Go {
 
 class API {
  public:
-  void setBoardDimension(int boardDimension);
+//void setBoardSize(const BoardSize &boardSize);
   void startGame();
-  void putStone(int verticalCoordinate, int horizontalCoordinate);
+//void putStone(const PointLocation &pointLocation);
   void check();
   void resign();
-  /*PlayerColor*/ void whoseMove();
-  /*Container*/ void getMoves() const noexcept;
+//PlayerColor whoseMove() const noexcept;
+//Moves getMoves() const noexcept;
   void undo();
   void redo();
-
 };
 
 }
