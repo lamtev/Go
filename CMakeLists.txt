@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.2.2)
 project(Go)
-set(PROJECT_NAME_STR Go)
-
-if(UNIX)
-    set (CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ";/opt/qt56/lib/cmake;")
-endif()
+set(PROJECT_NAME Go)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++14 -pedantic -Wall -Wextra")

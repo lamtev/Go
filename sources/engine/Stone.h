@@ -3,21 +3,29 @@
 
 namespace Go {
 
+enum class StoneColor {
+  BLACK = 1,
+  WHITE
+};
+
 class Stone {
  public:
-  constexpr Stone(StoneColor color) noexcept
+  Stone(StoneColor color = StoneColor::BLACK) noexcept
       : color(color) { }
 
-  constexpr StoneColor getColor() const noexcept {
+  StoneColor getColor() const noexcept {
     return color;
   }
 
- private:
-  enum class StoneColor {
-    BLACK = 1,
-    WHITE
-  };
+  bool operator==(const Stone &stone) const noexcept {
+    return color == stone.color;
+  }
 
+  bool operator!=(const Stone& stone) const noexcept {
+    return !(*this == stone);
+  }
+
+ private:
   StoneColor color;
 };
 
