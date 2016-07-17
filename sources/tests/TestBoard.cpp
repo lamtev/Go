@@ -34,3 +34,13 @@ TEST_F(TestBoard, removeStoneFromPoint) {
   board.removeStoneFromPoint(pointLocation);
   EXPECT_EQ(PointStatus::EMPTY, board.getPointStatus(pointLocation));
 }
+
+TEST_F(TestBoard, setAndRemoveStone) {
+  board.setStoneToPoint(stone, pointLocation);
+  board.removeStoneFromPoint(pointLocation);
+  Stone stone{StoneColor::BLACK};
+  board.setStoneToPoint(stone, pointLocation);
+  EXPECT_EQ(PointStatus::HAS_BLACK_STONE, board.getPointStatus(pointLocation));
+  board.removeStoneFromPoint(pointLocation);
+  EXPECT_EQ(PointStatus::EMPTY, board.getPointStatus(pointLocation));
+}
