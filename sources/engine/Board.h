@@ -14,7 +14,7 @@ using Matrix = std::vector<std::vector<T>>;
 
 class Board {
  public:
-  Board(int dimension) noexcept;
+  explicit Board(int dimension) noexcept;
   PointStatus getPointStatus(const PointLocation &pointLocation) const noexcept;
   void setStoneToPoint(const Stone &stone, const PointLocation &pointLocation) noexcept;
   void removeStoneFromPoint(const PointLocation &pointLocation) noexcept;

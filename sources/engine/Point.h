@@ -16,7 +16,7 @@ enum class PointStatus {
 
 class Point {
  public:
-  Point(PointStatus status = PointStatus::EMPTY) noexcept;
+  explicit Point(PointStatus status = PointStatus::EMPTY) noexcept;
   PointStatus getStatus() const noexcept;
   Stone getStone() const;
   void addStone(const Stone &stone) noexcept;
