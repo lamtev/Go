@@ -10,38 +10,34 @@ Board::Board(int dimension) noexcept
   }
 }
 
-//TODO eliminate duplication
 PointStatus Board::getPointStatus(const PointLocation &pointLocation) const noexcept {
-  int i = toMatrixCoordinates(pointLocation).first;
-  int j = toMatrixCoordinates(pointLocation).second;
-  Point point{board[i][j]};
+  Point point{getPoint(pointLocation)};
   return point.getStatus();
 }
 
 //TODO exception
 void Board::setStoneToPoint(const Stone &stone, const PointLocation &pointLocation) noexcept {
-  int i = toMatrixCoordinates(pointLocation).first;
-  int j = toMatrixCoordinates(pointLocation).second;
-  Point &point{board[i][j]};
+  Point &point{getPoint(pointLocation)};
   point.addStone(stone);
-//  std::shared_ptr<Point> pPoint{getPoint(pointLocation)};
-//  pPoint->addStone(stone);
 }
 
 //TODO exception
 void Board::removeStoneFromPoint(const PointLocation &pointLocation) noexcept {
-  int i = toMatrixCoordinates(pointLocation).first;
-  int j = toMatrixCoordinates(pointLocation).second;
-  Point &point{board[i][j]};
+  Point &point{getPoint(pointLocation)};
   point.deleteStone();
-//  std::shared_ptr<Point> pPoint{getPoint(pointLocation)};
-//  pPoint->deleteStone();
 }
 
-std::shared_ptr<Point> Board::getPoint(const PointLocation &pointLocation) const noexcept {
+//TODO eliminate duplication
+Point &Board::getPoint(const PointLocation &pointLocation) noexcept {
   int i = toMatrixCoordinates(pointLocation).first;
   int j = toMatrixCoordinates(pointLocation).second;
-  return std::make_shared<Point>(board[i][j]);
+  return board[i][j];
+}
+
+const Point Board::getPoint(const PointLocation &pointLocation) const noexcept {
+  int i = toMatrixCoordinates(pointLocation).first;
+  int j = toMatrixCoordinates(pointLocation).second;
+  return board[i][j];
 }
 
 MatrixCoordinates Board::toMatrixCoordinates(const PointLocation &pointLocation) const noexcept {

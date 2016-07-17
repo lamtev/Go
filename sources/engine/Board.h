@@ -23,7 +23,8 @@ class Board {
   const int dimension;
   Matrix<Point> board;
 
-  std::shared_ptr<Point> getPoint(const PointLocation &pointLocation) const noexcept;
+  Point &getPoint(const PointLocation &pointLocation) noexcept;
+  const Point getPoint(const PointLocation &pointLocation) const noexcept;
   MatrixCoordinates toMatrixCoordinates(const PointLocation &pointLocation) const noexcept;
 };
 
