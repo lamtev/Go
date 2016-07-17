@@ -5,6 +5,6 @@ set(ENGINE_SOURCE_FILES
         Stone.h
         PointLocation.h
         Point.h Point.cpp
-        StoneNotFoundException.h)
+        StoneNotFoundException.h Board.cpp Board.h)
 
 add_library(engine STATIC ${ENGINE_SOURCE_FILES})

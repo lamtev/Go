@@ -2,13 +2,8 @@
 
 namespace Go {
 
-Point::Point(PointLocation location, PointStatus status) noexcept
-    : location{location},
-      status{status} { }
-
-PointLocation Point::getLocation() const noexcept {
-  return location;
-}
+Point::Point(PointStatus status) noexcept
+    : status{status} { }
 
 PointStatus Point::getStatus() const noexcept {
   return status;
@@ -22,7 +17,7 @@ Stone Point::getStone() const {
 }
 
 void Point::addStone(const Stone &stone) noexcept {
-  this->stone = std::make_unique<Stone>(stone);
+  this->stone = std::make_shared<Stone>(stone);
   status = static_cast<PointStatus>(stone.getColor());
 }
 

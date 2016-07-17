@@ -2,7 +2,6 @@
 #define GO_POINT_H
 
 #include <memory>
-
 #include "PointLocation.h"
 #include "Stone.h"
 #include "StoneNotFoundException.h"
@@ -15,21 +14,17 @@ enum class PointStatus {
   HAS_WHITE_STONE
 };
 
-constexpr PointLocation defaultLocation{VerticalCoordinate::A, 1};
-
 class Point {
  public:
-  Point(PointLocation location = defaultLocation, PointStatus status = PointStatus::EMPTY) noexcept;
-  PointLocation getLocation() const noexcept;
+  Point(PointStatus status = PointStatus::EMPTY) noexcept;
   PointStatus getStatus() const noexcept;
   Stone getStone() const;
   void addStone(const Stone &stone) noexcept;
   void deleteStone() noexcept;
 
  private:
-  PointLocation location;
   PointStatus status;
-  std::unique_ptr<Stone> stone;
+  std::shared_ptr<Stone> stone;
 };
 
 }

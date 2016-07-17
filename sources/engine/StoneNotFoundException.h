@@ -8,8 +8,7 @@ namespace Go {
 class StoneNotFoundException: public std::exception {
  public:
   const char *what() const noexcept override {
-
-    return "There is no stone in the point";
+    return "There is no whiteStone in the point";
   }
 };
 
