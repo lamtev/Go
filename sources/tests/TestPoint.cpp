@@ -11,6 +11,10 @@ class TestPoint: public ::testing::Test {
   Stone stone {StoneColor::WHITE};
 };
 
+TEST_F(TestPoint, getStone) {
+  EXPECT_THROW(point.getStone(), StoneNotFoundException);
+}
+
 TEST_F(TestPoint, addStone) {
 
   point.addStone(stone);
@@ -24,6 +28,7 @@ TEST_F(TestPoint, deleteStone) {
   point.addStone(stone);
   point.deleteStone();
   EXPECT_EQ(PointStatus::EMPTY, point.getStatus());
+  EXPECT_THROW(point.getStone(), StoneNotFoundException);
 }
 
 

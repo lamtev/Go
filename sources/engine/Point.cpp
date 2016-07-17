@@ -6,10 +6,6 @@ Point::Point(PointLocation location, PointStatus status) noexcept
     : location{location},
       status{status} { }
 
-Point::~Point() noexcept {
-  stone.reset();
-}
-
 PointLocation Point::getLocation() const noexcept {
   return location;
 }
@@ -18,7 +14,10 @@ PointStatus Point::getStatus() const noexcept {
   return status;
 }
 
-Stone Point::getStone() const noexcept {
+Stone Point::getStone() const {
+  if (status == PointStatus::EMPTY) {
+    throw StoneNotFoundException{};
+  }
   return *stone;
 }
 

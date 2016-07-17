@@ -5,6 +5,7 @@
 
 #include "PointLocation.h"
 #include "Stone.h"
+#include "StoneNotFoundException.h"
 
 namespace Go {
 
@@ -19,10 +20,9 @@ constexpr PointLocation defaultLocation{VerticalCoordinate::A, 1};
 class Point {
  public:
   Point(PointLocation location = defaultLocation, PointStatus status = PointStatus::EMPTY) noexcept;
-  ~Point() noexcept;
   PointLocation getLocation() const noexcept;
   PointStatus getStatus() const noexcept;
-  Stone getStone() const noexcept;
+  Stone getStone() const;
   void addStone(const Stone &stone) noexcept;
   void deleteStone() noexcept;
 
