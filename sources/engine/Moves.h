@@ -4,9 +4,9 @@
 #include <list>
 #include <stack>
 #include "Move.h"
-#include "LastMoveNotFoundException.h"
-#include "PenultimateMoveNotFoundException.h"
-#include "EmptyMovesListException.h"
+#include "LastMoveGettingException.h"
+#include "PenultimateMoveGettingException.h"
+#include "LastMovePoppingException.h"
 
 namespace Go {
 
@@ -19,7 +19,6 @@ class Moves {
 
  private:
   std::list<Move> moves;
-  std::stack<Move> undoneMoves;
 };
 
 }

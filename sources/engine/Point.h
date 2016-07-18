@@ -4,7 +4,9 @@
 #include <memory>
 #include "PointLocation.h"
 #include "Stone.h"
-#include "StoneNotFoundException.h"
+#include "StoneGettingException.h"
+#include "StoneSettingException.h"
+#include "StoneRemovingException.h"
 
 namespace Go {
 
@@ -19,11 +21,12 @@ class Point {
   explicit Point(PointStatus status = PointStatus::EMPTY) noexcept;
   PointStatus getStatus() const noexcept;
   Stone getStone() const;
-  void addStone(const Stone &stone) noexcept;
-  void deleteStone() noexcept;
+  void setStone(const Stone &stone);
+  void removeStone();
 
  private:
   PointStatus status;
+  //TODO think mb weak_ptr
   std::shared_ptr<Stone> stone;
 };
 

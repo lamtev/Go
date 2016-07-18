@@ -16,8 +16,8 @@ class Board {
  public:
   explicit Board(int dimension) noexcept;
   PointStatus getPointStatus(const PointLocation &pointLocation) const noexcept;
-  void setStoneToPoint(const Stone &stone, const PointLocation &pointLocation) noexcept;
-  void removeStoneFromPoint(const PointLocation &pointLocation) noexcept;
+  void setStoneToPoint(const Stone &stone, const PointLocation &pointLocation);
+  void removeStoneFromPoint(const PointLocation &pointLocation);
 
  private:
   const int dimension;

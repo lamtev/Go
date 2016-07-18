@@ -3,7 +3,7 @@
 
 #include "PointLocation.h"
 #include "Stone.h"
-#include "PointLocationNotFoundException.h"
+#include "PointLocationGettingException.h"
 
 namespace Go {
 
@@ -30,19 +30,6 @@ class Move {
         playerColor{playerColor},
         pointLocation{degeneratedPointLocation} { }
 
-  constexpr Move(const Move &move) noexcept
-      : type{move.type},
-        playerColor{move.playerColor},
-        pointLocation{move.pointLocation} { }
-
-  //TODO add chek for self assigment
-  constexpr Move &operator=(const Move &move) noexcept {
-    type = move.type;
-    playerColor = move.playerColor;
-    pointLocation = move.pointLocation;
-    return *this;
-  }
-
   constexpr MoveType getMoveType() const noexcept {
     return type;
   }
@@ -51,9 +38,9 @@ class Move {
     return playerColor;
   }
 
-  PointLocation getPointLocation() const {
+  const PointLocation &getPointLocation() const {
     if (type != MoveType::StoneSetting) {
-      throw PointLocationNotFoundException{};
+      throw PointLocationGettingException{};
     }
     return pointLocation;
   }

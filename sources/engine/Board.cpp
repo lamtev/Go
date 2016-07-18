@@ -15,16 +15,14 @@ PointStatus Board::getPointStatus(const PointLocation &pointLocation) const noex
   return point.getStatus();
 }
 
-//TODO exception
-void Board::setStoneToPoint(const Stone &stone, const PointLocation &pointLocation) noexcept {
+void Board::setStoneToPoint(const Stone &stone, const PointLocation &pointLocation) {
   Point &point{getPoint(pointLocation)};
-  point.addStone(stone);
+  point.setStone(stone);
 }
 
-//TODO exception
-void Board::removeStoneFromPoint(const PointLocation &pointLocation) noexcept {
+void Board::removeStoneFromPoint(const PointLocation &pointLocation) {
   Point &point{getPoint(pointLocation)};
-  point.deleteStone();
+  point.removeStone();
 }
 
 //TODO eliminate duplication

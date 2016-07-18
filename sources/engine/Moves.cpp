@@ -4,14 +4,14 @@ namespace Go {
 
 const Move &Moves::getLastMove() const {
   if (moves.empty()) {
-    throw LastMoveNotFoundException{};
+    throw LastMoveGettingException{};
   }
   return moves.back();
 }
 
 const Move &Moves::getPenultimateMove() const {
   if (moves.size() < 2) {
-    throw PenultimateMoveNotFoundException{};
+    throw PenultimateMoveGettingException{};
   }
   auto it = moves.cend();
   --it;
@@ -24,7 +24,7 @@ void Moves::pushMoveToBack(const Move &move) noexcept {
 
 void Moves::popLastMove() {
   if (moves.empty()) {
-    throw EmptyMovesListException{};
+    throw LastMovePoppingException{};
   }
   moves.pop_back();
 }

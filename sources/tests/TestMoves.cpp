@@ -26,19 +26,19 @@ TEST_F(TestMoves, pushMoveToBack) {
 }
 
 TEST_F(TestMoves, getLastMove) {
-  EXPECT_THROW(moves.getLastMove(), LastMoveNotFoundException);
+  EXPECT_THROW(moves.getLastMove(), LastMoveGettingException);
 }
 
 TEST_F(TestMoves, getPenultimateMove) {
-  EXPECT_THROW(moves.getPenultimateMove(), PenultimateMoveNotFoundException);
+  EXPECT_THROW(moves.getPenultimateMove(), PenultimateMoveGettingException);
   moves.pushMoveToBack(move1);
-  EXPECT_THROW(moves.getPenultimateMove(), PenultimateMoveNotFoundException);
+  EXPECT_THROW(moves.getPenultimateMove(), PenultimateMoveGettingException);
   moves.pushMoveToBack(move2);
   EXPECT_EQ(move1, moves.getPenultimateMove());
 }
 
 TEST_F(TestMoves, popLastMove) {
-  EXPECT_THROW(moves.popLastMove(), EmptyMovesListException);
+  EXPECT_THROW(moves.popLastMove(), LastMovePoppingException);
   moves.pushMoveToBack(move1);
   moves.pushMoveToBack(move2);
   moves.popLastMove();

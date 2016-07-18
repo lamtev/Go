@@ -5,6 +5,6 @@ set(ENGINE_SOURCE_FILES
         Stone.h
         PointLocation.h
         Point.h Point.cpp
-        StoneNotFoundException.h Board.cpp Board.h Move.h PointLocationNotFoundException.h Moves.cpp Moves.h EmptyMovesListException.h PenultimateMoveNotFoundException.h LastMoveNotFoundException.h)
+        StoneGettingException.h Board.cpp Board.h Move.h PointLocationGettingException.h Moves.cpp Moves.h LastMovePoppingException.h PenultimateMoveGettingException.h LastMoveGettingException.h StoneSettingException.h StoneRemovingException.h)
 
 add_library(engine STATIC ${ENGINE_SOURCE_FILES})

@@ -11,17 +11,23 @@ PointStatus Point::getStatus() const noexcept {
 
 Stone Point::getStone() const {
   if (status == PointStatus::EMPTY) {
-    throw StoneNotFoundException{};
+    throw StoneGettingException{};
   }
   return *stone;
 }
 
-void Point::addStone(const Stone &stone) noexcept {
+void Point::setStone(const Stone &stone) {
+  if (status != PointStatus::EMPTY) {
+    throw StoneSettingException{};
+  }
   this->stone = std::make_shared<Stone>(stone);
   status = static_cast<PointStatus>(stone.getColor());
 }
 
-void Point::deleteStone() noexcept {
+void Point::removeStone() {
+  if (status == PointStatus::EMPTY) {
+    throw StoneRemovingException{};
+  }
   stone.reset();
   status = PointStatus::EMPTY;
 }
