@@ -3,7 +3,7 @@
 
 using namespace Go;
 
-class TestMove: public ::testing::Test {
+class TestMoves: public ::testing::Test {
  protected:
   virtual void SetUp() override { }
   virtual void TearDown() override { }
@@ -19,23 +19,28 @@ class TestMove: public ::testing::Test {
   Move move2{type2, playerColor2, pointLocation2};
 };
 
-TEST_F(TestMove, pushMoveToBack) {
+TEST_F(TestMoves, pushMoveToBack) {
   moves.pushMoveToBack(move1);
   moves.pushMoveToBack(move2);
   EXPECT_EQ(move2, moves.getLastMove());
 }
 
-TEST_F(TestMove, undo) {
+TEST_F(TestMoves, getLastMove) {
+  EXPECT_THROW(moves.getLastMove(), LastMoveNotFoundException);
+}
+
+TEST_F(TestMoves, getPenultimateMove) {
+  EXPECT_THROW(moves.getPenultimateMove(), PenultimateMoveNotFoundException);
+  moves.pushMoveToBack(move1);
+  EXPECT_THROW(moves.getPenultimateMove(), PenultimateMoveNotFoundException);
+  moves.pushMoveToBack(move2);
+  EXPECT_EQ(move1, moves.getPenultimateMove());
+}
+
+TEST_F(TestMoves, popLastMove) {
+  EXPECT_THROW(moves.popLastMove(), EmptyMovesListException);
   moves.pushMoveToBack(move1);
   moves.pushMoveToBack(move2);
-  moves.undo();
+  moves.popLastMove();
   EXPECT_EQ(move1, moves.getLastMove());
-}
-
-TEST_F(TestMove, redo) {
-  moves.pushMoveToBack(move1);
-  moves.pushMoveToBack(move2);
-  moves.undo();
-  moves.redo();
-  EXPECT_EQ(move2, moves.getLastMove());
 }

@@ -2,28 +2,31 @@
 
 namespace Go {
 
-//TODO think about returning reference not value
-//TODO think about exceptions
-Move Moves::getLastMove() const {
+const Move &Moves::getLastMove() const {
+  if (moves.empty()) {
+    throw LastMoveNotFoundException{};
+  }
   return moves.back();
 }
 
-Move Moves::getPenultMove() const {
-  return *(--moves.end());
+const Move &Moves::getPenultimateMove() const {
+  if (moves.size() < 2) {
+    throw PenultimateMoveNotFoundException{};
+  }
+  auto it = moves.cend();
+  --it;
+  return *(--it);
 }
 
 void Moves::pushMoveToBack(const Move &move) noexcept {
   moves.push_back(move);
 }
 
-void Moves::undo() {
-  undoneMoves.push(moves.back());
+void Moves::popLastMove() {
+  if (moves.empty()) {
+    throw EmptyMovesListException{};
+  }
   moves.pop_back();
-}
-
-void Moves::redo() {
-  moves.push_back(undoneMoves.top());
-  undoneMoves.pop();
 }
 
 }
