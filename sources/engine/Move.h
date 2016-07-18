@@ -25,6 +25,11 @@ class Move {
         playerColor{playerColor},
         pointLocation{pointLocation} { }
 
+  constexpr Move(MoveType type, PlayerColor playerColor) noexcept
+      : type{type},
+        playerColor{playerColor},
+        pointLocation{degeneratedPointLocation} { }
+
   constexpr MoveType getMoveType() const noexcept {
     return type;
   }
@@ -33,7 +38,7 @@ class Move {
     return playerColor;
   }
 
-  constexpr PointLocation getPointLocation() const {
+  PointLocation getPointLocation() const {
     if (type != MoveType::StoneSetting) {
       throw PointLocationNotFoundException{};
     }

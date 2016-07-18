@@ -4,9 +4,10 @@
 namespace Go {
 
 enum class VerticalCoordinate {
-  A=1, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+  A=1, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, DEGENERATED
 };
 using HorizontalCoordinate = short;
+constexpr HorizontalCoordinate DEGENERATED{27};
 
 class PointLocation {
  public:
@@ -41,6 +42,8 @@ class PointLocation {
   VerticalCoordinate verticalCoordinate;
   HorizontalCoordinate horizontalCoordinate;
 };
+
+constexpr PointLocation degeneratedPointLocation{VerticalCoordinate::DEGENERATED, DEGENERATED};
 
 }
 

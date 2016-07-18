@@ -7,7 +7,7 @@ include_directories(${GTEST_INCLUDE_DIRS} ${COMMON_INCLUDES})
 
 set(TEST_SRC_FILES
         TestPoint.cpp
-        TestBoard.cpp)
+        TestBoard.cpp TestMoves.cpp)
 add_executable(${PROJECT_TEST_NAME} ${TEST_SRC_FILES})
 add_dependencies(${PROJECT_TEST_NAME} googletest)
 
