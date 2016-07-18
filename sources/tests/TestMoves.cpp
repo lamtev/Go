@@ -22,7 +22,7 @@ class TestMove: public ::testing::Test {
 TEST_F(TestMove, pushMoveToBack) {
   moves.pushMoveToBack(move1);
   moves.pushMoveToBack(move2);
-  EXPECT_EQ(move1, moves.getLastMove());
+  EXPECT_EQ(move2, moves.getLastMove());
 }
 
 TEST_F(TestMove, undo) {

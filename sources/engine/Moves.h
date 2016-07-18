@@ -9,8 +9,9 @@ namespace Go {
 
 class Moves {
  public:
+  Move getLastMove() const;
+  Move getPenultMove() const;
   void pushMoveToBack(const Move &move) noexcept;
-  Move getLastMove() const noexcept;
   void undo();
   void redo();
  private:

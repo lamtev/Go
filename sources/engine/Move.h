@@ -30,6 +30,19 @@ class Move {
         playerColor{playerColor},
         pointLocation{degeneratedPointLocation} { }
 
+  constexpr Move(const Move &move) noexcept
+      : type{move.type},
+        playerColor{move.playerColor},
+        pointLocation{move.pointLocation} { }
+
+  //TODO add chek for self assigment
+  constexpr Move &operator=(const Move &move) noexcept {
+    type = move.type;
+    playerColor = move.playerColor;
+    pointLocation = move.pointLocation;
+    return *this;
+  }
+
   constexpr MoveType getMoveType() const noexcept {
     return type;
   }
