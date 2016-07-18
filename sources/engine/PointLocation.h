@@ -10,8 +10,8 @@ using HorizontalCoordinate = short;
 
 class PointLocation {
  public:
-  constexpr PointLocation(VerticalCoordinate verticalCoordinate = VerticalCoordinate::A,
-                          HorizontalCoordinate horizontalCoordinate = 1) noexcept
+  constexpr PointLocation(VerticalCoordinate verticalCoordinate,
+                          HorizontalCoordinate horizontalCoordinate) noexcept
       : verticalCoordinate{verticalCoordinate},
         horizontalCoordinate{horizontalCoordinate} { }
 

@@ -10,7 +10,7 @@ enum class StoneColor {
 
 class Stone {
  public:
-  explicit constexpr Stone(StoneColor color = StoneColor::BLACK) noexcept
+  explicit constexpr Stone(StoneColor color) noexcept
       : color{color} { }
 
   constexpr Stone(const Stone &stone) noexcept
