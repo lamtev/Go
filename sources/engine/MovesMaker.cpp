@@ -4,8 +4,8 @@ namespace Go {
 
 MovesMaker::MovesMaker(int boardDimension) noexcept
     : whoseMove{WhoseMove::BLACKS},
-      moves{std::make_shared<Moves>()},
-      board{std::make_shared<Board>(boardDimension)} { }
+      board{std::make_shared<Board>(boardDimension)},
+      moves{std::make_shared<Moves>()} { }
 
 
 //TODO fix bug with RESIGN
@@ -20,6 +20,7 @@ void MovesMaker::makeAMove(const Move &move) {
       break;
     case MoveType::RESIGN:
       resign();
+      break;
     case MoveType::StoneSetting:
       setStone(move.getPointLocation());
       break;
