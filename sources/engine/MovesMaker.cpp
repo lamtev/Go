@@ -12,6 +12,7 @@ void MovesMaker::makeAMove(const Move &move) {
   if (whoseMove == WhoseMove::GAME_IS_OVER) {
     throw GameIsOverException{};
   }
+  //TODO check move for legal
   switch (move.getMoveType()) {
     case MoveType::CHECK:
       check();
@@ -46,10 +47,10 @@ void MovesMaker::resign() noexcept {
 }
 
 void MovesMaker::setStone(const PointLocation &pointLocation) {
-  //checkForLegal();
+  //TODO check stone setting for legal
   StoneColor stoneColor{static_cast<StoneColor>(whoseMove)};
   board->setStoneToPoint(Stone{stoneColor}, pointLocation);
-  //analyseBoard();
+  //TODO analyse board and remove stones
 }
 
 void MovesMaker::logMove(const Move &move) noexcept {

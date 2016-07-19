@@ -38,4 +38,5 @@ TEST_F(TestMovesMaker, setStone2) {
   movesMaker.makeAMove(move5);
   EXPECT_EQ(move5, movesMaker.getMoves().getLastMove());
   EXPECT_EQ(WhoseMove::GAME_IS_OVER, movesMaker.getWhoseMove());
+  EXPECT_THROW(movesMaker.makeAMove(move1), GameIsOverException);
 }

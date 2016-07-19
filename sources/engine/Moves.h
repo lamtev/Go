@@ -10,6 +10,8 @@
 
 namespace Go {
 
+//TODO think about delta between moves for undo and redo
+
 class Moves {
  public:
   const Move &getLastMove() const;

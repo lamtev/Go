@@ -6,7 +6,7 @@
 class GameIsOverException: public std::exception {
  public:
   const char *what() const noexcept override {
-    return "Game is over!!!";
+    return "Can't make a move because game is over!!!";
   }
 };
 
