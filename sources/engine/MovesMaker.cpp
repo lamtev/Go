@@ -7,12 +7,10 @@ MovesMaker::MovesMaker(int boardDimension) noexcept
       board{std::make_shared<Board>(boardDimension)},
       moves{std::make_shared<Moves>()} { }
 
-
-//TODO fix bug with RESIGN
+//TODO think about pattern
 void MovesMaker::makeAMove(const Move &move) {
   if (whoseMove == WhoseMove::GAME_IS_OVER) {
-    //TODO throw game is over exception
-    return;
+    throw GameIsOverException{};
   }
   switch (move.getMoveType()) {
     case MoveType::CHECK:

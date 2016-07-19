@@ -3,6 +3,7 @@
 
 #include "Moves.h"
 #include "Board.h"
+#include "GameIsOverException.h"
 
 namespace Go {
 
