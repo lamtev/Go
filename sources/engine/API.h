@@ -7,9 +7,7 @@ class API {
  public:
 //void setBoardSize(const BoardSize &boardSize);
   void startGame();
-//void putStone(const PointLocation &pointLocation);
-  void check();
-  void resign();
+//void makeAMove(const Move &move);
 //PlayerColor whoseMove() const noexcept;
 //Moves getMoves() const noexcept;
   void undo();
