@@ -24,7 +24,7 @@ class Board {
   Matrix<Point> board;
 
   Point &getPoint(const PointLocation &pointLocation) noexcept;
-  const Point getPoint(const PointLocation &pointLocation) const noexcept;
+  const Point &getPoint(const PointLocation &pointLocation) const noexcept;
   MatrixCoordinates toMatrixCoordinates(const PointLocation &pointLocation) const noexcept;
 };
 

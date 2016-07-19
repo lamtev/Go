@@ -32,7 +32,7 @@ Point &Board::getPoint(const PointLocation &pointLocation) noexcept {
   return board[i][j];
 }
 
-const Point Board::getPoint(const PointLocation &pointLocation) const noexcept {
+const Point &Board::getPoint(const PointLocation &pointLocation) const noexcept {
   int i = toMatrixCoordinates(pointLocation).first;
   int j = toMatrixCoordinates(pointLocation).second;
   return board[i][j];
