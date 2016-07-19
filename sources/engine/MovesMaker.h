@@ -24,6 +24,7 @@ class MovesMaker {
   WhoseMove whoseMove;
   std::shared_ptr<Board> board;
   std::shared_ptr<Moves> moves;
+  //TODO think about to locate them in another class
   //std::shared_ptr<MoveChecker> moveChecker;
   //std::shared_ptr<BoardAnalyser> boardAnalyser;
   //std::shared_ptr<StonesRemover> stonesRemover;
