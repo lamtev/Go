@@ -18,6 +18,8 @@ enum class PointStatus {
 
 class Point {
  public:
+  //TODO меня смущает в этом конструкторе возможность поставить любой статус без установки камня.
+  //Может не стоит передавать сюда статус, а просто в теле конструктора ставить его EMPTY?
   explicit Point(PointStatus status = PointStatus::EMPTY) noexcept;
   PointStatus getStatus() const noexcept;
   Stone getStone() const;

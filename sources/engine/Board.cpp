@@ -11,6 +11,9 @@ Board::Board(int dimension) noexcept
 }
 
 PointStatus Board::getPointStatus(const PointLocation &pointLocation) const noexcept {
+  //TODO тут может не стоит создавать еще 1 объект Point, а просто обратиться по ссылки?
+  // Point &point = getPoint(pointLocation);
+  // или как в методе ниже.
   Point point{getPoint(pointLocation)};
   return point.getStatus();
 }
