@@ -8,6 +8,8 @@
 namespace Go {
 
 enum class MoveType {
+  //TODO Различие в написании элементов перечисления бросается в глаза.
+  //Но это уже совсем придирки...
   StoneSetting,
   CHECK,
   RESIGN

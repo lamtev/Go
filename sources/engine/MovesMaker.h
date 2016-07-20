@@ -28,6 +28,11 @@ class MovesMaker {
   //std::shared_ptr<MoveChecker> moveChecker;
   //std::shared_ptr<BoardAnalyser> boardAnalyser;
   //std::shared_ptr<StonesRemover> stonesRemover;
+  //TODO этот кусок кода почему-то сразу наводит меня на мысли об реализации API.
+  //Можно попробовать реализовать в этом классе логику взаимодействия объектов,
+  //перечисленных выше и добавить методы соответсвующие API
+  //или перенести это все в другой класс реализующий API и тогда MovieMaker станет
+  //частью той реализации API, так же как классы из закоменнтированных строк.
 
   void check() noexcept;
   void resign() noexcept;
