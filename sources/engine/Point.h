@@ -18,9 +18,7 @@ enum class PointStatus {
 
 class Point {
  public:
-  //TODO меня смущает в этом конструкторе возможность поставить любой статус без установки камня.
-  //Может не стоит передавать сюда статус, а просто в теле конструктора ставить его EMPTY?
-  explicit Point(PointStatus status = PointStatus::EMPTY) noexcept;
+  explicit Point() noexcept;
   PointStatus getStatus() const noexcept;
   Stone getStone() const;
   void setStone(const Stone &stone);
@@ -30,6 +28,8 @@ class Point {
   PointStatus status;
   //TODO think mb weak_ptr
   std::shared_ptr<Stone> stone;
+
+  PointStatus stoneColorToPointStatus(StoneColor stoneColor) const noexcept;
 };
 
 }

@@ -8,9 +8,7 @@
 namespace Go {
 
 enum class MoveType {
-  //TODO Различие в написании элементов перечисления бросается в глаза.
-  //Но это уже совсем придирки...
-  StoneSetting,
+  STONE_SETTING,
   CHECK,
   RESIGN
 };
@@ -41,14 +39,14 @@ class Move {
   }
 
   const PointLocation &getPointLocation() const {
-    if (type != MoveType::StoneSetting) {
+    if (type != MoveType::STONE_SETTING) {
       throw PointLocationGettingException{};
     }
     return pointLocation;
   }
 
   constexpr bool operator==(const Move &move) const noexcept {
-    if (type == MoveType::StoneSetting) {
+    if (type == MoveType::STONE_SETTING) {
       return
           type == move.type &&
           playerColor == move.playerColor &&

@@ -2,8 +2,8 @@
 
 namespace Go {
 
-Point::Point(PointStatus status) noexcept
-    : status{status} { }
+Point::Point() noexcept
+    : status{PointStatus::EMPTY} { }
 
 PointStatus Point::getStatus() const noexcept {
   return status;
@@ -21,12 +21,8 @@ void Point::setStone(const Stone &stone) {
     throw StoneSettingException{};
   }
   this->stone = std::make_shared<Stone>(stone);
-  status = static_cast<PointStatus>(stone.getColor());
-  //TODO вот тут статик каст не очень нравиться, но это скорее дело вкуса
-  //Я когда енамы использую я стараю не опираться на их числовые значения.
-  //Мне кажется, тяжело уследить за тем чтобы числа соответсвовали
-  //друг другу все время: вдруг кто-нибудь добавит еще один элемент или удалит его.
-  //Я бы тут просто сделал условие, но, как я говорил, это все - дело вкуса.
+  StoneColor stoneColor{stone.getColor()};
+  status = stoneColorToPointStatus(stoneColor);
 }
 
 void Point::removeStone() {
@@ -35,6 +31,14 @@ void Point::removeStone() {
   }
   stone.reset();
   status = PointStatus::EMPTY;
+}
+
+PointStatus Point::stoneColorToPointStatus(StoneColor stoneColor) const noexcept {
+  if (stoneColor == StoneColor::BLACK) {
+    return PointStatus::HAS_BLACK_STONE;
+  } else {
+    return PointStatus::HAS_WHITE_STONE;
+  }
 }
 
 }

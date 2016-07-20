@@ -8,12 +8,12 @@ class TestMoves: public ::testing::Test {
   virtual void SetUp() override { }
   virtual void TearDown() override { }
   Moves moves;
-  MoveType type1{MoveType::StoneSetting};
+  MoveType type1{MoveType::STONE_SETTING};
   PlayerColor playerColor1{PlayerColor::WHITE};
   PointLocation pointLocation1{VerticalCoordinate::D, 17};
   Move move1{type1, playerColor1, pointLocation1};
 
-  MoveType type2{MoveType::StoneSetting};
+  MoveType type2{MoveType::STONE_SETTING};
   PlayerColor playerColor2{PlayerColor::BLACK};
   PointLocation pointLocation2{VerticalCoordinate::G, 3};
   Move move2{type2, playerColor2, pointLocation2};

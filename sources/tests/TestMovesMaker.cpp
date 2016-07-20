@@ -9,10 +9,10 @@ class TestMovesMaker: public ::testing::Test {
   virtual void TearDown() override { };
   MovesMaker movesMaker{13};
   PointLocation pointLocation1{VerticalCoordinate::F, 13};
-  Move move1{MoveType::StoneSetting, PlayerColor::BLACK, pointLocation1};
+  Move move1{MoveType::STONE_SETTING, PlayerColor::BLACK, pointLocation1};
 
   PointLocation pointLocation2{VerticalCoordinate::B, 9};
-  Move move2{MoveType::StoneSetting, PlayerColor::WHITE, pointLocation2};
+  Move move2{MoveType::STONE_SETTING, PlayerColor::WHITE, pointLocation2};
 
   Move move3{MoveType::CHECK, PlayerColor::BLACK};
 

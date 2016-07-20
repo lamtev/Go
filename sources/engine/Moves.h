@@ -2,7 +2,6 @@
 #define GO_MOVES_H
 
 #include <list>
-#include <stack>
 #include "Move.h"
 #include "LastMoveGettingException.h"
 #include "PenultimateMoveGettingException.h"

@@ -10,11 +10,8 @@ Board::Board(int dimension) noexcept
   }
 }
 
-PointStatus Board::getPointStatus(const PointLocation &pointLocation) const noexcept {
-  //TODO тут может не стоит создавать еще 1 объект Point, а просто обратиться по ссылки?
-  // Point &point = getPoint(pointLocation);
-  // или как в методе ниже.
-  Point point{getPoint(pointLocation)};
+PointStatus Board::getPointStatus(const PointLocation &pointLocation) noexcept {
+  Point &point{getPoint(pointLocation)};
   return point.getStatus();
 }
 
@@ -28,14 +25,7 @@ void Board::removeStoneFromPoint(const PointLocation &pointLocation) {
   point.removeStone();
 }
 
-//TODO eliminate duplication
 Point &Board::getPoint(const PointLocation &pointLocation) noexcept {
-  int i = toMatrixCoordinates(pointLocation).first;
-  int j = toMatrixCoordinates(pointLocation).second;
-  return board[i][j];
-}
-
-const Point &Board::getPoint(const PointLocation &pointLocation) const noexcept {
   int i = toMatrixCoordinates(pointLocation).first;
   int j = toMatrixCoordinates(pointLocation).second;
   return board[i][j];

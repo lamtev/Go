@@ -20,7 +20,7 @@ void MovesMaker::makeAMove(const Move &move) {
     case MoveType::RESIGN:
       resign();
       break;
-    case MoveType::StoneSetting:
+    case MoveType::STONE_SETTING:
       setStone(move.getPointLocation());
       break;
   }

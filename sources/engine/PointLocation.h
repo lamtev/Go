@@ -19,8 +19,7 @@ class PointLocation {
   constexpr VerticalCoordinate getVerticalCoordinate() noexcept {
     return verticalCoordinate;
   }
-  //TODO а нельзя без этого метода обойтись, а то он что то общую картину портит?
-  //Не критично, но инт и статик каст выглядят, как будто без них можно обойтись.
+
   constexpr int getVerticalCoordinate() const noexcept {
     return static_cast<int>(verticalCoordinate);
   }
