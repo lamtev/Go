@@ -1,10 +1,21 @@
 #engine
 
 set(ENGINE_SOURCE_FILES
-        API.cpp API.h
+        API.h
         Stone.h
         PointLocation.h
         Point.h Point.cpp
-        StoneGettingException.h Board.cpp Board.h Move.h PointLocationGettingException.h Moves.cpp Moves.h LastMovePoppingException.h PenultimateMoveGettingException.h LastMoveGettingException.h StoneSettingException.h StoneRemovingException.h MovesMaker.cpp MovesMaker.h GameIsOverException.h)
+        StoneGettingException.h
+        Board.cpp Board.h
+        Move.h
+        PointLocationGettingException.h
+        Moves.cpp Moves.h
+        LastMovePoppingException.h
+        PenultimateMoveGettingException.h
+        LastMoveGettingException.h
+        StoneSettingException.h
+        StoneRemovingException.h
+        MovesMaker.cpp MovesMaker.h
+        GameIsOverException.h)
 
 add_library(engine STATIC ${ENGINE_SOURCE_FILES})

@@ -5,13 +5,14 @@ namespace Go {
 
 class API {
  public:
-//void setBoardSize(const BoardSize &boardSize);
-  void startGame();
-//void makeAMove(const Move &move);
-//PlayerColor whoseMove() const noexcept;
-//Moves getMoves() const noexcept;
-  void undo();
-  void redo();
+//virtual ~API();
+//virtual void setBoardSize(const BoardSize &boardSize)
+//virtual void startGame();
+//virtual void makeAMove(const Move &move);
+//virtual PlayerColor whoseMove() const noexcept;
+//virtual Moves getMoves() const noexcept
+//virtual void undo();
+//virtual void redo();
 };
 
 }
