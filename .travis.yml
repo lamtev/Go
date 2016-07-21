@@ -1,35 +1,13 @@
 language: generic
 
-compiler: gcc
-
-dist: trusty
-
 sudo: required
 
-cache:
-  apt: true
+services:
+- docker
 
-matrix:
-  include:
-    - env: CXX=g++-5 CC=gcc-5
-      addons:
-        apt:
-          packages:
-            - g++-5
-          sources: &sources
-            - ubuntu-toolchain-r-test
-    - env: CXX=g++-6 CC=gcc-6
-      addons:
-        apt:
-          packages:
-            - g++-6
-          sources: *sources
-
-install:
-  - sudo apt-get install -y cloc
-  - sudo apt-get install -y cppcheck
-  - sudo apt-get install -y valgrind
+before_install:
+- docker pull lamtev/ubuntu-dev-tools
 
 script:
   - sudo chmod 755 travis_build.sh
-  - ./travis_build.sh
+  - docker run -v /home/travis/build/vilegzhanina/Go:sources lamtev/ubuntu-dev-tools /bin/bash -c "cd /sources && ./travis_build.sh"
