@@ -10,4 +10,4 @@ before_install:
 
 script:
   - sudo chmod 755 travis_build.sh
-  - docker run -v /home/travis/build/vilegzhanina/Go:sources lamtev/ubuntu-dev-tools /bin/bash -c "cd /sources && ./travis_build.sh"
+  - docker run -v /home/travis/build/vilegzhanina/Go:/sources lamtev/ubuntu-dev-tools /bin/bash -c "cd /sources && ./travis_build.sh"
