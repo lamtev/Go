@@ -15,7 +15,7 @@ set(ENGINE_SOURCE_FILES
         LastMoveGettingException.h
         StoneSettingException.h
         StoneRemovingException.h
-        MovesMaker.cpp MovesMaker.h
-        GameIsOverException.h)
+        GameIsOverException.h
+        GoEngine.cpp GoEngine.h)
 
 add_library(engine STATIC ${ENGINE_SOURCE_FILES})

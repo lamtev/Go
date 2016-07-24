@@ -1,14 +1,14 @@
-#include "MovesMaker.h"
+#include "GoEngine.h"
 
 namespace Go {
 
-MovesMaker::MovesMaker(int boardDimension) noexcept
+GoEngine::GoEngine(int boardDimension) noexcept
     : whoseMove{WhoseMove::BLACKS},
       board{std::make_shared<Board>(boardDimension)},
       moves{std::make_shared<Moves>()} { }
 
 //TODO think about pattern
-void MovesMaker::makeAMove(const Move &move) {
+void GoEngine::makeAMove(const Move &move) {
   if (whoseMove == WhoseMove::GAME_IS_OVER) {
     throw GameIsOverException{};
   }
@@ -28,41 +28,42 @@ void MovesMaker::makeAMove(const Move &move) {
   changeWhoseMove();
 }
 
-const Moves &MovesMaker::getMoves() const noexcept {
+const Moves &GoEngine::getMoves() const noexcept {
   return *moves;
 }
 
-WhoseMove MovesMaker::getWhoseMove() const noexcept {
+WhoseMove GoEngine::getWhoseMove() const noexcept {
   return whoseMove;
 }
 
-void MovesMaker::check() noexcept {
+void GoEngine::check() noexcept {
   if (moves->getLastMove().getMoveType() == MoveType::CHECK) {
     whoseMove = WhoseMove::GAME_IS_OVER;
   }
 }
 
-void MovesMaker::resign() noexcept {
+void GoEngine::resign() noexcept {
   whoseMove = WhoseMove::GAME_IS_OVER;
 }
 
-void MovesMaker::setStone(const PointLocation &pointLocation) {
+void GoEngine::setStone(const PointLocation &pointLocation) {
   //TODO check stone setting for legal
   StoneColor stoneColor{static_cast<StoneColor>(whoseMove)};
   board->setStoneToPoint(Stone{stoneColor}, pointLocation);
   //TODO analyse board and remove stones
 }
 
-void MovesMaker::logMove(const Move &move) noexcept {
+void GoEngine::logMove(const Move &move) noexcept {
   moves->pushMoveToBack(move);
 }
 
-void MovesMaker::changeWhoseMove() noexcept {
+void GoEngine::changeWhoseMove() noexcept {
   if (whoseMove == WhoseMove::BLACKS) {
     whoseMove = WhoseMove::WHITES;
   } else if (whoseMove == WhoseMove::WHITES) {
     whoseMove = WhoseMove::BLACKS;
   }
+
 }
 
 }
