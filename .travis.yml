@@ -10,4 +10,4 @@ install:
 
 script:
   - sudo chmod 755 travis_build.sh
-  - docker run -v /home/travis/build/lamtev/Go:/sources lamtev/build-tools /bin/bash -c "cd /sources && ./travis_build.sh"
+  - docker run -v /home/travis/build/lamtev/Go lamtev/build-tools /bin/bash -c "./travis_build.sh"
