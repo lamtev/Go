@@ -11,4 +11,4 @@ install:
 script:
   - sudo chmod 755 travis_build.sh
   - DIR=$(pwd)
-  - docker run -v $DIR:/ lamtev/build-tools /bin/bash -c "./travis_build.sh"
+  - docker run -v $DIR lamtev/build-tools /bin/bash -c "./travis_build.sh"
