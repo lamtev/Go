@@ -9,4 +9,4 @@ install:
   - docker pull lamtev/build-tools
 
 script:
-  - docker run -v /home/travis/build/lamtev:/Go lamtev/build-tools /bin/bash -c "cd Go && sudo chmod 755 travis_build.sh && ./travis_build.sh"
+  - docker run -v /home/travis/build/lamtev:/Go lamtev/build-tools /bin/bash -c "cd Go && chmod 755 travis_build.sh && ./travis_build.sh"
