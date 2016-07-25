@@ -3,3 +3,4 @@
 .idea
 build*
 clean.sh
+build_with_docker.sh
