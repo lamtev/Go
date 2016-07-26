@@ -5,7 +5,8 @@ namespace Go {
 GoEngine::GoEngine(int boardDimension) noexcept
     : whoseMove{WhoseMove::BLACKS},
       board{std::make_shared<Board>(boardDimension)},
-      moves{std::make_shared<Moves>()} { }
+      moves{std::make_shared<Moves>()},
+      moveChecker{std::make_unique<MoveChecker>(*board, *moves)} { }
 
 //TODO think about pattern
 void GoEngine::makeAMove(const Move &move) {
@@ -47,10 +48,12 @@ void GoEngine::resign() noexcept {
 }
 
 void GoEngine::setStone(const PointLocation &pointLocation) {
-  //TODO check stone setting for legal
+  moveChecker->setPointLocation(pointLocation);
+  moveChecker->checkForLegal();
   StoneColor stoneColor{static_cast<StoneColor>(whoseMove)};
   board->setStoneToPoint(Stone{stoneColor}, pointLocation);
   //TODO analyse board and remove stones
+  //stonesRemover->removeEatenStones();
 }
 
 void GoEngine::logMove(const Move &move) noexcept {

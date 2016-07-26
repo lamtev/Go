@@ -2,7 +2,7 @@
 #include "../engine/GoEngine.h"
 
 using namespace Go;
-
+//TODO refactor
 class TestGoEngine: public ::testing::Test {
  protected:
   virtual void SetUp() override { };
@@ -40,4 +40,17 @@ TEST_F(TestGoEngine, makeAMove2) {
   EXPECT_EQ(move5, go.getMoves().getLastMove());
   EXPECT_EQ(WhoseMove::GAME_IS_OVER, go.getWhoseMove());
   EXPECT_THROW(go.makeAMove(move1), GameIsOverException);
+}
+
+TEST_F(TestGoEngine, makeAMoveExceptions) {
+  PointLocation pointLocationOutside{VerticalCoordinate::F, 14};
+  Move moveOutside1{MoveType::STONE_SETTING, PlayerColor::BLACK, pointLocationOutside};
+  EXPECT_THROW(go.makeAMove(moveOutside1), MoveOutsideTheBoardException);
+
+  PointLocation pointLocation{VerticalCoordinate::A, 12};
+  Move move{MoveType::STONE_SETTING, PlayerColor::BLACK, pointLocation};
+  go.makeAMove(move);
+  Move moveToNotEmptyPoint{MoveType::STONE_SETTING, PlayerColor::WHITE, pointLocation};
+  //go.makeAMove(moveToNotEmptyPoint);
+  EXPECT_THROW(go.makeAMove(moveToNotEmptyPoint), MoveToNotEmptyPointException);
 }

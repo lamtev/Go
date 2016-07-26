@@ -17,6 +17,7 @@ class Moves {
   const Move &getPenultimateMove() const;
   void pushMoveToBack(const Move &move) noexcept;
   void popLastMove();
+  int size() const noexcept;
 
  private:
   std::list<Move> moves;

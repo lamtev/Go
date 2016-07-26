@@ -29,4 +29,8 @@ void Moves::popLastMove() {
   moves.pop_back();
 }
 
+int Moves::size() const noexcept {
+  return moves.size();
+}
+
 }

@@ -18,6 +18,7 @@ class Board {
   PointStatus getPointStatus(const PointLocation &pointLocation) noexcept;
   void setStoneToPoint(const Stone &stone, const PointLocation &pointLocation);
   void removeStoneFromPoint(const PointLocation &pointLocation);
+  int getDimension() const noexcept;
 
  private:
   const int dimension;

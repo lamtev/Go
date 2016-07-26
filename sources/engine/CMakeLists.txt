@@ -16,6 +16,11 @@ set(ENGINE_SOURCE_FILES
         StoneSettingException.h
         StoneRemovingException.h
         GameIsOverException.h
-        GoEngine.cpp GoEngine.h)
+        GoEngine.cpp GoEngine.h
+        MoveChecker.cpp MoveChecker.h
+        MoveToNotEmptyPointException.h
+        MoveOutsideTheBoardException.h
+        MoveRepeatException.h
+        MoveToDieException.h)
 
 add_library(engine STATIC ${ENGINE_SOURCE_FILES})

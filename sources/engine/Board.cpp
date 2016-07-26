@@ -25,6 +25,10 @@ void Board::removeStoneFromPoint(const PointLocation &pointLocation) {
   point.removeStone();
 }
 
+int Board::getDimension() const noexcept {
+  return dimension;
+}
+
 Point &Board::getPoint(const PointLocation &pointLocation) noexcept {
   int i = toMatrixCoordinates(pointLocation).first;
   int j = toMatrixCoordinates(pointLocation).second;

@@ -3,6 +3,7 @@
 
 #include "API.h"
 #include "Board.h"
+#include "MoveChecker.h"
 #include "GameIsOverException.h"
 
 namespace Go {
@@ -24,8 +25,7 @@ class GoEngine: public API {
   WhoseMove whoseMove;
   std::shared_ptr<Board> board;
   std::shared_ptr<Moves> moves;
-  //TODO think about to locate them in another class
-  //std::shared_ptr<MoveChecker> moveChecker;
+  std::unique_ptr<MoveChecker> moveChecker;
   //std::shared_ptr<BoardAnalyser> boardAnalyser;
   //std::shared_ptr<StonesRemover> stonesRemover;
   //std::unique_ptr<UndoRedoer> undoRedoer;
