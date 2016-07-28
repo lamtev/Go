@@ -9,7 +9,7 @@ class TestBoard: public ::testing::Test {
   virtual void TearDown() override { }
   int dimension = 19;
   Board board{dimension};
-  Stone stone{StoneColor::WHITE};
+  Stone whiteStone{StoneColor::WHITE};
   PointLocation pointLocation{VerticalCoordinate::A, 1};
 };
 
@@ -25,18 +25,18 @@ TEST_F(TestBoard, getPoint) {
 }
 
 TEST_F(TestBoard, setStoneToPoint) {
-  board.setStoneToPoint(stone, pointLocation);
+  board.setStoneToPoint(whiteStone, pointLocation);
   EXPECT_EQ(PointStatus::HAS_WHITE_STONE, board.getPointStatus(pointLocation));
 }
 
 TEST_F(TestBoard, removeStoneFromPoint) {
-  board.setStoneToPoint(stone, pointLocation);
+  board.setStoneToPoint(whiteStone, pointLocation);
   board.removeStoneFromPoint(pointLocation);
   EXPECT_EQ(PointStatus::EMPTY, board.getPointStatus(pointLocation));
 }
 
 TEST_F(TestBoard, setAndRemoveStone) {
-  board.setStoneToPoint(stone, pointLocation);
+  board.setStoneToPoint(whiteStone, pointLocation);
   board.removeStoneFromPoint(pointLocation);
   Stone stone{StoneColor::BLACK};
   board.setStoneToPoint(stone, pointLocation);
