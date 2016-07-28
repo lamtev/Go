@@ -5,14 +5,15 @@ namespace Go {
 Engine::Engine(int boardDimension) noexcept:
     board{std::make_shared<Board>(boardDimension)},
     moves{std::make_shared<Moves>()},
-    moveAnalyser{std::make_unique<MoveAnalyser>(board, moves)},
+    moveAnalyser{std::make_unique<MoveAnalyser>(*board, *moves)},
     boardDimension{boardDimension},
     activeColor{PlayerColor::BLACK},
     gameIsOver{false} { }
 
 void Engine::setStone(const PointLocation &pointLocation) {
   checkForGameOver();
-  //TODO checkMoveForLegal();
+  Move move{MoveType::STONE_SETTING, activeColor, pointLocation};
+  moveAnalyser->checkMove(move);
   StoneColor stoneColor;
   if (activeColor == PlayerColor::BLACK) {
     stoneColor = StoneColor::BLACK;
@@ -21,7 +22,6 @@ void Engine::setStone(const PointLocation &pointLocation) {
   }
   Stone stone{stoneColor};
   board->setStoneToPoint(stone, pointLocation);
-  Move move{MoveType::STONE_SETTING, activeColor, pointLocation};
   logMove(move);
   //TODO removeStones();
 }
