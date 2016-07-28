@@ -3,13 +3,11 @@
 
 #include <list>
 #include "Move.h"
-#include "LastMoveGettingException.h"
-#include "PenultimateMoveGettingException.h"
-#include "LastMovePoppingException.h"
+#include "exceptions/LastMoveGettingException.h"
+#include "exceptions/PenultimateMoveGettingException.h"
+#include "exceptions/LastMovePoppingException.h"
 
 namespace Go {
-
-//TODO think about delta between moves for undo and redo
 
 class Moves {
  public:
@@ -17,7 +15,7 @@ class Moves {
   const Move &getPenultimateMove() const;
   void pushMoveToBack(const Move &move) noexcept;
   void popLastMove();
-  int size() const noexcept;
+  int getSize() const noexcept;
 
  private:
   std::list<Move> moves;

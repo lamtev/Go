@@ -4,8 +4,8 @@
 namespace Go {
 
 enum class StoneColor {
-  BLACK = 1,
-  WHITE
+  BLACK = 0,
+  WHITE = 1
 };
 
 class Stone {

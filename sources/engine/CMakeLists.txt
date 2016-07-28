@@ -5,20 +5,20 @@ set(ENGINE_SOURCE_FILES
         Stone.h
         PointLocation.h
         Point.h Point.cpp
-        StoneGettingException.h
+        exceptions/StoneGettingException.h
         Board.cpp Board.h
         Move.h
-        PointLocationGettingException.h
+        exceptions/PointLocationGettingException.h
         Moves.cpp Moves.h
-        LastMovePoppingException.h
-        PenultimateMoveGettingException.h
-        LastMoveGettingException.h
-        StoneSettingException.h
-        StoneRemovingException.h
-        GameIsOverException.h
-        MoveToNotEmptyPointException.h
-        MoveOutsideTheBoardException.h
-        MoveRepeatException.h
-        MoveToDieException.h)
+        exceptions/LastMovePoppingException.h
+        exceptions/PenultimateMoveGettingException.h
+        exceptions/LastMoveGettingException.h
+        exceptions/StoneSettingException.h
+        exceptions/StoneRemovingException.h
+        exceptions/GameIsOverException.h
+        exceptions/MoveToNotEmptyPointException.h
+        exceptions/MoveOutsideTheBoardException.h
+        exceptions/MoveRepeatException.h
+        exceptions/MoveToDieException.h Engine.cpp Engine.h)
 
 add_library(engine STATIC ${ENGINE_SOURCE_FILES})

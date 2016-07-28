@@ -3,7 +3,7 @@
 
 #include "PointLocation.h"
 #include "Stone.h"
-#include "PointLocationGettingException.h"
+#include "exceptions/PointLocationGettingException.h"
 
 namespace Go {
 
@@ -14,13 +14,13 @@ enum class MoveType {
 };
 
 enum class PlayerColor {
-  BLACK = 1,
+  BLACK = 0,
   WHITE
 };
 
 class Move {
  public:
-  constexpr Move(MoveType type, PlayerColor playerColor, PointLocation pointLocation) noexcept
+  constexpr Move(MoveType type, PlayerColor playerColor, const PointLocation &pointLocation) noexcept
       : type{type},
         playerColor{playerColor},
         pointLocation{pointLocation} { }
@@ -30,7 +30,7 @@ class Move {
         playerColor{playerColor},
         pointLocation{degeneratedPointLocation} { }
 
-  constexpr MoveType getMoveType() const noexcept {
+  constexpr MoveType getType() const noexcept {
     return type;
   }
 
@@ -51,11 +51,11 @@ class Move {
           type == move.type &&
           playerColor == move.playerColor &&
           pointLocation == move.pointLocation;
-    }
-    else
+    } else {
       return
-          type == move.type &&
-          playerColor == move.playerColor;
+              type == move.type &&
+                      playerColor == move.playerColor;
+    }
   }
 
   constexpr bool operator!=(const Move &move) const noexcept {

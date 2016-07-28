@@ -4,16 +4,16 @@
 #include <memory>
 #include "PointLocation.h"
 #include "Stone.h"
-#include "StoneGettingException.h"
-#include "StoneSettingException.h"
-#include "StoneRemovingException.h"
+#include "exceptions/StoneGettingException.h"
+#include "exceptions/StoneSettingException.h"
+#include "exceptions/StoneRemovingException.h"
 
 namespace Go {
 
 enum class PointStatus {
-  EMPTY = 0,
-  HAS_BLACK_STONE,
-  HAS_WHITE_STONE
+  EMPTY = -1,
+  HAS_BLACK_STONE = 0,
+  HAS_WHITE_STONE = 0
 };
 
 class Point {
