@@ -5,6 +5,7 @@
 #include "API.h"
 #include "Board.h"
 #include "Moves.h"
+#include "MoveAnalyser.h"
 #include "exceptions/GameIsOverException.h"
 
 namespace Go {
@@ -20,6 +21,7 @@ class Engine : public API {
  private:
   std::shared_ptr<Board> board;
   std::shared_ptr<Moves> moves;
+  std::unique_ptr<MoveAnalyser> moveAnalyser;
   const int boardDimension;
   PlayerColor activeColor;
   bool gameIsOver;

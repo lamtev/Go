@@ -5,6 +5,7 @@ namespace Go {
 Engine::Engine(int boardDimension) noexcept:
     board{std::make_shared<Board>(boardDimension)},
     moves{std::make_shared<Moves>()},
+    moveAnalyser{std::make_unique<MoveAnalyser>(board, moves)},
     boardDimension{boardDimension},
     activeColor{PlayerColor::BLACK},
     gameIsOver{false} { }
