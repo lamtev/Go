@@ -17,14 +17,13 @@ class TestMoveAnalyser: public ::testing::Test {
 };
 
 TEST_F(TestMoveAnalyser, checkForWithinBoard) {
-
   PointLocation wrongPointLocation1{VerticalCoordinate::A, 0};
-  Move wrongMove1{MoveType::STONE_SETTING, PlayerColor::BLACK, wrongPointLocation1};
-  EXPECT_THROW(moveAnalyser.checkMove(wrongMove1), MoveOutsideTheBoardException);
+  Move repeatMove{MoveType::STONE_SETTING, PlayerColor::BLACK, wrongPointLocation1};
+  EXPECT_THROW(moveAnalyser.checkMove(repeatMove), MoveOutsideTheBoardException);
 
   PointLocation wrongPointLocation2{VerticalCoordinate::B, 8};
-  Move wrongMove2{MoveType::STONE_SETTING, PlayerColor::WHITE, wrongPointLocation2};
-  EXPECT_THROW(moveAnalyser.checkMove(wrongMove2), MoveOutsideTheBoardException);
+  repeatMove = Move{MoveType::STONE_SETTING, PlayerColor::WHITE, wrongPointLocation2};
+  EXPECT_THROW(moveAnalyser.checkMove(repeatMove), MoveOutsideTheBoardException);
 }
 
 TEST_F(TestMoveAnalyser, checkForEmptyDestinationPoint) {
