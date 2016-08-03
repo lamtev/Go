@@ -6,7 +6,7 @@ services:
   - docker
 
 install:
-  - docker pull lamtev/build-tools
+  - docker pull lamtev/cxx-build-tools
 
 script:
-  - docker run -v /home/travis/build/lamtev/Go:/sources lamtev/cxx-build-tools /bin/bash -c "cd sources && ./travis_build.sh"
+  - docker run -v /home/travis/build/lamtev/Go:/Go lamtev/cxx-build-tools /bin/bash -c "cd Go && ./travis_build.sh"
