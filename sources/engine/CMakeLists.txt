@@ -19,6 +19,7 @@ set(ENGINE_SOURCE_FILES
         exceptions/MoveToNotEmptyPointException.h
         exceptions/MoveOutsideTheBoardException.h
         exceptions/MoveRepeatException.h
-        exceptions/MoveToDieException.h Engine.cpp Engine.h MoveAnalyser.cpp MoveAnalyser.h)
+        exceptions/MoveToDieException.h
+        Engine.cpp Engine.h)
 
 add_library(engine STATIC ${ENGINE_SOURCE_FILES})
